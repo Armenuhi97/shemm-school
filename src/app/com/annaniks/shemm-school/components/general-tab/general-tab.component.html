@@ -1,0 +1,138 @@
+<form class="component-content" action="" [formGroup]="commonGroup">
+    <div class="form_group">
+        <div class="label">
+            <label for="">Գույքային քարտ</label>
+        </div>
+        <div class="input_wraper">
+            <input class="middle-input" type="text" formControlName="propertyCard">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Փաստաթղթի N</label>
+        </div>
+        <div class="input_wraper">
+            <input class="middle-input" type="number" formControlName="folderNumber">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Մատակարար</label>
+        </div>
+        <div class="input_wraper has-add-button-content">
+            <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('partner','id')"
+                [selectObject]="commonGroup.get('partner').value" (setValue)="setValue($event,'partner')"
+                [array]="partners" [modalParams]="setModalParams('Գործընկերներ','Կոդ','id')">
+            </app-modal-dropdown>
+            <button class="add_button" (click)="addPartner()"><i class="material-icons">
+                    add
+                </i></button>
+            <span class="selected-element-name"
+                *ngIf="commonGroup.get('partner').value">{{commonGroup.get('partner').value.name}}</span>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Մատակարարի հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('partnerAccount','account')"
+                [selectObject]="commonGroup.get('partnerAccount').value" (setValue)="setValue($event,'partnerAccount')"
+                [array]="chartAccounts" [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="commonGroup.get('partnerAccount').value">{{commonGroup.get('partnerAccount').value.name}}</span>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 1</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup1','code')"
+                [selectObject]="commonGroup.get('analyticalGroup1').value"
+                (setValue)="setValue($event,'analyticalGroup1')" [array]="analyticalGroup1"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 1','Կոդ','code')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="commonGroup.get('analyticalGroup1').value">{{commonGroup.get('analyticalGroup1').value.name}}</span>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 2</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup2','code')"
+                [selectObject]="commonGroup.get('analyticalGroup2').value"
+                (setValue)="setValue($event,'analyticalGroup2')" [array]="analyticalGroup2"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 2','Կոդ','code')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="commonGroup.get('analyticalGroup2').value">{{commonGroup.get('analyticalGroup2').value.name}}</span>
+        </div>
+    </div>
+
+
+    <div class="folder-container">
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ձեռքբերման փաստաթղթի N</label>
+            </div>
+            <div class="input_wraper">
+                <input formControlName="acquisitionDocument">
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="date_label">
+                <label for="">ա/թ․</label>
+            </div>
+            <div class="wraper">
+                <p-calendar rPCalendarMask formControlName="acquisitionDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                    [locale]="calendarConfig">
+                </p-calendar>
+            </div>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">ԱԱՀ-ի հաշվարկի ձև</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'id'" 
+                [inputValue]="setInputValue('calculateType','id')"
+                [selectObject]="commonGroup.get('calculateType').value"
+                (setValue)="setValue($event,'calculateType')" [array]="calculationTypes"
+                [modalParams]="setModalParams('ԱԱՀ-ի հաշվարկի ձև','Կոդ','id')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+            *ngIf="commonGroup.get('calculateType').value">{{commonGroup.get('calculateType').value.name}}</span>
+        </div>
+    </div>
+</form>
+
+<!-- <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12">
+            <div class="ui-inputgroup">
+                <span class="ui-g-4 ui-md-3">ԱԱՀ-ի հաշվարկի ձև</span>
+                <input class="ui-g-7 ui-md-7"  type="text" pInputText placeholder="Username">         
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-12">
+            <div class="ui-inputgroup">
+                <span class="ui-g-4  ui-md-8">ԱԱՀ-ի հաշվfdsdsfարկի ձև</span>
+                <input class="ui-g-5 ui-md-5"  type="text" pInputText placeholder="Username">         
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-12">
+            <div class="ui-inputgroup">
+                <span class="ui-g-4 ui-md-8">ԱԱՀ-ի հdfdddddddddddաշվարկի ձև</span>
+                <input class="ui-g-3 ui-md-3"  type="text" pInputText placeholder="Username">         
+            </div>
+        </div>
+    </div> -->

@@ -1,0 +1,218 @@
+<div class="adverising-content">
+    <div class="select-all">
+        <div>Բոլորը նշել (Ֆինանս․)</div>
+        <div>
+            <button class="button">
+                <i class="material-icons">
+                    arrow_downward
+                </i>
+                <span> Ընթացիկ հայտանիշով</span>
+            </button>
+        </div>
+        <div>
+            <button [class.active]="checkIsAllSelect('isWearFinance',true)" (click)="selectAll('isWearFinance',true)"
+                class="button">
+                <i class="material-icons">
+                    arrow_downward
+                </i>
+                <span> Մաշվող են</span>
+            </button>
+        </div>
+        <div>
+            <button [class.active]="checkIsAllSelect('isWearFinance',false)" (click)="selectAll('isWearFinance',false)"
+                class="button">
+                <i class="material-icons">
+                    arrow_downward
+                </i>
+                <span> Մաշվող չեն</span>
+            </button>
+        </div>
+    </div>
+    <div class="select-all">
+        <div>Բոլորը նշել (Հարկ․)</div>
+        <div>
+            <button class="button">
+                <i class="material-icons">
+                    arrow_downward
+                </i>
+                <span> Ընթացիկ հայտանիշով</span>
+            </button>
+        </div>
+        <div>
+            <button [class.active]="checkIsAllSelect('isWearFax',true)" (click)="selectAll('isWearFax',true)"
+                class="button">
+                <i class="material-icons">
+                    arrow_downward
+                </i>
+                <span> Մաշվող են</span>
+            </button>
+        </div>
+        <div>
+            <button [class.active]="checkIsAllSelect('isWearFax',false)" (click)="selectAll('isWearFax',false)"
+                class="button">
+                <i class="material-icons">
+                    arrow_downward
+                </i>
+                <span> Մաշվող չեն</span>
+            </button>
+        </div>
+    </div>
+</div>
+<app-table (add)="addRow($event)" (delete)="deleteAll($event)">
+    <table
+        *ngIf="advertisingServicesGroupArray && advertisingServicesGroupArray.controls && advertisingServicesGroupArray.controls.length">
+        <tr>
+            <th></th>
+            <th>Գույքահամար</th>
+            <th>Անվանում</th>
+            <th>Սկզբնական արժեքի հաշիվ</th>
+            <th>Մաշվածության հաշիվ</th>
+            <th>Ծախսի հաշիվ</th>
+            <th>Հետաձգված հասույթների․․․</th>
+            <th>Հետաձգված հասույթներ․․․</th>
+            <th>Հասույթի հաշիվ</th>
+            <th>Մաշվող է(Ֆինանս․)</th>
+            <th>Մաշվող է(Հարկ․)</th>
+            <th>Մաշվող է(Հետ․ հաս․)</th>
+        </tr>
+        <tr *ngFor="let item of advertisingServicesGroupArray.controls; let i = index" [formGroup]="item">
+            <td>
+                <div (click)="remove(i)" class="close">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input formControlName="inventory" type="number">
+                    <span class="validate_error"
+                        *ngIf="item.get('inventory').invalid  && item.get('inventory').touched"><i
+                            class="material-icons">
+                            close
+                        </i>
+                    </span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input formControlName="name" type="text">
+                    <span class="validate_error" *ngIf="item.get('name').invalid  && item.get('name').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'account'"
+                        [inputValue]="setInputValue('initialInvoiceValue','account',item)"
+                        [selectObject]="item.get('initialInvoiceValue').value"
+                        (setValue)="setValue($event,'initialInvoiceValue',item)" [array]="chartAccounts"
+                        [modalParams]="setModalParams('Հաշվային պլան','account')">
+                    </app-modal-dropdown>
+                    <!-- <input formControlName="initialInvoiceValue" type="text"> -->
+                    <span class="validate_error"
+                        *ngIf="item.get('initialInvoiceValue').invalid  && item.get('initialInvoiceValue').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'account'"
+                        [inputValue]="setInputValue('depreciationAccount','account',item)"
+                        [selectObject]="item.get('depreciationAccount').value"
+                        (setValue)="setValue($event,'depreciationAccount',item)" [array]="chartAccounts"
+                        [modalParams]="setModalParams('Հաշվային պլան','account')">
+                    </app-modal-dropdown>
+                    <!-- <input formControlName="depreciationAccount" type="text"> -->
+                    <span class="validate_error"
+                        *ngIf="item.get('depreciationAccount').invalid  && item.get('depreciationAccount').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'account'"
+                        [inputValue]="setInputValue('expenseExpense','account',item)"
+                        [selectObject]="item.get('expenseExpense').value"
+                        (setValue)="setValue($event,'expenseExpense',item)" [array]="chartAccounts"
+                        [modalParams]="setModalParams('Հաշվային պլան','account')">
+                    </app-modal-dropdown>
+                    <!-- <input formControlName="expenseExpense" type="text"> -->
+                    <span class="validate_error"
+                        *ngIf="item.get('expenseExpense').invalid  && item.get('expenseExpense').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'account'"
+                        [inputValue]="setInputValue('deferredIncome','account',item)"
+                        [selectObject]="item.get('deferredIncome').value"
+                        (setValue)="setValue($event,'deferredIncome',item)" [array]="chartAccounts"
+                        [modalParams]="setModalParams('Հաշվային պլան','account')">
+                    </app-modal-dropdown>
+                    <!-- <input formControlName="deferredIncome" type="text"> -->
+                    <span class="validate_error"
+                        *ngIf="item.get('deferredIncome').invalid  && item.get('deferredIncome').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'account'"
+                        [inputValue]="setInputValue('deferredIncome2','account',item)"
+                        [selectObject]="item.get('deferredIncome2').value"
+                        (setValue)="setValue($event,'deferredIncome2',item)" [array]="chartAccounts"
+                        [modalParams]="setModalParams('Հաշվային պլան','account')">
+                    </app-modal-dropdown>
+                    <!-- <input formControlName="deferredIncome2" type="text"> -->
+                    <span class="validate_error"
+                        *ngIf="item.get('deferredIncome2').invalid  && item.get('deferredIncome2').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'account'"
+                        [inputValue]="setInputValue('incomeAccount','account',item)"
+                        [selectObject]="item.get('incomeAccount').value"
+                        (setValue)="setValue($event,'incomeAccount',item)" [array]="chartAccounts"
+                        [modalParams]="setModalParams('Հաշվային պլան','account')">
+                    </app-modal-dropdown>
+                    <!-- <input formControlName="incomeAccount" type="text"> -->
+                    <span class="validate_error"
+                        *ngIf="item.get('incomeAccount').invalid  && item.get('incomeAccount').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <label class="container-checkbox">
+                    <input formControlName="isWearFinance" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </td>
+            <td> <label class="container-checkbox">
+                    <input formControlName="isWearFax" type="checkbox">
+                    <span class="checkmark"></span>
+                </label></td>
+            <td> <label class="container-checkbox">
+                    <input formControlName="isWearRevenue" type="checkbox">
+                    <span class="checkmark"></span>
+                </label></td>
+        </tr>
+    </table>
+</app-table>

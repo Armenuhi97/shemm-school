@@ -1,0 +1,9 @@
+.form_group{     
+    .label{
+        width: 265px;
+     
+    } 
+    .input_wraper{
+        width: calc(100% - 265px);     
+    }
+}

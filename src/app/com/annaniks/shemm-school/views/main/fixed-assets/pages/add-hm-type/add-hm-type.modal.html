@@ -1,0 +1,131 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div *ngIf="errorWithServerResponce">{{errorWithServerResponce}}</div>
+<div class="forms-container">
+  <form [formGroup]="hmTypeGroup">
+    <div class="form_group">
+      <div class="label">
+        <label class="required" for="">Կոդ</label>
+      </div>
+      <div class="input_wraper">
+        <input type="text" class="code-input" formControlName="code">
+        <span class="validate_error"
+          *ngIf="hmTypeGroup.get('code').hasError('required') && hmTypeGroup.get('code').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+    <div class="form_group">
+      <div class="label">
+        <label class="required" for="">Անվանում</label>
+      </div>
+      <div class="input_wraper">
+        <input class="code-input" formControlName="name">
+        <span class="validate_error"
+          *ngIf="hmTypeGroup.get('name').hasError('required') && hmTypeGroup.get('name').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label for="">Սկզբնական արժեքի հաշիվ</label>
+      </div>
+      <div class="input_wraper">
+        <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('initialAccountId','account')"
+          [selectObject]="hmTypeGroup.get('initialAccountId').value" fomControlName="initialAccountId"
+          (setValue)="setValue($event,'initialAccountId')" [array]="accountPlans"
+          [modalParams]="setModalParams('Սկզբնական արժեքի հաշիվ','account')">
+        </app-modal-dropdown>
+        <span class="validate_error"
+          *ngIf="hmTypeGroup.get('initialAccountId').hasError('required') && hmTypeGroup.get('initialAccountId').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label for="">Մաշվածության հաշիվ</label>
+      </div>
+      <div class="input_wraper">
+        <app-modal-dropdown [property]="'staleAccountId'" [inputValue]="setInputValue('staleAccountId','account')"
+          [selectObject]="hmTypeGroup.get('staleAccountId').value" fomControlName="staleAccountId"
+          (setValue)="setValue($event,'staleAccountId')" [array]="accountPlans"
+          [modalParams]="setModalParams('Մաշվածության հաշիվ','account')">
+        </app-modal-dropdown>
+        <span class="validate_error"
+          *ngIf="hmTypeGroup.get('staleAccountId').hasError('required') && hmTypeGroup.get('staleAccountId').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label for="">Օգտակար ծառայության ժամկետ (ամիս)</label>
+      </div>
+      <div class="input_wraper">
+        <input class="code-input" formControlName="usefullServiceDuration">
+        <span class="validate_error"
+          *ngIf="hmTypeGroup.get('usefullServiceDuration').hasError('required') && hmTypeGroup.get('usefullServiceDuration').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label for="">ՀՄ խումբ շահութահարկի օրենքով</label>
+      </div>
+      <div class="input_wraper">
+        <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('hmxProfitTaxId','code')"
+          [selectObject]="hmTypeGroup.get('hmxProfitTaxId').value" fomControlName="staleAccountId"
+          (setValue)="setValue($event,'hmxProfitTaxId')" [array]="addByTaxLawData"
+          [modalParams]="setModalParams('ՀՄ խումբ շահութահարկի օրենքով','code')">
+        </app-modal-dropdown>
+        <span class="validate_error"
+          *ngIf="hmTypeGroup.get('hmxProfitTaxId').hasError('required') && hmTypeGroup.get('hmxProfitTaxId').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label for="">Կուտակիչ</label>
+      </div>
+      <div class="input_wraper">
+        <!-- <input class="name-input" formControlName="parentId"> -->
+        <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('parentId','code')"
+          [selectObject]="hmTypeGroup.get('parentId').value" fomControlName="staleAccountId"
+          (setValue)="setValue($event,'parentId')" [array]="hmTypesData"
+          [modalParams]="setModalParams('Կուտակիչ','code')">
+        </app-modal-dropdown>
+
+        <span class="validate_error"
+          *ngIf="hmTypeGroup.get('parentId').hasError('required') && hmTypeGroup.get('parentId').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+    <div class="buttons">
+      <button (click)="addHmType()">Կատարել</button>
+      <button (click)="close()">Դադարեցնել</button>
+    </div>
+  </form>
+</div>

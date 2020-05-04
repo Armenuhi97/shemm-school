@@ -1,0 +1,130 @@
+<form [formGroup]="employeeGroup">
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Աշխատակցի հաշիվը բանկում</label>
+        </div>
+        <div class="input_wraper">
+            <input type="text" formControlName="bankAccount">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Սոցիալական քարտի համար</label>
+        </div>
+        <div class="input_wraper">
+            <input type="text" formControlName="socialCard">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անձը հաստատող փաստաթղթի տեսակ</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown [options]="identityDocumentTypes" optionLabel="name" placeholder="Ընտրեք"
+                formControlName="identityDocumentType"></p-dropdown>
+            <!-- <span class="text">ՀՀ անձնագիր</span> -->
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անձնագրի համար</label>
+        </div>
+        <div class="input_wraper ">
+            <input type="text" formControlName="identityDocumentNumber">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Տրման ամսաթիվ</label>
+        </div>
+        <div class="input_wraper">
+            <p-calendar rPCalendarMask formControlName="issueDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                [locale]="calendarConfig">
+            </p-calendar>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ում կողմից է տրվել</label>
+        </div>
+        <div class="input_wraper">
+            <input type="text" formControlName="personIssue">
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ազգություն</label>
+        </div>
+        <div class="input_wraper">
+            <input type="text" formControlName="nationality">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Այլ փաստաթղթի համար</label>
+        </div>
+        <div class="input_wraper">
+            <input type="text" formControlName="otherDocument">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Հեռախոս</label>
+        </div>
+        <div class="input_wraper">
+            <input type="text" prefix="+374" mask="(00) 00 00 00" formControlName="phone">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Բջջային</label>
+        </div>
+        <div class="input_wraper">
+            <input type="text" prefix="+374" mask="(00) 00 00 00" formControlName="mobilePhone">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Օտար լեզուներ</label>
+        </div>
+        <div class="input_wraper">
+            <input type="text" formControlName="language">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Կրթություն</label>
+        </div>
+        <div class="input_wraper">
+            <input type="text" formControlName="education">
+        </div>
+    </div>
+    <!-- <div class="form_group">
+        <div class="label">
+            <label for="">Էլ․ փոստ</label>
+        </div>
+        <div class="input_wraper">
+            <input type="text" formControlName="email">
+            <span class="validate_error"
+            *ngIf="employeeGroup.get('email').hasError('pattern')"><i
+                class="material-icons">
+                close
+            </i></span>
+        </div>
+    </div> -->
+
+    <!-- <div class="dropdown">
+        <div class="form_group">
+            <div class="input_wraper">
+                <p-dropdown [options]="educations" optionLabel="name"  [placeholder]="'Կրթություն'"
+                    formControlName="education"></p-dropdown>
+            </div>
+        </div>
+    </div> -->
+</form>

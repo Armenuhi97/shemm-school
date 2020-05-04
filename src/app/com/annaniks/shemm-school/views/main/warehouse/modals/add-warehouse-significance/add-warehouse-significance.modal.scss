@@ -1,0 +1,12 @@
+.form_group{
+
+  .label{
+      width: 350px;
+  }
+  .code-input{
+      width: 45%;
+  }
+  .input_wraper{
+    width: calc(100% - 350px);
+}
+}

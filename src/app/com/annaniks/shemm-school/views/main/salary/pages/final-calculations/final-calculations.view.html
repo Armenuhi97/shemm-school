@@ -1,0 +1,14 @@
+<app-tables-by-filter [titles]="titles" (add)="add(false)">
+    <tr *ngFor="let item of finalCalculations">
+        <td></td>
+        <!-- <td class="edit"> <i (click)="addMaterialValuesShift(true,item?.id)" class=" material-icons"> edit </i> </td> -->
+        <td class="delete"> <i (click)="delete(item?.id)" class=" material-icons"> close </i></td>
+        <td>{{item?.documentNumber}}</td>
+        <td>{{item?.employee?.fullName}}</td>
+        <td>{{item?.analiticGroup1?.code}}</td>
+        <td>{{item?.analiticGroup2?.code}}</td>
+    </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

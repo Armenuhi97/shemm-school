@@ -1,0 +1,14 @@
+<div class="tabs-content">
+    <div class="tabs">
+        <div class="tab" [ngClass]="{'active-tab':activeTab==item,'first-tab':i ==0 && activeTab==item}"
+            (click)="setActiveTab(item)" *ngFor="let item of tabsItem;let i=index">
+            <span>{{(item && item.title)?item.title:item}}</span>
+            <span class="validate_error" *ngIf="item && !item.isValid"><i class="material-icons">
+                    close
+                </i> </span>
+        </div>
+    </div>
+    <div class="active-tab-item">
+        <ng-content></ng-content>
+    </div>
+</div>

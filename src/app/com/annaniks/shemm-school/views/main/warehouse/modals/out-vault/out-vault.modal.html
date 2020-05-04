@@ -1,0 +1,89 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<!-- <span class="error">{{error}}</span> -->
+<form action="" [formGroup]="outVaultGroup">
+    <div class="first-section">
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Ամսաթիվ</label>
+            </div>
+            <div class="input_wraper date">
+                <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                    [locale]="calendarConfig"> </p-calendar>
+                <span class="validate_error"
+                    *ngIf="outVaultGroup.get('date').hasError('required') && outVaultGroup.get('date').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group right">
+            <div class="right_label label">
+                <label for=""><span>*</span> Փաստաթղթի N</label>
+            </div>
+            <div class="input_wraper order_number">
+                <input formControlName="folderNumber" type="number">
+                <span class="validate_error"
+                    *ngIf="outVaultGroup.get('folderNumber').hasError('required') && outVaultGroup.get('folderNumber').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+    </div>
+    <div class="other-section">
+
+        <div class="form_group other-section">
+            <div class="label">
+                <label for=""> Պահեստ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'"  [inputProperty]="'name'" [inputValue]="setInputValue('warehouse','name')"
+                    [selectObject]="outVaultGroup.get('warehouse').value" (setValue)="setValue($event,'warehouse')"
+                    [array]="warehouses" [modalParams]="setModalParams('Պահեստ',['Անուն'],['name'])">
+                </app-modal-dropdown>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="other-section">
+
+        <div class="form_group other-section">
+            <div class="label">
+                <label for="">Ապրանքի նշանակություն</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'id'" [inputProperty]="'name'" [inputValue]="setInputValue('wareHouseAcquistion','name')"
+                    [selectObject]="outVaultGroup.get('wareHouseAcquistion').value"
+                    (setValue)="setValue($event,'wareHouseAcquistion')" [array]="wareHouseAcquistions"
+                    [modalParams]="setModalParams('Ապրանքի նշանակություն',['Անուն'],['name'])">
+                </app-modal-dropdown>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+
+        <app-out-vault-common [exitSpecification]="exitSpecification" [date]="outVaultGroup.get('date').value" 
+        [wareHouses]="warehouses"
+            [wareHouseAcquistions]="wareHouseAcquistions"
+            [chartAccounts]="chartAccounts" [selectedWareHouse]="outVaultGroup.get('warehouse').value"  
+            [selectedWareHouseAcquistion]="outVaultGroup.get('wareHouseAcquistion').value"
+            [analyticalGroup1]="analyticalGroup1" [analyticalGroup2]="analyticalGroup2"
+          
+            [unitOfMeasurements]="unitOfMeasurements" [group]="outVaultGroup.get('general').value"
+            *ngSwitchCase="'Ընդհանուր'"></app-out-vault-common>
+        <app-out-vault-additionally [group]="outVaultGroup.get('additionally').value" *ngSwitchCase="'Լրացուցիչ'">
+        </app-out-vault-additionally>
+        <app-operation [typeOperation]="'true'" [chartAccounts]="chartAccounts" [partners]="partners"
+            [analyticalGroup1]="analyticalGroup1" [analyticalGroup2]="analyticalGroup2" [typeOperation]="'true'"
+            *ngSwitchCase="'Գործառնություններ'" [group]="outVaultGroup.get('operation').value"></app-operation>
+    </div>
+</app-tabs>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

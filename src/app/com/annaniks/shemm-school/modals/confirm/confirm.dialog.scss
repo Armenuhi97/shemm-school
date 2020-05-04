@@ -1,0 +1,23 @@
+.dialog-content{
+    .link{
+        text-align: center;
+        padding: 7px 0;
+        a{
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+    .warming-text{
+        font-size: 17px;
+        color: red;
+        text-align: center;
+        padding: 12px 0;
+    }
+   
+    button{
+        background-color: #3F7FB8;
+        border: none;
+        color: white;
+    }
+}
+

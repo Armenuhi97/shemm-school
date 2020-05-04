@@ -1,0 +1,137 @@
+@import "../../../../../../../assets/scss/variable";
+
+
+.home-container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+
+    .flexible {
+        width: 50%;
+        height: fit-content;
+        display: flex;
+        flex-direction: row;
+        flex-flow: wrap;
+        align-content: flex-start;
+        .header-action {
+            width: 100%;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            main-navbar {
+                flex-basis: 200px;
+            }
+        }
+
+    }
+
+    .menu-card {
+        width: 50%;
+        .menu-items {
+            .header-action {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+
+            .menu-actions {
+                .menu-action-item {
+                    display: flex;
+                    align-content: center;
+                    justify-content: flex-start;
+                    // width: 560px;
+                    width: 100%;
+                    height: 64px;
+                    margin-bottom: 32px;
+                    background: linear-gradient(to right, #3776b4, #4491c5);
+                    border-radius: 4px;
+                    cursor: pointer;
+
+
+
+                    .menu-action-icon {
+                        width: 44px;
+                        height: 44px;
+                        margin: auto 10px;
+
+                    }
+
+                    .menu-action-title {
+                        span {
+                            font-size: 1em;
+                            color: white;
+                        }
+                    }
+
+                }
+
+                &:nth-last-child(3),
+                &:nth-last-child(2) {
+                    .menu-action-item {
+                        background: white !important;
+                        border: 2px solid #268870;
+                        box-sizing: border-box;
+
+                        .menu-action-icon {
+                            i {
+                                color: #268870;
+                            }
+                        }
+
+                        .menu-action-title {
+                            span {
+                                font-size: 1em;
+                                color: #140b20 !important;
+                            }
+                        }
+                    }
+                }
+
+                &:nth-last-child(1) {
+                    .menu-action-item {
+                        background: white !important;
+                        border: 2px solid #268870;
+                        box-sizing: border-box;
+                        margin-bottom: 0;
+
+                        .menu-action-icon {
+                            i {
+                                color: #f24133;
+                            }
+                        }
+
+                        .menu-action-title {
+                            span {
+                                font-size: 1em;
+                                color: #140b20 !important;
+                            }
+                        }
+                    }
+                }
+
+
+            }
+        }
+    }
+}
+@media screen and (max-width: 996px) {
+    .cards {
+        width: 90%;
+        main-navbar {
+            flex-basis: auto !important;
+            width: 100%;       
+         }
+    }
+
+}
+h2 {
+    color: #3776b4;
+    font-size: 1.5rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+

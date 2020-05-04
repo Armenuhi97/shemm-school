@@ -1,0 +1,34 @@
+<h2>{{ tabTitle }}</h2>
+<form [formGroup]="colorsAndFontsFormGroup">
+
+  <div class="section">
+    <div class="section-header">
+      <span>Համակարգի տառատեսակը</span>
+    </div>
+
+    <div class="section-body" formGroupName="fontOfSystem">
+      <div class="form_group p-grid">
+
+        <div class="input_wraper font">
+          <p-dropdown [options]="fontsType" [(ngModel)]="colorAndFont?.fontOfSystem.fontName" optionLabel="name"  placeholder="" formControlName="fontName">
+          </p-dropdown>
+        </div>
+
+        <div class="input_wraper">
+          <p-dropdown [options]="fontSize"  optionLabel="size" placeholder="" formControlName="size">
+          </p-dropdown>
+        </div>
+
+        <div class="label">
+          <button class="button">Փոխել տառատեսակը</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button (click)="addColorsAndFonts()" [disabled]="!colorsAndFontsFormGroup.valid">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+  </div>
+</form>

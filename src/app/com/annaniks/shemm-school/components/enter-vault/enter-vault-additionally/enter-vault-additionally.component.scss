@@ -1,0 +1,35 @@
+.form_group{       
+    .label{
+        width: 250px;          
+    } 
+    .input_wraper{
+        width: calc(100% - 250px);        
+     
+    }
+}
+:host::ng-deep p-dropdown{
+    width: 100%;
+    .ui-dropdown{
+        width: 80%  !important;
+    }
+}
+.transport_container{
+   display: flex;
+   align-items: center; 
+   .date_label{
+       width: fit-content !important;
+       margin-right: 5px;
+   }
+}
+
+@media only screen and (max-width: 1200px) {
+
+*[margin-left-12]{
+    margin-left:0 !important
+  }
+
+}
+
+*[margin-left-12]{
+    margin-left:12px
+}

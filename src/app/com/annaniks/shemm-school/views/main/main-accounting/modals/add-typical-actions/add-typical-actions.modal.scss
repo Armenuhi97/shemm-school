@@ -1,0 +1,41 @@
+
+.group{
+    margin-top: 10px;
+    border: 1px solid grey;
+    padding: 5px;
+    .form_group{
+        .label{
+            width: 110px;
+        }
+        .input_wraper{
+            width: calc(100% - 110px);
+        }
+    }
+  
+}
+.code{
+    input{
+        width: 40%;
+    }
+}
+.name{
+    input{
+        width: 90%;
+    }
+}
+table{
+    width: 95%
+}
+th,td{
+    text-align: start;
+}
+td{
+    input{
+        width: 100%;
+    }
+}
+.container-checkbox{
+    padding-left: 22px !important;
+}
+
+

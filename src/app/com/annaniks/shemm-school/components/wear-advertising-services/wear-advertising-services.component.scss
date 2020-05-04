@@ -1,0 +1,17 @@
+
+input[type="text"], input[type="number"], p-dopdown, textarea{
+    border:none !important;
+    height: 100%;
+    resize: none;
+}
+:host::ng-deep{
+  app-modal-dropdown{
+    input{
+      height: 32px;
+      background: none;
+      border: 1px solid grey !important;
+      border-right: none !important;
+
+     }
+  }
+}

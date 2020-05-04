@@ -1,0 +1,18 @@
+<div *ngIf="forgot" class="forgot-container">
+    <h3>Forgot</h3>
+    <form class="forgot-form" [formGroup]="forgotForm">
+        <div class="form-group">
+            <label class="">Enter email </label>
+            <input class="forgot-email" formControlName="email" placeholder="Email" type="text">
+        </div>
+        <div class="send-button">
+            <button class="button" (click)="resetPassword()" type="submit">Send Email</button>
+        </div>
+
+    </form>
+</div>
+
+
+<div *ngIf="!forgot" class="notify">
+    <h2>Your mail send message</h2>
+</div>

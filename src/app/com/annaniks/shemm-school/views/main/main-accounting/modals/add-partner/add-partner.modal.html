@@ -1,0 +1,81 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<!-- <div class="error">{{error}}</div> -->
+<form class="group" [formGroup]="partnerGroup" action="">
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">ՀՎՀՀ</label>
+        </div>
+        <div class="input_wraper ">
+            <input formControlName="hvhh">
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Անվանում</label>
+        </div>
+        <div class="input_wraper ">
+            <input formControlName="name">
+            <span class="validate_error"
+                *ngIf="partnerGroup.get('name').hasError('required') && partnerGroup.get('name').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+        </div>
+    </div>
+    <!-- <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Լրիվ անվանում</label>
+        </div>
+        <div class="input_wraper ">
+            <input formControlName="fullName">
+            <span class="validate_error"
+                *ngIf="partnerGroup.get('fullName').hasError('required') && partnerGroup.get('fullName').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+        </div>
+    </div> -->
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Խումբ</label>
+        </div>
+        <div class="input_wraper  partner_input">
+            <div class="partner_section">
+                <app-modal-dropdown [property]="'id'"  [inputProperty]="'name'" [inputValue]="setInputValue('group','name')"
+                 (setValue)="setValue($event,'group')"
+                    [modalName]="getModalName" [array]="groups" [selectObject]="partnerGroup.get('group').value"
+                    [modalParams]="modalParams">
+                </app-modal-dropdown>
+                <button class="add_button" (click)="addGroup()"><i class="material-icons">
+                        add
+                    </i></button>
+                <span class="validate_error" *ngIf="partnerGroup.get('group').hasError('required') && partnerGroup.get('group').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+    </div>
+</form>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+        <app-add-partner-common [headPosition]="headPositions" [accountPosition]="accountPositions"
+            [group]="partnerGroup.get('common').value" *ngSwitchCase="'Ընդհանուր'">
+        </app-add-partner-common>
+        <app-additional-address [group]="partnerGroup.get('aditionalAddress').value"
+            *ngSwitchCase="'Լրացուցիչ հասցեներ'"></app-additional-address>
+        <app-partnet-other-data [group]="partnerGroup.get('other').value" *ngSwitchCase="'Այլ'">
+        </app-partnet-other-data>
+        <app-settlement-account [currencies]="currencies" [group]="partnerGroup.get('settlementAccount').value"
+            *ngSwitchCase="'Հաշվարկային հաշիվներ'"></app-settlement-account>
+    </div>
+</app-tabs>
+<div class="buttons">
+    <button (click)="addPartner()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

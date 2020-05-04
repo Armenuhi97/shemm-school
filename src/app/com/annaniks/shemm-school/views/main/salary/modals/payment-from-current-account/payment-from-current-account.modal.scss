@@ -1,0 +1,44 @@
+.first-section{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    .form_group{     
+        .label{
+            width: 130px;         
+        } 
+        .date-wraper{
+            width: calc(100% - 130px);     
+        }
+    }
+    .right{
+        margin-left: 25px;
+        .right_label{
+            width: fit-content;   
+            margin-right: 5px;  
+            label{
+                font-size: 15px;                
+            }     
+        } 
+        input{
+            width:130px;
+        }
+    }
+}
+@media screen and (max-width: 1510px) {
+    .label{
+        width: 200px !important;
+    }
+    .first-section{
+        flex-direction: column;
+        align-items: flex-start;
+        .right{
+            margin-left:0 !important;               
+            .right_label{
+                width: 200px !important;            
+            }             
+        }    
+        .input_wraper, .date-wraper{
+            width: calc(100% - 200px) !important;     
+        }  
+    }
+}

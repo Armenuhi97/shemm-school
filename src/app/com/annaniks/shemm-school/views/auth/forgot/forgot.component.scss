@@ -1,0 +1,42 @@
+.forgot-container {
+    width: 450px;
+    padding: 25px 50px;
+    h3 {
+        padding-bottom: 8px;
+        box-shadow: 0 1px 0 rgba(0,0,0,.1) ,0 2px 0 rgba(255,255,255,.9);
+        text-align: center;
+    }
+
+    .forgot-form {
+        margin-top: 14px;
+     .form-group {
+            label{
+                display: block;
+                margin: 10px 0;
+            }
+            input{
+                width: 100%;
+                height: 32px;
+                padding-left: 6px;
+            }
+            .forgot-email {           
+            }
+        }
+        .send-button {
+            display: flex;
+            justify-content: center;
+            .button{
+                padding: 10px 30px;
+                border: 0;
+                background: green;
+                border-radius: 4px;
+                margin: 10px 0;
+                color: white;
+            }
+        }
+    }
+}
+
+.notify {
+    padding: 25px ;
+}

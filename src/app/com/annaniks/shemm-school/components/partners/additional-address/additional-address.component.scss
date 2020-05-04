@@ -1,0 +1,28 @@
+table {
+    width: 95%;
+  }
+  input[type="text"], p-dopdown{
+      height: 100%;
+      width: 95%;
+  }
+td:first-child{
+    width: 3%;
+}
+  .row-content{
+    display: flex;
+    align-items: center;
+    .validate_error{
+      height: 20px;
+      width: 20px;
+      background: #AA1415;
+      color: white;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      border-radius: 50%;
+      margin-left: 5px;
+      i{
+          font-size: 15px;
+      }
+    }
+  }

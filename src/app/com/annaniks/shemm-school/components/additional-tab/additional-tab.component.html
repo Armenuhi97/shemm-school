@@ -1,0 +1,62 @@
+<form [formGroup]="additionalGroup" class="additional">
+    <div class="additional-container">
+     
+        <div class="form_group">
+            <div class="label">
+                <label for="">Թողարկման տարեթիվ</label>
+            </div>
+            <div class="input_wraper">
+                <p-dropdown formControlName="startYear"></p-dropdown>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Գործարանային համար</label>
+            </div>
+            <div class="input_wraper">
+                <input type="number" formControlName="serialNumber">
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Տեխնիկական անձնագիր</label>
+            </div>
+            <div class="input_wraper">
+                <input type="text" formControlName="technicalProfile">
+            </div>
+        </div>
+
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Մակնիշ</label>
+            </div>
+            <div class="input_wraper">
+                <input type="text" formControlName="stamp">
+            </div>
+        </div>
+
+   
+        <div class="form_group">
+            <div class="label">
+                <label for="">Համառոտ բնութագրեր</label>
+            </div>
+            <div class="input_wraper">
+                <input type="text" formControlName="briefReview">
+            </div>
+        </div>
+
+     
+        <div class="form_group">
+            <div class="label">
+                <label for="">Արտադրող</label>
+            </div>
+            <div class="input_wraper">
+                <input type="text" formControlName="manufacturer">
+            </div>
+        </div>
+
+    </div>
+</form>

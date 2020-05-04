@@ -1,0 +1,66 @@
+.first-section,.second-section{
+    padding: 0 10px 10px 10px;
+    border-bottom: 1px solid grey;
+}
+.third-section{
+    padding: 0 10px 10px 10px;
+}
+.coefficient-input{
+    input{
+        width: 35%;
+    }    
+}
+.forms-container{
+    border: 1px solid grey;
+    padding: 5px;
+    margin-top: 15px;
+    .form_group{       
+        .required::before{
+            content: '*';
+            color: red;
+        }
+        .label{
+            width: 495px;    
+        }  
+        .input_wraper{       
+            width: calc(100% - 495px);
+            .code-input{
+                width: 30%;
+            }
+            .name-input{
+                width: 85%;
+            }                 
+        }
+    }
+
+}
+
+.container-checkbox{
+    padding-left: 22px !important;
+}
+:host::ng-deep{
+    .small-wrapper{
+        p-dropdown{
+            width: 35% !important;
+            .ui-dropdown{
+                width: 100%;
+            }
+        }
+    }
+    .medium-dropdown{
+        p-dropdown{
+            width: 45% !important;
+            .ui-dropdown{
+                width: 100%;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 950px) {
+    .label{
+        width: 380px !important;    
+    }  
+    .input_wraper{       
+        width: calc(100% - 380px) !important;               
+    }
+}

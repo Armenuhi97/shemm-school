@@ -1,0 +1,11 @@
+<app-tables-by-filter [titles]="titles" (add)="addType(false)">
+    <tr *ngFor="let type of types">
+        <td class="edit"> <i (click)="addType(true,type?.id)" class=" material-icons"> edit </i> </td>
+        <td class="delete"> <i (click)="delete(type?.id)" class=" material-icons"> close </i></td>
+        <td>{{type?.code}}</td>
+        <td>{{type?.name}}</td>
+    </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

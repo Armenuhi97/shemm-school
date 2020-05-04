@@ -1,0 +1,70 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div class="forms-container">
+    <form [formGroup]="operationSignificanceGroup">
+
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Անվանում</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="name">
+                <span class="validate_error"
+                    *ngIf="operationSignificanceGroup.get('name').hasError('required') && operationSignificanceGroup.get('name').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ներհոսքի հաշիվ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('inflowAccountId','account')"
+                    fomControlName="inflowAccountId" (setValue)="setValue($event, 'inflowAccountId')" [array]="accountPlans"
+                    [selectObject]="operationSignificanceGroup.get('inflowAccountId').value"
+                    [modalParams]="setModalParams('Ներհոսքի հաշիվ','Հաշիվ','account')">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                *ngIf="operationSignificanceGroup.get('inflowAccountId').value">{{operationSignificanceGroup.get('inflowAccountId').value?.name}}</span>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Արտահոսքի հաշիվ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('leakageAccountId','account')"
+                    fomControlName="leakageAccountId" (setValue)="setValue($event, 'leakageAccountId')"
+                    [array]="accountPlans" [selectObject]="operationSignificanceGroup.get('leakageAccountId').value"
+                    [modalParams]="setModalParams('Արտահոսքի հաշիվ','Հաշիվ','account')">
+                </app-modal-dropdown>
+                <span class="selected-element-name" *ngIf="operationSignificanceGroup.get('leakageAccountId').value">
+                    {{operationSignificanceGroup.get('leakageAccountId').value?.name}}
+                </span>
+
+            </div>
+        </div>
+        <div class="form_group">
+          <div class="label">
+              <label for="">Գործընկերոջ հաշիվ</label>
+          </div>
+          <div class="input_wraper">
+              <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('partnerAccountId','account')"
+                  fomControlName="partnerAccountId" (setValue)="setValue($event, 'partnerAccountId')"
+                  [array]="accountPlans" [selectObject]="operationSignificanceGroup.get('partnerAccountId').value"
+                  [modalParams]="setModalParams('Գործընկերոջ հաշիվ','Հաշիվ','account')">
+              </app-modal-dropdown>
+              <span class="selected-element-name" *ngIf="operationSignificanceGroup.get('partnerAccountId').value">
+                  {{operationSignificanceGroup.get('partnerAccountId').value?.name}}
+              </span>
+
+          </div>
+      </div>
+    </form>
+    <div class="buttons">
+        <button (click)="addOperationSignificanceGroup()">Կատարել</button>
+        <button (click)="close()">Դադարեցնել</button>
+    </div>
+</div>

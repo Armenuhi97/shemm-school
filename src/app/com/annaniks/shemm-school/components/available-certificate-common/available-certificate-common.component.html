@@ -1,0 +1,123 @@
+<form [formGroup]="certificateGroup" action="">
+    <div class="card">
+        <div class="form_group">
+            <div class="label">
+                <label for=""> Պահեստ</label>
+            </div>
+            <div class="input_wraper small_dropdown">
+                <p-dropdown formControlName="warehouse"></p-dropdown>
+
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for=""> Խումբ</label>
+            </div>
+            <div class="input_wraper middle_dropdown">
+                <p-dropdown formControlName="group"></p-dropdown>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for=""> Նյութական արժեք</label>
+            </div>
+            <div class="input_wraper full_dropdown">
+                <p-dropdown formControlName="material_cost"></p-dropdown>
+
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="form_group">
+            <div class="label">
+                <label for=""> Ըստ տարբեր հաշիվների</label>
+            </div>
+            <div class="input_wraper">
+                <label class="container-checkbox">
+                    <input formControlName="various_accounts" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Հաշիվ</label>
+            </div>
+            <div class="input_wraper full_dropdown">
+                <p-dropdown formControlName="account"></p-dropdown>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="form_group">
+            <div class="label">
+                <label for=""> Ըստ տարբեր խմբաքանակների</label>
+            </div>
+            <div class="input_wraper">
+                <label class="container-checkbox">
+                    <input formControlName="different_parties" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="form_group">
+            <div class="label">
+                <label for="">Նվազագույն քանակներ</label>
+            </div>
+            <div class="input_wraper small_dropdown">
+                <p-dropdown formControlName="minimal_count"></p-dropdown>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ցույց տալ վաճառքի գինը</label>
+            </div>
+            <div class="input_wraper full_dropdown">
+                <p-dropdown formControlName="isShowSlePrice"></p-dropdown>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Արտարժույթ</label>
+            </div>
+            <div class="input_wraper small_dropdown">
+                <p-dropdown formControlName="currency"></p-dropdown>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for=""> Ցույց տալ ԱԱՀ-ի գումարները</label>
+            </div>
+            <div class="input_wraper">
+                <label class="container-checkbox">
+                    <input formControlName="isShowAAHAmount" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Ենթագումարներ</label>
+                </div>
+                <div class="input_wraper small_dropdown">
+                    <p-dropdown formControlName="subs"></p-dropdown>
+                </div>
+            </div>
+            <div class="additionally-content">
+                <div (click)="openOrCloseAdditionalInfo()" class="additionally">
+                    <span>Լրացուցիչ</span>
+                    <span><i [ngStyle]="arrowStyle()" class="material-icons">
+                            arrow_drop_down
+                        </i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button>Կատարել</button>
+        <button>Դադարեցնել</button>
+    </div>
+</form>

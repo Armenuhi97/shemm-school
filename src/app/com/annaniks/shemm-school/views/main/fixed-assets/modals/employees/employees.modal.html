@@ -1,0 +1,216 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div class="modal_content">
+    <div full-width>
+        <form full-width [formGroup]="formGroup">
+            <div class="form_group">
+                <div class="label">
+                    <label for=""><span>*</span> Տաբելային համար</label>
+                </div>
+                <div class="input_wraper">
+                    <input class="reportCard-input" formControlName="reportCard" type="text">
+                    <span class="validate_error"
+                        *ngIf="formGroup.get('reportCard').hasError('required') && formGroup.get('reportCard').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </div>
+
+            <!-- <div class="three-section padding-left-5"> -->
+            <div class="form_group">
+                <div class="label">
+                    <label for=""><span>*</span> Ազգանուն</label>
+                </div>
+                <div class="input_wraper">
+                    <input class="name-input" formControlName="surname">
+                    <span class="validate_error"
+                        *ngIf="formGroup.get('surname').hasError('required') && formGroup.get('surname').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </div>
+            <div class="form_group">
+                <!-- section_label name-input  margin-left-9 -->
+                <div class=" label">
+                    <label for=""><span>*</span> Անուն</label>
+                </div>
+                <div class="input_wraper">
+                    <input class="name-input" formControlName="name">
+                    <span class="validate_error"
+                        *ngIf="formGroup.get('name').hasError('required') && formGroup.get('name').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </div>
+            <!-- <div margin-left-9 class="form_group">
+                    <div class="section_label">
+                        <label for="">Հայրանուն</label>
+                    </div>
+                    <div>
+                        <input class="names-input" formControlName="patronymic">
+                    </div>
+                </div> -->
+            <!-- </div> -->
+            <div class="form_group">
+                <div class="label">
+                    <label for=""><span>*</span> Ստորաբաժանում</label>
+                </div>
+                <div class="input_wraper ">
+                    <div class="partner_section">
+                        <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                            [inputValue]="setInputValue('unit','name')" [selectObject]="formGroup.get('unit').value"
+                            (setValue)="setValue($event,'unit')" [array]="subdivision"
+                            [modalParams]="setModalParams('Ստորաբաժանում',['Անվանում'],['name'])">
+                        </app-modal-dropdown>
+                        <button class="add_button" (click)="addUnit()"><i class="material-icons">
+                                add
+                            </i></button>
+                        <span class="validate_error"
+                            *ngIf="formGroup.get('unit').hasError('required') && formGroup.get('unit').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="position-buttons">
+                <button class="add_button" (click)="addPosition()">Կցել պաշտոն</button>
+                <!-- <span></span> -->
+                <button class="add_button" (click)="addNewPosition()">Ավելացնել նոր պաշտոն</button>
+            </div>
+            <div *ngFor="let item of formGroup.get('position')['controls'];let i=index" [formGroup]="item"
+                class="position-section position">
+                <div class="form_group">
+                    <div class="label">
+                        <div class="add-position-content">
+                            <label for=""><span>*</span> Պաշտոն</label>
+
+                        </div>
+                    </div>
+                    <div class="input_wraper">
+                        <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                            [inputValue]="setInputValue('position','name',item)"
+                            [selectObject]="item.get('position').value" (setValue)="setValue($event,'position',item)"
+                            [array]="positions" [modalParams]="setModalParams('Պաշտոն',['Անվանում'],['name'])">
+                        </app-modal-dropdown>
+                        <!-- <p-dropdown [options]="positions" optionLabel="name" [placeholder]="'Ընտրեք'"
+                            formControlName="position"></p-dropdown> -->
+                        <!-- sm-media -->
+
+                        <button class="delete_button" (click)="removePosition(i)"><i class="material-icons">
+                                close
+                            </i></button>
+                        <span class="validate_error"
+                            *ngIf="item.get('position').hasError('required') && item.get('position').touched">
+                            <i class="material-icons">
+                                close
+                            </i>
+                        </span>
+                    </div>
+
+                </div>
+                <div class="date-form form_group">
+                    <div [ngClass]="{'is-invalid': !(item.get('position').hasError('required') && item.get('position').touched)}"
+                        class="label">
+                        <label for=""><span>*</span> Աշխատավարձի տեսակ</label>
+                    </div>
+                    <div class="input_wraper">
+                        <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                            [inputValue]="setInputValue('type','name',item)" [selectObject]="item.get('type').value"
+                            (setValue)="setValue($event,'type',item)" [array]="additions"
+                            [modalParams]="setModalParams('Աշխատավարձի տեսակ',['Անվանում'],['name'])">
+                        </app-modal-dropdown>
+
+                        <div class="edit-button" (click)="editDaysTable(item)" *ngIf="isEdit(item)">
+                            <i class="material-icons">
+                                edit
+                            </i>
+                        </div>
+                        <span class="validate_error"
+                            *ngIf="item.get('type').hasError('required') && item.get('type').touched">
+                            <i class="material-icons">
+                                close
+                            </i>
+                        </span>
+                    </div>
+                </div>
+                <div class="form_group">
+                    <div class="label">
+                        <label for=""><span>*</span> Դրույքաչափ</label>
+                    </div>
+                    <div class="input_wraper rate-input">
+                        <input type="number" formControlName="rate">
+                        <span class="validate_error"
+                            *ngIf="item.get('rate').hasError('required') && item.get('rate').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                </div>
+                <div class="date-form form_group">
+                    <div [ngClass]="{'is-invalid': !(item.get('position').hasError('required') && item.get('position').touched)}"
+                        class="label">
+                        <label for="">Պաշտոնի սկիզբ</label>
+                    </div>
+                    <div class="input_wraper">
+                        <p-calendar rPCalendarMask formControlName="startDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                            [locale]="calendarConfig"> </p-calendar>
+
+                    </div>
+                </div>
+
+
+                <div class="date-form form_group">
+                    <div class="label">
+                        <label for="">Պաշտոնի ավարտ</label>
+                    </div>
+                    <div class="right input_wraper">
+                        <p-calendar rPCalendarMask formControlName="endDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                            [locale]="calendarConfig"> </p-calendar>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div [ngStyle]="{'background-image':defaultImage}" class="image">
+        <div class="camera-container">
+            <input id="file-upload" (change)="changeImage($event)" type="file" accept="image/*" />
+            <label for="file-upload" class="custom-file-upload">
+                <i class="material-icons">
+                    camera_alt
+                </i>
+            </label>
+        </div>
+    </div>
+</div>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+        <app-employee-common [stampFee]="stampFee" [genders]="genders" [group]="formGroup.get('common').value"
+            [additions]="additions" [contracts]="contracts" [accountPlans]="accountPlans" [profession]="professions"
+            *ngSwitchCase="'Ընդհանուր'"></app-employee-common>
+        <!-- <app-employee-legislative [group]="formGroup.get('legislative').value" [partners]="partners"
+            *ngSwitchCase="'Օրենսդրական'"></app-employee-legislative> -->
+        <app-employee-addresses [group]="formGroup.get('address').value" *ngSwitchCase="'Հասցեներ'" [regions]="regions"
+            [communities]="communities" [countries]="countries">
+        </app-employee-addresses>
+        <app-employee-additive-retention [dateOfAccept]="getDateOfAccept" [key]="'addition'" [employeeId]="employeeId" [additions]="additions"
+            [group]="formGroup.get('addition').value" *ngSwitchCase="'Հավելումներ'">
+        </app-employee-additive-retention>
+        <!-- <app-employee-additive-retention [key]="'hold'"  [employeeId]="employeeId" [additions]="holds"
+            [group]="formGroup.get('hold').value" *ngSwitchCase="'Պահումներ'"></app-employee-additive-retention> -->
+        <app-employee-other-data [identityDocumentTypes]="identityDocumentTypes" [educations]="educations"
+            [group]="formGroup.get('otherData').value" *ngSwitchCase="'Այլ տվյալներ'">
+        </app-employee-other-data>
+
+        <app-employees-payment-type [otherWithheldPaymentsTypes]="otherWithheldPaymentsTypes"
+            *ngSwitchCase="'Այլ պահվող վճարումներ'" [group]="formGroup.get('payments').value" [types]="types"
+            [accountPlans]="accountPlans"></app-employees-payment-type>
+    </div>
+</app-tabs>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

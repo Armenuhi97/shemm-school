@@ -1,0 +1,37 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div class="forms-container">
+    <form [formGroup]="billingMethotForm">
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Կոդ</label>
+            </div>
+            <div class="input_wraper">
+                <input class="code-input" type="number" formControlName="name">
+                <span class="validate_error"
+                    *ngIf="billingMethotForm.get('name').hasError('required') && billingMethotForm.get('name').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Անվանում</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="abbreviation">
+                <span class="validate_error"
+                    *ngIf="billingMethotForm.get('abbreviation').hasError('required') && billingMethotForm.get('abbreviation').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button (click)="addBillingMethod()">Կատարել</button>
+            <button (click)="close()">Դադարեցնել</button>
+        </div>
+    </form>
+</div>

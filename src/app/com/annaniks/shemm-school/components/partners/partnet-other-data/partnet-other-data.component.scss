@@ -1,0 +1,15 @@
+.form_group{    
+       
+    .label{
+        width: 212px;         
+    }       
+    .input_wraper{           
+        width: calc(100% - 212px);         
+    }
+}
+:host::ng-deep p-dropdown{
+    width: 100%;
+    .ui-dropdown{
+        width: 80%  !important;
+    }
+}

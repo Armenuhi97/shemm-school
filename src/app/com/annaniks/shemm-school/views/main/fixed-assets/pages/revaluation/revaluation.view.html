@@ -1,0 +1,13 @@
+<app-tables-by-filter [titles]="titles" (add)="addRevaluations(false)">
+    <tr *ngFor="let item of revaluations">
+        <td></td>
+
+        <!-- <td class="edit"> <i (click)="addReconstruction(true,item?.id)" class=" material-icons"> edit </i> </td> -->
+        <td class="delete"> <i (click)="delete(item?.id)" class=" material-icons"> close </i></td>
+        <td>{{item?.documentNumber}}</td>
+        <td>{{item?.expenseAccountId}}</td>
+    </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

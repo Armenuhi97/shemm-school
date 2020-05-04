@@ -1,0 +1,14 @@
+td {
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 5px;
+    color: black;
+    font-size: 12px;
+    text-align: left;
+}
+:host ::ng-deep tr>th:nth-child(1) {
+    display: none;
+}
+:host ::ng-deep tr>th:nth-child(2) {
+    display: none;
+}

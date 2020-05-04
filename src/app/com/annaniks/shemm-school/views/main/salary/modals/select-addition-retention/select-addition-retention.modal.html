@@ -1,0 +1,33 @@
+<app-modal-header [title]="title" (close)="close($event)"></app-modal-header>
+<div class="table-content">
+    <table>
+        <tr>
+            <td>Կոդ</td>
+            <td>Անվանում</td>
+            <td>Տաբելի կոդ</td>
+            <td>Գործակից</td>
+            <td>Եկամտի տեսակ</td>
+            <td>Հետհաշվարկ</td>
+            <td>Եկամտային հարկը պահվում է</td>
+        </tr>
+        <tr cursor-pointer (click)="select(item)" *ngFor="let item of additionRetentionArray">
+            <td>{{item.code}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.reportCardCode}}</td>
+            <td>{{item.coficient}}</td>
+            <td>{{item.incomeType}}</td>
+            <td>
+                <label class="container-checkbox">
+                    <input disabled [checked]="item.countdown" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </td>
+            <td>
+                <label class="container-checkbox">
+                    <input disabled [checked]="item.isWithheldIncomeTax" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </td>
+        </tr>
+    </table>
+</div>

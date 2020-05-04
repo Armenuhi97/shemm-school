@@ -1,0 +1,39 @@
+
+.group{
+    margin-top: 10px;
+    border: 1px solid grey;
+    padding: 5px;
+    .form_group{
+        .label{
+            width: 260px;
+        }
+        .input_wraper{
+            width: calc(100% - 260px);
+        }
+    }
+  
+}
+.code{
+    input{
+        width: 70%;
+    }
+}
+.document{
+    input{
+        width: 50%;
+    }
+}
+.container-checkbox{
+    padding-left: 22px !important;
+}
+:host::ng-deep{
+    .medium-dropdown{
+        p-dropdown{
+            width: 75% !important;
+            .ui-dropdown{
+                width: 90%;
+            }
+        }
+    }
+}
+

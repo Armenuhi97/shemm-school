@@ -1,0 +1,115 @@
+<form [formGroup]="employeeGroup">
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">ՀՀ քաղաքացի (Ռեզիդենտ)</label>
+        </div>
+        <div class="checkbox_input_wraper">
+            <label class="container-checkbox">
+                <input formControlName="sitizen_RA" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Եկամտային հարկը պահվում է</label>
+        </div>
+        <div class="checkbox_input_wraper">
+            <label class="container-checkbox">
+                <input formControlName="income_tax_withheld" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Նվազեցնել կուտակային գումարը եկամտային հարկից</label>
+        </div>
+        <div class="checkbox_input_wraper">
+            <label class="container-checkbox">
+                <input formControlName="reduce_cumulative_amount_from_income_tax" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Աշխատավարձի գծով հաշվարկների հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="payroll_accounting"></p-dropdown>
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ֆիզ․ անձ (գործընկեր)</label>
+        </div>
+        <div class="input_wraper partner_input">
+            <div class="partner_section">
+                <app-modal-dropdown [property]="'id'" [inputProperty]="'name'" [inputValue]="setInputValue('partner','name')" 
+                    (setValue)="setValue($event,'partner')" [array]="partners"
+                    [selectObject]="employeeGroup.get('partner').value" [modalParams]="modalParams">
+                </app-modal-dropdown>
+                <!-- <button class="add_button" (click)="addPartner()"><i class="material-icons">
+                        add
+                    </i></button> -->
+            </div>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Արհմիության անդամավճարի տոկոս</label>
+        </div>
+        <div class="input_wraper ">
+            <p-dropdown formControlName="percentage_of_trade_union_membership_fee"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Մասնակցության կարգավիճակ</label>
+        </div>
+        <div class="input_wraper">
+            <div class="partner_section">
+                <!-- <p-dropdown formControlName="participation_status"></p-dropdown>
+            <span class="text">Կուտակային կենսաթոշակային համակարգ</span> -->
+                <app-modal-dropdown [property]="'id'" [inputProperty]="'name'" 
+                    [inputValue]="setInputValue('participation_status','name')"
+                    [selectObject]="employeeGroup.get('participation_status').value"
+                    (setValue)="setValue($event,'participation_status')"
+                    [array]="partners" [modalParams]="modalParams2">
+                </app-modal-dropdown>
+                <span class="validate_error"
+                    *ngIf="employeeGroup.get('participation_status').hasError('required') && isFocus"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Գործատուի կողմից վճարվող տոկոս/գումար</label>
+        </div>
+        <div class="input_wraper employee_amount">
+            <p-dropdown formControlName="employee_percent"></p-dropdown>
+            <p-dropdown margin-left-12 formControlName="employee_amount"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Դրոշմանիշային վճար</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="marking_board"></p-dropdown>
+            <span class="validate_error"
+                *ngIf="employeeGroup.get('marking_board').hasError('required') && employeeGroup.get('marking_board').touched"><i
+                    class="material-icons">
+                    close
+                </i></span>
+            <span class="text">Վճարում է</span>
+        </div>
+    </div>
+</form>

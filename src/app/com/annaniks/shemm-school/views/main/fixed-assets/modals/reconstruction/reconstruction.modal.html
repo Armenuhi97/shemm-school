@@ -1,0 +1,125 @@
+<div class="modal-content">
+    <app-modal-header [title]="title" (close)="close()"></app-modal-header>
+    <!-- <span class="error">{{error}}</span> -->
+    <form [formGroup]="formGroup">
+        <div class="first-section">
+            <div class="form_group">
+                <div class="label">
+                    <label for=""><span>*</span>Ամսաթիվ</label>
+                </div>
+                <div class="input_wraper ">
+                    <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                        [locale]="calendarConfig">
+                    </p-calendar>
+                    <span class="validate_error"
+                        *ngIf="formGroup.get('date').hasError('required') && formGroup.get('date').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </div>
+            <div class="form_group right">
+                <div class="right_label">
+                    <label for="">Փաստաթղթի №</label>
+                </div>
+                <div>
+                    <input formControlName="folderNumber" type="number">
+                </div>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Գույքային համար</label>
+            </div>
+            <div class="input_wraper">
+                <input type="number" formControlName="propertyNumber">
+                <!-- <p-dropdown formControlName="propertyNumber"></p-dropdown> -->
+                <span class="validate_error"
+                    *ngIf="formGroup.get('propertyNumber').hasError('required') && formGroup.get('propertyNumber').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Գտնվելու վայր</label>
+            </div>
+            <div class="input_wraper">
+                <p-dropdown formControlName="location"></p-dropdown>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Նյութ․ պատասխ․ անձ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('materialAswer','id')"
+                    [selectObject]="formGroup.get('materialAswer').value" (setValue)="setValue($event,'materialAswer')"
+                    [array]="partners" [modalParams]="setModalParams('Աշխատակիցներ',['Կոդ', 'Անուն'],['id','fullName'])">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="formGroup.get('materialAswer').value">{{formGroup.get('materialAswer').value.fullName}}</span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Անալիտիկ խումբ 1</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup1','code')"
+                    [selectObject]="formGroup.get('analyticalGroup1').value"
+                    (setValue)="setValue($event,'analyticalGroup1')" [array]="analyticalGroup1"
+                    [modalParams]="setModalParams('Անալիտիկ խումբ 1',['Կոդ', 'Անվանում'],['code','name'])">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="formGroup.get('analyticalGroup1').value">{{formGroup.get('analyticalGroup1').value.name}}</span>
+                <!-- <p-dropdown formControlName="analyticalGroup1" ></p-dropdown> -->
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Անալիտիկ խումբ 2</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup2','code')"
+                    [selectObject]="formGroup.get('analyticalGroup2').value"
+                    (setValue)="setValue($event,'analyticalGroup2')" [array]="analyticalGroup2"
+                    [modalParams]="setModalParams('Անալիտիկ խումբ 2',['Կոդ', 'Անվանում'],['code','name'])">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="formGroup.get('analyticalGroup2').value">{{formGroup.get('analyticalGroup2').value.name}}</span>
+                <!-- <p-dropdown formControlName="analyticalGroup2" ></p-dropdown> -->
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Մեկնաբանություն</label>
+            </div>
+            <div class="input_wraper comment">
+                <app-modal-dropdown [isDisabledInput]="true" [property]="'id'" [inputValue]="setInputValue('comment','text')"
+                    [selectObject]="formGroup.get('comment').value" (setValue)="setValue($event,'comment')"
+                    [array]="documentKind" [modalName]="getModalName()">
+                </app-modal-dropdown>
+                <!-- <textarea formControlName="comment"></textarea> -->
+            </div>
+        </div>
+    </form>
+</div>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+        <div *ngIf="type == 1">
+            <app-common [group]="formGroup.get('general').value" *ngSwitchCase="'Ընդհանուր'"></app-common>
+        </div>
+        <div *ngIf="type == 0">
+            <app-revaluation-common [group]="formGroup.get('general').value" *ngSwitchCase="'Ընդհանուր'"></app-revaluation-common>
+        </div>
+        <app-operation [chartAccounts]="chartAccounts" [partners]="partners" [analyticalGroup1]="analyticalGroup1"
+            [analyticalGroup2]="analyticalGroup2" [group]="formGroup.get('operation').value"
+            *ngSwitchCase="'Գործառնություններ'"></app-operation>
+    </div>
+</app-tabs>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

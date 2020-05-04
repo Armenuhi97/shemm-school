@@ -1,0 +1,35 @@
+
+.first-section{
+    margin-top: 25px;
+    display: flex;
+    align-items: center;   
+    .right{
+        margin-left: 15px;
+        .right_label{
+            width: fit-content;   
+            margin-right: 5px;  
+            label{
+                font-size: 15px;                
+            }     
+        } 
+    }
+
+}
+.margin-top{
+    margin-top: 5px;
+}
+.other-section{
+    .input_wraper{
+        width: calc(100% - 205px);
+    }
+}
+.order_number{
+    input{
+        width: 150px !important;
+    }
+}
+.form_group{    
+    .label{
+        width: 205px;           
+    } 
+}

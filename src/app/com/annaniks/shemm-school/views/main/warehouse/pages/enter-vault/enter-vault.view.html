@@ -1,0 +1,12 @@
+<app-tables-by-filter [titles]="titles" (add)="addEnterVault(false)">
+    <tr *ngFor="let item of enterVaults">
+        <td class="edit"> <i (click)="addEnterVault(true,item?.id)" class=" material-icons"> edit </i> </td>
+        <td class="delete"> <i (click)="delete(item?.id)" class=" material-icons"> close </i></td>
+        <td>{{getDate(item)}}</td>
+        <td>{{item?.warehouse?.name}}</td>
+       
+    </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

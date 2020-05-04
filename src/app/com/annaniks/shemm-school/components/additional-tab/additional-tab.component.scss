@@ -1,0 +1,36 @@
+.additional {
+    .additional-container {
+        margin: 15px;
+
+        .form-control {
+            display: flex;
+            margin-bottom: 5px;
+
+            label {
+                width: 385px;
+                min-width: 250px;
+            }
+
+            input {
+                padding-left: 6px;
+                width: 175px;
+                height: 30px;
+                border-radius: 3px;
+                border: 1px solid rgba(0,0,0, .3);
+            }
+
+            select {
+                width: 350px;
+               
+            }
+        }
+    }
+}
+.form_group{       
+    .label{
+        width: 225px;
+    }         
+    .input_wraper{
+        width: calc(100% - 225px);          
+    }
+}

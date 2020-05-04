@@ -1,0 +1,70 @@
+<!-- <div class="actions-header">
+    <div class="actions">
+        <div class="middle add">
+            <div class="center"><i class="material-icons add">add</i></div>
+            <span>Ավելացնել</span>
+        </div>
+        <div class="middle add">
+            <div class="center"><i class="material-icons">calendar_today</i></div>
+            <span>Ամսաթիվ</span>
+        </div>
+        <div class="middle add">
+            <div class="center">
+                <div class="calculator"></div>
+            </div>
+            <span>Հաշվիչ</span>
+        </div>
+        <div class="middle add">
+            <div class="center"><i class="material-icons">close</i></div>
+            <span>Փակել</span>
+        </div>
+    </div>
+
+    <section>
+        <div class="tabs">
+            <ul>
+                <li>
+                    <i class="material-icons md-12">home</i>
+                    <span>Գլխավոր էջ</span>
+                    <i class="pi pi-times pi-sm"></i></li>
+                <li>
+                    <span>Հիմնական միջոցներ</span>
+                    <i class="pi pi-times pi-sm"> </i>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <table cellspacing=0>
+                <tr>
+                    <th class="trim-text"><input type="checkbox"></th>
+                    <th class="trim-text">Գույքային քարտ</th>
+                    <th class="trim-text">Գույքային համար</th>
+                    <th class="trim-text">Անվանում</th>
+                    <th class="trim-text">ՀՄ տեսակ</th>
+                    <th class="trim-text">ՀՄ խումբ շահութահարկի օրենքով</th>
+                    <th class="trim-text">Ջեռքբերման տեսակ</th>
+                    <th class="trim-text">Մատակարար</th>
+                    <th class="trim-text">Մատակարարի հաշիվ</th>
+                    <th class="trim-text">Մուտքի ամսաթիվ</th>
+                    <th class="trim-text">Փաստաթղթի Ն</th>
+                    <th class="trim-text">Վիճակ</th>
+                    <th class="trim-text">Արտադրող</th>
+                    <th class="trim-text">Թողարկման տարեթիվ Ն</th>
+                    <th class="trim-text">Գործարանային համար</th>
+                    <th class="trim-text">Տեշնիկական անձնագիր</th>
+                    <th class="trim-text">Մակնիշ</th>
+                    <th class="trim-text">Համառոտ բնութագիր</th>
+                </tr>
+            </table>
+        </div>
+    </section>
+</div> -->
+<app-tables-by-filter [titles]="titles" (add)="addFixedAssets(false)">
+    <tr *ngFor="let item of fixedAssets">
+        <td class="edit"> <i (click)="addFixedAssets(true,item?.id)" class=" material-icons"> edit </i> </td>
+        <td class="delete"> <i (click)="delete(item?.id)" class=" material-icons"> close </i></td>
+    </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

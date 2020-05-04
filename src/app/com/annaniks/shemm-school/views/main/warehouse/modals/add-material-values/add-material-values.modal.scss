@@ -1,0 +1,37 @@
+.modal-card-container{
+    border: 1px solid grey;
+    padding: 5px 0;
+    margin-top: 10px;
+    .product-container{
+        margin-top: 20px;
+        color: grey;
+        width: 80%;
+        margin: 20px auto 0 auto;
+        .text{
+            text-align: center;
+            h1{
+                font-size: 25px;
+                margin: 10px 0;
+            }
+            .scan-text{
+                margin:  10px 0;
+            }
+        }
+    }
+    
+    .form_group{    
+        .label{
+            width: 265px;           
+        } 
+        .input_wraper{
+            width: calc(100% - 265px);
+            .container-checkbox{
+                padding-left: 22px !important;
+            }
+        }
+    }
+}
+
+
+
+

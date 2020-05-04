@@ -1,0 +1,39 @@
+.accounts {
+    .financial {
+        border: 1px solid grey;
+        margin: 10px;
+
+        .financial-header {
+            height: 30px;
+            line-height: 30px;
+            border-bottom: 1px solid grey;
+
+            span {
+                margin-left: 10px;
+            }
+        }
+
+        .financial-body {
+            margin: 12px;
+
+            .form-control {
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+
+                label {
+                    width: 351px;
+                    margin-left: 25px;
+                }
+            }
+        }
+    }
+}
+.form_group{       
+    .label{
+        width: 365px;
+    }         
+    .input_wraper{
+        width: calc(100% - 365px);          
+    }
+}

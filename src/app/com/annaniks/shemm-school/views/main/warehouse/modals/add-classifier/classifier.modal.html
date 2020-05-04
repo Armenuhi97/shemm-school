@@ -1,0 +1,59 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<!-- <div class="error">{{error}}</div> -->
+<div class="forms-container">
+    <form  [formGroup]="classifierGroup">
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for=""> Կոդ</label>
+            </div>
+            <div class="input_wraper">
+                <input type="number" class="code-input" formControlName="code">
+                <span class="validate_error"
+                    *ngIf="classifierGroup.get('code').hasError('required') && classifierGroup.get('code').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for=""> Անվանում</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="name">
+                <span class="validate_error"
+                    *ngIf="classifierGroup.get('name').hasError('required') && classifierGroup.get('name').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for=""> Դասակարգիչ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'" 
+                    [inputValue]="setInputValue(classifierGroup,'type','code')"
+                    [selectObject]="classifierGroup.get('type').value" 
+                    (setValue)="setValue($event)" [array]="types" [modalParams]="modalParams">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="classifierGroup.get('type').value">{{classifierGroup.get('type').value.name}}</span>
+
+                <span class="validate_error" *ngIf="classifierGroup.get('type').hasError('required') && classifierGroup.get('type').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="buttons">
+            <button type="button" (click)="addClassifier()">Կատարել</button>
+            <button (click)="close()">Դադարեցնել</button>
+        </div>
+    </form>
+
+</div>

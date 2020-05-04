@@ -1,0 +1,153 @@
+<form [formGroup]="employeeGroup">
+    <div [formGroup]="getFormGroupName('registration')">
+        <div class="form_group">
+            <div class="label">
+                <label for="">Հաշվառման վայրը ՀՀ</label>
+            </div>
+            <div class="checkbox_input_wraper">
+                <label class="container-checkbox">
+                    <input formControlName="place" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Մարզ</label>
+            </div>
+            <div class="input_wraper">
+                <p-dropdown placeholder="Ընտրեք" [options]="regions" optionLabel="name" formControlName="region">
+                </p-dropdown>
+
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Համայնք</label>
+            </div>
+            <div class="input_wraper">
+                <p-dropdown placeholder="Ընտրեք" [options]="communities" optionLabel="name" formControlName="community">
+                </p-dropdown>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Քաղաք, ավան, գյուղ</label>
+            </div>
+            <div class="input_wraper ">
+                <input formControlName="city">
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Փողոց, տուն/շենք, բնակարան</label>
+            </div>
+            <div class="input_wraper employee_address">
+                <input formControlName="street">
+                <input formControlName="home">
+                <input formControlName="apartment">
+            </div>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Բն․ վայրը նույնն է հաշվ․ վայրի հետ</label>
+        </div>
+        <div class="checkbox_input_wraper">
+            <label class="container-checkbox">
+                <input formControlName="isResidence" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+
+        </div>
+    </div>
+
+    <!-- *ngIf="!employeeGroup.get('isResidence').value" -->
+    <div  [formGroup]="getFormGroupName('residence')" [ngClass]="{'disabled':employeeGroup.get('isResidence').value}">
+        <div class="form_group">
+            <div class="label">
+                <label for="">Բնակության վայրը ՀՀ</label>
+            </div>
+            <div class="checkbox_input_wraper">
+                <label class="container-checkbox">
+                    <input formControlName="place" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Մարզ</label>
+            </div>
+            <div class="input_wraper">
+                <p-dropdown placeholder="Ընտրեք" [options]="regions" optionLabel="name"
+                    formControlName="region"></p-dropdown>
+
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Համայնք</label>
+            </div>
+            <div class="input_wraper">
+                <p-dropdown placeholder="Ընտրեք" [options]="communities" optionLabel="name"
+                    formControlName="community"></p-dropdown>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Քաղաք, ավան, գյուղ</label>
+            </div>
+            <div class="input_wraper ">
+                <input formControlName="city">
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Փողոց, տուն/շենք, բնակարան</label>
+            </div>
+            <div class="input_wraper employee_address">
+                <input formControlName="street">
+                <input formControlName="home">
+                <input formControlName="apartment">
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Երկիր</label>
+            </div>
+            <div class="input_wraper ">
+                <p-dropdown placeholder="Ընտրեք" [options]="countries" optionLabel="name"
+                    formControlName="country"></p-dropdown>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Հասցեատող 1,2,3</label>
+            </div>
+            <div class="input_wraper employee_address">
+                <input formControlName="address1">
+                <input formControlName="address2">
+                <input formControlName="address3">
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Փոստի N</label>
+            </div>
+            <div class="input_wraper ">
+                <input formControlName="post">
+
+                <!-- <p-dropdown  placeholder="Ընտրեք" [options]="postNumbers" optionLabel="name" formControlName="residencePost"></p-dropdown> -->
+            </div>
+        </div>
+    </div>
+</form>

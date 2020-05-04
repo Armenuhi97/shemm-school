@@ -1,0 +1,26 @@
+<app-tables-by-filter [titles]="titles" (add)="addHold(false)">
+  <tr *ngFor="let item of holds">
+    <td class="edit"> <i (click)="addHold(true,item?.id, item)" class=" material-icons"> edit </i> </td>
+    <td class="delete"> <i (click)="delete(item?.id)" class=" material-icons"> close </i></td>
+    <td>{{item?.code}}</td>
+    <td>{{item?.name}}</td>
+    <td>{{item?.coefficient}}</td>
+    <td><label class="container-checkbox">
+        <input [checked]="getBooleanVariable(item?.reduceFromIncomeTaxMoney)" disabled type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+    </td>
+    <td><label class="container-checkbox">
+        <input [checked]="getBooleanVariable(item?.reduceFromMandatoryFundPens)" disabled type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+    </td>
+    <td>{{item?.inTheMiddleOfVacation}}</td>
+    <td>{{item?.account?.account}}</td>
+
+
+  </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+  (paginate)="onPageChange($event)">
+</app-paginator>

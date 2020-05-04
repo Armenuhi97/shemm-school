@@ -1,0 +1,199 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div class="required" *ngIf="serverResponseError">
+    {{serverResponseError}}
+</div>
+<div class="forms-container">
+    <form [formGroup]="formCashRegister">
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Կոդ</label>
+            </div>
+            <div class="input_wraper">
+                <input class="code-input" formControlName="code">
+                <span class="validate_error"
+                    *ngIf="formCashRegister.get('code').hasError('required') && formCashRegister.get('code').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Անվանում</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="name">
+                <span class="validate_error"
+                    *ngIf="formCashRegister.get('name').hasError('required') && formCashRegister.get('name').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Հաշիվ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('accountId','account')"
+                    fomControlName="accountId" (setValue)="setValueAccount($event, 'accountId')" [array]="accontPlans"
+                    [selectObject]="formCashRegister.get('accountId').value" [modalParams]="modalParamsAccountPlans">
+                </app-modal-dropdown>
+                <span class="selected-element-name" *ngIf="formCashRegister.get('accountId').value">
+                    {{formCashRegister.get('accountId').value}}
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Հիմնական</label>
+            </div>
+            <div class="input_wraper ">
+                <label class="container-checkbox">
+                    <input formControlName="isMain" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">ԴՄՕ-ի հերթական համար</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="dmoN">
+                <span class="validate_error"
+                    *ngIf="formCashRegister.get('dmoN').hasError('required') && formCashRegister.get('dmoN').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">ԴԵՕ-ի հերթական համար</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="deoN">
+                <span class="validate_error"
+                    *ngIf="formCashRegister.get('deoN').hasError('required') && formCashRegister.get('deoN').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">ՀԴՄ գրանցման</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="hdmRegisN">
+                <span class="validate_error"
+                    *ngIf="formCashRegister.get('hdmRegisN').hasError('required') && formCashRegister.get('hdmRegisN').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">ԻՊ հասցե</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="ip">
+                <span class="validate_error"
+                    *ngIf="formCashRegister.get('ip').hasError('required') && formCashRegister.get('ip').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Պորտ</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="port">
+                <span class="validate_error"
+                    *ngIf="formCashRegister.get('port').hasError('required') && formCashRegister.get('port').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Գաղտնաբառ</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="password">
+                <span class="validate_error"
+                    *ngIf="formCashRegister.get('password').hasError('required') && formCashRegister.get('password').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">ԱԱՀ-ով հարկվող ՀԴՄ</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="hdmTaxable">
+                <span class="validate_error"
+                    *ngIf="formCashRegister.get('hdmTaxable').hasError('required') && formCashRegister.get('hdmTaxable').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">ԱԱՀ-ով չհարկվող ՀԴՄ</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="hdmNonTaxable">
+                <span class="validate_error"
+                    *ngIf="formCashRegister.get('hdmNonTaxable').hasError('required') && formCashRegister.get('hdmNonTaxable').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">ՀԴՄ տպման ռեժիմ</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="hdmPrintType">
+                <span class="validate_error"
+                    *ngIf="formCashRegister.get('hdmPrintType').hasError('required') && formCashRegister.get('hdmPrintType').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button (click)="addCashRegister()">Կատարել</button>
+            <button (click)="close()">Դադարեցնել</button>
+        </div>
+    </form>
+
+</div>

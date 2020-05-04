@@ -1,0 +1,15 @@
+<div class="item-container">
+    <div class="header-content">
+        <div class="back_button" (click)="back()">
+            <i class="material-icons">
+                home
+            </i>
+        </div>
+        <span (click)="goToHeader()" class="header">{{header}}</span>
+    </div>
+    <div *ngIf="items && items.length" class="items">        
+        <div class="cards-content" (click)="openModal(item)" *ngFor="let item of items">
+            <span>{{item.label}}</span>
+        </div>
+    </div >
+</div>

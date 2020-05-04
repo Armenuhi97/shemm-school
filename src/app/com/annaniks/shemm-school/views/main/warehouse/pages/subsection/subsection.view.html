@@ -1,0 +1,14 @@
+<app-tables-by-filter [titles]="titles" (add)="addSubsection(false)">
+    <tr *ngFor="let subsection of subsections">
+        <td class="edit"> <i (click)="addSubsection(true, subsection?.id)" class=" material-icons"> edit </i> </td>
+        <td class="delete"> <i (click)="delete(subsection?.id)" class=" material-icons"> close </i></td>
+        <td>{{subsection?.code}}</td>
+        <td>{{subsection?.name}}</td>
+        <td>{{subsection?.customerAccount?.account}}</td>
+        <td>{{subsection?.prepaidAccountReceived?.account}}</td>
+        <td>{{subsection?.aahAccount?.account}}</td> 
+    </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

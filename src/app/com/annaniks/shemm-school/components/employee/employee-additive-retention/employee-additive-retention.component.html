@@ -1,0 +1,88 @@
+<form action="" [formGroup]="additionsGroup">
+    <div class="beside-section">
+        <div class="form_group">
+            <div class="label">
+                <label for=""> Ժամանակահատված</label>
+            </div>
+            <div class="date-group input_wraper">
+                <div>
+                    <p-calendar rPCalendarMask appendTo="body" [monthNavigator]="true" [yearNavigator]="true"
+                        [yearRange]="setYearRange()" (ngModelChange)="changeDate()" formControlName="startDate"
+                        [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy" [locale]="calendarConfig"> </p-calendar>
+                </div>
+                <div class="right">
+                    <p-calendar rPCalendarMask appendTo="body" [monthNavigator]="true" [yearNavigator]="true"
+                        [yearRange]="setYearRange()" (ngModelChange)="changeDate()" formControlName="endDate"
+                        [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy" [locale]="calendarConfig"> </p-calendar>
+                </div>
+            </div>
+        </div>
+        <div class="investment-expenditure">
+            <button [disabled]="isInvestmentExpenditure" (click)="checkInInvestmentExpenditure()">
+                Ներդրումային ծախսեր
+            </button>
+        </div>
+    </div>
+    <app-table [isActiveButtons]="isInvestmentExpenditure" (add)="addRow($event)" (delete)="deleteAll($event)">
+        <table *ngIf="activeControl && activeControl.length">
+            <tr>
+                <th></th>
+                <th>Ամիսաթիվ</th>
+                <th>Կոդ</th>
+                <!-- <th class="disabled">Անվանում</th> -->
+                <th>Գումար</th>
+                <th>Հիմնական</th>
+                <!-- <th *ngIf="!isInvestmentExpenditure">Պահպանել</th> -->
+            </tr>
+            <!-- additionsGroup.controls -->
+            <tr *ngFor="let item of activeControl; let i = index" [formGroup]="item">
+                <td>
+                    <div (click)="remove(i)" class="close">
+                        <i class="material-icons">
+                            close
+                        </i>
+                    </div>
+                </td>
+                <td #td>
+                    <div class="row-content">
+                        <p-calendar [minDate]="dateOfAccept" rPCalendarMask appendTo="body" [appendTo]="td" formControlName="date" dateFormat="dd/mm/yy"
+                            [yearNavigator]="true" [yearRange]="setYearRange()" [locale]="calendarConfig">
+                        </p-calendar>
+                        
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'id'" [inputProperty]="'name'" [inputValue]="setInputValue(item,'additionId','name')"
+                            [selectObject]="item.get('additionId').value" (setValue)="setValue($event,item)"
+                            [array]="additions" [modalParams]="modalParams">
+                        </app-modal-dropdown>
+                       
+                    </div>
+                </td>
+                <!-- <td>
+                    <div class="row-content">
+                        <input class="disabled-input" formControlName="name" type="text">
+                   
+                    </div>
+                </td> -->
+                <td>
+                    <div class="row-content">
+                        <input formControlName="money" type="number">
+                      
+                    </div>
+                </td>
+
+
+                <td> <label class="container-checkbox">
+                        <input formControlName="isMain" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label></td>
+                <!-- <td *ngIf="!isInvestmentExpenditure">
+                    <button class="save" (click)="save(item)">Պահպանել</button>
+                </td> -->
+
+            </tr>
+        </table>
+    </app-table>
+</form>

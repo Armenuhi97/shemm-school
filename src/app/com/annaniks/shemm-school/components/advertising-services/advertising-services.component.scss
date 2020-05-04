@@ -1,0 +1,67 @@
+.adverising-content{
+    margin-top: 10px;
+    .select-all{
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        div:first-child{
+            width: 175px;
+        }       
+        div:nth-child(3),div:last-child{
+           margin-left: 5px;
+        }
+        .button{
+          cursor: pointer;
+          display: flex;
+          border: 1px solid grey;
+          align-items: center;
+          justify-content: center;
+          padding: 3px;
+        }
+    }
+}
+
+table, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 2px;
+    color: black;
+    font-size:12px
+  }
+  input[type="text"], p-dopdown{
+      border:none !important;
+      height: 100%;
+  }
+
+  .row-content{
+    display: flex;
+    align-items: center;
+    .validate_error{
+      height: 20px;
+      width: 20px;
+      background: #AA1415;
+      color: white;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      border-radius: 50%;
+      margin-left: 5px;
+      i{
+          font-size: 15px;
+      }
+    }
+  }
+  .active{
+    background: grey;
+  }
+  :host::ng-deep{
+    app-modal-dropdown{
+      input{
+        height: 32px;
+        background: none;
+        border: 1px solid grey !important;
+        border-right: none !important;
+
+       }
+    }
+  }

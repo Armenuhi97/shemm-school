@@ -1,0 +1,53 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div *ngIf="errorWithServerResponce">{{errorWithServerResponce}}</div>
+<div class="forms-container">
+    <form [formGroup]="formGroup">
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Կոդ</label>
+            </div>
+            <div class="input_wraper">
+                <input class="code-input" formControlName="code">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('code').hasError('required') && formGroup.get('code').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Անվանում</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="name">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('name').hasError('required') && formGroup.get('name').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ամորտիզացիոն տարեկան տոկոսադրույք</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="yearPrice">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('yearPrice').hasError('required') && formGroup.get('yearPrice').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button (click)="addByTaxLaw()">Կատարել</button>
+            <button (click)="close()">Դադարեցնել</button>
+        </div>
+    </form>
+
+</div>

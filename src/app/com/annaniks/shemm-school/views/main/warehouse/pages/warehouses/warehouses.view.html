@@ -1,0 +1,19 @@
+<app-tables-by-filter class="table-container" [titles]="titles" (add)="addWarehouse()">
+    <tr *ngFor="let item of warehouses">
+        <td class="edit" (click)="addWarehouse(true, item?.id, item)">
+            <i class="material-icons">edit</i>
+        </td>
+        <td class="delete" (click)=delete(item.id)>
+            <i class="material-icons">close</i>
+        </td>
+        <td>{{item?.code}}</td>
+        <td>{{item?.name}}</td>
+        <td>{{item?.responsible}}</td>
+        <td>{{item?.address}}</td>
+        <!-- <td>{{item?.warehouseSignificance?.name}}</td> -->
+    </tr>
+</app-tables-by-filter>
+
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

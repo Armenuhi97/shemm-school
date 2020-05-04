@@ -1,0 +1,88 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+
+
+<div class="forms-container">
+  <form [formGroup]="warehouseSignificanceGroup">
+
+    <div class="form_group">
+      <div class="label">
+        <label class="required" for=""> Անվանում</label>
+      </div>
+      <div class="input_wraper">
+        <input class="name-input" formControlName="name">
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label class="required" for=""> Մատակարարի հաշիվ</label>
+      </div>
+      <div class="input_wraper">
+        <app-modal-dropdown [property]="'id'" [inputProperty]="'account'"
+          [inputValue]="setInputValue(warehouseSignificanceGroup,'expenseAccountId','account')"
+          [selectObject]="warehouseSignificanceGroup.get('expenseAccountId').value"
+          (setValue)="setValue($event, 'expenseAccountId')" [array]="chartAccounts" [modalParams]="modalAccontPlans">
+        </app-modal-dropdown>
+        <span class="selected-element-name"
+          *ngIf="warehouseSignificanceGroup.get('expenseAccountId').value">{{warehouseSignificanceGroup.get('expenseAccountId').value?.name}}</span>
+
+        <span class="validate_error"
+          *ngIf="warehouseSignificanceGroup.get('expenseAccountId').hasError('required') && warehouseSignificanceGroup.get('expenseAccountId').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label class="required" for=""> Ծախսի հաշիվ</label>
+      </div>
+      <div class="input_wraper">
+        <app-modal-dropdown [property]="'id'" [inputProperty]="'account'"
+          [inputValue]="setInputValue(warehouseSignificanceGroup,'partnerAccountId','account')"
+          [selectObject]="warehouseSignificanceGroup.get('partnerAccountId').value"
+          (setValue)="setValue($event, 'partnerAccountId')" [array]="chartAccounts" [modalParams]="modalAccontPlans">
+        </app-modal-dropdown>
+        <span class="selected-element-name"
+          *ngIf="warehouseSignificanceGroup.get('partnerAccountId').value">{{ warehouseSignificanceGroup.get('partnerAccountId').value?.name }}</span>
+
+        <span class="validate_error"
+          *ngIf="warehouseSignificanceGroup.get('partnerAccountId').hasError('required') && warehouseSignificanceGroup.get('partnerAccountId').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label class="required" for=""> Կանխավճարային հաշիվ</label>
+      </div>
+      <div class="input_wraper">
+        <app-modal-dropdown [property]="'id'" [inputProperty]="'account'"
+          [inputValue]="setInputValue(warehouseSignificanceGroup,'prepaymentAccountId','account')"
+          [selectObject]="warehouseSignificanceGroup.get('prepaymentAccountId').value"
+          (setValue)="setValue($event, 'prepaymentAccountId')" [array]="chartAccounts" [modalParams]="modalAccontPlans">
+        </app-modal-dropdown>
+        <span class="selected-element-name"
+          *ngIf="warehouseSignificanceGroup.get('prepaymentAccountId').value">{{ warehouseSignificanceGroup.get('prepaymentAccountId').value?.name }}</span>
+
+        <span class="validate_error"
+          *ngIf="warehouseSignificanceGroup.get('prepaymentAccountId').hasError('required') && warehouseSignificanceGroup.get('prepaymentAccountId').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button (click)="addWarehouseSignificance()">Կատարել</button>
+      <button (click)="close()">Դադարեցնել</button>
+    </div>
+
+  </form>
+</div>

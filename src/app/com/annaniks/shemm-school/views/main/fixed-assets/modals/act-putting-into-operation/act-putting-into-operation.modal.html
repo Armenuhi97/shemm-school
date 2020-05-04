@@ -1,0 +1,171 @@
+<div class="modal-content">
+    <app-modal-header [title]="title" (close)="close()"></app-modal-header>
+    <!-- <span class="error">{{error}}</span> -->
+
+    <form [formGroup]="actPuttingIntoOoperationGroup">
+        <div class="first-section">
+            <div class="form_group">
+                <div class="label">
+                    <label for=""><span>*</span> Ամսաթիվ</label>
+                </div>
+                <div class="input_wraper">
+                    <!-- <input type="date" placeholder="MM/DD/YYYY" formControlName="date"> -->
+                    <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                        [locale]="calendarConfig"> </p-calendar>
+                    <span class="validate_error"
+                        *ngIf="actPuttingIntoOoperationGroup.get('date').hasError('required') && actPuttingIntoOoperationGroup.get('date').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </div>
+            <div class="form_group right">
+                <div class="right_label">
+                    <label for="">Փաստաթղթի №</label>
+                </div>
+                <div class="input_wraper">
+                    <input formControlName="folderNumber" type="number">
+                </div>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Հանձնող ստորաբաժանում</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('transmittingUnit','id')"
+                    [selectObject]="actPuttingIntoOoperationGroup.get('transmittingUnit').value"
+                    (setValue)="setValue($event,'transmittingUnit')" [array]="subdivisions"
+                    [modalParams]="setModalParams('Ստորաբաժանումներ',['Կոդ', 'Անվանում'],['id','name'])">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="actPuttingIntoOoperationGroup.get('transmittingUnit').value">{{actPuttingIntoOoperationGroup.get('transmittingUnit').value.name}}</span>
+                <!-- <p-dropdown formControlName="transmittingUnit" ></p-dropdown> -->
+                <span class="validate_error"
+                    *ngIf="actPuttingIntoOoperationGroup.get('transmittingUnit').hasError('required') && actPuttingIntoOoperationGroup.get('transmittingUnit').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Հանձնող ՆՊԱ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('transmittingMaterialPerson','id')"
+                    [selectObject]="actPuttingIntoOoperationGroup.get('transmittingMaterialPerson').value"
+                    (setValue)="setValue($event,'transmittingMaterialPerson')" [array]="employees"
+                    [modalParams]="setModalParams('Աշխատակիցներ',['Կոդ', 'Անուն'],['id','fullName'])">
+
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="actPuttingIntoOoperationGroup.get('transmittingMaterialPerson').value">{{actPuttingIntoOoperationGroup.get('transmittingMaterialPerson').value.fullName}}</span>
+                <!-- <p-dropdown formControlName="transmittingMaterialPerson">
+                </p-dropdown> -->
+                <span class="validate_error"
+                    *ngIf="actPuttingIntoOoperationGroup.get('transmittingMaterialPerson').hasError('required') && actPuttingIntoOoperationGroup.get('transmittingMaterialPerson').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Ընդունող ստորաբաժանում</label>
+
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('receivingUnit','id')"
+                    [selectObject]="actPuttingIntoOoperationGroup.get('receivingUnit').value"
+                    (setValue)="setValue($event,'receivingUnit')" [array]="subdivisions"
+                    [modalParams]="setModalParams('Ստորաբաժանումներ',['Կոդ', 'Անվանում'],['id','name'])">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="actPuttingIntoOoperationGroup.get('receivingUnit').value">{{actPuttingIntoOoperationGroup.get('receivingUnit').value.name}}</span>
+                <!-- <p-dropdown formControlName="receivingUnit" ></p-dropdown> -->
+                <span class="validate_error"
+                    *ngIf="actPuttingIntoOoperationGroup.get('receivingUnit').hasError('required') && actPuttingIntoOoperationGroup.get('receivingUnit').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Ընդունող ՆՊԱ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('receivingMaterialPerson','id')"
+                    [selectObject]="actPuttingIntoOoperationGroup.get('receivingMaterialPerson').value"
+                    (setValue)="setValue($event,'receivingMaterialPerson')" [array]="employees"
+                    [modalParams]="setModalParams('Աշխատակիցներ', ['Կոդ', 'Անուն'],['id','fullName'])">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="actPuttingIntoOoperationGroup.get('receivingMaterialPerson').value">{{actPuttingIntoOoperationGroup.get('receivingMaterialPerson').value.fullName}}</span>
+                <!-- <p-dropdown formControlName="receivingMaterialPerson">
+                </p-dropdown> -->
+                <span class="validate_error"
+                    *ngIf="actPuttingIntoOoperationGroup.get('receivingMaterialPerson').hasError('required') && actPuttingIntoOoperationGroup.get('receivingMaterialPerson').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Անալիտիկ խումբ 1</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup1','code')"
+                    [selectObject]="actPuttingIntoOoperationGroup.get('analyticalGroup1').value"
+                    (setValue)="setValue($event,'analyticalGroup1')" [array]="analyticalGroup1"
+                    [modalParams]="setModalParams('Անալիտիկ խումբ 1', ['Կոդ', 'Անվանում'],['code','name'])">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="actPuttingIntoOoperationGroup.get('analyticalGroup1').value">{{actPuttingIntoOoperationGroup.get('analyticalGroup1').value.name}}</span>
+                <!-- <p-dropdown formControlName="analyticalGroup1"></p-dropdown> -->
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Անալիտիկ խումբ 2</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup2','code')"
+                    [selectObject]="actPuttingIntoOoperationGroup.get('analyticalGroup2').value"
+                    (setValue)="setValue($event,'analyticalGroup2')" [array]="analyticalGroup2"
+                    [modalParams]="setModalParams('Անալիտիկ խումբ 2',['Կոդ', 'Անվանում'],['code','name'])">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="actPuttingIntoOoperationGroup.get('analyticalGroup2').value">{{actPuttingIntoOoperationGroup.get('analyticalGroup2').value.name}}</span>
+                <!-- <p-dropdown formControlName="analyticalGroup2"></p-dropdown> -->
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Մեկնաբանություն</label>
+            </div>
+            <div class="input_wraper comment">
+                <app-modal-dropdown [isDisabledInput]="true" [property]="'id'" [inputValue]="setInputValue('comment','text')"
+                    [selectObject]="actPuttingIntoOoperationGroup.get('comment').value" (setValue)="setValue($event,'comment')"
+                    [array]="documentKind" [modalName]="getModalName()">
+                </app-modal-dropdown>                
+            </div>
+        </div>
+    </form>
+    <app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+        <div [ngSwitch]="activeTab">
+            <app-advertising-services [chartAccounts]="chartAccounts"
+                [group]="actPuttingIntoOoperationGroup.get('advertisingServices').value"
+                *ngSwitchCase="'Գույքահամարներ'"></app-advertising-services>
+            <app-operation [chartAccounts]="chartAccounts" [partners]="partners" [analyticalGroup1]="analyticalGroup1"
+                [analyticalGroup2]="analyticalGroup2" [group]="actPuttingIntoOoperationGroup.get('operation').value"
+                *ngSwitchCase="'Գործառնություններ'"></app-operation>
+        </div>
+    </app-tabs>
+</div>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

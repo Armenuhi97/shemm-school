@@ -1,0 +1,200 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.acquisition-container {
+    border: 1px solid rgba(0, 0, 0, .3);
+    margin-top: 12px;
+
+    form {
+        .descriptions {
+            .form-control {
+                display: flex;
+                margin: 5px 10px;
+                input[type="text"]{
+                    height: 30px;
+                    border: 1px solid;
+                    border-radius: 3px;
+                    padding: 0 0 0 6px;
+                    border-color: rgba(0,0,0, .3);
+                    width: 175px;
+                }
+
+                label {
+                    width: 380px;
+                    margin-left: 10px;
+                    display: flex;
+                    align-items: center;
+
+                    #name {
+                        height: 30px;
+                    }
+
+                    #typeMC{
+                        width: 100px;
+                        height: 100px;
+                    }
+
+                }
+
+                label:before {
+                    content: " * ";
+                    color: red;
+                }
+            }
+
+            .concat-form {
+                display: flex;
+
+                .form-control {
+                    display: flex;
+                    margin: 0px 10px;
+                }
+
+                .reset-style {
+                    white-space: nowrap;
+                    margin: 0px 10px;
+
+                    label {
+                        margin: 0 20px;
+                    }
+
+                    &::before {
+                        content: " * ";
+                        color: red;
+                    }
+
+                    input {}
+
+                }
+            }
+
+            .reset-style {}
+        }
+    }
+
+    aside {
+        border-top: 1px solid rgba(0, 0, 0, .3);
+
+        nav {
+            display: flex;
+            background-color: #3E7EB7;
+
+            .nav {
+                .nav-item {
+                    border-bottom: 1px solid grey;
+                    padding: 5px 25px;
+                    border-right: 1px solid grey;
+
+
+                    a {
+                        text-decoration: none;
+                        color: white;
+                    }
+
+                    &:visited {
+                        border-bottom: 0px;
+                    }
+
+                    &:active {
+                        border-bottom: 0px;
+
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+.active {
+    border-bottom: 0px !important;
+    background: white;
+    a{
+        color: black!important;
+    }
+
+}
+
+// :host ::ng-deep input {
+//     border: 1px solid #a6a6a6;
+//     height: 30px;
+//     width: 50%;
+//     border-radius: 3px;
+//     padding: 6px;
+// }
+
+:host ::ng-deep p-calendar {
+    span{
+        input {
+            width: 200px !important;
+        }
+    }
+}
+
+:host ::ng-deep .ui-dropdown-label-container #typeMC {
+    width: 100px !important;
+}
+.form-container{
+    margin-top: 20px;
+}
+
+.modal-content{
+    .first-section{
+        display: flex;
+        align-items: center;
+    }
+    .small-input{
+        width: 35% !important;
+    }
+    .right{
+        margin-left: 25px;
+        .right_label{
+            width: fit-content;
+            margin-right: 5px;
+            span{
+                color: red;
+            }
+            label{
+                font-size: 15px;
+            }
+        }
+    }
+    .one-group{
+        .label{
+            width: 265px;
+        }
+        .input_wraper{
+            width: calc(100% - 265px);
+        }
+    }
+}
+
+
+@media only screen and (max-width: 1185px) {
+    .first-section{
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    .text{
+        font-size: 11px !important;
+    }
+    .right{
+        margin-left: 0 !important;
+        .right_label{
+            width: 265px !important;
+            margin-right:0 !important
+        }
+          .input_wraper{
+            width: calc(100% - 265px) !important;
+        }
+    }
+}

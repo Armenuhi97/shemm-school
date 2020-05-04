@@ -1,0 +1,410 @@
+{
+    "typeՕfPrice": [
+        {
+            "id": "1",
+            "name": "Մեծածախ գին "
+        },
+        {
+            "id": "2",
+            "name": "Մանրածախ գին "
+        }
+    ],
+    "aahFormOfReflection": [
+        {
+            "id": 1,
+            "name": "Չարտացոլել ԱԱՀ֊ն շրջանառության մեջ"
+        },
+        {
+            "id": 2,
+            "name": "Արտացոլել ԱԱՀ֊ն շրջանառության մեջ"
+        }
+    ],
+    "aahType": [
+        {
+            "id": 1,
+            "name": "ԱԱՀ֊ով"
+        },
+        {
+            "id": 2,
+            "name": "ԱԱՀ֊ն այդ թվում"
+        },
+        {
+            "id": 3,
+            "name": "Առանց ԱԱՀ"
+        },
+        {
+            "id": 4,
+            "name": "Զրոյական"
+        }
+    ],
+    "serviceAcquisitionType": [
+        {
+            "id": 1,
+            "name": "Մատակարարից՝ Հ/Ա֊ով"
+        },
+        {
+            "id": 2,
+            "name": "Առհաշվից՝ միակողմանի գնման ակտով"
+        },
+        {
+            "id": 3,
+            "name": "Առհաշվից՝ երկկողմանի գնման ակտով"
+        },
+        {
+            "id": 4,
+            "name": "Առանց հարկերի"
+        }
+    ],
+    "inTheMiddleOfVacation": [
+        {
+            "id": 1,
+            "name": "այո"
+        },
+        {
+            "id": 2,
+            "name": "ոչ"
+        },
+        {
+            "id": 3,
+            "name": "1/12"
+        }
+    ],
+    "salaryType": [
+        {
+            "id": 1,
+            "name": "Շաբաթ"
+        },
+        {
+            "id": 2,
+            "name": "Օր"
+        }
+    ],
+    "stampFee": [
+        {
+            "id": 0,
+            "name": "Չի վճարում"
+        },
+        {
+            "id": 1,
+            "name": "վճարում է"
+        },
+        {
+            "id": 2,
+            "name": "գործատուն է վճարում"
+        }
+    ],
+    "benefit": [
+        {
+            "code": 920,
+            "name": "Հիվանդության նպաստ"
+        },
+        {
+            "code": 921,
+            "name": "Պրոթեզավորման նպաստ"
+        },
+        {
+            "code": 922,
+            "name": "Արողջարանաին բուժման նպաստ"
+        },
+        {
+            "code": 924,
+            "name": "Ընտ․ հիվանդ անդամի խնամքի նպաստ"
+        },
+        {
+            "code": 946,
+            "name": "Մայրության նպաստ"
+        }
+    ],
+    "systemAddition": [
+        {
+            "code": 900,
+            "name": "Գործատուի կողմից տրվող կենսաթոշակ",
+            "account": "5451",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 903,
+            "name": "Պարտադիր կուտակային կենսաթոշակ",
+            "account": "5248",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 904,
+            "name": "Արհմիութենական անդամավճար",
+            "account": "5293",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 905,
+            "name": "Պարտք ամսվա սկզբում",
+            "account": "",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 906,
+            "name": "Դրոշմանիշային վճար",
+            "account": "52491",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 911,
+            "name": "Եկամտային հարկ",
+            "account": "5242",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 920,
+            "name": "Հիվանդության նպաստ",
+            "account": "22599",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 921,
+            "name": "Պրոթեզավորման նպաստ",
+            "account": "22599",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 922,
+            "name": "Առողջարանային բուժման նպաստ",
+            "account": "22599",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 924,
+            "name": "Ընտ. հիվանդ անդամի խնամքի նպաստ",
+            "account": "22599",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 941,
+            "name": "Ընթ.ամսվան բաժին ընկնող արձակ.",
+            "account": "7112...",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 942,
+            "name": "Ապագա ամսվան բաժին ընկնող արձ.",
+            "account": "7112...",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 943,
+            "name": "Ընթ.ամսվա արձ.հաշվ.նախորդ ամսում",
+            "account": "7112...",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 945,
+            "name": "Վերջնահաշվարկ",
+            "account": "",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 946,
+            "name": "Մայրության նպաստ",
+            "account": "22599",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 947,
+            "name": "Ապագա ամս բաժին ընկնող մայր. նպաստ",
+            "account": "22599",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 951,
+            "name": "Առձեռն",
+            "account": "",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 971,
+            "name": "Վճարված է",
+            "account": "",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 989,
+            "name": "Գործատուի կողմից վճարվող դրոշմանիշային վճար",
+            "account": "52491",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 990,
+            "name": "Հարգելի չվճարվող բացակայություն",
+            "account": "",
+            "income_tax_withheld": true
+        },
+        {
+            "code": 991,
+            "name": "Անհարգելի չվճար. բացակայություն",
+            "account": "",
+            "income_tax_withheld": true
+        }
+    ],
+    "provisionGeneral": {
+        "workingPeriodFrom": "01/01/19",
+        "woringPeriodTo": "31/12/19",
+        "workingLanguage": "Հայերեն",
+        "aah": 20.00,
+        "aahIncluding": 16.67,
+        "environmentalTaxpayer": false,
+        "demandConfirmWindowClosing": true,
+        "bringReportsElectronicTableFormat": false,
+        "advancedMethodOfFilteringDateTypeColumns": true,
+        "ignoreZeroSumTransactions": false,
+        "transactionAccountAndPartnerFiltration": false,
+        "checkAccountCorrespondence": false,
+        "checkComplianceOfSubaccountAndAccumulatorAccounts": false,
+        "saveEditedOperationsCopyingDocument": true,
+        "inAccountFieldsNotLimitSelectionOfPartnerAccounts": false,
+        "allowToUseDiscountWhenSelling": false,
+        "allowDiscountsWhenPurchasing": false,
+        "exportHCIdentifier": false,
+        "groupReRegistrationOfDocuments": true,
+        "showPartnerHVHHinLogsAndReports": false,
+        "importRatesOfKBWhenLogInToSystem": true,
+        "participateCustomerExperienceImprovementProgram": true,
+        "analiticGroups": {
+            "countOfAnaliticGroups": 2,
+            "keepAnalyticsFieldsUnderEachOther": false
+        }
+    },
+    "provisionOrganization": {
+        "main": {
+            "title": "",
+            "businessAddress": "",
+            "legalAddress": "",
+            "phone": "",
+            "eMail": ""
+        },
+        "numbers": {
+            "HVHH": "",
+            "stateRezGegisterNumber": "",
+            "date": "01/01/01",
+            "taxAreaCode": "",
+            "policyholderAccountNumber": "",
+            "numberOfShipmentRegistrationBook": ""
+        },
+        "responsiblePersons": {
+            "headOfDepartment": "",
+            "nameSurnamePatrioticOfHead": "",
+            "accountantPosition": "",
+            "nameSurnamePatrioticOfAccountant": "",
+            "nameSurnamePatrioticOfCashier": ""
+        }
+    },
+    "provisionColorsAndFonts": {
+        "fontOfSystem": {
+            "fontName": "Tahoma",
+            "size": "12"
+        }
+    },
+    "provisionPrintingPolicy": {
+        "paperՕrientation": {
+            "along": true,
+            "width": false
+        },
+        "pageBorders": {
+            "left": 0.5,
+            "right": 0.5,
+            "upper": 0.5,
+            "lower": 0.5
+        },
+        "printParameters": {
+            "alwaysPrint": false,
+            "printIfAppear": false,
+            "notToPrint": true,
+            "printFilteringConditions": false,
+            "printDate": false,
+            "printNameOfCompany": false,
+            "printNumbersOfPages": false,
+            "printNameOfHCCompany": true,
+            "considerPageBreaks": false,
+            "bringBorderOfBoxesPrintForm": false,
+            "pasteAcrossOnePage": true
+        }
+    },
+    "provisionPrintingTemplates": {
+        "accounting": {
+            "memoryOrder": "",
+            "receivedServices": "",
+            "paymentOrder": "",
+            "cashREgisterOrder": "",
+            "cashOutOrder": "",
+            "transferAccount": "",
+            "currencyConversion": "",
+            "expenseOfMoney": "",
+            "accountRevaluation": "",
+            "accountRevaluationOfPartner": "",
+            "groupAccountsRevaluation": "",
+            "mutualCheckingAct": "",
+            "orderToProvider": "",
+            "acceptanceCommand": "",
+            "transportationCommand": "",
+            "releaseCommand": ""
+        },
+        "warehouse": {
+            "accountInvoice": "",
+            "retailerSale": "",
+            "returnFromBuyer": "",
+            "returnToProvider": "",
+            "warehouseEntryOrder": "",
+            "extraExpenseDistribution": "",
+            "warehouseExitOrder": "",
+            "movementOfMaterialValues": "",
+            "complatingOfMaterialValues": "",
+            "recomplatingOfMaterialValues": "",
+            "inventoringOfMaterialValues": "",
+            "revaluationOfMaterialValues": "",
+            "aahAdjustmentOfFunds": ""
+        },
+        "fastWornItems": {
+            "aaAchievementAndExploitation": "",
+            "aaExploitationTransfer": "",
+            "movementOfExploitationAA": "",
+            "liquidationOfmovementOfExploitationAA": ""
+        },
+        "salary": {
+            "vacationCalculation": "",
+            "benefitCalculation": "",
+            "finalCalculation": "",
+            "payments": ""
+        },
+        "mainFunds": {
+            "achievementHM": "",
+            "achievementAndExploitationHM": "",
+            "exploitationTransferAct": "",
+            "depreciationCalculation": "",
+            "internalTransferAct": "",
+            "fromExploitationSubtractionAct": "",
+            "reexploitation": "",
+            "reconstruction": "",
+            "revaluation": "",
+            "partialDissolution": "",
+            "usefulServiceTimeReview": "",
+            "writeOffAct": "",
+            "inventoryHM": ""
+        }
+    },
+    "provisionSalary": {
+        "billingDate": "01/12/19",
+        "calculateWorkOrderImmediately": true,
+        "degreeOfRounding": 0,
+        "transitAccount": "",
+        "minSalary": "71,428",
+        "minSalaryWithPension": "76,388",
+        "minSalaryWithPensionStarted": "73,825",
+        "averageDailyCoefficientVacation": "21",
+        "averageNumberOfMonths": 12,
+        "averageDailyCoefficientBenefit": 21,
+        "averageDailyCoefficientMaternityBenefit": 30.4,
+        "amountOfStampPayment": 1000,
+        "partnerAmountOfStampPayment": 1000,
+        "dateOfIntroduction": "01/11/19",
+        "accountingOfPersonnelDocuments": false,
+        "taxfee": 23,
+        "socialTaxfee": 2.5
+    }
+}

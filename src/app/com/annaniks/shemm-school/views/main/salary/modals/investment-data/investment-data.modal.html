@@ -1,0 +1,78 @@
+<app-modal-header [title]="title" (close)="close($event)"></app-modal-header>
+<form [formGroup]="investmentDataGroup">
+    <div class="first-section">
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Ամսաթիվ</label>
+            </div>
+            <div class="input_wraper">
+                <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                    [locale]="calendarConfig"> </p-calendar>
+                <span class="validate_error"
+                    *ngIf="investmentDataGroup.get('date').hasError('required') && investmentDataGroup.get('date').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group right">
+            <div class="right_label">
+                <label for="">Փաստաթղթի №</label>
+            </div>
+            <div class="input_wraper">
+                <input formControlName="folderNumber" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span>Աշխատակից</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [inputValue]="investmentDataGroup.get('employee').value"
+                (setValue)="setEmployeeValue($event)" [modalName]="getModalName"></app-modal-dropdown>
+            <span class="validate_error"
+                *ngIf="investmentDataGroup.get('employee').hasError('required') && isFocus"><i
+                    class="material-icons">
+                    close
+                </i></span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Պարտք ամսվա սկզբում</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="beginningMonthDebt"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 1</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="analyticalGroup1"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 2</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="analyticalGroup2"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Մեկնաբանություն</label>
+        </div>
+        <div class="input_wraper textarea">
+            <textarea formControlName="comment"></textarea>
+        </div>
+    </div>
+</form>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+        <app-avarage-salary-data *ngSwitchCase="'Միջին աշխատավարձի տվյալներ'"></app-avarage-salary-data>
+    </div>
+</app-tabs>

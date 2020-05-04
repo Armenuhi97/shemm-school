@@ -1,0 +1,22 @@
+<app-modal-header [title]="title" (close)="close($event)"></app-modal-header>
+<div class="table-content">
+    <table>
+        <tr>
+            <th></th>
+            <th>Տեսակ</th>
+            <th>Մեկնաբանություն</th>
+        </tr>
+        <tr *ngFor="let document of documentArray">
+            <td> <label class="container-checkbox">
+                    <input (ngModelChange)="select(document)" [(ngModel)]="document.issELECT" type="checkbox">
+                    <span class="checkmark"></span>
+                </label></td>
+            <td>{{document.type}}</td>
+            <td>{{document.comment}}</td>
+        </tr>
+    </table>
+</div>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button>Դադարեցնել</button>
+</div>

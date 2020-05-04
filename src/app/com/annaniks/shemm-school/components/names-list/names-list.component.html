@@ -1,0 +1,214 @@
+<form [formGroup]="namesListGroup" action="">
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> ԱԱՀ-ի հաշվարկի ձև</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                [inputValue]="setInputValue('calculationTypes','name')"
+                [selectObject]="namesListGroup.get('calculationTypes').value"
+                (setValue)="setValue($event,'calculationTypes')" [array]="calculationTypes"
+                [modalParams]="setModalParams('ԱԱՀ-ի հաշվարկի ձև',['Անվանում'],['name'])">
+            </app-modal-dropdown>
+            
+            <span class="validate_error"
+                *ngIf="namesListGroup.get('calculationTypes').hasError('required') && namesListGroup.get('calculationTypes').touched"><i
+                    class="material-icons">
+                    close
+                </i></span>
+        </div>
+    </div>
+
+
+    <app-table (add)="addRow($event)" (delete)="deleteAll($event)">
+        <table *ngIf="namesListGroup.get('productArray') && namesListGroup.get('productArray')['controls']">
+            <tr>
+                <th></th>
+                <!-- <th class="disabled">Տեսակ</th> -->
+                <th>Պահեստ</th>
+                <th>Պահեստի նշանակություն</th>
+                <th>Կոդ</th>
+                <th class="disabled">Միավոր</th>
+                <th class="disabled">Առկայություն</th>
+                <th>Քանակ</th>
+                <th>Գին</th>
+                <th>Գումար</th>
+                <th *ngIf="namesListGroup.get('parentAAH').value">ԱԱՀ</th>
+                <th>Ծախսի հաշիվ</th>
+                <th>Հասույթի հաշիվ</th>
+                <th>Խմբաքանակ</th>
+            </tr>
+            <tr *ngFor="let item of namesListGroup.get('productArray')['controls']; let i = index" [formGroup]="item">
+                <td>
+                    <div (click)="remove(i)" class="close">
+                        <i class="material-icons">
+                            close
+                        </i>
+                    </div>
+                </td>
+                <!-- <td>
+                    <div class="row-content">
+                        <input class="disabled-input" type="text" formControlName="type">
+                        <span class="validate_error" *ngIf="item.get('type').invalid  && item.get('type').touched"><i
+                                class="material-icons">
+                                close
+                            </i>
+                        </span>
+                    </div>
+                </td> -->
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'code'" [inputProperty]="'name'"
+                            [inputValue]="setInputValue('wareHouse','name',item)"
+                            [selectObject]="item.get('wareHouse').value" (setValue)="setValue($event,'wareHouse',item)"
+                            [array]="warehouses" [modalParams]="setModalParams('Պահեստ',['Անվանում'],['name'])">
+                        </app-modal-dropdown>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                            [inputValue]="setInputValue('wareHouseAcquistion','name',item)"
+                            [selectObject]="item.get('wareHouseAcquistion').value"
+                            (setValue)="setValue($event,'wareHouseAcquistion',item)" [array]="wareHouseAcquistions"
+                            [modalParams]="setModalParams('Պահեստի նշանակություն',['Անվանում'],['name'])">
+                        </app-modal-dropdown>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                            [inputValue]="setInputValue('code','name',item)" [selectObject]="item.get('code').value"
+                            (setValue)="setValue($event,'code',item)" [array]="item.get('materialValuesArray').value"
+                            [modalParams]="setModalParams('Նյութական արժեքներ',[ 'Անվանում','Պահեստ','Պահեստի նշանակություն','Առկայություն'],['name','warehouseName','warehouseSignificanceName','availability'])">
+                        </app-modal-dropdown>
+
+                    </div>
+                </td>
+
+
+                <td>
+                    <div class="row-content">
+                        {{item.get('code')?.value?.point}}
+                        <!-- <input class="disabled-input" formControlName="point" type="text">
+                        <span class="validate_error" *ngIf="item.get('point').invalid  && item.get('point').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span> -->
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input readonly class="disabled-input" formControlName="availability" type="number">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="error-row">
+                        <input (input)="change2()" class="small-input" formControlName="quantity" (ngModelChange)="changeQuantity(item)"
+                            (focus)="focus(item,'quantity')" (blur)="blur(item,'quantity')" type="number">
+                        <div class="error"
+                            *ngIf="(item.get('quantity').hasError('max') || item.get('quantity').hasError('min'))">
+                            Խնդրում եմ մուտքագրել [0-{{item.get('availability').value}}] սահմանում</div>
+                    </div>
+                </td>
+                
+                <td>
+                    <div class="row-content">
+                        <input (ngModelChange)="change(true,item)"  (focus)="focus(item,'price')" (blur)="blur(item,'price')" formControlName="price" type="number">
+                        <span class="validate_error" *ngIf="item.get('price').invalid  && item.get('price').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input  readonly formControlName="amount" type="number">
+                        <span class="validate_error"
+                            *ngIf="item.get('amount').invalid  && item.get('amount').touched"><i class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                </td>
+                <td *ngIf="namesListGroup.get('parentAAH').value">
+                    <div class="row-content">
+                        <label class="container-checkbox">
+                            <input (ngModelChange)="changeAmount()" formControlName="isAah" type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'account'"
+                            [inputValue]="setInputValue('expenseAccount','account',item)"
+                            [selectObject]="item.get('expenseAccount').value"
+                            (setValue)="setValue($event,'expenseAccount',item)" [array]="chartAccounts"
+                            [modalParams]="setModalParams('Հաշվային պլան',['Հաշիվ','Անվանում'],['account','name'])">
+                        </app-modal-dropdown>
+                        <span class="validate_error"
+                            *ngIf="item.get('expenseAccount').invalid  && item.get('expenseAccount').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'account'"
+                            [inputValue]="setInputValue('incomeAccount','account',item)"
+                            [selectObject]="item.get('incomeAccount').value"
+                            (setValue)="setValue($event,'incomeAccount',item)" [array]="chartAccounts"
+                            [modalParams]="setModalParams('Հաշվային պլան',['Հաշիվ','Անվանում'],['account','name'])">
+                        </app-modal-dropdown>
+                        <!-- <input formControlName="incomeAccount" type="text"> -->
+                        <span class="validate_error"
+                            *ngIf="item.get('incomeAccount').invalid  && item.get('incomeAccount').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content group-content">
+                        <span>{{item.get('groupText').value}}</span>
+                        <button (click)="selectGroup(item)"><span>...</span></button>
+                    </div>
+                </td>
+            </tr>
+
+
+            <tr class="all_sum">
+                <td class="td" colspan="6"> </td>
+                <td class="td"><input readOnly=true formControlName="totalCount" type="number"></td>
+                <td class="td" colspan="1"></td>
+                <td class="td"><input readOnly=true formControlName="totalAmount" type="number"></td>
+                <td class="td" colspan="4"></td>
+            </tr>
+        </table>
+    </app-table>
+    <div class="total_amount">
+        <div class="form_group">
+            <div class="label">
+                <label for="">Գումար ԱԱՀ</label>
+            </div>
+            <div class="input_wraper">
+                <input type="number" readonly formControlName="totalAahAmount">
+            </div>
+
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Ընդհանուր գումար</label>
+            </div>
+            <div class="input_wraper">
+                <input type="number" readonly formControlName="allAmount">
+            </div>
+
+        </div>
+    </div>
+</form>

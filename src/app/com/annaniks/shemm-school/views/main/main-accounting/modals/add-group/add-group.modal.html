@@ -1,0 +1,42 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+
+<div class="forms-container">
+    <form [formGroup]="formGroup">
+
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Անվանում</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="name">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('name').hasError('required') && formGroup.get('name').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Կուտակիչ</label>
+            </div>
+            <div class="input_wraper">
+
+                <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('accumulator','id')"
+                    fomControlName="accumulator" (setValue)="setValue($event)" [modalName]="getModalName"
+                    [array]="groupArray" [selectObject]="formGroup.get('accumulator').value"
+                    [modalParams]="modalParams">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                *ngIf="formGroup.get('accumulator').value">{{formGroup.get('accumulator').value.name}}</span>
+            </div>
+
+        </div>
+
+    </form>
+    <div class="buttons">
+        <button (click)="addGroup()">Կատարել</button>
+        <button (click)="close()">Դադարեցնել</button>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+.form_group{
+    .required::before{
+        content: '*';
+        color: red;
+    }
+    .label{
+        width: 330px;
+    }
+    .code-input{
+        width: 46%;
+    }
+    .input_wraper{
+        width: calc(100% - 330px);
+    }
+}

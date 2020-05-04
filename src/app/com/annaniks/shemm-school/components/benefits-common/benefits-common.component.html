@@ -1,0 +1,105 @@
+<form [formGroup]="benefitsGroup">
+    <div class="first-section">
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ժամանակահատված</label>
+            </div>
+            <div class="date-group input_wraper">
+                <div>
+                    <p-calendar rPCalendarMask appendTo="body" (ngModelChange)="changeDate()" formControlName="startDate"
+                        [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy" [locale]="calendarConfig"> </p-calendar>
+                </div>
+                <div class="right">
+                    <p-calendar rPCalendarMask appendTo="body" (ngModelChange)="changeDate()" formControlName="endDate"
+                        [minDate]="minDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                        [locale]="calendarConfig"> </p-calendar>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ամիսների քանակ միջինի համար</label>
+        </div>
+        <div class="input_wraper">
+            <input readonly type="number" formControlName="monthCount">
+            <!-- <p-dropdown class="small-dropdown" formControlName="monthCount"></p-dropdown> -->
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Միջին օրական գործակից</label>
+        </div>
+        <div class="input_wraper">
+            <input class="small-input disabled-input" formControlName="dailyCoefficient">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Միջին աշխատավարձ</label>
+        </div>
+        <div class="input_wraper">
+            <input readonly  type="number" formControlName="avarageSalary">
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Միջին օրական</label>
+        </div>
+        <div class="input_wraper">
+            <input readonly type="number"  (ngModelChange)="changeAvarageDaily()" formControlName="avarageDaily">
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ծախսի հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('expenseAccount','account')"
+                [selectObject]="benefitsGroup.get('expenseAccount').value"
+                (setValue)="setValue($event,'expenseAccount')" [array]="chartAccounts"
+                [modalParams]="setModalParams('Հաշվային պլան','account')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="benefitsGroup.get('expenseAccount').value">{{benefitsGroup.get('expenseAccount').value.name}}</span>
+        </div>
+    </div>
+
+
+    <div class="warning-text">Նշում։ Ապագա ամիսներին բաժին ընկնող արձակուրդայինները և համապատասխան հարկերը (պարտադիր
+        վճարումները) կձևակերպվեն տարանցիկ հաշվով:</div>
+    <div>
+        <button class="fill-button">Լրացնել օրերը b2b.armsoft-ից</button>
+    </div>
+    <div class="table-content">
+        <table>
+            <tr>
+                <th>Ամիս</th>
+                <th>Օր</th>
+                <th>Գումար</th>
+            </tr>
+            <tr *ngFor="let item of benefitsGroup.get('listArray')['controls']" [formGroup]="item">
+                <td>
+                    <span>{{item.get('accountName')?.value?item.get('accountName')?.value:item.get('date')?.value}}</span>
+                </td>
+                <td>
+                    <input class="disabled-input" (ngModelChange)="change('day','totalday')" type="number"
+                        formControlName="day">
+                </td>
+                <td>
+                    <input  (focus)="focus(item,'amount')" (blur)="blur(item,'amount')" (ngModelChange)="change('amount','totalamount')" formControlName="amount" type="number">
+                </td>
+            </tr>
+            <tr class="all_sum">
+                <td class="td" colspan="1"> </td>
+                <td class="td"><input readOnly=true formControlName="totalday" type="number"></td>
+                <td class="td"><input readOnly=true formControlName="totalamount" type="number"></td>
+            </tr>
+        </table>
+    </div>
+</form>

@@ -1,0 +1,69 @@
+.form_group {
+    .required::before {
+        content: '*';
+        color: red;
+    }
+
+    .label {
+        width: 290px;
+    }
+
+    .input_wraper {
+        width: calc(100% - 290px);
+        width: 170px;
+        .name-input {
+            width: 85%;
+        }
+    }
+}
+
+table {
+    width: 100%;
+}
+
+:host::ng-deep {
+    .row-content{
+    app-modal-dropdown {
+        width: 100%;
+
+        input {
+            width: 100%;
+            height: 32px;
+            background: none;
+            border: 1px solid grey !important;
+            border-right: none !important;
+
+        }
+
+        .dropdown-modal-container {
+            width: 100%;
+
+            p-autocomplete {
+                width: 100%;
+
+                span {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+}
+
+
+//   .row-content { 
+//       input {
+//         width: 100%;
+//       }
+//   }
+
+
+td {
+    &:first-child {
+        width: 30px;
+    }
+
+    input {
+        width: 100%;
+    }
+}

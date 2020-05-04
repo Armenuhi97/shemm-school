@@ -1,0 +1,199 @@
+<form action="" [formGroup]="materialListGroup">
+    <!-- <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> ՆԱ-ի ձեռք բերման տեսակ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('acquisitionType','id')"
+                [selectObject]="materialListGroup.get('acquisitionType').value"
+                (setValue)="setValue($event,'acquisitionType')" [array]="typeOfAcquisition"
+                [modalParams]="setModalParams('ՆԱ-ի ձեռք բերման տեսակ','id')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="materialListGroup.get('acquisitionType').value">{{materialListGroup.get('acquisitionType').value?.name}}</span>
+            <span class="validate_error"
+                *ngIf="materialListGroup.get('acquisitionType').hasError('required') && materialListGroup.get('acquisitionType').touched"><i
+                    class="material-icons">
+                    close
+                </i></span>
+        </div>
+    </div> -->
+
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> ԱԱՀ-ի հաշվարկի ձև</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'id'"  [inputProperty]="'name'" [inputValue]="setInputValue('calculationType','name')"
+                [selectObject]="materialListGroup.get('calculationType').value"
+                (setValue)="setValue($event,'calculationType')" [array]="calculationTypes"
+                [modalParams]="setModalParams('ԱԱՀ-ի հաշվարկի ձև',['name'],['Անուն'])">
+            </app-modal-dropdown>
+            
+            <span class="validate_error"
+                *ngIf="materialListGroup.get('calculationType').hasError('required') && materialListGroup.get('calculationType').touched"><i
+                    class="material-icons">
+                    close
+                </i></span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ներառել ԱԱՀ-ն ինքնարժեքի մեջ</label>
+        </div>
+        <div class="checkbox_input_wraper">
+            <label class="container-checkbox">
+                <input (ngModelChange)="changeAmount()" formControlName="isIncludeAahInCost" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+
+        </div>
+    </div>
+    <app-table (add)="addRow($event)" (delete)="deleteAll($event)">
+        <table
+            *ngIf="materialListGroup.get('materialAssetsArray') && materialListGroup.get('materialAssetsArray')['controls'] && materialListGroup.get('materialAssetsArray')['controls'].length">
+            <tr>
+                <th></th>
+                <th>Պահեստ</th>
+                <th>Պահեստի նշանակություն</th>
+                <th>Կոդ</th>
+                <th class="disabled">Միավոր</th>
+                <th>Քանակ</th>
+                <th>Գին</th>
+                <th>Գումար</th>
+                <th *ngIf="materialListGroup.get('parentAAH').value">ԱԱՀ</th>
+                <th>Հաշիվ</th>
+                <th>Ծախսի հաշիվ ըստ նշանակության</th>
+                <th>ԱՏԳՄԱ</th>
+            </tr>
+            <tr *ngFor="let item of materialListGroup.get('materialAssetsArray')['controls']; let i = index"
+                [formGroup]="item">
+                <td>
+                    <div (click)="remove(i)" class="close">
+                        <i class="material-icons">
+                            close
+                        </i>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'code'"  [inputProperty]="'name'" [inputValue]="setInputValue('wareHouse','name',item)"
+                            [selectObject]="item.get('wareHouse').value" (setValue)="setValue($event,'wareHouse',item)"
+                            [array]="warehouses" [modalParams]="setModalParams('Պահեստ',['name'],['Անուն'])">
+                        </app-modal-dropdown>
+
+                    </div>
+                </td>
+
+
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                            [inputValue]="setInputValue('wareHouseAcquistion','name',item)"
+                            [selectObject]="item.get('wareHouseAcquistion').value"
+                            (setValue)="setValue($event,'wareHouseAcquistion',item)" [array]="wareHouseAcquistions"
+                            [modalParams]="setModalParams('Պահեստի նշանակություն',['name'],['Անուն'])">
+                        </app-modal-dropdown>
+
+                    </div>
+                </td>
+
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'id'"  [inputProperty]="'name'" [inputValue]="setInputValue('code','name',item)"
+                            [selectObject]="item.get('code').value" (setValue)="setTableValue($event,item)"
+                            [array]="unitOfMeasurements"
+                            [modalParams]="setModalParams('Նյութական արժեքներ',['name'],['Անուն'])">
+                        </app-modal-dropdown>
+
+                    </div>
+                </td>
+            
+                <td>
+                    <div class="row-content">
+                        <input readonly class="disabled-input" formControlName="point" type="text">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input (focus)="focus(item,'count')" (blur)="blur(item,'count')"
+                            (ngModelChange)="change(true,item)" formControlName="count" type="number">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input formControlName="price" (focus)="focus(item,'price')" (blur)="blur(item,'price')"
+                            (ngModelChange)="change(true,item)" type="number">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input readonly class="disabled-input" formControlName="amount" type="number">
+
+                    </div>
+                </td>
+                <td *ngIf="materialListGroup.get('parentAAH').value">
+                    <div class="row-content">
+                        <label class="container-checkbox">
+                            <input (ngModelChange)="changeAmount()" formControlName="isAah" type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'account'"
+                            [inputValue]="setInputValue('account','account',item)"
+                            [selectObject]="item.get('account').value" (setValue)="setValue($event,'account',item)"
+                            [array]="accounts"
+                            [modalParams]="setModalParams('Հաշվային պլան',['account','name'],['Հաշիվ','Անուն'] )">
+                        </app-modal-dropdown>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'account'"
+                            [inputValue]="setInputValue('expenceAccount','account',item)"
+                            [selectObject]="item.get('expenceAccount').value"
+                            (setValue)="setValue($event,'expenceAccount',item)" [array]="accounts"
+                            [modalParams]="setModalParams('Հաշվային պլան',['account','name'],['Հաշիվ','Անուն'])">
+                        </app-modal-dropdown>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('atgaa','code',item)"
+                            [selectObject]="item.get('atgaa').value" (setValue)="setValue($event,'atgaa',item)"
+                            [array]="classifiers" [modalParams]="setModalParams('ԱՏԳԱԱ և ԱԴԳՏ դասակարգիչ',['code','name'],['Կոդ','Անուն'])">
+                        </app-modal-dropdown>
+
+                    </div>
+                </td>
+
+            </tr>
+            <tr class="all_sum">
+                <td class="td" colspan="5"> </td>
+                <td class="td"><input readonly=true formControlName="totalCount" type="number"></td>
+                <td class="td" colspan="1"></td>
+                <td class="td"><input readonly=true formControlName="totalAmount" type="number"></td>
+                <td class="td" colspan="4"></td>
+            </tr>
+        </table>
+    </app-table>
+    <div class="total_amount">
+        <div class="form_group">
+            <div class="label">
+                <label for="">Գումար ԱԱՀ</label>
+            </div>
+            <div class="input_wraper">
+                <input readonly=true formControlName="totalAahAmount" type="number">
+            </div>
+
+        </div>
+    </div>
+</form>

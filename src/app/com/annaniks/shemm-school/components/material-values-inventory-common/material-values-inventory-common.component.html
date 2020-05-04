@@ -1,0 +1,119 @@
+<div class="form_group">
+    <div class="label">
+        <label for="">Մեկնաբանություն</label>
+    </div>
+    <div class="input_wraper full-dropdown">
+        <p-dropdown></p-dropdown>
+
+    </div>
+</div>
+
+<app-table [isShowButton]="true" (add)="addRow($event)" (delete)="deleteAll($event)">
+    <table
+        *ngIf="materialValuesCommonArray && materialValuesCommonArray.controls && materialValuesCommonArray.controls.length">
+        <tr>
+            <th></th>
+            <th>Կոդ</th>
+            <th>Անվանում</th>
+            <th class="disabled">Միավոր</th>
+            <th>Հաշվ․քանակ</th>
+            <th>Փաստ․քանակ</th>
+            <th>Շեղում</th>
+            <th>Հաշվ․գումար</th>
+            <th>Փաստ․գումար</th>
+
+        </tr>
+        <tr *ngFor="let item of materialValuesCommonArray.controls; let i = index" [formGroup]="item">
+            <td>
+                <div (click)="remove(i)" class="close">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <p-dropdown formControlName="code"></p-dropdown>
+                    <span class="validate_error" *ngIf="item.get('code').invalid  && item.get('code').touched"><i
+                            class="material-icons">
+                            close
+                        </i>
+                    </span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input formControlName="name" type="text">
+                    <span class="validate_error" *ngIf="item.get('name').invalid  && item.get('name').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input class="disabled-input" formControlName="point" type="text">
+                    <span class="validate_error" *ngIf="item.get('point').invalid  && item.get('point').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input formControlName="quantity" type="text">
+                    <span class="validate_error"
+                        *ngIf="item.get('quantity').invalid  && item.get('quantity').touched"><i class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input formControlName="fact_count" type="text">
+                    <span class="validate_error"
+                        *ngIf="item.get('fact_count').invalid  && item.get('fact_count').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input formControlName="deviation" type="text">
+                    <span class="validate_error"
+                        *ngIf="item.get('deviation').invalid  && item.get('deviation').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input (ngModelChange)="changeAmount()" formControlName="amount" type="number">
+                    <span class="validate_error" *ngIf="item.get('amount').invalid  && item.get('amount').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input (ngModelChange)="changeFactAmount" formControlName="fact_amount" type="text">
+                    <span class="validate_error"
+                        *ngIf="item.get('fact_amount').invalid  && item.get('fact_amount').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+        </tr>
+
+
+        <tr class="all_sum">
+            <td class="td" colspan="7"> </td>
+            <td class="td"><input readOnly=true [(ngModel)]="totalAmount" type="number"></td>
+            <td class="td"><input readOnly=true [(ngModel)]="totalFactAmount" type="number"></td>
+        </tr>
+    </table>
+</app-table>

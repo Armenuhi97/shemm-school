@@ -1,0 +1,213 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<!-- <div class="error">{{error}}</div> -->
+
+<div class="forms-container">
+    <form [formGroup]="formGroup">
+        <div class="first-section">
+
+            <div class="form_group">
+                <div class="label">
+                    <label class="required" for="">Անվանում</label>
+                </div>
+                <div class="input_wraper">
+                    <input class="name-input" formControlName="name">
+                    <span class="validate_error"
+                        *ngIf="formGroup.get('name').hasError('required') && formGroup.get('name').touched">
+                        <i class="material-icons">
+                            close
+                        </i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Աշխատավարձի հաշվման եղանակ</label>
+                </div>
+                <div class="input_wraper">
+                    <p-dropdown [placeholder]="'Ընտրեք'" [options]="calculateSalaryArray" optionLabel="name"
+                        formControlName="calculateTypeOfSalary"></p-dropdown>
+                </div>
+            </div>
+            <div class="form_group">
+                <div class="label">
+                    <label for=""><span>*</span> Գործակից</label>
+                </div>
+                <div class="coefficient-input input_wraper">
+                    <input type="number" formControlName="coefficient">
+                    <span class="validate_error"
+                        *ngIf="formGroup.get('coefficient').hasError('required') && formGroup.get('coefficient').touched">
+                        <i class="material-icons">
+                            close
+                        </i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form_group">
+                <div class="label">
+                    <label class="required" for=""> Եկամտի տեսակ</label>
+                </div>
+                <div class="input_wraper">
+                    <app-modal-dropdown [property]="'id'" 
+                        [inputValue]="setInputValue('incomeType','id')"
+                        [selectObject]="formGroup.get('incomeType').value" (setValue)="setValue($event,'incomeType')"
+                        [array]="typeOfIncomes" [modalParams]="setModalParams('Եկամտի տեսակ','id')">
+                    </app-modal-dropdown>
+                    <span class="validate_error"
+                        *ngIf="formGroup.get('incomeType').hasError('required') && formGroup.get('incomeType').touched">
+                        <i class="material-icons">
+                            close
+                        </i>
+                    </span>
+                    <span class="selected-element-name"
+                        *ngIf="formGroup.get('incomeType').value">{{formGroup.get('incomeType').value.name}}</span>
+                </div>
+            </div>
+
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Հետհաշվարկ</label>
+                </div>
+                <div class="input_wraper">
+                    <label class="container-checkbox">
+                        <input formControlName="countdown" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+
+                </div>
+            </div>
+
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Եկամտային հարկը պահվում է</label>
+                </div>
+                <div class="input_wraper">
+                    <label class="container-checkbox">
+                        <input formControlName="isIncomeTaxWithheld" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Նվազեցվող եկամուտ</label>
+                </div>
+                <div class="input_wraper">
+                    <label class="container-checkbox">
+                        <input formControlName="isDeductibleIncome" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+
+                </div>
+            </div>
+
+            <div class="form_group">
+                <div class="label">
+                    <!-- Արհմիության անդամավճար պահվում է -->
+                    <label for="">
+                        Այլ պահումները պահվում են
+                    </label>
+                </div>
+                <div class="input_wraper">
+                    <label class="container-checkbox">
+                        <input formControlName="isUnionMembershipWithheld" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Միայն հարկերի հաշվարկման համար</label>
+                </div>
+                <div class="input_wraper">
+                    <label class="container-checkbox">
+                        <input formControlName="isOnlyForTaxCalculation" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="second-section">
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Պարտադիր կուտակային կենսաթոշակը պահվում է</label>
+                </div>
+                <div class="input_wraper">
+                    <label class="container-checkbox">
+                        <input formControlName="isWithheldMandatoryFundedPension" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Գործատուի կողմից տրված կուտակային կենսաթոշակը պահվում է</label>
+                </div>
+                <div class="input_wraper">
+                    <label class="container-checkbox">
+                        <input formControlName="isWithheldFundedPensionIssuedByEmployer" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="third-section">
+            <div class="form_group">
+                <div class="label">
+                    <label class="required" for=""> Մասնակցում է արձակուրդայինի կենսաթոշակը միջինի մեջ</label>
+                </div>
+                <div class="input_wraper">
+                    <app-modal-dropdown [property]="'id'" 
+                        [inputValue]="setInputValue('involvedSellingPensions','id')"
+                        [selectObject]="formGroup.get('involvedSellingPensions').value"
+                        (setValue)="setValue($event,'involvedSellingPensions')" [array]="vacationsType"
+                        [modalParams]="setModalParams('Մասնակցում է արձակուրդայինի կենսաթոշակը միջինի մեջ','id')">
+                    </app-modal-dropdown>
+                    <span class="validate_error"
+                        *ngIf="formGroup.get('involvedSellingPensions').hasError('required') && formGroup.get('involvedSellingPensions').touched">
+                        <i class="material-icons">
+                            close
+                        </i>
+                    </span>
+                    <span class="selected-element-name"
+                    *ngIf="formGroup.get('involvedSellingPensions').value">{{formGroup.get('involvedSellingPensions').value.name}}</span>
+                </div>
+            </div>
+
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Ծախսի հաշիվ</label>
+                </div>
+                <div class="medium-dropdown input_wraper">
+                    <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('expenseAccount','account')"
+                        [selectObject]="formGroup.get('expenseAccount').value"
+                        (setValue)="setValue($event,'expenseAccount')" [array]="accountPlans"
+                        [modalParams]="setModalParams('Հաշվային պլան','account','Հաշիվ')">
+                    </app-modal-dropdown>
+                    <span class="selected-element-name"
+                        *ngIf="formGroup.get('expenseAccount').value">{{formGroup.get('expenseAccount').value.name}}</span>
+                </div>
+            </div>
+
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Մասնակցում է փաստացի ժամերի հաշվարկին</label>
+                </div>
+                <div class="input_wraper ">
+                    <label class="container-checkbox">
+                        <input formControlName="isParticipatesCalculationActualHours" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="buttons">
+        <button (click)="addAddition()">Կատարել</button>
+        <button (click)="close()">Դադարեցնել</button>
+    </div>
+</div>

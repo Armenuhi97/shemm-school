@@ -1,0 +1,147 @@
+
+
+.form_group{       
+    .label{
+        width: 220px;
+    } 
+}
+.concrete-width-fit{
+    .form_group{      
+      
+        .input_wraper{            
+            width: calc(100% - 220px)  
+        }
+    }
+}
+.persent-content{
+    display: flex;
+    align-items: center;
+    .types-group{
+        margin-left: 5px;
+    }
+}
+
+.profession-content{
+    display: flex;
+    align-items: center;
+}
+.birthday-section,.last-row{
+    display: flex;
+    align-items: center;
+    .cumulative-participant{
+        opacity: 0.8;
+        input{
+            outline: none !important;
+        }
+        
+    }
+    .cumulative-participant,.accounting-group{
+        margin-left: 5px;
+        .cumulative-label{
+            width: fit-content !important;
+            margin-right: 3px;
+        }
+        .input_wraper{            
+            width: 150px !important
+        }
+    }
+}
+.margin-top-5{
+    margin-top: 5px;
+}
+.is-invalid{
+    margin-left: 30px !important;
+}
+.payment-row{
+    display: flex;
+    align-items: center;
+    .wraper{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 190px;
+    }
+    .percent-wraper{
+        width: fit-content !important;
+        input{
+            width: 150px;
+        }
+    }
+    .inputs-dropdown{
+        width: fit-content !important;
+    }
+    .account-content{
+        width: fit-content;
+        margin-left: 5px;
+        margin-right: 5px;
+      
+    }
+}
+.sm-media{
+    display: none !important;
+}
+.bg-media{
+    display: flex;
+}
+@media only screen and (max-width: 1550px) {
+
+    .payment-row{
+        flex-direction: column;
+        align-items: flex-start !important;
+        .form_group{
+            width: 100% !important;
+        }
+        .inputs-dropdown,.percent-wraper{
+            width: calc(100% - 220px) !important;
+            input{
+                width: 175px !important;
+            }
+        }
+        .account-content{
+            width: 220px !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;          
+        }
+    }
+    .sm-media{
+        display: flex !important;
+    }
+    .bg-media{
+        display: none !important;
+    }
+  
+    .is-invalid{
+        margin-left: 0 !important;
+    }
+}
+@media only screen and (max-width: 1138px) {
+    .birthday-section{
+        input{
+            width: 150px;
+        }
+    }
+    .birthday-section,.last-row{
+       flex-direction: column;
+       align-items: flex-start;
+           
+        .cumulative-participant,.accounting-group{
+            margin-left: 0 !important;
+            .cumulative-label{
+                width: 220px !important;
+                margin-right: 0 !important;
+            }
+            .input_wraper{            
+                width: calc(100% - 220px)  !important;
+                // input{
+                //     width: 100%;
+                // }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 940px) {
+    .text{
+        font-size: 11px !important;
+    }
+}

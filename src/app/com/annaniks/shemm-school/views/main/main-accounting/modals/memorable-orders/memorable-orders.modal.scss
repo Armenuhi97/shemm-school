@@ -1,0 +1,53 @@
+@import '../../../../../../../../../styles.scss';
+
+.memorable-orders-container {
+    margin-top: 10px;
+    hr {
+        margin-bottom: 15px;
+    }
+    .form-group {
+        display: flex;
+        margin-bottom: 15px;
+        .error-handling {
+            width: 18px;
+            small {
+                color: red;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+            }
+        }
+        .labelInputs {
+            display: flex;
+            label {
+                width: 230px;
+                display: flex;
+                align-items: center;
+                font-size: 16px;
+            }
+            .fit-content {
+                width: fit-content;
+                margin: 0 10px;
+            }
+            input [type="text"] {
+                border-radius: 3px;
+                border: 1px solid grey;
+                padding-left: 5px;
+                height: 32px;
+                width: 80%;
+            }
+        }
+        span {
+            line-height: 32px;
+        }
+    }
+}
+
+// input  {
+//     border-radius: 3px;
+//     border: 1px solid grey;
+//     padding-left: 5px;
+//     height: 32px;
+//     width: 80%;
+// }

@@ -1,0 +1,175 @@
+<form action="" [formGroup]="commonGroup">
+    <app-common-table-header [titles]="financeTitles">
+        <tr>
+            <td>Մնացորդային օգտակար ժամկետ</td>
+            <td>
+                <input type="number" formControlName="financeResidualUsefulLifeOld">
+                <!-- <p-dropdown formControlName="residualUsefulLife_old"></p-dropdown> -->
+            </td>
+            <td>
+                <input type="number" formControlName="financeResidualUsefulLifeNew">
+
+                <!-- <p-dropdown formControlName="residualUsefulLife_new"></p-dropdown> -->
+            </td>
+        </tr>
+        <tr>
+            <td>Սկզբնական արժեք</td>
+            <td>
+                <input type="number" formControlName="financeInitialCostOld">
+
+                <!-- <p-dropdown formControlName="initialCost_old"></p-dropdown> -->
+            </td>
+            <td>
+                <input type="number" formControlName="financeInitialCostNew">
+
+                <!-- <p-dropdown formControlName="initialCost_new"></p-dropdown> -->
+            </td>
+        </tr>
+
+        <tr>
+            <td>Հաշվարկված մաշվածք</td>
+            <td>
+                <input type="number" formControlName="financeCalculatedWearOld">
+
+                <!-- <p-dropdown formControlName="calculatedWear_old"></p-dropdown> -->
+            </td>
+            <td>
+                <input type="number" formControlName="financeCalculatedWearNew">
+
+                <!-- <p-dropdown formControlName="calculatedWear_new"></p-dropdown> -->
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>Մնացորդային արժեք</td>
+            <td>
+                <input type="number" formControlName="financeResidualValueOld">
+
+                <!-- <p-dropdown formControlName="residualValue_old"></p-dropdown> -->
+            </td>
+            <td>
+                <input type="number" formControlName="financeResidualValueNew">
+
+                <!-- <p-dropdown formControlName="residualValue_new"></p-dropdown> -->
+            </td>
+        </tr>
+    </app-common-table-header>
+
+
+    <app-common-table-header [titles]="taxTitles">
+        <tr>
+            <td>Մնացորդային օգտակար ժամկետ</td>
+            <td>
+                <input type="number" formControlName="taxResidualUsefulLifeOld">
+
+                <!-- <p-dropdown formControlName="residualUsefulLife_old"></p-dropdown> -->
+            </td>
+            <td>
+                <input type="number" formControlName="taxResidualUsefulLifeNew">
+
+                <!-- <p-dropdown formControlName="residualUsefulLife_new"></p-dropdown> -->
+            </td>
+        </tr>
+        <tr>
+            <td>Սկզբնական արժեք</td>
+            <td>
+                <input type="number" formControlName="taxInitialCostOld">
+
+                <!-- <p-dropdown formControlName="initialCost_old"></p-dropdown> -->
+            </td>
+            <td>
+                <input type="number" formControlName="taxInitialCostNew">
+
+                <!-- <p-dropdown formControlName="initialCost_new"></p-dropdown> -->
+            </td>
+        </tr>
+
+        <tr>
+            <td>Հաշվարկված մաշվածք</td>
+            <td>
+                <input type="number" formControlName="taxCalculatedWearOld">
+
+                <!-- <p-dropdown formControlName="calculatedWear_old"></p-dropdown> -->
+            </td>
+            <td>
+                <input type="number" formControlName="taxCalculatedWearNew">
+
+                <!-- <p-dropdown formControlName="calculatedWear_new"></p-dropdown> -->
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>Մնացորդային արժեք</td>
+            <td>
+                <input type="number" formControlName="taxResidualValueOld">
+
+                <!-- <p-dropdown formControlName="residualValue_old"></p-dropdown> -->
+            </td>
+            <td>
+                <input type="number" formControlName="taxResidualValueNew">
+
+                <!-- <p-dropdown formControlName="residualValue_new"></p-dropdown> -->
+            </td>
+        </tr>
+    </app-common-table-header>
+
+
+    <app-common-table-header [titles]="revenueTitles">
+        <tr>
+            <td>Մնացորդային օգտակար ժամկետ</td>
+            <td>
+                <input type="number" formControlName="revenueResidualUsefulLifeOld">
+
+                <!-- <p-dropdown formControlName="revenueResidualUsefulLifeOld"></p-dropdown> -->
+            </td>
+            <td>
+                <input type="number" formControlName="revenueResidualUsefulLifeNew">
+
+                <!-- <p-dropdown formControlName="revenueResidualUsefulLifeNew"></p-dropdown> -->
+            </td>
+        </tr>
+        <tr>
+            <td>Սկզբնական արժեք</td>
+            <td>
+                <input type="number" formControlName="revenueInitialCostOld">
+
+                <!-- <p-dropdown formControlName="revenueInitialCostOld"></p-dropdown> -->
+            </td>
+            <td>
+                <input type="number" formControlName="revenueInitialCostNew">
+
+                <!-- <p-dropdown formControlName="revenueInitialCostNew"></p-dropdown> -->
+            </td>
+        </tr>
+
+        <tr>
+            <td>Հաշվարկված մաշվածք</td>
+            <td>
+                <input type="number" formControlName="revenueCalculatedWearOld">
+
+                <!-- <p-dropdown formControlName="revenueCalculatedWearOld"></p-dropdown> -->
+            </td>
+            <td>
+                <input type="number" formControlName="revenueCalculatedWearNew">
+
+                <!-- <p-dropdown formControlName="revenueCalculatedWearNew"></p-dropdown> -->
+            </td>
+        </tr>
+
+        <tr>
+            <td>Մնացորդային արժեք</td>
+            <td>
+                <input type="number" formControlName="revenueResidualValueOld">
+
+                <!-- <p-dropdown formControlName="revenueResidualValueOld"></p-dropdown> -->
+            </td>
+            <td>
+                <input type="number" formControlName="revenueResidualValueNew">
+
+                <!-- <p-dropdown formControlName="revenueResidualValueNew"></p-dropdown> -->
+            </td>
+        </tr>
+    </app-common-table-header>
+</form>

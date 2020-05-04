@@ -1,0 +1,56 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div  class="group">
+    <form [formGroup]="currencyGroup">
+        <div class="form_group code">
+            <div class="label">
+                <label for=""><span>*</span> Կոդ</label>
+            </div>
+            <div class="input_wraper ">
+                <input formControlName="currency">
+                <span class="validate_error"
+                    *ngIf="currencyGroup.get('currency').hasError('required') && currencyGroup.get('currency').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group ">
+            <div class="label">
+                <label for=""><span>*</span> Անվանում</label>
+            </div>
+            <div class="input_wraper ">
+                <input formControlName="name">
+                <span class="validate_error"
+                    *ngIf="currencyGroup.get('name').hasError('required') && currencyGroup.get('name').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <!-- <div class="form_group dram">
+            <div class="label">
+                <label for="">Դրամ</label>
+            </div>
+            <div class="input_wraper ">
+                <input formControlName="dram">
+            </div>
+        </div>
+
+        <div class="form_group dram">
+            <div class="label">
+                <label for="">Մանրադրամ</label>
+            </div>
+            <div class="input_wraper ">
+                <input formControlName="bargainingChip">
+            </div>
+        </div> -->
+    </form>
+    <div class="buttons">
+        <button (click)="addCurrency()">Կատարել</button>
+        <button (click)="close()">Դադարեցնել</button>
+    </div>
+</div>

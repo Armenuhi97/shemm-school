@@ -1,0 +1,14 @@
+<app-tables-by-filter [titles]="titles" (add)="addAbsent(false)">
+
+  <tr *ngFor="let absent of absences">
+    <td class="edit"> <i (click)="addAbsent(true, absent?.id, absent)" class=" material-icons"> edit </i> </td>
+    <td class="delete"> <i (click)="delete(absent?.id)" class=" material-icons"> close </i></td>
+    <td>{{absent?.employee?.fullName}}</td>
+    <td>{{absent?.date | date:'MM/dd/yyyy' }}</td>
+  </tr>
+
+</app-tables-by-filter>
+
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

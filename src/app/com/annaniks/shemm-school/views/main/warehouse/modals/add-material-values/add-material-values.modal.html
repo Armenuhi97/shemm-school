@@ -1,0 +1,43 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div class="modal-card-container">
+    <div class="product-container">
+        <div class="text">
+            <h1>Ապրանքերի միասնական տեղեկատու</h1>
+            <div>Հայկական ծրագրերը ընկերությունը զբաղվում է Հայաստանի շրջանառվող ապրանքների միասնական տեղեկատուի
+                ձևավորմամբ։ Տեղեկատուն պարունակում է 100000-ից ավելի մթերային, տնտեսական և դեղատան ապրանքների մասին
+                հիմնական տեղեկատվություն՝ Անվանում, Գծիկավոր կոդ, ԱՏԳԱԱ, Չափման միավոր, ԱԱՀ և այլն։ ՀԾ-Հաշվապահ
+                (Հանրային հատված) համալարգ մուտքագրելով միայն գծիկավոր կոդը, հնարավոր է ապրանքի մանրամասն տվյալներն
+                ավտոմատ ստանալ b2b.armsoft հարթակից։</div>
+            <div class="scan-text">
+                <span>
+                    Կարդացեք սկաներով կամ մուտքագրեք ապրանքի գծիկավոր կոդը
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Գծիկավոր կոդ</label>
+            </div>
+            <div class="input_wraper">
+                <input>
+
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Այլևս չցուցադրել այս պատուհանը</label>
+            </div>
+            <div class="input_wraper">
+                <label class="container-checkbox">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+        <div class="buttons">
+            <button (click)="openModal()">Կատարել</button>
+            <button>Դադարեցնել</button>
+        </div>
+    </div>
+</div>

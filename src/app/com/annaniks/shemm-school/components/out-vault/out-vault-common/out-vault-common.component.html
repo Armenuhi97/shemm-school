@@ -1,0 +1,152 @@
+<form action="" [formGroup]="commonGroup">
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ծախսի հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('expenseAccount','account')"
+                [selectObject]="commonGroup.get('expenseAccount').value" (setValue)="setValue($event,'expenseAccount')"
+                [array]="chartAccounts"
+                [modalParams]="setModalParams('Հաշվային պլան',['account','name'],['Հաշիվ', 'Անվանում'])">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="commonGroup.get('expenseAccount').value">{{commonGroup.get('expenseAccount').value.name}}</span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 1</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup1','code')"
+                [selectObject]="commonGroup.get('analyticalGroup1').value"
+                (setValue)="setValue($event,'analyticalGroup1')" [array]="analyticalGroup1"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 1',['code','name'],['Կոդ', 'Անվանում'])">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="commonGroup.get('analyticalGroup1').value">{{commonGroup.get('analyticalGroup1').value.name}}</span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 2</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup2','code')"
+                [selectObject]="commonGroup.get('analyticalGroup2').value"
+                (setValue)="setValue($event,'analyticalGroup2')" [array]="analyticalGroup2"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 2',['code','name'],['Կոդ', 'Անվանում'])">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="commonGroup.get('analyticalGroup2').value">{{commonGroup.get('analyticalGroup2').value.name}}</span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Մեկնաբանություն</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="comment">
+        </div>
+    </div>
+
+
+    <app-table (add)="addRow($event)" (delete)="deleteAll($event)">
+        <table
+            *ngIf="commonGroup.get('productArray') && commonGroup.get('productArray')['controls'] && commonGroup.get('productArray')['controls'].length">
+            <tr>
+                <th></th>
+                <th>Պահեստ</th>
+                <th>Ապրանքի նշանակություն</th>
+                <th>Կոդ</th>
+                <!-- <th class="disabled">Անվանում</th> -->
+                <th class="disabled">Միավոր</th>
+                <th class="disabled">Առկայություն</th>
+                <th>Քանակ</th>
+                <th>Գումար</th>
+                <th>Խմբաքանակ</th>
+            </tr>
+            <tr *ngFor="let item of commonGroup.get('productArray')['controls']; let i = index" [formGroup]="item">
+                <td>
+                    <div (click)="remove(i)" class="close">
+                        <i class="material-icons">
+                            close
+                        </i>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'code'"  [inputProperty]="'name'" [inputValue]="setInputValue('wareHouse','name',item)"
+                            [selectObject]="item.get('wareHouse').value" (setValue)="setValue($event,'wareHouse',item)"
+                            [array]="warehouses" [modalParams]="setModalParams('Պահեստ',['name'],['Անվանում'])">
+                        </app-modal-dropdown>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                            [inputValue]="setInputValue('wareHouseAcquistion','name',item)"
+                            [selectObject]="item.get('wareHouseAcquistion').value"
+                            (setValue)="setValue($event,'wareHouseAcquistion',item)" [array]="wareHouseAcquistions"
+                            [modalParams]="setModalParams('Ապրանքի նշանակություն',['name'],[ 'Անվանում'])">
+                        </app-modal-dropdown>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'id'"  [inputProperty]="'name'" [inputValue]="setInputValue('code','name',item)"
+                            [selectObject]="item.get('code').value" (setValue)="setValue($event,'code',item)"
+                            [array]="item.get('materialValuesArray').value"
+                            [modalParams]="setModalParams('Նյութական արժեքներ',['name','warehouseName','warehouseSignificanceName','availability'],[ 'Անվանում','Պահեստ','Պահեստի նշանակություն','Առկայություն'])">
+                        </app-modal-dropdown>
+
+
+                    </div>
+                </td>
+              
+                <td>
+                    <div class="row-content">
+                        {{item.get('code')?.value?.point}}
+                       
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input readonly class="disabled-input" formControlName="availability" type="number">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="error-row">
+                        <input (input)="change2()" class="small-input" formControlName="quantity" (ngModelChange)="changeQuantity(item)"
+                            (focus)="focus(item,'quantity')" (blur)="blur(item,'quantity')" type="number">
+                        <div class="error"
+                            *ngIf="(item.get('quantity').hasError('max') || item.get('quantity').hasError('min'))">
+                            Խնդրում եմ մուտքագրել [0-{{item.get('availability').value}}] սահմանում</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input readonly class="disabled-input" (ngModelChange)="changeAmount()" formControlName="amount"
+                            type="number">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content group-content">
+                        <span>{{item.get('groupText').value}}</span>
+                        <button (click)="selectGroup(item)"><span>...</span></button>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="all_sum">
+                <td class="td" colspan="7"> </td>
+                <td class="td"><input readOnly=true formControlName="totalAmount" type="number"></td>
+                <td class="td" colspan="1"></td>
+            </tr>
+        </table>
+    </app-table>
+</form>

@@ -1,0 +1,130 @@
+<app-modal-header [title]="title" (close)="close($event)"></app-modal-header>
+<div class="forms-container">
+    <form [formGroup]="materialValuesGroup">
+        <div class="first-group">
+            <div class="form_group">
+                <div class="label">
+                    <label for=""><span>*</span>Ժամանակահատված</label>
+                </div>
+                <div class="input_wraper">
+                    <div>
+                        <p-calendar rPCalendarMask formControlName="startDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                            [locale]="calendarConfig"> </p-calendar>
+                    </div>
+                    <div class="right-section end-date-container">
+                        <p-calendar rPCalendarMask formControlName="endDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                            [locale]="calendarConfig"> </p-calendar>
+                    </div>
+                    <button class="calendar_button right-section">
+                        <i class="material-icons">
+                            calendar_today
+                        </i>
+                    </button>
+                 
+
+                </div>
+            </div>
+            <div class="form_group full_dropdown">
+                <div class="label">
+                    <label for=""><span>*</span> Նյութական արժեք</label>
+                </div>
+                <div class="input_wraper">
+                    <p-dropdown formControlName="material_cost"></p-dropdown>
+                    <span class="validate_error"
+                        *ngIf="materialValuesGroup.get('material_cost').hasError('required') && materialValuesGroup.get('material_cost').touched">
+                        <i class="material-icons">
+                            close
+                        </i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Պահեստ</label>
+                </div>
+                <div class="input_wraper">
+                    <p-dropdown formControlName="warehouse"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="form_group full_dropdown">
+                <div class="label">
+                    <label for="">Հաշիվ</label>
+                </div>
+                <div class="input_wraper">
+                    <p-dropdown formControlName="account"></p-dropdown>
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Ցույց տալ խմբաքանակները</label>
+                </div>
+                <div class="input_wraper">
+                    <label class="container-checkbox">
+                        <input formControlName="isShowparties" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label> </div>
+            </div>
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Խմբավորել ըստ թղթակցող օբյեկտի</label>
+                </div>
+                <div class="input_wraper">
+                    <label class="container-checkbox">
+                        <input formControlName="isGroup_by_correspondent_object" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label> </div>
+            </div>
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Ցույց տալ մնացորդն օրվա վերջում</label>
+                </div>
+                <div class="input_wraper">
+                    <label class="container-checkbox">
+                        <input formControlName="isShow_balace_at_the_end_day" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label> </div>
+            </div>
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Ցույց տալ ԱԱՀ-ի գումարները</label>
+                </div>
+                <div class="input_wraper">
+                    <label class="container-checkbox">
+                        <input formControlName="isShow_aah_amount" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label> </div>
+            </div>
+        </div>
+        <div class="additionally-content">
+            <div (click)="openOrCloseAdditionalInfo()" class="additionally">
+                <span>Լրացուցիչ</span>
+                <span><i [ngStyle]="arrowStyle()" class="material-icons">
+                        arrow_drop_down
+                    </i></span>
+            </div>
+            <div *ngIf="isAdditionally">
+                <div class="form_group small_dropdown">
+                    <div class="label">
+                        <label for=""><span>*</span> Ցույց տալ պահեստի</label>
+                    </div>
+                    <div class="input_wraper">
+                        <p-dropdown formControlName="code"></p-dropdown>
+                        <span class="text">Կոդը</span>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </form>
+    <div class="buttons">
+        <button>Կատարել</button>
+        <button>Դադարեցնել</button>
+    </div>
+</div>

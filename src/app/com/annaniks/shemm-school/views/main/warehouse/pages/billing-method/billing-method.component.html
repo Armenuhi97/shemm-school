@@ -1,0 +1,18 @@
+<app-tables-by-filter [titles]="titles" (add)="addBillingMethod()">
+
+    <tr *ngFor="let billingMethod of billingMethods">
+        <td class="edit"> <i (click)="addBillingMethod(true, billingMethod?.id, billingMethod)" class=" material-icons"> edit
+            </i> </td>
+        <td class="delete"> <i (click)="delete(billingMethod?.id)" class=" material-icons"> close </i></td>
+        <td>{{ billingMethod?.name }}</td>
+        <td>{{ billingMethod?.abbreviation }}</td>
+    </tr>
+    <tr *ngIf="billingMethods.length == 0">
+        <td colspan='4'>Դուք չունեք ստեղծած հաշվառման մեթոդ</td> 
+    </tr>
+
+</app-tables-by-filter>
+
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

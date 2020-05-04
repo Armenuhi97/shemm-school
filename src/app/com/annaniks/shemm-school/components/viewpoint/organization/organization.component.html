@@ -1,0 +1,254 @@
+<h2>{{tabTitle}}
+</h2>
+<form [formGroup]="organizationFormGroup">
+  <div class="form_group">
+    <div class="label">
+      <button>Կազմակերպության տվյալներ</button>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header">
+      <span>Հիմնական</span>
+    </div>
+    <div class="section-body" formGroupName="main">
+      <div class="form_group">
+        <div class="label">
+          <label class="required" for="">Անվանում</label>
+        </div>
+        <div class="input_wraper">
+          <input type="text" formControlName="title">
+        </div>
+      </div>
+      <div class="form_group">
+        <div class="label">
+          <label for="">Գործնական հասցե</label>
+        </div>
+        <div class="input_wraper">
+          <input formControlName="businessAddress" type="text">
+        </div>
+      </div>
+      <div class="form_group">
+        <div class="label">
+          <label for="">Իրավաբանական հասցե</label>
+        </div>
+        <div class="input_wraper">
+          <input  formControlName="legalAddress" type="text">
+        </div>
+      </div>
+
+      <div class="form_group">
+        <div class="label">
+          <label for="">Հեռախոս</label>
+        </div>
+        <div class="input_wraper">
+          <input type="text" formControlName="phone">
+        </div>
+      </div>
+
+      <div class="form_group">
+        <div class="label">
+          <label for="">Էլեկտրոնային փոստ</label>
+        </div>
+        <div class="input_wraper">
+          <input  formControlName="eMail" type="text">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" formGroupName="numbers">
+    <div class="section-header">
+      <span>Համարներ</span>
+    </div>
+    <div class="section-body" >
+      <div class="form_group">
+        <div class="label">
+          <label for="">ՀՎՀՀ</label>
+        </div>
+        <div class="input_wraper">
+          <input  type="text" formControlName="HVHH">
+          <!-- <span class="validate_error"
+            *ngIf="this.organizationFormGroup.get('numbers')[controls].hasError('required') && this.organizationFormGroup.get('numbers').value.HVHH.touched"><i
+              class="material-icons">
+              close
+            </i></span> -->
+        </div>
+      </div>
+      
+      <div class="first-section">
+        <div class="form_group">
+          <div class="label">
+            <label for="">Պետ․ ռեգ․ գրանցման N</label>
+          </div>
+          <div class="input_wraper">
+            <input  type="text" class="other" formControlName="stateRezGegisterNumber">
+            <!-- <span class="validate_error"
+              *ngIf="organizationFormGroup.numbers.get('stateRezGegisterNumber').hasError('required') && organizationFormGroup.get.numbers('stateRezGegisterNumber').touched"><i
+                class="material-icons">
+                close
+              </i></span> -->
+            </div>
+        </div>
+
+        <div class="form_group right">
+            <div class="right_label">
+                <label for="">ս/թ․</label>
+            </div>
+            <div class="input_wraper">
+              <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+              [locale]="calendarConfig"> </p-calendar>
+            <!-- <span class="validate_error"
+              *ngIf="organizationFormGroup.get('date').hasError('required') && organizationFormGroup.get('date').touched"><i
+                class="material-icons">
+                close
+              </i></span> -->
+            </div>
+        </div>
+    </div>
+
+      <div class="form_group">
+        <div class="label">
+          <label for="">Հարկային տարածքի կոդ</label>
+        </div>
+        <div class="input_wraper">
+          <input  type="text" formControlName="taxAreaCode">
+          <!-- <span class="validate_error"
+            *ngIf="organizationFormGroup.get('taxAreaCode').hasError('required') && organizationFormGroup.get('taxAreaCode').touched"><i
+              class="material-icons">
+              close
+            </i></span> -->
+        </div>
+      </div>
+      <div class="form_group">
+        <div class="label">
+          <label for="">Ապահովագրի հաշվ․ համար</label>
+        </div>
+        <div class="input_wraper">
+          <input  type="text" formControlName="policyholderAccountNumber">
+          <!-- <span class="validate_error"
+            *ngIf="organizationFormGroup.get('policyholderAccountNumber').hasError('required') && organizationFormGroup.get('policyholderAccountNumber').touched"><i
+              class="material-icons">
+              close
+            </i></span> -->
+        </div>
+      </div>
+
+      <div class="form_group">
+        <div class="label">
+          <label for="">Առաքողի գրանցման գրքի N</label>
+        </div>
+        <div class="input_wraper">
+          <input type="text" formControlName="numberOfShipmentRegistrationBook">
+          <!-- <span class="validate_error"
+            *ngIf="organizationFormGroup.get('numberOfShipmentRegistrationBook').hasError('required') && organizationFormGroup.get('numberOfShipmentRegistrationBook').touched"><i
+              class="material-icons">
+              close
+            </i></span> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span>Պատասխանատու անձիք</span>
+    </div>
+    <div class="section-body" formGroupName="responsiblePersons">
+      <div class="form_group">
+        <div class="label">
+          <label class="required" for="">Ղեկավարի պաշտոն</label>
+        </div>
+        <div class="input_wraper">
+          <input  type="text" formControlName="headOfDepartment">
+          <!-- <span class="validate_error"
+            *ngIf="organizationFormGroup.get('headOfDepartment').hasError('required') && organizationFormGroup.get('headOfDepartment').touched"><i
+              class="material-icons">
+              close
+            </i></span> -->
+        </div>
+      </div>
+      <div class="form_group">
+        <div class="label">
+          <label for="">Ղեկավարի Ա․Ա․Հ</label>
+        </div>
+        <div class="input_wraper">
+          <input type="text" formControlName="nameSurnamePatrioticOfHead">
+          <!-- <span class="validate_error"
+            *ngIf="organizationFormGroup.get('nameSurnamePatrioticOfHead').hasError('required') && organizationFormGroup.get('nameSurnamePatrioticOfHead').touched"><i
+              class="material-icons">
+              close
+            </i></span> -->
+        </div>
+      </div>
+
+      <div class="form_group">
+        <div class="label">
+          <label for="">Հաշվապահի պաշտոն</label>
+        </div>
+        <div class="input_wraper">
+          <input  type="text" formControlName="accountantPosition">
+          <!-- <span class="validate_error"
+            *ngIf="organizationFormGroup.get('accountantPosition').hasError('required') && organizationFormGroup.get('accountantPosition').touched"><i
+              class="material-icons">
+              close
+            </i></span> -->
+        </div>
+      </div>
+
+      <div class="form_group">
+        <div class="label">
+          <label for="">Հաշվապահի Ա․Ա․Հ</label>
+        </div>
+        <div class="input_wraper">
+          <input type="text" formControlName="nameSurnamePatrioticOfAccountant">
+          <!-- <span class="validate_error"
+            *ngIf="organizationFormGroup.get('nameSurnamePatrioticOfAccountant').hasError('required') && organizationFormGroup.get('nameSurnamePatrioticOfAccountant').touched"><i
+              class="material-icons">
+              close
+            </i></span> -->
+        </div>
+      </div>
+      <div class="form_group">
+        <div class="label">
+          <label for="">Գանձապահի Ա․Ա․Հ</label>
+        </div>
+        <div class="input_wraper">
+          <input type="text" formControlName="nameSurnamePatrioticOfCashie">
+          <!-- <span class="validate_error"
+            *ngIf="organizationFormGroup.get('nameSurnamePatrioticOfCashie').hasError('required') && organizationFormGroup.get('nameSurnamePatrioticOfCashie').touched"><i
+              class="material-icons">
+              close
+            </i></span> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- <div class="form_group">
+    <div class="label">
+      <label for="">Գործատուի դրոշմանիշային վճարի ծախսի հաշիվ</label>
+    </div>
+    <div class="input_wraper">
+      <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('partnerAmountOfStampPayment','account')"
+        [selectObject]="organizationFormGroup.get('partnerAmountOfStampPayment').value"
+        (setValue)="setValue($event,'partnerAmountOfStampPayment')" [array]="chartAccounts"
+        [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+      </app-modal-dropdown>
+      <span class="selected-element-name"
+        *ngIf="organizationFormGroup.get('partnerAmountOfStampPayment').value">{{organizationFormGroup.get('partnerAmountOfStampPayment').value.name}}</span>
+      <span class="validate_error"
+        *ngIf="organizationFormGroup.get('partnerAmountOfStampPayment').invalid && organizationFormGroup.get('partnerAmountOfStampPayment').touched"><i
+          class="material-icons">
+          close
+        </i></span>
+    </div>
+  </div> -->
+
+  <div class="buttons">
+    <button (click)="addProvisionOrganization()" >Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+  </div>
+  <!-- [disabled]="!organizationFormGroup.valid" -->
+</form>

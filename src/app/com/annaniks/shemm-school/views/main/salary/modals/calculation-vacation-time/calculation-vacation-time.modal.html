@@ -1,0 +1,106 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<form [formGroup]="vacationTimeGroup">
+    <div class="first-section">
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Ամսաթիվ</label>
+            </div>
+            <div class="input_wraper">
+                <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                    [locale]="calendarConfig"> </p-calendar>
+                <span class="validate_error"
+                    *ngIf="vacationTimeGroup.get('date').hasError('required') && vacationTimeGroup.get('date').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group right">
+            <div class="label right_label">
+                <label for=""><span>*</span> Փաստաթղթի №</label>
+            </div>
+            <div class="input_wraper wrapper">
+                <input formControlName="folderNumber" type="number">
+                <span class="validate_error"
+                    *ngIf="vacationTimeGroup.get('folderNumber').hasError('required') && vacationTimeGroup.get('folderNumber').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Աշխատակից</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'id'" [inputProperty]="'fullName'" [inputValue]="setInputValue('employee','fullName')"
+                [selectObject]="vacationTimeGroup.get('employee').value" (setValue)="setValue($event,'employee')"
+                [array]="employees" [modalParams]="setModalParams2('Աշխատակիցներ',['Անուն'],['fullName'])">
+            </app-modal-dropdown>
+          
+            <span class="validate_error"
+                *ngIf="vacationTimeGroup.get('employee').hasError('required') && vacationTimeGroup.get('employee').touched"><i
+                    class="material-icons">
+                    close
+                </i></span>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 1</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup1','code')"
+                [selectObject]="vacationTimeGroup.get('analyticalGroup1').value"
+                (setValue)="setValue($event,'analyticalGroup1')" [array]="analyticalGroup1"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 1','code')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="vacationTimeGroup.get('analyticalGroup1').value">{{vacationTimeGroup.get('analyticalGroup1').value.name}}</span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 2</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup2','code')"
+                [selectObject]="vacationTimeGroup.get('analyticalGroup2').value"
+                (setValue)="setValue($event,'analyticalGroup2')" [array]="analyticalGroup2"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 2','code')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="vacationTimeGroup.get('analyticalGroup2').value">{{vacationTimeGroup.get('analyticalGroup2').value.name}}</span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Մեկնաբանություն</label>
+        </div>
+        <div class="input_wraper comment">
+            <!-- <app-modal-dropdown [isDisabledInput]="true" [property]="'id'"
+                [inputValue]="setInputValue('comment','text')" [selectObject]="vacationTimeGroup.get('comment').value"
+                (setValue)="setValue($event,'comment')" [array]="documentKind" [modalName]="getModalName()">
+            </app-modal-dropdown> -->
+            <textarea formControlName="comment"></textarea>
+        </div>
+    </div>
+</form>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+        <app-vacation-time-common [totalSum]="totalSum" [provisions]="provisions"
+            [group]="vacationTimeGroup.get('general').value" [chartAccounts]="chartAccounts"
+            *ngSwitchCase="'Ընդհանուր'"></app-vacation-time-common>
+        <!-- <app-average-salary [group]="vacationTimeGroup.get('avarageSalary').value" *ngSwitchCase="'Միջին աշխատավարձ'">
+        </app-average-salary> -->
+        <app-avarage-salary-data (getAvarageSalary)="getAvarageSalary($event)"
+            [dailyCoefficient]="getDailyCoefficient()" [group]="vacationTimeGroup.get('avarageSalary').value"
+            *ngSwitchCase="'Միջին աշխատավարձ'"></app-avarage-salary-data>
+    </div>
+</app-tabs>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

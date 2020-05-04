@@ -1,0 +1,114 @@
+.acquisition-document{
+    display: flex;
+    align-items: center;
+    .form_group:last-child{
+        margin-left: 10px;
+        .label{
+            margin-right: 5px;
+        }
+    }
+}
+
+.currency_form{
+    display: flex;
+    align-items: center;
+    .right{
+        margin-left: 10px;
+        .label{
+            width: fit-content;
+            margin-right: 5px;
+        }
+    }
+   
+} 
+.other_group{
+    .label{
+        width: 260px;
+    }
+    .input_wraper{
+        width: calc(100% - 260px);
+    }
+} 
+.form_group{       
+    .label{
+        label{
+            font-size: 15px;
+            span{
+                color: red;
+            }
+        }
+    } 
+    .comment_wrapper{
+        input{
+            width: 95% !important;
+        }
+    }     
+    .passwort_wraper{
+        input{
+            width: 50px !important;
+        }
+        p-dropdown{
+            margin-left: 5px;
+        }
+    }
+}
+.section{
+    display: flex;
+    align-items: center;
+    button{
+        border: none;
+        padding: 7px;
+        cursor: pointer;
+        margin-left: 5px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i{
+            font-size: 15px;
+        }
+    }
+    .add_button{
+        background-color: green;
+    }
+    .delete_button{
+        background-color: red;
+    }
+}
+.input{
+    display: block !important;
+}
+
+.container-checkbox{
+    padding-left: 22px !important;
+}
+.margin-top{
+    margin-top: 5px;
+}
+.name_input{    
+    input{
+        width: 95% !important;
+    }    
+}
+@media only screen and (max-width: 940px) {
+    .text{
+        font-size: 11px !important;
+    }
+
+}
+@media only screen and (max-width: 1097px) {
+    .sailer_form{
+        flex-direction: column;
+        align-items: flex-start !important;
+        .right{
+            margin-left: 0 !important;
+        }
+        .label{
+            width: 212px !important;
+            margin-right: 0 !important;
+        }
+    }
+}
+*[full-width]{
+    width: 100% !important;
+}

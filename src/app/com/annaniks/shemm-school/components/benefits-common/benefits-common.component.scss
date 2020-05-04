@@ -1,0 +1,26 @@
+.form_group{    
+    .label{
+        width: 212px;
+    } 
+    .input_wraper{
+        width: calc(100% - 212px);
+    }
+}
+
+.date-group{
+    display: flex;
+    align-items: center;
+}
+
+.small-input{
+    width: 150px;
+}
+.right{
+    margin-left: 10px;
+}
+.warning-text{
+  color: #3E7EB7;  
+  font-size: 15px;
+  font-weight: 500;
+  margin: 5px 0;
+}

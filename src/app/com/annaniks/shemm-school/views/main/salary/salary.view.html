@@ -1,0 +1,14 @@
+<app-items-card [path]="'/salary'" [header]="header" [items]=""></app-items-card>
+<div class="salary-container">
+    <div class="salary" *ngFor="let salary of salaryItems">
+        <div (click)="openOrClose(salary)" class="items">
+            <span [ngStyle]="setArrowStyle(salary)" class="arrow"><i class="material-icons">
+                keyboard_arrow_down
+            </i></span>
+            <span class="title">{{salary.title}}</span>
+        </div>
+        <div *ngIf="salary.isOpen" class="item-container">
+            <div class="item" (click)="openModal(item)" [class.is-exist]="item.isExist" *ngFor="let item of salary.items">{{item.label}}</div>
+        </div>
+    </div>
+</div>

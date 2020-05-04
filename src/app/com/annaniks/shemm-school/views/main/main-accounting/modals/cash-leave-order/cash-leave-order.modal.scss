@@ -1,0 +1,81 @@
+
+.group{
+    margin-top: 25px;
+    .form_group{
+        .label{
+            width: 125px;
+        }
+        .input_wraper{
+            width: calc(100% - 125px);
+        }
+    }
+}
+.first-section,.beside-dropdowns{
+    display: flex;
+    align-items: center;   
+    flex-wrap: wrap;
+}
+.beside-dropdowns{
+    .input_wraper{
+        width: 150px !important;
+    }
+    .right_label{
+        width: fit-content !important;   
+        margin-right: 5px;           
+    }    
+    .adm_wraper{
+        width: 150px !important;
+    }
+}
+.right{
+    margin-left: 15px;
+    .right_label{  
+        label{
+            font-size: 15px;                
+        }     
+    } 
+    .right_wraper{
+        width: 160px !important;
+    }
+
+}
+.card-group{
+    .form_group{
+        .label{
+            width: 165px;
+        }
+        .input_wraper{
+            width: calc(100% - 165px);
+        }
+    }
+}
+
+:host::ng-deep{
+    .card{
+        app-card{
+            width: 100% !important;
+            .card-container .inputs-group{
+                min-height: fit-content !important;
+            }
+        }
+    }
+}
+:host::ng-deep{
+    .full-dropdown{
+        p-dropdown{
+            width: 80%;
+            .ui-dropdown{
+                width: 100%;
+            }
+        }
+    }
+}
+
+.card{
+    margin-top: 5px;
+}
+  @media only screen and (max-width: 1265px) {
+      .last-group{
+          margin-left: 0 !important;
+      }
+  }

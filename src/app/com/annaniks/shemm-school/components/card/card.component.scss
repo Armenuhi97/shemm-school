@@ -1,0 +1,12 @@
+.card-container{
+    border: 1px solid grey;
+    .title{
+        padding:5px;
+        border-bottom: 1px solid grey;
+        font-size: 15px;
+    }
+    .inputs-group{
+        padding: 10px 5px;
+        min-height: 180px;
+    }
+}

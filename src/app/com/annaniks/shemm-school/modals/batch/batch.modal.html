@@ -1,0 +1,86 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<form class="form" [formGroup]="batchGroup" action="">
+    <div class="form_group disabled-form">
+        <div class="label">
+            <label for=""><span>*</span> Պահեստ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputProperty]="'name'"
+                [inputValue]="setInputValue('warehouse','name')" [selectObject]="batchGroup.get('warehouse').value"
+                (setValue)="setValue($event,'warehouse')" [array]="warehouses"
+                [modalParams]="setModalParams('Պահեստ',['code','name'],['Կոդ', 'Անվանում'])">
+            </app-modal-dropdown>
+
+        </div>
+    </div>
+    <div class="form_group disabled-form">
+        <div class="label">
+            <label for=""><span>*</span> Կոդ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'id'" [inputProperty]="'name'" [inputValue]="setInputValue('code','name')"
+                [selectObject]="batchGroup.get('code').value" (setValue)="setValue($event,'code')"
+                [array]="materialValues" [modalParams]="setModalParams('Կոդ',['barCode','name'],['Կոդ', 'Անվանում'])">
+            </app-modal-dropdown>
+        </div>
+    </div>
+    <div class="form_group disabled-form">
+        <div class="label">
+            <label for=""><span>*</span> Չափման միավոր</label>
+        </div>
+        <div class="input_wraper">
+            <input class="small-input" type="text" formControlName="unitOfMeasurement">
+        </div>
+    </div>
+</form>
+<div class="table-container">
+    <table>
+        <tr>
+            <th>Մուտքի ա/թ</th>
+
+            <th>Առկայություն</th>
+            <th>Քանակ</th>
+            <th>Հաշվառման գին</th>
+            <th>Ինքանարժեք</th>
+            <th>Հաշիվ</th>
+            <th>Մուտքի փաստաթուղթ</th>
+        </tr>
+        <tr *ngFor="let item of items" class="items">
+            <td>
+                {{(item?.warehouseEntryOrder?.date?item?.warehouseEntryOrder?.date:item?.date) | date:'yyyy/MM/dd'}}
+            </td>
+
+            <td>{{item?.availability}}</td>
+            <td>
+                <div class="error-row">
+                    <input [max]="item.availability" (ngModelChange)="changeCount()" min="0" type="number"
+                        (focus)="focus(item,'calculateCount')" (blur)="blur(item,'calculateCount')"
+                        [formControl]="item.calculateCount">
+                    <div class="error-text"
+                        *ngIf="(item.calculateCount.hasError('max') || item.calculateCount.hasError('min'))">
+                        Խնդրում եմ մուտքագրել [0-{{item?.availability}}] սահմանում</div>
+                </div>
+            </td>
+            <td>{{item?.price}}</td>
+            <td>{{item?.costPrice}}</td>
+            <td>{{item?.accounts?.account}}</td>
+            <td>
+                Պահեստի մուտքի համար
+                {{(item?.warehouseEntryOrder?.documentNumber)?item?.warehouseEntryOrder?.documentNumber:item?.documentNumber}}
+            </td>
+        </tr>
+        <tr class="all_sum">
+            <td class="td" colspan="1"> </td>
+            <td class="td"><input type="number" readonly [value]="totalAvailability"></td>
+            <td class="td"><input type="number" readonly [value]="totalCount"></td>
+            <td class="td" colspan="1"> </td>
+            <td class="td"><input type="number" readonly [value]="totalSum"></td>
+            <td class="td" colspan="2"></td>
+        </tr>
+    </table>
+</div>
+<div class="buttons">
+    <button (click)="save(false)">Կատարել</button>
+    <button (click)="save(true)">Ընտրել ավտոմատ</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

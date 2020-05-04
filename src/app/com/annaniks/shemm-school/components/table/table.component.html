@@ -1,0 +1,48 @@
+<div class="table-content">
+    <div [class.disabled-button]="!isActiveButtons" class="settings-button">
+        <div (click)="addRow()" class="add"><i class="material-icons">
+                add
+            </i>
+        </div>
+        <div (click)="deleteAll()" class="remove">
+            <i class="material-icons">
+                close
+            </i>
+        </div>
+        <!-- <div (click)="save()" class="save">
+            <i class="material-icons">
+                save
+            </i>
+        </div> -->
+        <div *ngIf="isLock" (click)="setValue()" class="lock">
+            <i class="material-icons">
+                lock
+            </i>
+        </div>
+
+        <!-- <div *ngIf="isHasOperationTypeFilter">
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Տիպային գործողություն</label>
+                </div>
+                <div class="input_wraper">
+                    <p-dropdown></p-dropdown>
+                </div>
+            </div>
+        </div> -->
+        <div class="button-group" *ngIf="isShowButton">
+            <div><button class="fill">
+                    <i class="material-icons">
+                        arrow_downward
+                    </i>
+                    <span>Լրացնել</span></button></div>
+            <div><button class="refresh">
+                    <i class="material-icons">
+                        refresh
+                    </i>
+                    <span>Թարմացնել</span>
+                </button></div>
+        </div>
+    </div>
+    <ng-content></ng-content>
+</div>

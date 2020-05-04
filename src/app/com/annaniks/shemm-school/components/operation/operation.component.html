@@ -1,0 +1,125 @@
+<app-table (setValue)="setOperationValue($event)" [isLock]="isLock" [typeOperation]="typeOperation"
+    (add)="addRow($event)" (delete)="deleteAll($event)">
+    <table *ngIf="operationFormArray && operationFormArray.controls && operationFormArray.controls.length">
+        <tr>
+            <th></th>
+            <th>Դեբետ</th>
+            <th>Դ-տ գործընկ․</th>
+            <th>Դ-տ ան․ խումբ 1</th>
+            <th>Դ-տ ան․ խումբ 2</th>
+            <th>Կրեդիտ</th>
+            <th>Կ-տ գործընկ․</th>
+            <th>Կ-տ ան․ խումբ 1</th>
+            <th>Կ-տ ան․ խումբ 2</th>
+            <th>Գումար դրամով</th>
+            <th>Մեկնաբանություն</th>
+        </tr>
+        <tr class="row" *ngFor="let item of operationFormArray.controls; let i = index" [formGroup]="item">
+            <td>
+                <div (click)="remove(i)" class="close">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('debit','account',item)"
+                        [selectObject]="item.get('debit').value" (setValue)="setValue($event,'debit',item)"
+                        [array]="chartAccounts"
+                        [modalParams]="setModalParams('Դեբետ',['Հաշիվ', 'Անվանում'],['account','name'])">
+                    </app-modal-dropdown>
+
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                        [inputValue]="setInputValue('debitProcess','name',item)"
+                        [selectObject]="item.get('debitProcess').value"
+                        (setValue)="setValue($event,'debitProcess',item)" [array]="partners"
+                        [modalParams]="setModalParams('Դ-տ գործընկ․',['Անուն'],['name'])">
+                    </app-modal-dropdown>
+
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('debitGroup1','code',item)"
+                        [selectObject]="item.get('debitGroup1').value" (setValue)="setValue($event,'debitGroup1',item)"
+                        [array]="analyticalGroup1"
+                        [modalParams]="setModalParams('Դ-տ ան․ խումբ 1',['Կոդ','Անվանում'],['code','name'])">
+                    </app-modal-dropdown>
+
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('debitGroup2','code',item)"
+                        [selectObject]="item.get('debitGroup2').value" (setValue)="setValue($event,'debitGroup2',item)"
+                        [array]="analyticalGroup2"
+                        [modalParams]="setModalParams('Դ-տ ան․ խումբ 2',['Կոդ','Անվանում'],['code','name'])">
+                    </app-modal-dropdown>
+
+                </div>
+            </td>
+
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('credit','account',item)"
+                        [selectObject]="item.get('credit').value" (setValue)="setValue($event,'credit',item)"
+                        [array]="chartAccounts"
+                        [modalParams]="setModalParams('Կրեդիտ',['Հաշիվ', 'Անվանում'],['account','name'])">
+                    </app-modal-dropdown>
+
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                        [inputValue]="setInputValue('creditProcess','name',item)"
+                        [selectObject]="item.get('creditProcess').value"
+                        (setValue)="setValue($event,'creditProcess',item)" [array]="partners"
+                        [modalParams]="setModalParams('Կ-տ գործընկ․',['Անուն'],['name'])">
+                    </app-modal-dropdown>
+
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('creditGroup1','code',item)"
+                        [selectObject]="item.get('creditGroup1').value"
+                        (setValue)="setValue($event,'creditGroup1',item)" [array]="analyticalGroup1"
+                        [modalParams]="setModalParams('Կ-տ ան․ խումբ 1',['Կոդ','Անվանում'],['code','name'])">
+                    </app-modal-dropdown>
+
+                </div>
+            </td>
+
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('creditGroup2','code',item)"
+                        [selectObject]="item.get('creditGroup2').value"
+                        (setValue)="setValue($event,'creditGroup2',item)" [array]="analyticalGroup2"
+                        [modalParams]="setModalParams('Կ-տ ան․ խումբ 2',['Կոդ','Անվանում'],['code','name'])">
+                    </app-modal-dropdown>
+
+                </div>
+            </td>
+            <td>
+                <div class="row-content"> <input (ngModelChange)="change()" formControlName="amountInDram"
+                        type="number">
+                </div>
+            </td>
+            <td>
+                <div class="row-content"><textarea formControlName="comment" type="text"></textarea>
+                </div>
+            </td>
+        </tr>
+        <tr class="all_sum">
+            <td class="td" colspan="9"> </td>
+            <td class="td"><input readOnly=true [(ngModel)]="totalSum" type="number"></td>
+            <td class="td" colspan="1"></td>
+        </tr>
+    </table>
+</app-table>

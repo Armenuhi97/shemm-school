@@ -1,0 +1,52 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div *ngIf="errorWithServerResponce">{{errorWithServerResponce}}</div>
+<div class="forms-container">
+    <form [formGroup]="formGroup">
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Կոդ</label>
+            </div>
+            <div class="input_wraper">
+                <input class="code-input" formControlName="code">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('code').hasError('required') && formGroup.get('code').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Տարի</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="date">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('date').hasError('required') && formGroup.get('date').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Հաշվեկշռային արժեք տարվա սկզբին</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="valueBeginningOfYear">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('valueBeginningOfYear').hasError('required') && formGroup.get('valueBeginningOfYear').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="buttons">
+            <button (click)="addHmxValueBalance()">Կատարել</button>
+            <button (click)="close()">Դադարեցնել</button>
+        </div>
+    </form>
+
+</div>

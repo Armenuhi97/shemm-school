@@ -1,0 +1,20 @@
+<app-tables-by-filter [titles]="titles" (add)="addFormula()">
+
+    <tr *ngFor="let item of formulasValues">
+        <td class="edit" (click)="addFormula(true, item?.id, item)">
+            <i class="material-icons">edit</i>
+        </td>
+        <td class="delete" (click)=delete(item.id)>
+            <i class="material-icons">close</i>
+        </td>
+        <td>{{item?.code}}</td>
+        <td>{{item?.caption}}</td>
+        <td>{{item?.expression}}</td>
+
+    </tr>
+
+</app-tables-by-filter>
+
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

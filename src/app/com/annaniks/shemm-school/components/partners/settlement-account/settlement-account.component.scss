@@ -1,0 +1,23 @@
+table {
+    width: 95%;
+  }
+  input[type="text"]{
+      height: 32px;
+      width: 95%;
+  }
+td:first-child{
+    width: 3%;
+}
+.row-content{
+    justify-content: center;
+}
+:host::ng-deep{
+    app-modal-dropdown{
+      input{
+        height: 32px;
+        background: none;
+        border: 1px solid grey !important;
+        border-right: none !important;
+       }
+    }
+  }

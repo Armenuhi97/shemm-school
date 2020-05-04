@@ -1,0 +1,19 @@
+.card{
+    padding-top: 20px;
+}
+table{
+    width: 100%;
+}
+:host::ng-deep{
+    .card{
+        app-card{
+            width: 100% !important;
+            .card-container .inputs-group{
+                padding: 10px;
+                min-height: 130px;
+                height: fit-content;
+            }
+        }
+
+    }
+}

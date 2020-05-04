@@ -1,0 +1,25 @@
+.form_group {
+    .required::before {
+        content: '*';
+        color: red;
+    }
+    .label {
+        width: 360px;
+    }
+
+    .checkbox_input_wraper {
+        width: fit-content;
+
+        label {
+            font-size: 15px;
+        }
+    }
+
+    .input_wraper {
+        width: calc(100% - 360px);
+    }
+}
+
+.container-checkbox {
+    padding-left: 22px !important;
+}

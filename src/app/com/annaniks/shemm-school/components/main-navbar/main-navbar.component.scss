@@ -1,0 +1,53 @@
+@import '../../../../../../assets/scss/variable';
+
+
+
+.card {
+    width: $card_width;
+    height: $card_width;
+    margin: 5px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #3776b4, #4491c5);
+    position: relative;
+    transition: .3s ease;
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 3px 3px 8px 0px #f0e6e6;
+        box-sizing: content-box;
+        transition: .3s ease;
+        cursor: pointer;
+    }
+
+    .card-icon {
+        font-size: $large;
+        position: absolute;
+        left: calc((100% - #{$large}) / 2);
+        top: calc((100% - #{$large}) / 2);
+    }
+
+    .card-title {
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+
+        span {
+            font-size: 14px;
+            color: white;
+        }
+    }
+}
+
+  @media screen and (max-width: 996px) {
+    .card {
+        width:100%;
+        //  $card_width*2;
+        max-width: 70vmax;;
+        height: $card_width;
+        margin: 5px;
+        border-radius: 4px;
+        background: linear-gradient(to right, #3776b4, #4491c5);
+        position: relative;
+   
+  }
+}

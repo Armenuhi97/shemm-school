@@ -1,0 +1,10 @@
+<app-modal-header [title]="title" (close)="close($event)"></app-modal-header>
+<div class="certificate-content">
+    <app-date></app-date>
+    <app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+        <div [ngSwitch]="activeTab">
+            <app-available-certificate-common *ngSwitchCase="'Ընդհանուր'"></app-available-certificate-common>
+            <app-columns [availableItems]="availableItems" *ngSwitchCase="'Սյուները'"></app-columns>
+        </div>
+    </app-tabs>
+</div>

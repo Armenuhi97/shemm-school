@@ -1,0 +1,61 @@
+.provisions-body{ 
+    display: flex;
+    margin-top: 15px;
+
+    aside{
+        width: 300px;
+        min-width: 200px;
+        ul{
+
+            li{
+                list-style-type: none;
+                line-height: 24px;
+                font-size: 15px;
+                cursor: pointer;
+            
+            }
+        }
+    }
+
+    section {
+        width: 70%;
+
+    }
+    
+}
+
+.container-checkbox{
+    padding-left: 22px !important;
+}
+.mlr-10 {
+    margin: 0 10px;
+}
+.selected-element-name {
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 15px;
+}
+.section {
+    border: 1px solid grey;
+    margin: 10px 10px 10px;
+
+    .section-header {
+        height: 30px;
+        line-height: 30px;
+        border-bottom: 1px solid grey;
+
+        span {
+            margin-left: 10px;
+        }
+    }
+
+    .section-body {
+        margin: 12px;
+    }
+}
+.active{
+    background-color: #a1c0d6;
+    width: fit-content;
+}

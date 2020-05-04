@@ -1,0 +1,40 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+
+<div class="table-container">
+    <table>
+        <tr>
+            <th>Պարտքի գոյացման աղբյուր</th>
+            <th>Ամսաթիվ</th>
+            <th>Փաստաթղթի համար</th>
+            <th>Պարտքի չափը</th>
+            <th>Մարման գումարը</th>
+
+        </tr>
+        <tr *ngFor="let item of items" class="items">
+            <td> {{item?.title}} </td>
+            <td>{{item?.date}}</td>
+            <td>Փաստաթղթի համար {{item?.documentNumber}}</td>
+            <td>{{item?.deptSum}}</td>
+
+            <td>
+                <div class="error-row">
+                    <input [max]="item.deptSum" (ngModelChange)="changePaidSum()" min="0" type="number"
+                        (focus)="focus(item,'paidMoney')" (blur)="blur(item,'paidMoney')"
+                        [formControl]="item.paidMoney">
+                    <div class="error-text" *ngIf="(item.paidMoney.hasError('max') || item.paidMoney.hasError('min'))">
+                        Խնդրում եմ մուտքագրել [0-{{item?.deptSum}}] սահմանում</div>
+                </div>
+            </td>
+
+        </tr>
+        <tr class="all_sum">
+            <td class="td" colspan="3"> </td>
+            <td class="td"><input type="number" readonly [value]="totalSum"></td>
+            <td class="td"><input type="number" readonly [value]="totalPaidMoney"></td>
+        </tr>
+    </table>
+</div>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

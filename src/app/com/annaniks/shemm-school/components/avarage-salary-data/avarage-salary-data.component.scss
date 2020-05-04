@@ -1,0 +1,44 @@
+
+  :host::ng-deep{
+    app-modal-dropdown{
+      input{
+        height: 32px;
+        background: none;
+        border: 1px solid grey !important;
+        border-right: none !important;
+  
+       }
+    }
+  }
+
+.formula-content{
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  .result{
+    margin-left: 10px;
+  }
+}
+th{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  // max-width: 110px;
+}
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+  padding: 2px;
+  color: black;
+  font-size:12px
+}
+.card{
+  margin-top: 5px;
+}
+  .row{
+    input[type="text"], input[type="number"], p-dopdown,textarea{
+      border:none !important;
+      height: 100%;
+      resize: none;
+    }
+  }

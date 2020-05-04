@@ -1,0 +1,87 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div class="modal-content">
+    <form [formGroup]="paymentListGroup">
+        <div class="first-section">
+            <div class="form_group">
+                <div class="label">
+                    <label for=""><span>*</span> Ամիս/Տարի</label>
+                </div>
+                <div class="input_wraper dates">
+                    <div class="date">
+
+                        <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Ամիս/Տարի'" view="month" dateFormat="MM, yy"
+                            [yearNavigator]="true" [yearRange]="setYearRange()" [locale]="calendarConfig"> </p-calendar>
+                        <span class="validate_error"
+                        *ngIf="paymentListGroup.get('date').hasError('required') && paymentListGroup.get('date').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form_group right">
+                <div>
+                    <button>
+                        <i class="material-icons">
+                            save
+                        </i>
+                    </button>
+                </div>
+                <div>
+                    <button>
+                        <i class="material-icons">
+                            clear
+                        </i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form_group other-group">
+            <div class="label">
+                <label for="">Աշխատակից</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [inputValue]="paymentListGroup.get('employee').value" 
+                (setValue)="setEmployeeValue($event)" [modalName]="getModalName"></app-modal-dropdown>
+            </div>
+        </div>
+        <div class="form_group other-group">
+            <div class="label">
+                <label for="">Ստորաբաժանում</label>
+            </div>
+            <div class="input_wraper">
+                <p-dropdown formControlName="unit"></p-dropdown>
+            </div>
+        </div>
+        <div class="second-section">
+            <div class="form_group other-group">
+                <div class="label">
+                    <label for="">Ցույց տալ ժամերը</label>
+                </div>
+                <div class="input_wraper">
+                    <label class="container-checkbox">
+                        <input formControlName="isShowTimes" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form_group other-group">
+                <div class="label">
+                    <label for="">Ընդլայնված</label>
+                </div>
+                <div class="input_wraper">
+                    <label class="container-checkbox">
+                        <input formControlName="isExtended" type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="buttons">
+        <button>Կատարել</button>
+        <button (click)="close()">Դադարեցնել</button>
+    </div>
+</div>

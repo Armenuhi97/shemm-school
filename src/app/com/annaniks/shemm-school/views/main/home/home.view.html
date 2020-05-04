@@ -1,0 +1,26 @@
+<div class="home-container">
+    <div class="flexible">
+        <div class="header-action">
+            <h2>ՊՈԱԿ կառավարում</h2>
+        </div>
+        <div class="cards">
+            <main-navbar  *ngFor="let menuItem of menuItems" [menuItem]='menuItem'></main-navbar>
+        </div>
+        
+    </div>
+    <div class="menu-card">
+        <div class="menu-items">
+            <div class="header-action">
+                <h2>Արագ մեկնարկ</h2>
+            </div>
+            <div class="menu-actions" *ngFor="let item of menuActions">
+                <a class="menu-action-item">
+                    <div class="menu-action-icon df_jc"><i class="material-icons md-36">
+                            {{item.icon}}
+                        </i></div>
+                    <div class="menu-action-title df_jc"><span>{{item.navText}}</span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

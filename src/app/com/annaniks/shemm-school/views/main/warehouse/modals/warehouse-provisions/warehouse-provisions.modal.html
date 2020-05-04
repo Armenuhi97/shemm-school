@@ -1,0 +1,64 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+
+
+<div class="section">
+    <div class="section-header">
+        <span>Ավելացված արժեքի հարկ</span>
+    </div>
+    <div class="section-body">
+        <form [formGroup]="warehouseProvisionsGroup">
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Հաշվարկման ենթակա ԱԱՀ-ի հաշիվ</label>
+                </div>
+                <div class="input_wraper">
+                    <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('accountAAH','account')"
+                        [selectObject]="warehouseProvisionsGroup.get('accountAAH').value"
+                        (setValue)="setValue($event,'accountAAH')" [array]="chartAccounts"
+                        [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+                    </app-modal-dropdown>
+                    <span class="selected-element-name"
+                        *ngIf="warehouseProvisionsGroup.get('accountAAH').value">{{warehouseProvisionsGroup.get('accountAAH').value.name}}</span>
+                    <span class="validate_error"
+                        *ngIf="warehouseProvisionsGroup.get('accountAAH').invalid && warehouseProvisionsGroup.get('accountAAH').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </div>
+
+            <div class="form_group">
+                <div class="label">
+                    <label for="">ԱԱՀ-ի տոկոս</label>
+                </div>
+                <div class="input_wraper">
+                    <input type="text" class="code-input" formControlName="aahPercent">
+                    <span class="validate_error"
+                        *ngIf="warehouseProvisionsGroup.get('aahPercent').hasError('required') && warehouseProvisionsGroup.get('aahPercent').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </div>
+
+            <div class="form_group">
+                <div class="label">
+                    <label for="">ԱԱՀ-ի տոկոսը ներառյալ այդ թվում</label>
+                </div>
+                <div class="input_wraper">
+                    <input type="text" class="code-input" formControlName="aahNeraryalPercent">
+                    <span class="validate_error"
+                        *ngIf="warehouseProvisionsGroup.get('aahNeraryalPercent').hasError('required') && warehouseProvisionsGroup.get('aahNeraryalPercent').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="buttons">
+    <button (click)="addWarehouseProvisions()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

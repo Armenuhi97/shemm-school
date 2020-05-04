@@ -1,0 +1,108 @@
+.accounting {
+    .accounting-container {
+        .accounting-body {
+            margin: 10px;
+            // .wrapper{
+            //     width: calc(100% -359px);             
+            // }
+            input{
+                border-radius: 3px;
+                border: 1px solid grey;
+                padding-left: 5px;
+                height: 32px;
+            }
+            .accounting-sub-body {
+                display: flex;
+
+                .financial {
+                    border: 1px solid rgba(0,0,0, .3);
+                    width: 70%;
+
+                    p {
+                        border-bottom: 1px solid rgba(0,0,0, .3);
+                        padding: 3px 16px;
+                    }
+
+                    .form-control {
+                        display: flex;
+                        margin: 5px;
+                        align-items: center;                        
+
+                        label {
+                            width: 359px;
+                            span{
+                                color: red;
+                            }
+                        }
+
+                        select {
+                            width: 150px;
+                            height: 20px;
+                        }
+
+                        #shelf-life {
+                            width: 50px;
+                        }
+                    }
+                }
+
+                .tax {
+                    border: 1px solid rgba(0,0,0, .3);
+                    margin-left: 10px;
+                    
+
+                    p {
+                        border-bottom: 1px solid rgba(0,0,0, .3);
+                        padding: 3px 16px;
+                    }
+
+                    .form-control {
+                        display: flex;
+                        // line-height: 26px;
+                        margin: 5px;
+
+                        #tax-shelf-life {
+                            width: 50px;
+                        }
+                        input[type="checkbox"]{
+                            margin-left: 25px;
+                        }
+
+
+                    }
+                }
+            }
+            .top{
+                margin-top: 10px;
+                width: 70%;
+                .financial {
+                    border: 1px solid rgba(0,0,0, .3);;
+
+                    p {
+                        border-bottom: 1px solid rgba(0,0,0, .3);;
+                        padding: 3px 16px;
+                    }
+
+                    .form-control {
+                        display: flex;
+                        margin: 5px;
+                        
+
+                        label {
+                            width: 359px;
+                        }
+
+                        select {
+                            width: 150px;
+                            height: 20px;
+                        }
+
+                        #shelf-life {
+                            width: 50px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

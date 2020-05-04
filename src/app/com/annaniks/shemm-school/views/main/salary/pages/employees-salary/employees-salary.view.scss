@@ -1,0 +1,128 @@
+.topbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+.button{
+    text-align: center;
+    padding-top: 10px;
+    button{
+      background: #3F7FB8;
+      border: none;
+      padding: 14px;
+      color: white;
+      font-size: 17px;
+      cursor: pointer;
+    }
+  }
+.operation-content{
+    padding-top: 25px;
+    .operation{
+        margin-top: 25px;
+    }
+    .default-table{
+        width: 100%;
+        padding: 14px;
+        color: white;
+        font-size: 17px;
+        text-align: center;
+        background: #3F7FB8;
+        cursor: pointer;
+    }
+}
+
+  table{
+      width: 100% !important;
+      th{
+          padding: 5px;
+      }
+ 
+  }
+  .salary{
+     height: 25px;
+     min-width: 110px; 
+  }
+  .text-center{
+      text-align: center;
+  }
+  .flex{
+      display: flex;
+      align-items: center;
+
+  }
+  .disabled{
+      pointer-events: none;
+      opacity: 0.5;
+  }
+  .enable{
+      pointer-events: all ;
+      opacity: 1 ;
+  }
+  .disable-checkmark{
+    opacity: 0;
+  }
+  .flex:hover{
+    .disable-checkmark{
+        opacity: 1;
+    }
+  }
+  .show-checkbox{
+      opacity: 1;
+  }
+  .hide-checkbox{
+      opacity: 0.1;
+  }
+  input:disabled{
+    opacity: 0.5;
+    background-color: white !important;
+  }
+.hide{
+    display:none
+    // overflow: hidden; // Hide the element content, while height = 0
+    // width: 0; opacity: 0;
+    // transition: width 0ms 400ms, opacity 400ms 0ms;
+}
+.show{
+
+}
+.hidden{
+    visibility: hidden;
+}
+.total{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 150px;
+}
+:host::ng-deep{
+    .inputs-group{
+      padding: 14px !important;
+    }
+  }
+.add-button{
+    // margin-left: 10px;
+    button{
+        display: flex;
+        align-items: center;
+        background: grey;
+        justify-content: center;
+        cursor: pointer;
+        border: none;
+        color: white;
+        margin: 0 auto;
+        font-size: 20px;
+        height: 28px;
+        width: 28px;
+    }
+}
+button:disabled{
+    opacity: 0.5;
+}
+.detail-content{
+    transition: display 0ms 400ms;
+}
+*[margin-right-5]{
+    margin-right:5px
+}

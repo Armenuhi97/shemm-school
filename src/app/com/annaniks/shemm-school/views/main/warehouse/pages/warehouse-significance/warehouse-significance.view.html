@@ -1,0 +1,13 @@
+<app-tables-by-filter [titles]="titles" (add)="addWarehouseSignificance(false)">
+  <tr *ngFor="let item of warehouseSignificances">
+      <td class="edit"> <i (click)="addWarehouseSignificance(true,item?.id, item)" class=" material-icons"> edit </i> </td>
+      <td class="delete"> <i (click)="delete(item?.id)" class=" material-icons"> close </i></td>
+      <td>{{item?.name}}</td>
+      <td>{{item?.expenseAccount?.account}}</td>
+      <td>{{item?.partnerAccount?.account}}</td>
+      <td>{{item?.prepaymentAccount?.account}}</td>
+  </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

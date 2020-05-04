@@ -1,0 +1,63 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<!-- <span class="error">{{error}}</span> -->
+
+<form [formGroup]="currencyAccountPaymentGroup">
+    <div class="first-section">
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Ամսաթիվ</label>
+            </div>
+            <div class="date-wraper input_wraper">
+                <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                    [locale]="calendarConfig"> </p-calendar>
+                <span class="validate_error"
+                    *ngIf="currencyAccountPaymentGroup.get('date').hasError('required') && currencyAccountPaymentGroup.get('date').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="right form_group">
+            <div class="right_label label">
+                <label for="">Փաստաթղթի համար</label>
+            </div>
+            <div class="input_wraper">
+                <input formControlName="folderNumber" type="number">
+            </div>
+        </div>
+        <div class="right form_group">
+            <div class="right_label label">
+                <label for=""><span>*</span> Հաշվարկի ամսաթիվ</label>
+            </div>
+            <div class="input_wraper">
+                <p-calendar rPCalendarMask formControlName="settlementDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                    [locale]="calendarConfig"> </p-calendar>
+                <span class="validate_error"
+                    *ngIf="currencyAccountPaymentGroup.get('settlementDate').hasError('required') && currencyAccountPaymentGroup.get('settlementDate').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+    </div>
+</form>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+        <app-currency-account-common [subdivisions]="subdivisions" [analyticalGroup1]="analyticalGroup1"
+            [analyticalGroup2]="analyticalGroup2" [tables]="tables" [chartAccounts]="chartAccounts"
+            [group]="currencyAccountPaymentGroup.get('general').value"
+            *ngSwitchCase="'Ընդհանուր'">
+        </app-currency-account-common>
+        <app-currency-account-operation [chartAccounts]="chartAccounts" *ngSwitchCase="'Գործառնություններ'"
+            [group]="currencyAccountPaymentGroup.get('accountOperation').value">
+            <app-operation [chartAccounts]="chartAccounts" [partners]="partners" [analyticalGroup1]="analyticalGroup1"
+                [analyticalGroup2]="analyticalGroup2" [typeOperation]="'true'"
+                [group]="currencyAccountPaymentGroup.get('operation').value"></app-operation>
+        </app-currency-account-operation>
+
+    </div>
+</app-tabs>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

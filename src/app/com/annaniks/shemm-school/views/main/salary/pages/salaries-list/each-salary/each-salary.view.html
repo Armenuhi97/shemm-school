@@ -1,0 +1,45 @@
+<div class="card">
+    <app-card [header]="'Աշխատավարձ'">
+        <div class="table-content">
+            <table>
+                <tr>
+                    <th>Աշխատակից</th>
+                    <th>Տարի/Ամիս</th>
+                    <th>Չի մասնակցել</th>
+                    <th>Մասնակցել է</th>
+                    <th>Մասնակցել է 1/12 մասով</th>
+                    <th>Չի հարկվում</th>
+                    <th>Հարկվում է</th>
+                    <th>Եկամտահարկ</th>
+                    <th>Սոցիալական վճար</th>
+                    <th>Դրոշմանիշային վճար</th>
+                    <th>Կեղտոտ աշխատավարձ</th>
+                    <th>Մաքուր աշխատավարձ</th>
+                    
+                    
+                </tr>
+                <tr *ngFor="let salary of employeeSalary">
+                    <td>{{getEmployeeName(salary?.employeeId)}}</td>
+                    <td>{{setDate(salary?.monthOfSalary,salary?.year)}}</td>
+                    <td>{{salary?.notParticipateSalary}}</td>
+                    <td>{{salary?.participateSalary}}</td>
+                    <td>{{salary?.participateSalaryOfPart12}}</td>
+                    <td>{{salary?.noTaxableWorker}}</td>
+                    <td>{{salary?.taxableWorker}}</td>
+                    <td>{{salary?.incomeTax}}</td>
+                    <td>{{salary?.socialFee}}</td>
+                    <td>{{salary?.stampFee}}</td>
+                    <td>{{salary?.dirtySalary}}</td>
+                    <td>{{salary?.cleanSalary}}</td>                 
+                    
+                </tr>
+            </table>
+        </div>
+    </app-card>
+</div>
+
+<div class="card">
+    <app-card [header]="'Գործառնություններ'">
+        <app-salary-operation [group]="operations" [chartAccounts]="chartAccounts"></app-salary-operation>
+    </app-card>
+</div>

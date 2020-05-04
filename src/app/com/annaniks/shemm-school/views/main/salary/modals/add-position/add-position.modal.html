@@ -1,0 +1,60 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<!-- <div class="error">{{error}}</div> -->
+
+<div class="forms-container">
+    <form [formGroup]="formGroup">
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for=""> Անվանում</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="name">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('name').hasError('required') && formGroup.get('name').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for=""> Ստորաբաժանում</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                    [inputValue]="setInputValue('subdivisions','name')"
+                    [selectObject]="formGroup.get('subdivisions').value" (setValue)="setValue($event,'subdivisions')"
+                    [array]="subdivisions" [modalParams]="modalParams">
+                </app-modal-dropdown>
+                <!-- <p-dropdown  optionLabel="name" [options]="subdivisions" [placeholder]="'Սեղմեք ընտրելու համար'"   formControlName="subdivisions"></p-dropdown> -->
+                <span class="validate_error"
+                    *ngIf="formGroup.get('subdivisions').hasError('required') && formGroup.get('subdivisions').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for=""> Աշխատավարձի հաշվման եղանակ</label>
+            </div>
+            <div class="input_wraper">
+               
+                <p-dropdown  optionLabel="name" [options]="calculateSalaryArray" [placeholder]="'Ընտրեք'"   formControlName="calculateTypeOfSalary"></p-dropdown>
+                <span class="validate_error"
+                    *ngIf="formGroup.get('calculateTypeOfSalary').hasError('required') && formGroup.get('calculateTypeOfSalary').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="buttons">
+            <button type="button" (click)="add()">Կատարել</button>
+            <button (click)="close()">Դադարեցնել</button>
+        </div>
+    </form>
+
+</div>

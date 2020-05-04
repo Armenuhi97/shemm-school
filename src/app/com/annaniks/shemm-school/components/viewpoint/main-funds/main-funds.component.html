@@ -1,0 +1,56 @@
+<h2>{{tabTitle}}</h2>
+
+
+<form [formGroup]="mainFundsGroup">
+  <div>
+    <div style="width: 100%; padding: 20px 0;">
+      <div class="form_group">
+        <div class="label" style="width: 450px;">
+          <label for="">Հերթական գույքային համար</label>
+        </div>
+        <div style="width: 300px;">
+          <input formControlName="regularPropertyNumber" type="text" style="width: 100%;">
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30px;"></th>
+            <th>Հաշվի անվանում</th>
+            <th>Հաշիվ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td>Կրեդիտորական պարտքեր ստացված ՀՄ-ների գծով</td>
+            <td><input type="text" formControlName="creditDebtsReceivedHM"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>ՀՄ-ների վրա կապիտալացվող ծախսումներ</td>
+            <td><input type="text" formControlName="capitalizedExpensesOnHM"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>ՀՄ-ների վերականգնումից արժեքի փոփոխություն</td>
+            <td><input type="text" formControlName="revaluationValueChangeOfHM"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>ՀՄ-ների լուծարման արժեքի ծախսի հաշիվ</td>
+            <td><input type="text" formControlName="revaluationValueExpenseAccountOfHM"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button (click)="addMainFaund()" [disabled]="!mainFundsGroup.valid">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+  </div>
+</form>

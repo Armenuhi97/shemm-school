@@ -1,0 +1,64 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<!-- <div class="error">{{error}}</div> -->
+
+<div class="forms-container">
+    <form [formGroup]="formGroup">
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Կոդ</label>
+            </div>
+            <div class="input_wraper">
+                <input type="number" class="code-input" formControlName="code">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('code').hasError('required') && formGroup.get('code').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Անվանում</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="name">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('name').hasError('required') && formGroup.get('name').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Կուտակիչ խումբ</label>
+            </div>
+            <div class="input_wraper">
+                <label class="container-checkbox">
+                    <input formControlName="isAccumulationGroup" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Կուտակիչ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('accumulator','code')"
+                    (setValue)="setValue($event)" [array]="analyticalGroup"
+                    [selectObject]="formGroup.get('accumulator').value" [modalParams]="modalParams">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="formGroup.get('accumulator').value">{{formGroup.get('accumulator').value?.name}}</span>
+            </div>
+        </div>
+        <div class="buttons">
+            <button type="button" (click)="addAnalyticGroup()">Կատարել</button>
+            <button (click)="close()">Դադարեցնել</button>
+        </div>
+    </form>
+
+</div>

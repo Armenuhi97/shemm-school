@@ -1,0 +1,150 @@
+<form [formGroup]="buyerGroup">
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անվանում</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="name">
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Իրավ․ հասցե</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="legal_address">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Գործ․ հասցե</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="work_address"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Հաշվարկային հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="settlement_account"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">ՀՎՀՀ</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="hvhh">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ղեկավարի պաշտոն</label>
+        </div>
+        <div class="input_wraper ">
+            <p-dropdown formControlName="head_position"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ղեկավարի Ա․Ա․Հ․</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="head_fullName">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Հաշվապահի պաշտոն</label>
+        </div>
+        <div class="input_wraper ">
+            <p-dropdown formControlName="accountant_position"></p-dropdown>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Հաշվապահի Ա․Ա․Հ․</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="accountant_fullName">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ա/Ձ պատ․ գրանց․ վկ․ N</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="registration_certificate_number">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անձնագրի համար</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="passport_number">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Լրացուցիչ տվյալներ</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="more_info"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ապր․ առաքման եղանակը</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="delivery_method">
+        </div>
+    </div>
+    <div class="additionally-content">
+        <div (click)="openOrCloseAdditionalInfo()" class="additionally">
+            <span>Լրացուցիչ</span>
+            <span><i [ngStyle]="arrowStyle()" class="material-icons">
+                    arrow_drop_down
+                </i></span>
+        </div>
+        <div *ngIf="isAdditionally">
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Ազգանուն, անուն, հայրանուն </label>
+                </div>
+                <div class="input_wraper">
+                    <p-dropdown formControlName="full_name"></p-dropdown>
+                </div>
+            </div>
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Լիազորագրի համար</label>
+                </div>
+                <div class="input_wraper">
+                    <input formControlName="power_attorney">
+                </div>
+            </div>
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Լիազորագրի ամսաթիվ</label>
+                </div>
+                <div class="input_wraper">
+                        <p-calendar rPCalendarMask formControlName="date_power_attorney" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                        [locale]="calendarConfig">
+                    </p-calendar>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>

@@ -1,0 +1,89 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+
+<div *ngIf="serverResponseError">
+    {{ serverResponseError }}
+</div>
+<div class="modal-content">
+    <form [formGroup]="addPriceOfServiceGroup">
+        <div class="first-section">
+            <div class="form_group">
+                <div class="label">
+                    <label for=""><span>*</span> Ժամանակահատված</label>
+                </div>
+                <div class="input_wraper dates">
+                    <div class="start-date">
+                        <p-calendar rPCalendarMask formControlName="startDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                            [locale]="calendarConfig"> </p-calendar>
+                        <span class="validate_error"
+                            *ngIf="addPriceOfServiceGroup.get('startDate').hasError('required') && addPriceOfServiceGroup.get('startDate').touched"><i
+                                class="material-icons">
+                                close
+                            </i>
+                        </span>
+                    </div>
+
+                    <div class="end-date">
+                        <p-calendar rPCalendarMask formControlName="endDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                            [locale]="calendarConfig"> </p-calendar>
+                        <span class="validate_error"
+                            *ngIf="addPriceOfServiceGroup.get('endDate').hasError('required') && addPriceOfServiceGroup.get('endDate').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                    <div>
+                        <button class="calendar_button">
+                            <i class="material-icons">
+                                calendar_today
+                            </i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form_group right">
+                <div>
+                    <button>
+                        <i class="material-icons">
+                            save
+                        </i>
+                    </button>
+                </div>
+                <div>
+                    <button>
+                        <i class="material-icons">
+                            clear
+                        </i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ծառայություն</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('servicesId','id')" fomControlName="servicesId"
+                    (setValue)="setValue($event, 'servicesId')" [array]="servicesValue"
+                    [selectObject]="addPriceOfServiceGroup.get('servicesId').value" [modalParams]="modalParamsService">
+                </app-modal-dropdown>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Տեսակ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'name'" [inputValue]="setInputValue('type','name')"
+                    fomControlName="type" (setValue)="setTypesValue($event, 'type')" [array]="types"
+                    [selectObject]="addPriceOfServiceGroup.get('type').value" [modalParams]="modalParamsTypes">
+                </app-modal-dropdown>
+            </div>
+        </div>
+        <div class="buttons">
+            <button (click) = "addCashRegister()">Կատարել</button>
+            <button (click) = "close()">Դադարեցնել</button>
+        </div>
+    </form>
+</div>

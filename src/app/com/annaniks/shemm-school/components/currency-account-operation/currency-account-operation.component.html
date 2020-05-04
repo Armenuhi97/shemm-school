@@ -1,0 +1,43 @@
+<form action="" [formGroup]="currencyAccountOperationGroup">
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Ձևակերպման ամսաթիվ</label>
+        </div>
+        <div class="input_wraper">
+            <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                [locale]="calendarConfig">
+            </p-calendar>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Թղթակցող հաշիվ</label>
+        </div>
+        <div class="input_wraper medium-wrapper">
+            <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('correspondentAccount','account')"
+                [selectObject]="currencyAccountOperationGroup.get('correspondentAccount').value"
+                (setValue)="setValue($event,'correspondentAccount')" [array]="chartAccounts"
+                [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="currencyAccountOperationGroup.get('correspondentAccount').value">{{currencyAccountOperationGroup.get('correspondentAccount').value.name}}</span>
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Դրամ․ արտ․ հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('account','account')"
+                [selectObject]="currencyAccountOperationGroup.get('account').value"
+                (setValue)="setValue($event,'account')" [array]="chartAccounts"
+                [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="currencyAccountOperationGroup.get('account').value">{{currencyAccountOperationGroup.get('account').value.name}}</span>
+
+        </div>
+    </div>
+</form>
+<ng-content></ng-content>

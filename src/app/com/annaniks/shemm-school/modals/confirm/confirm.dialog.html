@@ -1,0 +1,12 @@
+<div class="dialog-content">
+    <app-modal-header  (close)="close()"></app-modal-header>
+
+    <div class="warming-text">{{text}}</div>
+    <div class="link"> 
+        <a (click)="navigate()">Աշխատավարձի պատմությանը կարող եք ծանոթանալ այստեղ </a>
+    </div>
+    <div class="buttons">
+        <button (click)="onClickYes()">Այո</button>
+        <button (click)="close()">Ոչ</button>
+    </div>
+</div>

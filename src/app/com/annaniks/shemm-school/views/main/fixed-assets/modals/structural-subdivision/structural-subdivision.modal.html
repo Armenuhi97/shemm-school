@@ -1,0 +1,66 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div class="forms-container">
+    <form [formGroup]="structuralSubdivisionGroup">
+
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Կոդ</label>
+            </div>
+            <div class="input_wraper">
+                <input class="code-input" formControlName="code">
+                <span class="validate_error"
+                    *ngIf="structuralSubdivisionGroup.get('code').hasError('required') && structuralSubdivisionGroup.get('code').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Անվանում</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="name">
+                <span class="validate_error"
+                    *ngIf="structuralSubdivisionGroup.get('name').hasError('required') && structuralSubdivisionGroup.get('name').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Նյութ․ պատասխ․ անձ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('partnerId','name')"
+                    fomControlName="partnerId" (setValue)="setValue($event, 'partnerId')" [array]="partners"
+                    [selectObject]="structuralSubdivisionGroup.get('partnerId').value"
+                    [modalParams]="modalParamsPartner">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                *ngIf="structuralSubdivisionGroup.get('partnerId').value">{{structuralSubdivisionGroup.get('partnerId').value?.name}}</span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ծախսի հաշիվ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('expenseAccountId','account')"
+                    fomControlName="expenseAccountId" (setValue)="setValues($event, 'expenseAccountId')"
+                    [array]="accountPlans" [selectObject]="structuralSubdivisionGroup.get('expenseAccountId').value"
+                    [modalParams]="modalParamsAccount">
+                </app-modal-dropdown>
+                <span class="selected-element-name" *ngIf="structuralSubdivisionGroup.get('expenseAccountId').value">
+                    {{structuralSubdivisionGroup.get('expenseAccountId').value?.name}}
+                </span>
+
+            </div>
+        </div>
+    </form>
+    <div class="buttons">
+        <button (click)="addStructuralSubdivision()">Կատարել</button>
+        <button (click)="close()">Դադարեցնել</button>
+    </div>
+</div>

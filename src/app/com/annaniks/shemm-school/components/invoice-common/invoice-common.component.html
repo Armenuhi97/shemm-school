@@ -1,0 +1,104 @@
+<form [formGroup]="invoiceGroup">
+
+
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Պայմանագիր</label>
+        </div>
+        <div class="input_wraper contract_wraper">
+            <input formControlName="contract">
+        </div>
+    </div>
+
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Պայմանագրի ամսաթիվը</label>
+        </div>
+        <div class="input_wraper ">
+            <p-calendar rPCalendarMask appendTo="body" formControlName="contractDate" [placeholder]="'Օր/Ամիս/Տարի'"
+                dateFormat="dd/mm/yy" [locale]="calendarConfig">
+            </p-calendar>
+        </div>
+    </div>
+
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Ենթաբաժին</label>
+        </div>
+        <div class="has-add-button-content input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputProperty]="'name'"
+                [inputValue]="setInputValue('subsection','name')" [selectObject]="invoiceGroup.get('subsection').value"
+                (setValue)="setValue($event,'subsection')" [array]="subsection"
+                [modalParams]="setModalParams('Ենթաբաժին')">
+            </app-modal-dropdown>
+            <button class="add_button" (click)="addSubsection()"><i class="material-icons">
+                    add
+                </i></button>
+        </div>
+    </div>
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 1</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup1','code')"
+                [selectObject]="invoiceGroup.get('analyticalGroup1').value"
+                (setValue)="setValue($event,'analyticalGroup1')" [array]="analyticalGroup1"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 1')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="invoiceGroup.get('analyticalGroup1').value">{{invoiceGroup.get('analyticalGroup1').value.name}}</span>
+
+        </div>
+    </div>
+
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 2</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup2','code')"
+                [selectObject]="invoiceGroup.get('analyticalGroup2').value"
+                (setValue)="setValue($event,'analyticalGroup2')" [array]="analyticalGroup2"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 1')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="invoiceGroup.get('analyticalGroup2').value">{{invoiceGroup.get('analyticalGroup2').value.name}}</span>
+        </div>
+    </div>
+
+
+    <div class="form_group other_group ">
+        <div class="label">
+            <label for="">Սերիա և համար</label>
+        </div>
+        <div class="input_wraper passwort_wraper">
+            <input formControlName="series">
+            <input type="number" formControlName="number">
+            <!-- <p-dropdown formControlName="number"></p-dropdown> -->
+        </div>
+    </div>
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Դուրս գրման ամսաթիվ</label>
+        </div>
+        <div class="input_wraper ">
+            <p-calendar rPCalendarMask appendTo="body" formControlName="dischargeDate" [placeholder]="'Օր/Ամիս/Տարի'"
+                dateFormat="dd/mm/yy" [locale]="calendarConfig">
+            </p-calendar>
+        </div>
+    </div>
+
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Մեկնաբանություն</label>
+        </div>
+        <div class="input_wraper comment">
+            <app-modal-dropdown [isDisabledInput]="true" [property]="'id'"
+                [inputValue]="setInputValue('comment','text')" [selectObject]="invoiceGroup.get('comment').value"
+                (setValue)="setValue($event,'comment')" [array]="documentKind" [modalName]="getModalName()">
+            </app-modal-dropdown>
+            <!-- <input formControlName="comment"> -->
+        </div>
+    </div>
+</form>

@@ -1,0 +1,12 @@
+<app-tables-by-filter [titles]="titles" (add)="add(false)">
+    <tr *ngFor="let item of paymentFromCurrentAccount">
+        <td></td>
+        <!-- <td class="edit"> <i (click)="addMaterialValuesShift(true,item?.id)" class=" material-icons"> edit </i> </td> -->
+        <td class="delete"> <i (click)="delete(item?.id)" class=" material-icons"> close </i></td>
+        <td>{{item?.documentNumber}}</td>
+        <td>{{item?.expenseAccountId}}</td>
+    </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

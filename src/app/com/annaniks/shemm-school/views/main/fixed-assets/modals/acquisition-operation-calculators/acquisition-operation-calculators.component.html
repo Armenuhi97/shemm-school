@@ -1,0 +1,175 @@
+<div class="modal-content">
+    <app-modal-header [title]="title" (close)="close()"></app-modal-header>
+    <form class="form-container" [formGroup]="formGroup">
+        <div class="form_group one-group">
+            <div class="label">
+                <label for=""><span>*</span> Գույքային համար</label>
+            </div>
+            <div class="input_wraper">
+                <input class="small-input" type="number" formControlName="propertyNumber">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('propertyNumber').hasError('required') && formGroup.get('propertyNumber').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group one-group">
+            <div class="label">
+                <label for=""><span>*</span> Անվանում</label>
+            </div>
+            <div class="input_wraper">
+                <input type="text" formControlName="name">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('name').hasError('required') && formGroup.get('name').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group one-group">
+            <div class="label">
+                <label for="">Լրիվ անվանում</label>
+            </div>
+            <div class="input_wraper">
+                <input type="text" formControlName="fullName">
+            </div>
+        </div>
+        <div class="first-section ">
+            <div class="form_group one-group">
+                <div class="label">
+                    <label for="property-number"><span>*</span> Մուտքի ամսաթիվ</label>
+                </div>
+                <div class="input_wraper ">
+                    <p-calendar rPCalendarMask [placeholder]="'Օր/Ամիս/Տարի'" formControlName="enterDate" dateFormat="dd/mm/yy"
+                        [locale]="calendarConfig"></p-calendar>
+                    <span class="validate_error"
+                        *ngIf="formGroup.get('enterDate').hasError('required') && formGroup.get('enterDate').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </div>
+            <div class="form_group right">
+                <div class="right_label">
+                    <label for=""><span>*</span> Շահագործման ամսաթիվ</label>
+                </div>
+                <div class="input_wraper ">
+                    <p-calendar rPCalendarMask [placeholder]="'Օր/Ամիս/Տարի'" formControlName="operationDate" dateFormat="dd/mm/yy"
+                        [locale]="calendarConfig"></p-calendar>
+                    <span class="validate_error"
+                        *ngIf="formGroup.get('operationDate').hasError('required') && formGroup.get('operationDate').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </div>
+        </div>
+        <div class="form_group one-group">
+            <div class="label">
+                <label for=""><span>*</span> ՀՄ տեսակ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('assetsType','code')"
+                    [selectObject]="formGroup.get('assetsType').value" (setValue)="setValue($event,'assetsType')"
+                    [array]="hmTypes" [modalParams]="setModalParams('ՀՄ տեսակ',['Կոդ', 'Անվանում'],['code','name'])">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="formGroup.get('assetsType').value">{{formGroup.get('assetsType').value.name}}</span>
+                <span class="validate_error"
+                    *ngIf="formGroup.get('assetsType').hasError('required') && formGroup.get('assetsType').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group one-group">
+            <div class="label">
+                <label for=""> ՀՄ խումբ շահութահարկի օրենքով</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('assetsGroup','code')"
+                    [selectObject]="formGroup.get('assetsGroup').value" (setValue)="setValue($event,'assetsGroup')"
+                    [array]="hmProfitTaxs"
+                    [modalParams]="setModalParams('ՀՄ խումբ շահութահարկի օրենքով',['Կոդ', 'Անվանում'],['code','name'])">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="formGroup.get('assetsGroup').value">{{formGroup.get('assetsGroup').value.name}}</span>
+            </div>
+        </div>
+        <div class="form_group one-group">
+            <div class="label">
+                <label for=""><span>*</span> ՀՄ ձեռք բերման եղանակ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('assetsAcquisitionMethod','code')"
+                    [selectObject]="formGroup.get('assetsAcquisitionMethod').value"
+                    (setValue)="setValue($event,'assetsAcquisitionMethod')" [array]=""
+                    [modalParams]="setModalParams('ՀՄ ձեռք բերման եղանակ',['Կոդ', 'Անվանում'],['code','name'])">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="formGroup.get('assetsAcquisitionMethod').value">{{formGroup.get('assetsAcquisitionMethod').value.name}}</span>
+                <span class="validate_error"
+                    *ngIf="formGroup.get('assetsAcquisitionMethod').hasError('required') && formGroup.get('assetsAcquisitionMethod').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group one-group">
+            <div class="label">
+                <label for=""><span>*</span> Գտնվելու վայր</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('location','code')"
+                    [selectObject]="formGroup.get('location').value" (setValue)="setValue($event,'location')" [array]=""
+                    [modalParams]="setModalParams('Գտնվելու վայր',['Կոդ', 'Անվանում'],['code','name'])">
+                </app-modal-dropdown>
+                <span class="validate_error"
+                    *ngIf="formGroup.get('location').hasError('required') && formGroup.get('location').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group one-group">
+            <div class="label">
+                <label for="">Նյութ․ պատասխ․ անձ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('materialAswer','id')"
+                    [selectObject]="formGroup.get('materialAswer').value"
+                    (setValue)="setValue($event,'materialAswer')" [array]="employees"
+                    [modalParams]="setModalParams('Աշխատակիցներ', ['Կոդ', 'Անուն'],['id','fullName'])">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="formGroup.get('materialAswer').value">{{formGroup.get('materialAswer').value.fullName}}</span>
+                <span class="validate_error"
+                    *ngIf="formGroup.get('materialAswer').hasError('required') && formGroup.get('materialAswer').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+
+    </form>
+</div>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+        <general-tab [calculationTypes]="calculationTypes" [group]="formGroup.get('general').value"
+            (isClickOnAddButton)="isClickOnAddButton($event)" [partners]="partners" [chartAccounts]="chartAccounts"
+            [analyticalGroup2]="analyticalGroup2" [analyticalGroup1]="analyticalGroup1" *ngSwitchCase="'Ընդհանուր'">
+        </general-tab>
+        <accounting-tab [group]="formGroup.get('accounting').value" *ngSwitchCase="'Հաշվառումներ'"></accounting-tab>
+        <accounts-tab [chartAccounts]="chartAccounts" [group]="formGroup.get('accounts').value"
+            *ngSwitchCase="'Հաշիվներ'"></accounts-tab>
+        <additional-tab [group]="formGroup.get('additional').value" *ngSwitchCase="'Լրացուցիչ'"></additional-tab>
+        <app-operation [chartAccounts]="chartAccounts" [partners]="partners" [analyticalGroup1]="analyticalGroup1"
+            [analyticalGroup2]="analyticalGroup2" [group]="formGroup.get('operation').value"
+            *ngSwitchCase="'Գործառնություններ'"></app-operation>
+    </div>
+</app-tabs>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

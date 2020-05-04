@@ -1,0 +1,56 @@
+<div class="columns-content">
+    <div class="left">
+        <div class="title">Հասանելի</div>
+        <div class="column-card">
+            <div *ngFor="let key of keys">
+                <div class="items">
+                    <span class="arrow" (click)="openItems(key)" [ngStyle]="getRowStyle(key)">
+                        <i class="material-icons">
+                            arrow_right
+                        </i>
+                    </span>
+                    <span> {{key.key}}</span>
+                </div>
+                <div *ngIf="key.isOpen">
+                    <div class="item" [class.active]="activeItem == item && activeKey==key.key"
+                        (click)="getSelectedItem(item,key)" *ngFor="let item of availableItems[key.key]">
+                        <div>{{item.name}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button_group">
+        <div><button [disabled]="!disableAdd" [class.disable]="disableAdd" (click)="addItem()">Ավելացնել ></button>
+        </div>
+        <div> <button [disabled]="!disableDelete" [class.disable]="disableDelete" (click)="deleteItem()">
+                < Հեռացնել</button> </div> <div><button>Վերև</button></div>
+        <div>
+            <button>Ներքև</button>
+        </div>
+        <div>
+            <button>Սկզ․ վիճակ</button>
+        </div>
+    </div>
+    <div class="right">
+        <div class="title">Ցուցադրվող</div>
+        <div class="column-card">
+            <div  class="item" [class.active]="activeItem == item"
+            (click)="getSelectedItem(item)"  *ngFor="let item of displayItem">
+                <div>{{item.name}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="other_group">
+    <div class="label">
+        <label>Ֆիլտրավորման պայման</label>
+    </div>
+    <div>
+        <input type="text">
+    </div>
+</div>
+<div class="buttons">
+    <button>Կատարել</button>
+    <button>Դադարեցնել</button>
+</div>

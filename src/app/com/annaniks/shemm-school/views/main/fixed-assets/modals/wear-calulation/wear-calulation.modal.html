@@ -1,0 +1,82 @@
+<div class="modal-content">
+    <app-modal-header [title]="title" (close)="close()"></app-modal-header>
+    <!-- <div class="error">{{error}}</div> -->
+    <form [formGroup]="wearCalculationForm">
+        <div class="first-section">
+            <div class="form_group">
+                <div class="label">
+                    <label for=""><span>*</span>Ամսաթիվ</label>
+                </div>
+                <div class="input_wraper ">
+                    <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                        [locale]="calendarConfig">
+                    </p-calendar>
+                    <span class="validate_error"
+                        *ngIf="wearCalculationForm.get('date').hasError('required') && wearCalculationForm.get('date').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </div>
+            <div class="form_group right">
+                <div class="right_label">
+                    <label for="">Փաստաթղթի №</label>
+                </div>
+                <div>
+                    <input formControlName="orderNumber" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Անալիտիկ խումբ 1</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'"  [inputValue]="setInputValue('analyticGroup1','code')"
+                    fomControlName="analyticGroup1" (setValue)="setValue($event, 'analyticGroup1')"
+                    [array]="analyticalGroup1" [selectObject]="wearCalculationForm.get('analyticGroup1').value"
+                    [modalParams]="setModalParams('Անալիտիկ խումբ 1')">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="wearCalculationForm.get('analyticGroup1').value">{{wearCalculationForm.get('analyticGroup1').value.name}}</span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Անալիտիկ խումբ 2</label>
+            </div>
+            <div class="input_wraper">
+
+                <app-modal-dropdown [property]="'code'"  [inputValue]="setInputValue('analyticGroup2','code')"
+                    fomControlName="analyticGroup2" (setValue)="setValue($event, 'analyticGroup2')"
+                    [array]="analyticalGroup2" [selectObject]="wearCalculationForm.get('analyticGroup2').value"
+                    [modalParams]="setModalParams('Անալիտիկ խումբ 2')">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="wearCalculationForm.get('analyticGroup2').value">{{wearCalculationForm.get('analyticGroup2').value.name}}</span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Մեկնաբանություն</label>
+            </div>
+            <div class="input_wraper textarea-content">
+                <textarea formControlName="comment"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+        <app-wear-advertising-services [group]="wearCalculationForm.get('advertisingServices').value"
+            [chartAccounts]=chartAccounts *ngSwitchCase="'Գույքահամարներ'">
+        </app-wear-advertising-services>
+        <app-operation [chartAccounts]="chartAccounts" [partners]="partners" [analyticalGroup1]="analyticalGroup1"
+            [analyticalGroup2]="analyticalGroup2" [group]="wearCalculationForm.get('operation').value"
+            *ngSwitchCase="'Գործառնություններ'"></app-operation>
+    </div>
+</app-tabs>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

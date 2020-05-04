@@ -1,0 +1,16 @@
+<app-tables-by-filter [titles]="titles" (add)="addSystemAddition(false)">
+  <tr *ngFor="let item of systemAddition; let i = index;">
+    <td class="edit"> <i (click)="addSystemAddition(true, i, item)" class=" material-icons"> edit </i> </td> 
+    <td class="delete"> <i (click)="delete(i)" class=" material-icons"> close </i></td>
+    <!-- <td></td>
+    <td></td> -->
+    <td>{{item?.code}}</td>
+    <td>{{item?.name}}</td>
+    <td>{{item?.accountId}}</td>
+    <td><label class="container-checkbox">
+        <input [checked]="getBooleanVariable(item?.income_tax_withheld)" disabled type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+    </td>
+  </tr>
+</app-tables-by-filter>

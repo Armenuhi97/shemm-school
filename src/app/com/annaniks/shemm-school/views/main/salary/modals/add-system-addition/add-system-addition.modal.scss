@@ -1,0 +1,26 @@
+.forms-container{
+    border: 1px solid grey;
+    padding: 10px 25px;
+    margin-top: 15px;
+    .form_group{       
+        .required::before{
+            content: '*';
+            color: red;
+        }
+        .label{
+            width: 350px;    
+        }  
+        .input_wraper{       
+            width: calc(100% - 350px);
+            .code-input{
+                width: 174px;
+            }
+            .name-input{
+                width: 85%;
+            }                 
+        }
+    }
+}
+.container-checkbox{
+    padding-left: 22px !important;
+}

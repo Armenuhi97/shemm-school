@@ -1,0 +1,87 @@
+<form [formGroup]="providerGroup">
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անվանում</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="name">
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Իրավ․ հասցե</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="legal_address">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Գործ․ հասցե</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="work_address"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Հաշվարկային հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="settlement_account"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">ՀՎՀՀ</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="hvhh">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ղեկավարի պաշտոն</label>
+        </div>
+        <div class="input_wraper ">
+            <p-dropdown formControlName="head_position"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ղեկավարի Ա․Ա․Հ․</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="head_fullName">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Հաշվապահի պաշտոն</label>
+        </div>
+        <div class="input_wraper ">
+            <p-dropdown formControlName="accountant_position"></p-dropdown>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Հաշվապահի Ա․Ա․Հ․</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="accountant_fullName">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Լրացուցիչ տվյալներ</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="more_info"></p-dropdown>
+        </div>
+    </div>
+</form>

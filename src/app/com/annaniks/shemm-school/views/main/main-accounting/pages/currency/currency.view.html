@@ -1,0 +1,11 @@
+<app-tables-by-filter [titles]="titles" (add)="addCurrency(false)">
+    <tr *ngFor="let currency of currencies">
+        <td class="edit"> <i (click)="addCurrency(true,currency?.id)" class=" material-icons"> edit </i> </td>
+        <td class="delete"> <i (click)="delete(currency?.id)" class=" material-icons"> close </i></td>
+        <td>{{currency.currency}}</td>
+        <td>{{currency.name}}</td>
+    </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

@@ -1,0 +1,82 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<span class="error">{{error}}</span>
+<form [formGroup]="replacementGroup">
+  <div class="first-section">
+    <div class="form_group">
+      <div class="label">
+        <label for=""><span>*</span> Ամսաթիվ</label>
+      </div>
+      <div class="input_wraper">
+        <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+          [locale]="calendarConfig"> </p-calendar>
+        <span class="validate_error"
+          *ngIf="replacementGroup.get('date').hasError('required') && replacementGroup.get('date').touched"><i
+            class="material-icons">
+            close
+          </i></span>
+      </div>
+    </div>
+    <div class="form_group right">
+      <div class="right_label">
+        <label for="">Ժամ</label>
+      </div>
+      <div class="input_wraper">
+        <input formControlName="hours" type="number">
+      </div>
+    </div>
+  </div>
+
+  <div class="form_group">
+    <div class="label">
+      <label for=""><span>*</span> Փոխարինող</label>
+    </div>
+    <div class="input_wraper">
+      <app-modal-dropdown [property]="'id'" [inputProperty]="'fullName'"
+        [inputValue]="setInputValue('substituteId','fullName')"
+        [selectObject]="replacementGroup.get('substituteId').value" (setValue)="setValue($event,'substituteId')"
+        [array]="employees" [modalParams]="setModalParams('Աշխատակիցներ',['Անուն'],['fullName'])">
+      </app-modal-dropdown>
+
+      <span class="validate_error"
+        *ngIf="replacementGroup.get('substituteId').hasError('required') && replacementGroup.get('substituteId').touched"><i
+          class="material-icons">
+          close
+        </i></span>
+    </div>
+  </div>
+
+  <div class="form_group">
+    <div class="label">
+      <label for=""><span>*</span> Փոխարինվող</label>
+    </div>
+    <div class="input_wraper">
+      <app-modal-dropdown [property]="'id'" [inputProperty]="'fullName'"
+        [inputValue]="setInputValue('replaceableId','fullName')"
+        [selectObject]="replacementGroup.get('replaceableId').value" (setValue)="setValue($event,'replaceableId')"
+        [array]="employees" [modalParams]="setModalParams('Աշխատակիցներ',['Անուն'],['fullName'])">
+      </app-modal-dropdown>
+
+      <span class="validate_error"
+        *ngIf="replacementGroup.get('replaceableId').hasError('required') && replacementGroup.get('replaceableId').touched"><i
+          class="material-icons">
+          close
+        </i></span>
+    </div>
+  </div>
+  <div class="form_group">
+    <div class="label">
+      <label for="">Բացակա</label>
+    </div>
+    <div class="input_wraper">
+      <label class="container-checkbox">
+        <input formControlName="beAbsence" type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+  </div>
+  <div class="buttons">
+    <button (click)="makeReplacement()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+  </div>
+
+</form>

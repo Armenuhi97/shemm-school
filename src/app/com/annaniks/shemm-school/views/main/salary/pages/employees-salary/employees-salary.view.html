@@ -1,0 +1,240 @@
+<div *ngIf="isShowTable" class="topbar">
+    <p-calendar rPCalendarMask [class.disabled-input]="!isGetMainElements" (ngModelChange)="changeDate($event)" [formControl]="date" [placeholder]="'Ամիս/Տարի'" view="month"
+        dateFormat="yy/mm" [yearNavigator]="true" [yearRange]="setYearRange()" [locale]="calendarConfig"> </p-calendar>
+
+    <div class="button">
+        <button [disabled]="date.invalid" (click)="save()">Հաստատել</button>
+    </div>
+
+</div>
+<div *ngIf="isSet && isShowTable" class="table-content">
+    <table [formGroup]="salaryGroup">
+        <tr *ngIf="checkIsShowSalariesRow()">
+            <th rowspan="2">Աշխատակից</th>
+            <th [class.hidden]="!getIsShow('salary')" [attr.colspan]="getLength(salaries,'salary')">
+                <div class="total">
+                    <span>Աշխատավարձ</span>
+                    <div class="add-button" (click)="showOrHideButton('salary')">
+                        <button>{{getIcon('salary')}}</button>
+                    </div>
+                </div>
+            </th>
+            <th [class.hidden]="!getIsShow('addition')" [attr.colspan]="getLength(additions,'addition')">
+                <div class="total">
+                    <span>Հավելումներ</span>
+                    <div class="add-button" (click)="showOrHideButton('addition')">
+                        <button>{{getIcon('addition')}}</button>
+                    </div>
+                </div>
+            </th>
+            <th [class.hidden]="!getIsShow('benefit')" [attr.colspan]="getLength(benefits,'benefit')">
+
+                <div class="total">
+                    <span>Նպաստներ</span>
+                    <div class="add-button" (click)="showOrHideButton('benefit')">
+                        <button>{{getIcon('benefit')}}</button>
+                    </div>
+                </div>
+            </th>
+            <!--  *ngIf="checkIsEmptyVacation() && " -->
+            <th *ngIf="checkIsEmptyVacation()" [class.hidden]="!getIsShow('vacation')"
+                [attr.colspan]="getMaxLenghtOfVacations()">
+                <div class="total">
+                    <span>Արձակուրդային</span>
+                    <div class="add-button" (click)="showOrHideButton('vacation')">
+                        <button>{{getIcon('vacation')}}</button>
+                    </div>
+                </div>
+            </th>
+        </tr>
+        <tr>
+            <th *ngIf="!checkIsShowSalariesRow()">Աշխատակից</th>
+
+            <th [ngClass]="{'hide':!getIsShow('salary')}" class="detail-content" *ngFor="let salary of salaries">
+                <div class="flex">
+                    <label class="container-checkbox">
+                        <input [formControlName]="getEmployeeAdditionFormControl(salary,'salary')"
+                            (ngModelChange)="changeAddition($event,salary,'salaries',salaries)" type="checkbox">
+                        <span class="checkmark"></span>
+
+                    </label>
+                    <span> {{salary?.name}}</span>
+                </div>
+
+            </th>
+            <th [ngClass]="{'hide':!getIsShow('salary')}">
+                <div>Ընհանուր</div>
+            </th>
+            <th *ngIf="!getIsShow('salary')">
+                <div class="total">
+                    <span>Աշխատավարձ</span>
+                    <div class="add-button" (click)="showOrHideButton('salary')">
+                        <button>{{getIcon('salary')}}</button>
+                    </div>
+                </div>
+            </th>
+
+            <th class="detail-content" [ngClass]="{'hide':!getIsShow('addition')}" *ngFor="let addition of additions">
+                <div class="flex">
+                    <label class="container-checkbox">
+                        <input [formControlName]="getEmployeeAdditionFormControl(addition,'addition')"
+                            (ngModelChange)="changeAddition($event,addition,'additions',additions)" type="checkbox">
+                        <span class="checkmark"></span>
+
+                    </label>
+                    <span> {{addition?.name}}</span>
+                </div>
+            </th>
+            <th [ngClass]="{'hide':!getIsShow('addition')}">
+                <div>Ընհանուր</div>
+            </th>
+            <th *ngIf="!getIsShow('addition')">
+                <div class="total">
+                    <span>Հավելումներ</span>
+                    <div class="add-button" (click)="showOrHideButton('addition')">
+                        <button>{{getIcon('addition')}}</button>
+                    </div>
+                </div>
+            </th>
+            <th [ngClass]="{'hide':!getIsShow('benefit')}" class="detail-content" *ngFor="let benefit of benefits">
+                <div>
+                    <span> {{benefit?.name}}</span>
+                </div>
+            </th>
+            <th [ngClass]="{'hide':!getIsShow('benefit')}">
+                <div>Ընհանուր</div>
+            </th>
+            <th *ngIf="!getIsShow('benefit')">
+                <div class="total">
+                    <span>Նպաստներ</span>
+                    <div class="add-button" (click)="showOrHideButton('benefit')">
+                        <button>{{getIcon('benefit')}}</button>
+                    </div>
+                </div>
+
+            </th>
+            <th [ngClass]="{'hide':!getIsShow('vacation')}" class="detail-content"
+                *ngFor="let vacation of getCountArrayOfVacation()">
+                <span>{{vacation}}</span>
+            </th>
+            <th [ngClass]="{'hide':!getIsShow('vacation')}">
+                <div>Ընհանուր</div>
+            </th>
+            <th *ngIf="!getIsShow('vacation') && checkIsEmptyVacation()">
+                <div class="total">
+                    <span>Արձակուրդային</span>
+                    <div class="add-button" (click)="showOrHideButton('vacation')">
+                        <button>{{getIcon('vacation')}}</button>
+                    </div>
+                </div>
+            </th>
+
+        </tr>
+
+        <tr *ngFor="let employee of employees">
+            <td>
+                <div class="flex">
+                    <label class="container-checkbox">
+                        <input [formControlName]="getEmployeeAdditionFormControl(employee,'employee')"
+                            (ngModelChange)="changeEmployee($event,employee)" type="checkbox">
+                        <span class="checkmark"></span>
+
+                    </label>
+                    <span> {{employee?.name}}</span>
+                </div>
+            </td>
+
+            <!-- Ashxatavardz -->
+
+            <td class="detail-content" [ngClass]="{'hide':!getIsShow('salary')}" *ngFor="let salary of salaries">
+                <div [formGroup]="getEmployeesGroup(employee,'salaries')" class="flex">
+                    <label class="container-checkbox">
+                        <input [formControlName]="getCheckboxFormControlName(salary)"
+                            (ngModelChange)="changeEmployeeSalary($event,employee,salary,'salaries',salaries)" type="checkbox">
+                        <span class="checkmark disable-checkmark"></span>
+                    </label>
+                    <input (ngModelChange)="calculateTotalSum(employee,'salaries',salaries)"
+                        (focus)="focus(employee,salary,'salaries')" (blur)="blur(employee,salary,'salaries')"
+                        [formControlName]="getFormControlName(salary)" class="salary" type="number">
+                </div>
+
+            </td>
+            <td>
+                {{getTotalSum(employee,'salaries')}}
+                <!-- <div class="add-button" (click)="showOrHideButton(employee,'salaries')">
+                    <button>{{getIcon(employee,'salaries')}}</button>
+                </div> -->
+            </td>
+            <!-- Havelum -->
+            <td [ngClass]="{'hide':!getIsShow('addition')}" class="detail-content" *ngFor="let addition of additions">
+                <div [formGroup]="getEmployeesGroup(employee,'additions')" class="flex">
+                    <label class="container-checkbox">
+                        <input [formControlName]="getCheckboxFormControlName(addition)"
+                            (ngModelChange)="changeEmployeeSalary($event,employee,addition,'additions',additions)"
+                            type="checkbox">
+                        <span class="checkmark disable-checkmark"></span>
+                    </label>
+                    <input (ngModelChange)="calculateTotalSum(employee,'additions',additions)"
+                        (focus)="focus(employee,addition,'additions')" (blur)="blur(employee,addition,'additions')"
+                        [formControlName]="getFormControlName(addition)" class="salary" type="number">
+                </div>
+
+            </td>
+            <td>
+                {{getTotalSum(employee,'additions')}}
+                <!-- <div class="add-button" (click)="showOrHideButton(employee,'additions')">
+                    <button>{{getIcon(employee,'additions')}}</button>
+                </div> -->
+            </td>
+
+            <!-- Npast -->
+
+            <td class="detail-content" [ngClass]="{'hide':!getIsShow('benefit')}" *ngFor="let benefit of benefits">
+                <div [formGroup]="getBenefitsGroup(employee,'benefits',benefit)" class="flex">
+            <td margin-right-5>
+                <input readonly formControlName="fromEmployee" class="salary disabled-input" type="number">
+            </td>
+            <td>
+                <input readonly formControlName="fromStateBudget" class="salary disabled-input" type="number">
+            </td>
+</div>
+</td>
+<td>
+    {{getTotalSum(employee,'benefits')}}
+    <!-- <div class="add-button" (click)="showOrHideButton(employee,'benefits')">
+                    <button>{{getIcon(employee,'benefits')}}</button>
+                </div> -->
+</td>
+
+<!-- Vacation -->
+
+<td class="detail-content" [ngClass]="{'hide':!getIsShow('vacation')}"
+    *ngFor="let vacation of employee.employeeVacations">
+    <div class="flex">
+        {{(vacation?.vacationMonths[0]?.money)?vacation?.vacationMonths[0]?.money:0}}
+
+    </div>
+</td>
+<td *ngIf="checkIsEmptyVacation()">
+    {{getTotalSum(employee,'vacations')}}
+    <!-- <div class="add-button" (click)="showOrHideButton(employee,'vacations')">
+                    <button>{{getIcon(employee,'vacations')}}</button>
+                </div> -->
+</td>
+
+</tr>
+</table>
+</div>
+
+<div class="operation-content" *ngIf="!isShowTable">
+    <div class="default-table" (click)="showTable()">Աշխատակիցների աշխատավարձի հաշվարկ</div>
+    <div class="operation">
+        <app-card [header]="'Գործառնություններ'">
+            <app-salary-operation [group]="operations" [chartAccounts]="chartAccounts"></app-salary-operation>
+        </app-card>
+    </div>
+    <div (click)="finalConfirm()" class="button">
+        <button>Հաստատել</button>
+
+    </div>
+</div>

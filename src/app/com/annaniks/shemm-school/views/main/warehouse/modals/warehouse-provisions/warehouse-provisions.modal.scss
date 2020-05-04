@@ -1,0 +1,44 @@
+.section {
+    border: 1px solid grey;
+    margin: 25px 0px 20px;
+
+    .section-header {
+        height: 30px;
+        line-height: 30px;
+        border-bottom: 1px solid grey;
+
+        span {
+            margin-left: 10px;
+        }
+    }
+
+    .section-body {
+        margin: 12px;
+
+        .form_group {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .form_group{       
+            .required::before{
+                content: '*';
+                color: red;
+            }
+            .label{
+                width: 310px;    
+            }  
+            .input_wraper{       
+                width: calc(100% - 310px);
+                .code-input{
+                    width: 175px;
+                }
+                .name-input{
+                    width: 85%;
+                }                 
+            }
+        }
+    }
+
+}

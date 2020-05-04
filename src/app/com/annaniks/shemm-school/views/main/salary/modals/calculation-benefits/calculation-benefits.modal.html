@@ -1,0 +1,128 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<!-- <span class="error">{{error}}</span> -->
+<form [formGroup]="benefitsGroup">
+    <div class="first-section">
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Ամսաթիվ</label>
+            </div>
+            <div class="input_wraper">
+                <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                    [locale]="calendarConfig"> </p-calendar>
+                <span class="validate_error"
+                    *ngIf="benefitsGroup.get('date').hasError('required') && benefitsGroup.get('date').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group right">
+            <div class="label right_label">
+                <label for=""><span>*</span> Փաստաթղթի №</label>
+            </div>
+            <div class="input_wraper wrapper">
+                <input formControlName="folderNumber" type="number">
+                <span class="validate_error"
+                    *ngIf="benefitsGroup.get('folderNumber').hasError('required') && benefitsGroup.get('folderNumber').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Նպաստ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('benefit','code')"
+                [selectObject]="benefitsGroup.get('benefit').value" (setValue)="setValue($event,'benefit')"
+                [array]="benefits" [modalParams]="setModalParams('Նպաստ','code')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="benefitsGroup.get('benefit').value">{{benefitsGroup.get('benefit').value.name}}</span>
+
+            <span class="validate_error"
+                *ngIf="benefitsGroup.get('benefit').hasError('required') && benefitsGroup.get('benefit').touched"><i
+                    class="material-icons">
+                    close
+                </i></span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Աշխատակից</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'id'" [inputProperty]="'fullName'"
+                [inputValue]="setInputValue('employee','fullName')" [selectObject]="benefitsGroup.get('employee').value"
+                (setValue)="setValue($event,'employee')" [array]="employees"
+                [modalParams]="setModalParams2('Աշխատակիցներ', [ 'Անուն'],['fullName'])">
+            </app-modal-dropdown>
+
+            <span class="validate_error"
+                *ngIf="benefitsGroup.get('employee').hasError('required') && benefitsGroup.get('employee').touched"><i
+                    class="material-icons">
+                    close
+                </i></span>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 1</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup1','code')"
+                [selectObject]="benefitsGroup.get('analyticalGroup1').value"
+                (setValue)="setValue($event,'analyticalGroup1')" [array]="analyticalGroup1"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 1','code')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="benefitsGroup.get('analyticalGroup1').value">{{benefitsGroup.get('analyticalGroup1').value.name}}</span>
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 2</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup2','code')"
+                [selectObject]="benefitsGroup.get('analyticalGroup2').value"
+                (setValue)="setValue($event,'analyticalGroup2')" [array]="analyticalGroup2"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 2','code')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="benefitsGroup.get('analyticalGroup2').value">{{benefitsGroup.get('analyticalGroup2').value.name}}</span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Մեկնաբանություն</label>
+        </div>
+        <div class="input_wraper comment">
+            <textarea formControlName="comment"></textarea>
+            <!-- <app-modal-dropdown [isDisabledInput]="true" [property]="'id'"
+                [inputValue]="setInputValue('comment','text')" [selectObject]="benefitsGroup.get('comment').value"
+                (setValue)="setValue($event,'comment')" [array]="documentKind" [modalName]="getModalName()">
+            </app-modal-dropdown> -->
+        </div>
+    </div>
+</form>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+        <app-benefits-common [totalAmount]="totalSum" [provisions]="provisions"
+            [benefit]="benefitsGroup.get('benefit').value" [group]="benefitsGroup.get('general').value"
+            [chartAccounts]="chartAccounts" *ngSwitchCase="'Ընդհանուր'"></app-benefits-common>
+        <app-average-salary (getAvarageSalary)="getAvarageSalary($event)" [benefit]="benefitsGroup.get('benefit').value"
+            [dailyCoefficient]="getDailyCoefficient()" [group]="benefitsGroup.get('avarageSalary').value"
+            *ngSwitchCase="'Միջին աշխատավարձ'">
+        </app-average-salary>
+    </div>
+</app-tabs>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

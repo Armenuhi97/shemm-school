@@ -1,0 +1,49 @@
+.section {
+    border: 1px solid grey;
+    margin: 10px 10px 10px;
+
+    .section-header {
+        height: 30px;
+        line-height: 30px;
+        border-bottom: 1px solid grey;
+
+        span {
+            margin-left: 10px;
+        }
+    }
+
+    .section-body {
+        margin: 12px;
+
+        .form_group{       
+            .required::before{
+                content: '*';
+                color: red;
+            }
+            .label{
+                width: 250px;    
+                .button{
+                    padding: 6px;
+                }
+            }  
+            .input_wraper{       
+                width: calc(100% - 250px);
+                .code-input{
+                    width: 30%;
+                }
+                .name-input{
+                    width: 85%;
+                }                 
+              
+            }
+            .font{
+                input {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+h2 {
+    color: rgba(80,80,80, 0.5);
+}

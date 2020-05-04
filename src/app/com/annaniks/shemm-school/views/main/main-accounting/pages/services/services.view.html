@@ -1,0 +1,48 @@
+<app-tables-by-filter [titles]="titles" (add)="addServices(true)">
+        <tr  *ngFor="let item of servicesValue" >
+            <td class="edit" (click)="addServices(true, item?.id, item)">
+                <i class="material-icons">edit</i>
+            </td>
+            <td class="delete" (click)=delete(item.id)>
+                <i class="material-icons">close</i>
+            </td>
+            <td>{{item?.code}}</td>      
+            <td>{{item?.name}}</td>                         
+            <td>{{item?.fullName}}</td>                         
+            <td>{{item?.measurementUnitId}}</td>                         
+            <td>{{item?.classificationId}}</td>                         
+            <td>{{item?.accountId}}</td>                         
+            <td>{{item?.wholesalePrice}}</td>                         
+            <td>{{item?.retailerPrice}}</td>                         
+            <td>{{item?.barCode}}</td>                
+            <td><label class="container-checkbox">          
+                <input [checked]="getBooleanVariable(item?.isAah)" disabled type="checkbox">
+                <span class="checkmark"></span>
+            </label></td>
+        </tr>
+</app-tables-by-filter>
+
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>
+
+
+<div class="bottom-content">
+    <span class="web_name">b2b.armsoft հարթակ</span>
+    <div class="more-info">
+        <div class="text">
+            <span>
+                Նշեք փեր ծառայությունների ցանկը և հրապարակեք b2b.armsoft հարթակ
+            </span>
+        </div>
+        <div class="info-text">
+            <span> <i class="material-icons">
+                    cloud_queue
+                </i>
+            </span>
+            <a>
+                Հրապարակել
+            </a>
+        </div>
+    </div>
+</div>

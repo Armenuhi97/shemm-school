@@ -1,0 +1,49 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<form [formGroup]="paymentOrderGroup" action="">
+    <div class="group">
+        <div class="first-section">
+            <div class="form_group date-group">
+                <div class="label">
+                    <label for=""><span>*</span> Ամսաթիվ</label>
+                </div>
+                <div class="input_wraper date">
+                    <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'"
+                        dateFormat="dd/mm/yy" [locale]="calendarConfig"> </p-calendar>
+                    <span class="validate_error"
+                        *ngIf="paymentOrderGroup.get('date').hasError('required') && paymentOrderGroup.get('date').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </div>
+            <div class="form_group right">
+                <div class="right_label label">
+                    <label for=""><span>*</span> Փաստաթղթի N</label>
+                </div>
+                <div class="input_wraper order_number">
+                    <input formControlName="folderNumber" type="number">
+                    <span class="validate_error"
+                        *ngIf="paymentOrderGroup.get('folderNumber').hasError('required') && paymentOrderGroup.get('folderNumber').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+        <app-replenishment-common [key]="'credit'" [exitSpecification]="exitSpecification" [date]="paymentOrderGroup.get('date').value" [bankAccount]="bankAccount"
+            [chartAccounts]="chartAccounts" [partners]="partners" [operationSignificanse]="operationSignificanse"
+            [group]="paymentOrderGroup.get('general').value" *ngSwitchCase="'Ընդհանուր'"></app-replenishment-common>
+        <app-operation [typeOperation]="'true'" [chartAccounts]="chartAccounts" [partners]="partners"
+            [analyticalGroup1]="analyticalGroup1" [analyticalGroup2]="analyticalGroup2"
+            *ngSwitchCase="'Գործառնություններ'" [group]="paymentOrderGroup.get('operation').value"></app-operation>
+    </div>
+</app-tabs>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

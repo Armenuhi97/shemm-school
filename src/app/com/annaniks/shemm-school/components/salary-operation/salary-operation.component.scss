@@ -1,0 +1,73 @@
+.settings-button{
+    display: flex;
+    align-items: center;
+    i{
+      font-weight: bold;
+    }
+    .add{
+      color: #56AD89;
+      cursor: pointer;       
+    }
+    .remove{
+      color: #CC4C33;
+      cursor: pointer;
+      margin-left: 15px;      
+    }
+  }
+  :host::ng-deep{
+    app-modal-dropdown{
+      padding: 5px;
+      input{
+        height: 32px;
+        background: none;
+        border: 1px solid grey !important;
+        border-right: none !important;
+  
+       }
+    }
+  }
+  input{
+    height: 32px !important;
+    width: 80%;
+    margin: 4px;
+  }
+table{
+  width: 100%;
+}
+  th{
+    padding: 5px;
+  }
+  table, th, td {
+      border: 1px solid;
+      border-collapse: collapse;
+      color: black;
+      font-size:12px
+    }
+    .row{
+      input[type="text"], input[type="number"], p-dopdown,textarea{
+        border:none !important;
+        height: 100%;
+        resize: none;
+      }
+    }
+
+    .td{
+      border: none !important;   
+      input{
+        border: 1px solid !important;
+        padding-left: 3px;
+      } 
+    }
+    .validate_error {
+      margin-right: 10px;
+    }
+
+ 
+.textarea-content{
+  margin: 4px;
+    textarea{
+      padding: 4px;
+      width: 100%;
+  }
+}
+  

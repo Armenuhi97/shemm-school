@@ -1,0 +1,19 @@
+<app-tables-by-filter [titles]="titles" (add)="addEmployee(false)">
+    <tr *ngFor="let employee of employees">
+        <td class="edit"> <i (click)="addEmployee(true,employee?.id)" class=" material-icons"> edit </i> </td>
+        <td class="delete"> <i (click)="deleteEmployee(employee?.id)" class=" material-icons"> close </i></td>
+        <td>{{employee?.tabelCounter}}</td>
+        <td>{{employee?.fullName}}</td>
+
+        <td>{{employee?.employeePosition[0]?.positon?.name}}</td>
+        <td>{{employee?.employeePosition[0]?.rateSallary}}</td>
+        <td>{{getDate(employee.general?.birthdate)}}</td>
+        <td>{{employee.general?.gender}}</td>
+        <td>{{employee.otherInformation?.phone}}</td>
+        <td>{{employee.otherInformation?.passportNumber}}</td>
+        <td>{{employee.otherInformation?.bankNumber}}</td>
+    </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

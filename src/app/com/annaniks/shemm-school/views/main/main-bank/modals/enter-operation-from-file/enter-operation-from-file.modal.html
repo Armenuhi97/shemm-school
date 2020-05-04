@@ -1,0 +1,17 @@
+<app-modal-header [title]="title" (close)="close($event)"></app-modal-header>
+<div class="upload-content">
+    <div class="upload-file">
+        <div class="files-content">
+            <div class="file" *ngFor="let file of defaultFiles;let i=index">
+                <img [src]="file.img" [alt]="file.name">
+                <i (click)="delete(i)" class="close material-icons">
+                    close
+                </i>
+            </div>
+        </div>
+        <label for="file-upload" class="custom-file-upload">
+            <button class="upload-button">Ներբեռնել ֆայլը</button>
+            <input id="file-upload" (change)="changeFile($event)" type="file" accept="*" />
+        </label>
+    </div>
+</div>

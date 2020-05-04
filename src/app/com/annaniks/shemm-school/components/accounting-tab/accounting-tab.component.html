@@ -1,0 +1,98 @@
+<form action="" [formGroup]="accountingGroup">
+    <div class="accounting">
+        <div class="accounting-container">
+            <div class="accounting-body">
+                <div class="accounting-sub-body">
+                    <div class="financial">
+                        <p>Ֆինանսական</p>
+                        <div class="form-control">
+                            <label for="shelf-life"><span>*</span> Օգտակար ծառայության ժամկետ (ամիս)</label>
+                            <div class="wrapper">
+                                <input type="number" formControlName="financeUsefulLife">
+                            </div>
+                            <!-- <p-dropdown id="shelf-life" class="document-number main-select"></p-dropdown> -->
+                        </div>
+                        <div class="form-control">
+                            <label for=""><span>*</span> Սկզբնական արժեք</label>
+                            <div class="wrapper">
+                                <input type="number" formControlName="financeInitialCost">
+                            </div>
+                            <!-- <p-dropdown id="shelf-life" class="document-number main-select"></p-dropdown> -->
+                        </div>
+                        <div class="form-control">
+                            <label for="">Հաշվարկված մաշվածք</label>
+                            <div class="wrapper">
+                                <input type="number" formControlName="financeCalculatedWear">
+                            </div>
+                            <!-- <p-dropdown id="shelf-life" class="document-number main-select"></p-dropdown> -->
+                        </div>
+                        <div class="form-control">
+                            <label for="">Մնացորդային արժեք</label>
+                            <div class="wrapper">
+                                <input type="number" formControlName="financeResidualValue">
+                            </div>
+                            <!-- <p-dropdown id="shelf-life" class="document-number main-select"></p-dropdown> -->
+                        </div>
+                        <div class="form-control">
+                            <label for="">Մաշվող է</label>
+                            <div class="wrapper">
+                                <p-checkbox formControlName="financeIsWorn"></p-checkbox>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tax">
+                        <p>Հարկային</p>
+                        <div class="form-control">
+                            <input type="number" formControlName="taxUsefulLife">
+                        </div>
+                        <div class="form-control">
+                            <input type="number" formControlName="taxInitialCost">
+                        </div>
+                        <div class="form-control">
+                            <input type="number" formControlName="taxCalculatedWear">
+                        </div>
+                        <div class="form-control">
+                            <input type="number" formControlName="taxResidualValue">
+                        </div>
+                        <div class="form-control">
+                            <p-checkbox formControlName="taxIsWorn"></p-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="top">
+                    <div class="financial">
+                        <p>Հետաձգված հասույթ</p>
+                        <div class="form-control">
+                            <label for="shelf-life">Օգտակար ծառայության ժամկետ (ամիս)</label>
+                            <div class="wrapper">
+                                <input type="number" formControlName="financialUsefulLife">
+                            </div>
+
+                        </div>
+                        <div class="form-control">
+                            <label for="">Հետաձգված հասույթ</label>
+                            <div class="wrapper">
+                                <input type="number" formControlName="financeDeferredRevenue">
+                            </div>
+
+                        </div>
+                        <div class="form-control">
+                            <label for="">Հաշվարկված մաշվածք</label>
+                            <div class="wrapper">
+                                <input type="number" formControlName="financialCalculatedWear">
+                            </div>
+
+                        </div>
+                        <div class="form-control">
+                            <label for="">Մաշվող է</label>
+                            <div class="wrapper">
+                                <p-checkbox formControlName="financialIsWorn"></p-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

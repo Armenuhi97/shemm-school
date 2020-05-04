@@ -1,0 +1,114 @@
+.group{
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .label{
+        width: fit-content;
+        margin-right: 5px;
+    }
+    .input_wraper{
+        width: fit-content;
+    }
+}
+.first-section{
+    display: flex;
+    align-items: center;   
+     .currency_wraper input{
+        width: 150px !important;
+    } 
+    .adm_wraper{
+        width: 150px !important;
+    }
+}
+.right{
+    margin-left: 15px;
+    .right_label{
+        width: fit-content !important;   
+        margin-right: 5px;  
+        label{
+            font-size: 15px;                
+        }     
+    } 
+    .order_number{
+        width: 160px !important;
+    }
+}
+.card-group{
+    margin-top: 20px;
+    .form_group{
+        .label{
+            width: 160px;
+        }
+        .input_wraper{
+            width: calc(100% - 160px);
+            input{
+                width: 85%;
+            }
+        }
+    }
+
+   .card, .card1, .card2{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 5px;
+    }
+    .left-card,.right-card{
+        width: 48%;
+    }
+    .right-card{
+        margin-left: 5px;
+    }
+}
+:host::ng-deep{
+    .registration-date-container{
+        p-calendar{
+            .ui-calendar .ui-datepicker{
+                right: 0 !important;
+                left: auto !important;
+            }    
+          } 
+    }
+}
+:host::ng-deep{
+    .card{
+        app-card{
+            width: 100% !important;
+            .card-container .inputs-group{
+                min-height: fit-content !important;
+            }
+        }
+
+    }
+}
+
+  @media only screen and (max-width: 1160px) {
+    .card, .card1, .card2{
+        flex-direction: column;
+        align-items: flex-start;
+        
+    }
+    .left-card,.right-card{
+        width: 100% !important;
+    }
+    .right-card{
+        margin-top: 5px;
+        margin-left: 0 !important;
+    }
+}
+  
+@media only screen and (max-width: 1200px) {
+    .date-group{
+        .label{
+            width: 200px;
+        }
+        .input_wraper{
+            width: calc(100% - 200px);
+        }
+    }  
+    .group{
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+}

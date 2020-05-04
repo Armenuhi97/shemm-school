@@ -1,0 +1,48 @@
+.group{
+    margin-top: 30px;
+}
+.form_group{    
+    .label{
+        width: 265px;
+    } 
+    .input_wraper{
+        width: calc(100% - 265px);
+    }
+}
+.account-wraper{
+    input{
+        width: 50%;
+    }
+}
+.container-checkbox{
+    padding-left: 22px !important;
+}
+.card{
+    margin-top: 10px;
+}
+table, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 5px;
+    color: black;
+    font-size:12px; ;
+    text-align: start
+  }
+table{
+    width: 90%;
+}
+.save-button{
+    margin-top: 15px;
+    text-align: center;
+    button{
+        background: #3F7FB8;
+        border: none;
+        padding: 14px;
+        color: white;
+        font-size: 17px;
+        cursor: pointer;
+    }
+}
+.code-input{
+    width: 30%;
+}

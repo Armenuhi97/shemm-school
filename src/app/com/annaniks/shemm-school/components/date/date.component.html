@@ -1,0 +1,18 @@
+<form action="">
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> {{labelName}}</label>
+        </div>
+        <div class="input_wraper date">
+            <p-calendar rPCalendarMask [disabled]="true" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy" [locale]="calendarConfig">
+            </p-calendar>
+            <div>
+                <button (click)="openCalendar()" class="calendar_button">
+                    <i class="material-icons">
+                        calendar_today
+                    </i>
+                </button>
+            </div>
+        </div>
+    </div>
+</form> 

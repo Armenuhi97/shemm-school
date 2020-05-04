@@ -1,0 +1,26 @@
+.form_group{
+    .label{
+        width: 200px;
+    }
+    .input_wraper{
+        width: calc(100% - 200px);
+    }
+}
+:host::ng-deep{
+    app-modal-dropdown{
+      input{
+        height: 32px;
+        background: none;
+        border: 1px solid grey !important;
+        border-right: none !important;
+
+       }
+    }
+  }
+.td{
+    border: none !important;   
+    input{
+      border: 1px solid !important;
+      padding-left: 3px;
+    } 
+  }

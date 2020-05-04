@@ -1,0 +1,65 @@
+.forms-container{
+    border: 1px solid grey;
+    padding: 5px;
+    margin-top: 15px;
+    .first-group{
+        border-bottom: 1px solid grey;
+        padding-bottom: 15px;
+    }
+    .form_group{       
+        .label{
+            width: 270px;    
+        }  
+        .input_wraper{       
+            width: calc(100% - 270px);
+        }
+    }
+}
+.container-checkbox{
+    padding-left: 22px !important;
+}
+:host::ng-deep{
+    .end-date-container{
+        p-calendar{
+            .ui-calendar .ui-datepicker{
+                right: 0 !important;
+                left: auto !important;
+            }    
+          } 
+    }
+}
+.small_dropdown{
+    .label{
+        width: fit-content !important;
+        margin-right: 5px;
+    }
+    .input_wraper{
+        width: fit-content !important;
+    }
+}
+.right-section{
+    margin-left: 5px;
+}
+:host::ng-deep{
+    .full_dropdown{
+        p-dropdown{
+            width: 60% !important;
+            .ui-dropdown{
+                width: 100%;
+            }
+        }
+        input{
+            width: 80%;
+        }
+    }
+}
+:host:ng-deep{
+    p-calendar{
+        .ui-inputtext{
+            font-size: 14px !important;
+        }
+        .ui-dropdown .ui-dropdown-label{
+            padding: 3px !important;
+        }
+    }
+}

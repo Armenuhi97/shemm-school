@@ -1,0 +1,41 @@
+   .form_group{       
+        .label{
+            width: 300px;          
+        }       
+        .checkbox_input_wraper{
+          width: fit-content;
+          label{
+              font-size: 15px;
+          }
+      }
+        .input_wraper{
+            width: calc(100% - 300px);                 
+        }
+    }
+.disabled{
+    opacity: 0.7;
+    pointer-events: none;
+}
+.container-checkbox{
+    padding-left: 22px !important;
+}
+.employee_address{
+    input:first-child{
+        width: 40% !important;
+    }
+    input:nth-child(2),input:last-child{
+        width: 19% !important; 
+        margin-left: 1%;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    .text{
+        font-size: 11px !important;
+    }  
+    *[margin-left-12]{
+        margin-left:0 !important
+      }
+}
+*[margin-left-12]{
+margin-left:12px
+}

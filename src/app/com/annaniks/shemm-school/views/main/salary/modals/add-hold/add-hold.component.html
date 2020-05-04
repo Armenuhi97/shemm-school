@@ -1,0 +1,116 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div *ngIf="serverResponseError">{{serverResponseError}}</div>
+<div class="forms-container">
+  <form [formGroup]="holdGroup">
+
+    <div class="form_group">
+      <div class="label">
+        <label class="required" for="">Կոդ</label>
+      </div>
+      <div class="input_wraper">
+        <input type="text" class="code-input" formControlName="code">
+        <span class="validate_error"
+          *ngIf="holdGroup.get('code').hasError('required') && holdGroup.get('code').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label class="required" for="">Անվանում</label>
+      </div>
+      <div class="input_wraper">
+        <input class="code-input" formControlName="name">
+        <span class="validate_error"
+          *ngIf="holdGroup.get('name').hasError('required') && holdGroup.get('name').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label for="">Գործակից</label>
+      </div>
+      <div class="input_wraper">
+        <input type="text" formControlName="coefficient" min="0.00" max="1.00" placeholder="0.00">
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label for="">Նվազեցնել եկամտային հարկի հարկվող գումարից</label>
+      </div>
+      <div class="input_wraper">
+        <label class="container-checkbox">
+          <input type="checkbox" formControlName="reduceFromIncomeTaxMoney">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label for="">Նվազեցնել պարտադիր կուտ․ կենս․ հարկվող գումարից</label>
+      </div>
+      <div class="input_wraper">
+        <label class="container-checkbox">
+          <input class="code-input" type="checkbox" formControlName="reduceFromMandatoryFundPens">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label class="required" for="">Մասնակցում է արձակուրդայինի միջինի մեջ</label>
+      </div>
+      <div class="input_wraper">
+
+        <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('inTheMiddleOfVacation','name')"
+        [selectObject]="holdGroup.get('inTheMiddleOfVacation').value"
+        fomControlName="inTheMiddleOfVacation" (setValue)="setValueName($event,'inTheMiddleOfVacation')"
+        [array]="types" [modalParams]="setModalParams('Մասնակցում է արձակուրդայինի միջինի','id')">
+      </app-modal-dropdown>
+      <span class="validate_error"
+        *ngIf="holdGroup.get('inTheMiddleOfVacation').hasError('required') && holdGroup.get('inTheMiddleOfVacation').touched">
+        <i class="material-icons">
+          close
+        </i>
+      </span>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label for="">Հաշիվ</label>
+      </div>
+      <div class="input_wraper">
+        <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('accountId','account')"
+          [selectObject]="holdGroup.get('accountId').value"
+          fomControlName="accountId" (setValue)="setValue($event,'accountId')"
+          [array]="chartAccounts" [modalParams]="setModalParams('Հաշիվ','account')">
+        </app-modal-dropdown>
+        <span class="selected-element-name" *ngIf="holdGroup.get('accountId').value">
+          {{ holdGroup.get('accountId').value?.name}}
+        </span>
+        <span class="validate_error"
+          *ngIf="holdGroup.get('accountId').hasError('required') && holdGroup.get('accountId').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button (click)="addHold()">Կատարել</button>
+      <button (click)="close()">Դադարեցնել</button>
+    </div>
+  </form>
+</div>

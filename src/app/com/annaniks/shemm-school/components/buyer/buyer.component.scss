@@ -1,0 +1,23 @@
+
+  .form_group{     
+      margin-left: 15px;  
+    .label{
+        width: 212px;         
+    }   
+    .checkbox_input_wraper{
+      width: fit-content;
+      label{
+          font-size: 15px;
+      }
+    }
+    .input_wraper{
+        width: calc(100% - 212px);       
+    }
+}
+
+:host::ng-deep p-dropdown{
+    width: 100%;
+    .ui-dropdown{
+        width: 80%  !important;
+    }
+}

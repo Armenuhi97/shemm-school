@@ -1,0 +1,153 @@
+<form action="" [formGroup]="commonGroup">
+    <div class="form_group">
+        <div class="label">
+            <label for="">Տպել վաճառքի գներով</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="printAtSalePrice"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 1</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup1','code')"
+                [selectObject]="commonGroup.get('analyticalGroup1').value" 
+                (setValue)="setValue($event,'analyticalGroup1')" [array]="analyticalGroup1"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 1','code')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="commonGroup.get('analyticalGroup1').value">{{commonGroup.get('analyticalGroup1').value.name}}</span>
+            <!-- <p-dropdown formControlName="analyticalGroup1"></p-dropdown> -->
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 2</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup2','code')"
+                [selectObject]="commonGroup.get('analyticalGroup2').value"
+                (setValue)="setValue($event,'analyticalGroup2')" [array]="analyticalGroup2"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 2','code')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="commonGroup.get('analyticalGroup2').value">{{commonGroup.get('analyticalGroup2').value.name}}</span>
+            <!-- <p-dropdown formControlName="analyticalGroup2"></p-dropdown> -->
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Մեկնաբանություն</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="comment">
+        </div>
+    </div>
+
+
+    <app-table (add)="addRow($event)" (delete)="deleteAll($event)">
+        <table
+            *ngIf="commonGroup.get('productArray') && commonGroup.get('productArray')['controls'] && commonGroup.get('productArray')['controls'].length">
+            <tr>
+                <th></th>
+                <th>Կոդ</th>
+                <th class="disabled">Անվանում</th>
+                <th class="disabled">Միավոր</th>
+                <th>Քանակ</th>
+                <th>Գումար</th>
+                <th>Հաշիվ մուտքի</th>
+                <th>Խմբաքանակ</th>
+            </tr>
+            <tr *ngFor="let item of commonGroup.get('productArray')['controls']; let i = index" [formGroup]="item">
+                <td>
+                    <div (click)="remove(i)" class="close">
+                        <i class="material-icons">
+                            close
+                        </i>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'code'"
+                            [inputValue]="setInputValue('code','barcode',item)" [selectObject]="item.get('code').value"
+                         (setValue)="setTableValue($event,item)" [array]="unitOfMeasurements"
+                            [modalParams]="setModalParams('Նյութական արժեքներ','barCode')">
+                        </app-modal-dropdown>
+                        <!-- <p-dropdown formControlName="code"></p-dropdown> -->
+                        <span class="validate_error" *ngIf="item.get('code').invalid  && item.get('code').touched"><i
+                                class="material-icons">
+                                close
+                            </i>
+                        </span>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input class="disabled-input" formControlName="name" type="text">
+                        <span class="validate_error" *ngIf="item.get('name').invalid  && item.get('name').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input class="disabled-input" formControlName="point" type="text">
+                        <span class="validate_error" *ngIf="item.get('point').invalid  && item.get('point').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input (ngModelChange)="changeCount()" formControlName="quantity" type="number">
+                        <span class="validate_error"
+                            *ngIf="item.get('quantity').invalid  && item.get('quantity').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input (ngModelChange)="changeAmount()" formControlName="amount" type="number">
+                        <span class="validate_error"
+                            *ngIf="item.get('amount').invalid  && item.get('amount').touched"><i class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input formControlName="invoiceRecord" type="text">
+                        <span class="validate_error"
+                            *ngIf="item.get('invoiceRecord').invalid  && item.get('invoiceRecord').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input formControlName="groupCount" type="number">
+                        <span class="validate_error"
+                            *ngIf="item.get('groupCount').invalid  && item.get('groupCount').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="all_sum">
+                <td class="td" colspan="4"> </td>
+                <td class="td"><input readOnly=true formControlName="totalCount" type="number"></td>
+                <td class="td"><input readOnly=true formControlName="totalAmount" type="number"></td>
+                <td class="td" colspan="2"></td>
+            </tr>
+        </table>
+    </app-table>
+</form>

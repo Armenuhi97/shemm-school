@@ -1,0 +1,36 @@
+<app-tables-by-filter [titles]="titles" (add)="addMaterialValues()">
+    <tr  *ngFor="let item of materialValues" >
+        <td class="edit" (click)="addMaterialValues(true, item?.id, item)">
+            <i class="material-icons">edit</i>
+        </td>
+        <td class="delete" (click)=delete(item.id)>
+            <i class="material-icons">close</i>
+        </td>
+        <td>{{item?.name}}</td>                         <!--  anvanum -->
+        <td>{{item?.measurementUnit?.unit}}</td>            <!--  chapman miavor -->
+        <td>{{item?.materialValueGroup?.name}}</td>         <!--  xumb -->
+        <td>{{item?.classification?.code}}</td>             <!--  dasakargum -->
+        <td>{{item?.account?.account}}</td>                    <!--  hashiv -->
+        <td>{{item?.wholesalePrice}}</td>               <!--  mecacax gin -->
+        <td>{{item?.retailerPrice}}</td>                <!--  manracax gin -->
+
+        <td>{{item?.salesRevenue?.account}}</td>        <!--  vacharqic hasuyti hashiv -->
+        <td>{{item?.retailRevenue?.account}}</td>       <!--  vacharqic vacharqic hasuyti hashiv -->
+
+        <td>{{item?.characteristic}}</td>               <!--  bnutagir -->
+        <td>{{item?.barCode}}</td>                      <!--  gcikavor kod -->
+        <td>{{item?.externalCode}}</td>                 <!--  artaqin kod -->
+        <td>{{item?.hcbCoefficient}}</td>               <!--  hbc gorcakic -->
+        <!-- <td>{{item?.billingMethod?.abbreviation}}</td>              hashvarman metod
+        <td><label class="container-checkbox">                           isAah
+            <input [checked]="getBooleanVariable(item?.isAah)" disabled type="checkbox">
+            <span class="checkmark"></span>
+        </label></td> -->
+    </tr>
+</app-tables-by-filter>
+
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>
+
+

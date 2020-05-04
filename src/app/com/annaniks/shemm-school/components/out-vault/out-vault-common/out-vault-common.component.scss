@@ -1,0 +1,41 @@
+.form_group{
+    .label{
+        width: 150px;
+    }
+    .input_wraper{
+        width: calc(100% - 150px);
+    }
+}
+:host::ng-deep{
+    app-modal-dropdown{
+      input{
+        height: 32px;
+        background: none;
+        border: 1px solid grey !important;
+        border-right: none !important;
+
+       }
+    }
+  }
+  .small-input{
+    width: 50px !important;
+  }
+.td{
+    border: none !important;   
+    input{
+      border: 1px solid !important;
+      padding-left: 3px;
+    } 
+  }
+  .group-content{
+    justify-content: space-between;
+    button{
+      display: flex;
+      align-items: center;
+      margin-left: 5px;
+      height: 20px;
+      width: 20px;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }

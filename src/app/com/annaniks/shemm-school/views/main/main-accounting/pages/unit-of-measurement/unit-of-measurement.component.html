@@ -1,0 +1,19 @@
+<app-tables-by-filter [titles]="titles" (add)="addUnitOfMeasurement()">
+
+    <tr *ngFor="let item of unitOfMeasurements">
+        <td class="edit" (click)="addUnitOfMeasurement(true, item?.id, item)">
+            <i class="material-icons">edit</i>
+        </td>
+        <td class="delete" (click)="delete(item?.id)">
+            <i class="material-icons">close</i>
+        </td>
+        <td>{{item?.code}}</td>
+        <td>{{item?.unit}}</td>
+        <td>{{item?.abbreviation}}</td>
+ 
+    </tr>
+
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

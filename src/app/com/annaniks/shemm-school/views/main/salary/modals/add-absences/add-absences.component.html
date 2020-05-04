@@ -1,0 +1,44 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div *ngIf="serverResponseError">{{ serverResponseError }}</div>
+<form [formGroup]="absentGroup">
+  <div class="forms-container">
+
+    <div class="form_group">
+      <div class="label">
+        <label class="required" for="">Բացակա</label>
+      </div>
+      <div class="input_wraper">
+        <app-modal-dropdown [property]="'id'" [inputProperty]="'fullName'" [inputValue]="setInputValue('employeeId','fullName')"
+          [selectObject]="absentGroup.get('employeeId').value" (setValue)="setValue($event,'employeeId')"
+          [array]="employees" [modalParams]="setModalParams('Բացականեր')">
+        </app-modal-dropdown>
+       
+        <span class="validate_error"
+          *ngIf="absentGroup.get('employeeId').hasError('required') && absentGroup.get('employeeId').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label for=""><span>*</span> Ամսաթիվ</label>
+      </div>
+      <div class="input_wraper">
+        <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+          [locale]="calendarConfig"> </p-calendar>
+        <span class="validate_error"
+          *ngIf="absentGroup.get('date').hasError('required') && absentGroup.get('date').touched"><i
+            class="material-icons">
+            close
+          </i></span>
+      </div>
+    </div>
+  </div>
+  <div class="buttons">
+    <button type="button" (click)="addAbsent()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+  </div>
+</form>

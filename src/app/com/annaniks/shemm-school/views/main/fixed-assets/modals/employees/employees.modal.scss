@@ -1,0 +1,295 @@
+.modal_content{
+    display: flex;
+    margin-top: 25px;
+    justify-content: space-between;
+    .form_group{     
+        .label{
+            width: 287px;
+        } 
+        .name-input{
+            width: 200px;
+        }
+        
+        .rate-input{
+            input{
+                width: 150px;
+            }
+        }
+        .input_wraper{
+            width: calc(100% - 287px) ;      
+        }  
+        .reportCard-input {
+            width: 140px !important;
+        }
+        input{
+            width: 100% ;
+            border-radius: 3px;
+            border: 1px solid grey;
+            padding: 6px 2px;
+        }
+        .generate-button{
+            cursor: pointer;           
+            height: 32px;
+            width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            padding: 0;
+            img{
+                width: 28px;
+                height: 28px;                
+            }
+        }
+
+    }
+    .three-section{
+        display: flex;
+        align-items: center;
+        span{
+            color: red;
+        }
+        .section_label{
+            // width: 287px
+            width: fit-content;
+            margin-right: 5px;
+        }
+    }
+
+    .unit_section,.position-section{
+        button{
+            border: none;
+            padding: 7px;
+            cursor: pointer;
+            margin-left: 5px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            i{
+                font-size: 15px;
+            }
+        }
+        .add_button{
+            background-color: green;
+        }
+        .delete_button{
+            background-color: red;
+        }
+    }
+ 
+    .unit_section{
+        display: flex;
+        align-items: center;
+  
+    }
+    .unit_input{
+        display: block !important;
+    }
+    .image{
+        border: 1px solid;
+        height: 150px;
+        width: 150px;
+        margin-left: 15px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        position: relative;
+        margin-right: 5px;
+    }
+    .camera-container{
+        position: absolute;
+        width: 100%;
+        background: #9E9E9E;
+        height: 35px;
+        bottom: 0;
+        input[type="file"] {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            position:absolute;
+            top: 0;
+            right: 0;
+            z-index: 99;
+            /*This makes the button huge. If you want a bigger button, increase the font size*/
+            font-size:50px;
+            /*Opacity settings for all browsers*/
+            opacity: 0;
+            -moz-opacity: 0;
+        }
+        .custom-file-upload{
+            position: absolute;
+            bottom: 0;
+            left: 42%;   
+            i{
+                color: white
+            }     
+      
+        }
+     }
+}
+.position-buttons{
+    display: flex;
+    margin-top: 10px;
+    .add_button:first-child{
+        margin-right: 10px;      
+    }
+    .add_button{
+        padding: 7px;
+        cursor: pointer;
+        background: #3E7EB7;
+        border: none;
+        color: white;
+        font-size: 15px;
+    }
+}
+// .position-section{
+//     display: flex;
+//     align-items: center;
+//     .date-form{
+//         .label{
+//             width: 127px;
+//             margin-right: 5px;
+//             margin-left: 2px;
+//         }
+//         .input_wraper{
+//             width: 175px;
+//             // width: 50%;
+//         }
+        
+//     }
+// }
+.position-section{
+    flex-direction: column;
+    align-items: flex-start !important;
+    border: 1px solid grey;
+    margin: 10px 0;
+    padding: 5px;
+     .form_group{
+         width: 100%;
+     }
+     .date-form{
+         .label{
+             width: 287px !important;
+             margin-right: 0 !important;
+             margin-left: 0 !important;
+         }
+         .input_wraper{
+             width: calc(100% - 287px) !important;                
+         }            
+     }
+ }
+ :host::ng-deep{
+     .position-section{       
+         p-calendar{
+             width: 175px !important;                
+         }          
+     }
+  
+ }
+// :host::ng-deep{
+//     .position-section{       
+//         p-calendar{
+//             width: 82% !important;
+//             .ui-calendar,.ui-inputtext{
+//                 width: 100%;
+//             }           
+//         }          
+//     }
+ 
+// }
+.is-invalid{
+    margin-left: 27px !important;
+}
+// .sm-media{
+//     display: none !important;
+// }
+// .bg-media{
+//     display: flex;
+// }
+
+@media only screen and (max-width: 1570px){
+ 
+    // .sm-media{
+    //     display: flex !important;
+    // }
+    // .bg-media{
+    //     display: none !important;
+    // }
+    // .position-section{
+    //    flex-direction: column;
+    //     align-items: flex-start !important;
+    //     .form_group{
+    //         width: 100%;
+    //     }
+    //     .date-form{
+    //         .label{
+    //             width: 287px !important;
+    //             margin-right: 0 !important;
+    //             margin-left: 0 !important;
+    //         }
+    //         .input_wraper{
+    //             width: calc(100% - 287px) !important;                
+    //         }            
+    //     }
+    // }
+    // :host::ng-deep{
+    //     .position-section{       
+    //         p-calendar{
+    //             width: 175px !important;                
+    //         }          
+    //     }
+     
+    // }
+    .is-invalid{
+        margin-left: 0 !important;
+    }
+}
+.padding-left-5{
+    padding-left: 5px;
+}
+.edit-button{
+    cursor: pointer;
+    margin-left: 5px;
+    background: grey;
+    color: white;
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i{
+        font-size: 16px;
+    }
+}
+.add-position-content{
+    display: flex;
+    align-items: center;
+}
+@media only screen and (max-width: 1355px){
+    .three-section{
+        flex-direction:column;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+    }
+    .section_label{
+        width: 287px !important;
+        margin-right: 0 !important;
+    }
+    *[margin-left-9]{
+        margin-left: 0px !important;
+    }
+}
+
+.margin-top{
+    margin-top: 5px;
+}
+*[full-width]{
+    width: 100% ;
+}
+
+*[margin-left-9]{
+    margin-left: 9px;
+}
+
+
+  

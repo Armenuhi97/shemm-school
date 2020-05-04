@@ -1,0 +1,109 @@
+<form [formGroup]="accountsGroup" class="accounts">
+
+    <div class="financial">
+        <div class="financial-header">
+            <span>Ֆինանսական</span>
+        </div>
+        <div class="financial-body">
+          
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Սկզբնական արժեքի հաշիվ</label>
+                </div>
+                <div class="input_wraper">
+                    <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('initialCostAccount','account')"
+                        [selectObject]="accountsGroup.get('initialCostAccount').value"
+                        (setValue)="setValue($event,'initialCostAccount')" [array]="chartAccounts"
+                        [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+                    </app-modal-dropdown>
+                    <span class="selected-element-name"
+                        *ngIf="accountsGroup.get('initialCostAccount').value">{{accountsGroup.get('initialCostAccount').value.name}}</span>
+                </div>
+            </div>
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Մաշվածության հաշիվ</label>
+                </div>
+                <div class="input_wraper">
+                    <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('wornAccount','account')"
+                        [selectObject]="accountsGroup.get('wornAccount').value"
+                        (setValue)="setValue($event,'wornAccount')" [array]="chartAccounts"
+                        [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+                    </app-modal-dropdown>
+                    <span class="selected-element-name"
+                        *ngIf="accountsGroup.get('wornAccount').value">{{accountsGroup.get('wornAccount').value.name}}</span>
+                </div>
+            </div>
+           
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Ծախսի հաշիվ</label>
+                </div>
+                <div class="input_wraper">
+                    <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('expenseAccount','account')"
+                        [selectObject]="accountsGroup.get('expenseAccount').value"
+                        (setValue)="setValue($event,'expenseAccount')" [array]="chartAccounts"
+                        [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+                    </app-modal-dropdown>
+                    <span class="selected-element-name"
+                        *ngIf="accountsGroup.get('expenseAccount').value">{{accountsGroup.get('expenseAccount').value.name}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="deferredRevenue accounts">
+        <div class="financial">
+            <div class="financial-header">
+                <span>Հետաձգված հասույթ</span>
+            </div>
+            <div class="financial-body">
+           
+                <div class="form_group">
+                    <div class="label">
+                        <label for="">Հետաձգված հասույթների հաշիվ</label>
+                    </div>
+                    <div class="input_wraper">
+                        <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('deferredRevenueAccount','account')"
+                            [selectObject]="accountsGroup.get('deferredRevenueAccount').value"
+                            (setValue)="setValue($event,'deferredRevenueAccount')" [array]="chartAccounts"
+                            [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+                        </app-modal-dropdown>
+                        <span class="selected-element-name"
+                            *ngIf="accountsGroup.get('deferredRevenueAccount').value">{{accountsGroup.get('deferredRevenueAccount').value.name}}</span>
+                    </div>
+                </div>
+               
+                <div class="form_group">
+                    <div class="label">
+                        <label for="">Հետաձգված հասույթների ընթացիկ մասի հաշիվ</label>
+                    </div>
+                    <div class="input_wraper">
+                        <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('currentPortionOfDeferredRevenueAccount','account')"
+                            [selectObject]="accountsGroup.get('currentPortionOfDeferredRevenueAccount').value"
+                            (setValue)="setValue($event,'currentPortionOfDeferredRevenueAccount')" [array]="chartAccounts"
+                            [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+                        </app-modal-dropdown>
+                        <span class="selected-element-name"
+                            *ngIf="accountsGroup.get('currentPortionOfDeferredRevenueAccount').value">{{accountsGroup.get('currentPortionOfDeferredRevenueAccount').value.name}}</span>
+                    </div>
+                </div>
+                
+                <div class="form_group">
+                    <div class="label">
+                        <label for="">Հասույթների հաշիվ</label>
+                    </div>
+                    <div class="input_wraper">
+                        <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('incomeStatement','account')"
+                            [selectObject]="accountsGroup.get('incomeStatement').value"
+                            (setValue)="setValue($event,'incomeStatement')" [array]="chartAccounts"
+                            [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+                        </app-modal-dropdown>
+                        <span class="selected-element-name"
+                            *ngIf="accountsGroup.get('incomeStatement').value">{{accountsGroup.get('incomeStatement').value.name}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

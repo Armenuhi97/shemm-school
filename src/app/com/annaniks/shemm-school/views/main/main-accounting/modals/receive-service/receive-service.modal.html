@@ -1,0 +1,54 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<!-- <span class="error">{{error}}</span> -->
+
+<form action="" [formGroup]="receiveServicesGroup">
+    <div class="first-section">
+        <div class="form_group date-group">
+            <div class="label">
+                <label for=""><span>*</span> Ամսաթիվ</label>
+            </div>
+            <div class="input_wraper date">
+                <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                    [locale]="calendarConfig"> </p-calendar>
+                <span class="validate_error"
+                    *ngIf="receiveServicesGroup.get('date').hasError('required') && receiveServicesGroup.get('date').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group right">
+            <div class="right_label label">
+                <label for=""><span>*</span> Փաստաթղթի N</label>
+            </div>
+            <div class="input_wraper order_number">
+                <input formControlName="folderNumber" type="text">
+                <span class="validate_error"
+                    *ngIf="receiveServicesGroup.get('folderNumber').hasError('required') && receiveServicesGroup.get('folderNumber').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+    </div>
+</form>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+        <app-receive-service-common (isClickOnAddButton)="isClickOnAddButton($event)" [partners]="partners"
+            [currencyArray]="currencyArray" [analyticalGroup1]="analyticalGroup1" [analyticalGroup2]="analyticalGroup2"
+            [chartAccounts]="chartAccounts" [group]="receiveServicesGroup.get('general').value"
+            *ngSwitchCase="'Ընդհանուր'">
+        </app-receive-service-common>
+        <app-operation [chartAccounts]="chartAccounts" [partners]="partners" [analyticalGroup1]="analyticalGroup1"
+            [analyticalGroup2]="analyticalGroup2" [group]="receiveServicesGroup.get('operation').value"
+            [typeOperation]="'true'" *ngSwitchCase="'Գործառնություններ'"></app-operation>
+        <app-receive-service-names-list [calculationTypes]="calculationTypes" [typeOfAcquisition]="typeOfAcquisition"
+            [aahFormOfReflection]="aahFormOfReflection" [chartAccounts]="chartAccounts" [services]="services"
+            *ngSwitchCase="'Անվանացուցակ'" [group]="receiveServicesGroup.get('namesList').value">
+        </app-receive-service-names-list>
+    </div>
+</app-tabs>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

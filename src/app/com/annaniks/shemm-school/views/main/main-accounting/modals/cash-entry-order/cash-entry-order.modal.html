@@ -1,0 +1,281 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<!-- <div class="error">{{error}}</div> -->
+<form class="group" [formGroup]="cashEntryOrderGroup" action="">
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Դրամարկղ</label>
+        </div>
+        <div class="input_wraper date">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('boxOffice','code')"
+               
+                [selectObject]="cashEntryOrderGroup.get('boxOffice').value" (setValue)="setValue($event,'boxOffice')"
+                [array]="cashRegisters" [modalParams]="setModalParams('Դրամարկղ','code','Կոդ')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="cashEntryOrderGroup.get('boxOffice').value">{{cashEntryOrderGroup.get('boxOffice').value.name}}</span>
+            <span class="validate_error"
+                *ngIf="cashEntryOrderGroup.get('boxOffice').hasError('required') && cashEntryOrderGroup.get('boxOffice').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+        </div>
+    </div>
+    <div class="first-section">
+        <div class="form_group date-group">
+            <div class="label">
+                <label for=""><span>*</span> Ամսաթիվ</label>
+            </div>
+            <div class="input_wraper date">
+                <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                    [locale]="calendarConfig"> </p-calendar>
+                <span class="validate_error"
+                    *ngIf="cashEntryOrderGroup.get('date').hasError('required') && cashEntryOrderGroup.get('date').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group right">
+            <div class="right_label label">
+                <label for=""><span>*</span> Փաստաթղթի N</label>
+            </div>
+            <div class="input_wraper right_wraper">
+                <input formControlName="folderNumber" type="number">
+                <span class="validate_error"
+                    *ngIf="cashEntryOrderGroup.get('folderNumber').hasError('required') && cashEntryOrderGroup.get('folderNumber').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group right last-group">
+            <div class="right_label label">
+                <label for="">ՀԴՄ կտրոնի N</label>
+            </div>
+            <div class="input_wraper right_wraper">
+                <input formControlName="cashVoucherNumber" type="text">
+            </div>
+            <div class="cash_voucher_button">
+                <button>ՀԴՄԿ</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-group">
+        <div class="card">
+            <app-card [header]="''">
+                <div class="form_group">
+                    <div class="label">
+                        <label for="">Թղթակցող հաշիվ</label>
+                    </div>
+                    <div class="input_wraper">
+                        <app-modal-dropdown [property]="'account'"
+                            [inputValue]="setInputValue('correspondentAccount','account')"
+                            
+                            [selectObject]="cashEntryOrderGroup.get('correspondentAccount').value"
+                            (setValue)="setValue($event,'correspondentAccount')" [array]="chartAccounts"
+                            [modalParams]="setModalParams('Հաշվային պլան','account','Հաշիվ')">
+                        </app-modal-dropdown>
+                        <span class="selected-element-name"
+                            *ngIf="cashEntryOrderGroup.get('correspondentAccount').value">{{cashEntryOrderGroup.get('correspondentAccount').value.name}}
+                        </span>
+                        <!-- <p-dropdown formControlName="correspondentAccount"></p-dropdown> -->
+
+                    </div>
+                </div>
+                <div class="form_group">
+                    <div class=" label">
+                        <label for="">Դրամ․ ներ․ հաշիվ</label>
+                    </div>
+                    <div class="input_wraper">
+                        <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('dramAccount','account')"
+                            
+                            [selectObject]="cashEntryOrderGroup.get('dramAccount').value"
+                            (setValue)="setValue($event,'dramAccount')" [array]="chartAccounts"
+                            [modalParams]="setModalParams('Հաշվային պլան','account','Հաշիվ')">
+                        </app-modal-dropdown>
+                        <span class="selected-element-name"
+                            *ngIf="cashEntryOrderGroup.get('dramAccount').value">{{cashEntryOrderGroup.get('dramAccount').value.name}}
+                        </span>
+                        <!-- <p-dropdown formControlName="dramAccount"></p-dropdown> -->
+                    </div>
+                </div>
+                <div class="form_group">
+                    <div class=" label">
+                        <label for="">Անալիտիկ խումբ 1</label>
+                    </div>
+                    <div class="input_wraper">
+                        <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup1','code')"
+                           
+                            [selectObject]="cashEntryOrderGroup.get('analyticalGroup1').value"
+                            (setValue)="setValue($event,'analyticalGroup1')" [array]="analyticalGroup1"
+                            [modalParams]="setModalParams('Անալիտիկ խումբ 1','code','Կոդ')">
+                        </app-modal-dropdown>
+                        <span class="selected-element-name"
+                            *ngIf="cashEntryOrderGroup.get('analyticalGroup1').value">{{cashEntryOrderGroup.get('analyticalGroup1').value.name}}</span>
+                    </div>
+                </div>
+                <div class="form_group">
+                    <div class=" label">
+                        <label for="">Անալիտիկ խումբ 2</label>
+                    </div>
+                    <div class="input_wraper">
+                        <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup2','code')"
+                           
+                            [selectObject]="cashEntryOrderGroup.get('analyticalGroup2').value"
+                            (setValue)="setValue($event,'analyticalGroup2')" [array]="analyticalGroup2"
+                            [modalParams]="setModalParams('Անալիտիկ խումբ 2','code','Կոդ')">
+                        </app-modal-dropdown>
+                        <span class="selected-element-name"
+                            *ngIf="cashEntryOrderGroup.get('analyticalGroup2').value">{{cashEntryOrderGroup.get('analyticalGroup2').value.name}}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form_group">
+                    <div class=" label">
+                        <label for=""><span>*</span>Արժույթ</label>
+                    </div>
+                    <div class="input_wraper">
+                        <app-modal-dropdown [property]="'id'" [inputProperty]="'currency'" [inputValue]="setInputValue('currency','currency')"
+                           
+                            [selectObject]="cashEntryOrderGroup.get('currency').value"
+                            (setValue)="setValue($event,'currency')" [array]="currencies"
+                            [modalParams]="setModalParams('Արժույթներ','currency','Կոդ')">
+                        </app-modal-dropdown>
+                        <span class="selected-element-name"
+                            *ngIf="cashEntryOrderGroup.get('currency').value">{{cashEntryOrderGroup.get('currency').value.name}}
+                        </span>
+                        <span class="validate_error"
+                            *ngIf="cashEntryOrderGroup.get('currency').hasError('required') && cashEntryOrderGroup.get('currency').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                </div>
+            </app-card>
+            <div class="card">
+                <app-card [header]="'Գումար'">
+
+                    <div class="beside-dropdowns">
+                        <div class="form_group">
+                            <div class="label">
+                                <label for=""><span>*</span> Արժույթով</label>
+                            </div>
+                            <div class="input_wraper">
+                                <input type="string" formControlName="amountcurrency">
+                                <!-- <p-dropdown formControlName="amountcurrency"></p-dropdown> -->
+                                <span class="validate_error"
+                                    *ngIf="cashEntryOrderGroup.get('amountcurrency').hasError('required') && cashEntryOrderGroup.get('amountcurrency').touched"><i
+                                        class="material-icons">
+                                        close
+                                    </i></span>
+                            </div>
+                        </div>
+                        <div class="form_group right">
+                            <div class="right_label label">
+                                <label for=""><span>*</span> ԱԴՄ-ով</label>
+                            </div>
+                            <div class="input_wraper adm_wraper">
+                                <input type="string" formControlName="ADM">
+                                <!-- <p-dropdown formControlName="ADM"></p-dropdown> -->
+                                <span class="validate_error"
+                                    *ngIf="cashEntryOrderGroup.get('ADM').hasError('required') && cashEntryOrderGroup.get('ADM').touched"><i
+                                        class="material-icons">
+                                        close
+                                    </i></span>
+                            </div>
+                        </div>
+                    </div>
+                </app-card>
+            </div>
+            <div class="card">
+                <app-card [header]="''">
+                    <div class="form_group">
+                        <div class="label">
+                            <label for=""> Գործընկեր</label>
+                        </div>
+                        <div class="input input_wraper">
+                            <div class="has-add-button-content flex">
+                                <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('partner','name')"
+                                    [selectObject]="cashEntryOrderGroup.get('partner').value"
+                                    (setValue)="setValue($event,'partner')" [array]="partners"
+                                    [modalParams]="setModalParams('Գործընկերներ','id','Կոդ')">
+                                </app-modal-dropdown>
+                                <button class="add_button" (click)="addPartner()"><i class="material-icons">
+                                        add
+                                    </i></button>
+                                <span class="selected-element-name"
+                                    *ngIf="cashEntryOrderGroup.get('partner').value">
+                                </span>
+                                <span class="validate_error"
+                                    *ngIf="cashEntryOrderGroup.get('partner').hasError('required')  && cashEntryOrderGroup.get('partner').touched"><i
+                                        class="material-icons">
+                                        close
+                                    </i></span>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="form_group">
+                        <div class="label">
+                            <label for=""><span>*</span> Ստացված է</label>
+                        </div>
+                        <div class="input_wraper full-dropdown">
+                            <!-- <app-modal-dropdown [property]="'id'" [inputProperty]="'name'" [inputValue]="setInputValue('getsFrom','name')"
+                                [selectObject]="cashEntryOrderGroup.get('getsFrom').value"
+                                (setValue)="setValue($event,'getsFrom')" [array]="partners"
+                                [modalParams]="setModalParams('Գործընկերներ','id','Կոդ')">
+                            </app-modal-dropdown> -->
+                            <input type="text" formControlName="getsFrom">
+                            <span class="validate_error"
+                                *ngIf="cashEntryOrderGroup.get('getsFrom').hasError('required') && cashEntryOrderGroup.get('getsFrom').touched"><i
+                                    class="material-icons">
+                                    close
+                                </i></span>
+                        </div>
+                    </div>
+                    <div class="form_group">
+                        <div class=" label">
+                            <label for="">Հիմքը</label>
+                        </div>
+                        <div class="input_wraper full-dropdown">
+                            <input type="text" formControlName="base">
+                            <!-- <p-dropdown formControlName="base"></p-dropdown> -->
+                        </div>
+                    </div>
+                    <div class="form_group">
+                        <div class=" label">
+                            <label for="">Կցվում են</label>
+                        </div>
+                        <div class="input_wraper full-dropdown">
+                            <input type="text" formControlName="attach">
+
+                            <!-- <p-dropdown formControlName="attach"></p-dropdown> -->
+                        </div>
+                    </div>
+                </app-card>
+            </div>
+
+
+            <div class="additionally-content">
+                <div (click)="openOrCloseAdditionalInfo()" class="additionally">
+                    <span>Լրացուցիչ</span>
+                    <span><i [ngStyle]="arrowStyle()" class="material-icons">
+                            arrow_drop_down
+                        </i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="margin-top">
+    <app-operation [group]="cashEntryOrderGroup.get('operation').value" [chartAccounts]="chartAccounts"
+        [partners]="partners" [analyticalGroup1]="analyticalGroup1" [analyticalGroup2]="analyticalGroup2"
+        [typeOperation]="'true'" [isLock]="true" (setOperationValue)="setOperationValue($event)"></app-operation>
+</div>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

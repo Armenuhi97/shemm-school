@@ -1,0 +1,74 @@
+<app-table (add)="addRow($event)" (delete)="deleteAll($event)">
+    <table *ngIf="wearAdvertisingServicesGroupArray && wearAdvertisingServicesGroupArray.controls">
+        <tr>
+            <th></th>
+            <th>Գույքահամար</th>
+            <th>Անվանում</th>
+            <th>Ծախսի հաշիվ</th>
+            <th>Հասույթի հաշիվ</th>
+
+        </tr>
+        <tr *ngFor="let item of wearAdvertisingServicesGroupArray.controls; let i = index" [formGroup]="item">
+            <td>
+                <div (click)="remove(i)" class="close">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input formControlName="inventory" type="text">
+                    <span class="validate_error"
+                        *ngIf="item.get('inventory').invalid  && item.get('inventory').touched"><i
+                            class="material-icons">
+                            close
+                        </i>
+                    </span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input formControlName="name" type="text">
+                    <span class="validate_error" *ngIf="item.get('name').invalid  && item.get('name').touched"><i
+                            class="material-icons">
+                            close
+                        </i>
+                    </span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue(item,'expenseAccount','account')"
+                       
+                        [selectObject]="item.get('expenseAccount').value" fomControlName="expenseAccount"
+                        (setValue)="setValue($event, item, 'expenseAccount')" [array]="chartAccounts"
+                        [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+                    </app-modal-dropdown>
+                    <span class="validate_error"
+                        *ngIf="item.get('expenseAccount').invalid  && item.get('expenseAccount').touched"><i
+                            class="material-icons">
+                            close
+                        </i>
+                    </span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue(item,'incomeAccount','account')"
+                        
+                        [selectObject]="item.get('incomeAccount').value" fomControlName="incomeAccount"
+                        (setValue)="setValue($event, item, 'incomeAccount')" [array]="chartAccounts"
+                        [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+                    </app-modal-dropdown>
+                    <span class="validate_error"
+                        *ngIf="item.get('incomeAccount').invalid  && item.get('incomeAccount').touched"><i
+                            class="material-icons">
+                            close
+                        </i>
+                    </span>
+                </div>
+            </td>
+        </tr>
+    </table>
+</app-table>

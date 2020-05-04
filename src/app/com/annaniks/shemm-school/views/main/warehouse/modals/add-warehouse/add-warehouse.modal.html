@@ -1,0 +1,84 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div class="forms-container">
+    <form [formGroup]="formGroup">
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Կոդ</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="code">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('code').hasError('required') && formGroup.get('code').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Անվանում</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="name">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('name').hasError('required') && formGroup.get('name').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Պահեստապետ</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="responsible">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('responsible').hasError('required') && formGroup.get('responsible').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Հասցե</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="address">
+                <span class="validate_error"
+                    *ngIf="formGroup.get('address').hasError('required') && formGroup.get('address').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+<!-- 
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Պահեստի նշանակություն</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('warehouseSignificance','name')"
+                    [selectObject]="formGroup.get('warehouseSignificance').value"
+                    (setValue)="setValue($event,'warehouseSignificance')" [array]="wareHouseAcquistions"
+                    [modalParams]="warehouseModalParams">
+                </app-modal-dropdown>
+                <span class="validate_error"
+                    *ngIf="formGroup.get('warehouseSignificance').hasError('required') && formGroup.get('warehouseSignificance').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div> -->
+        <div class="buttons">
+            <button (click)="addWarehouse()">Կատարել</button>
+            <button (click)="close()">Դադարեցնել</button>
+        </div>
+    </form>
+
+</div>

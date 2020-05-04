@@ -1,0 +1,12 @@
+<app-tables-by-filter [titles]="titles" (add)="addClassifier(false)">
+    <tr *ngFor="let classifier of classifiers">
+        <td class="edit"> <i (click)="addClassifier(true,classifier?.id)" class="material-icons"> edit </i> </td>
+        <td class="delete"> <i (click)="delete(classifier?.id)" class=" material-icons"> close </i></td>
+        <td>{{classifier?.code}}</td>
+        <td>{{classifier?.name}}</td>
+        <td>{{classifier?.type}}</td>
+    </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

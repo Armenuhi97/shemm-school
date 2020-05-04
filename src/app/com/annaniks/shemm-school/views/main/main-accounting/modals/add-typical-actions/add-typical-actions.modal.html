@@ -1,0 +1,106 @@
+<app-modal-header [title]="title" (close)="close($event)"></app-modal-header>
+<div class="group">
+    <form [formGroup]="typicalActionGroup" action="">
+        <div class="form_group code">
+            <div class="label">
+                <label for=""><span>*</span>Կոդ</label>
+            </div>
+            <div class="input_wraper ">
+                <input formControlName="code">
+                <span class="validate_error"
+                    *ngIf="typicalActionGroup.get('code').hasError('required') && typicalActionGroup.get('code').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group ">
+            <div class="label">
+                <label for=""><span>*</span> Անվանում</label>
+            </div>
+            <div class="input_wraper name">
+                <input formControlName="name">
+                <span class="validate_error"
+                    *ngIf="typicalActionGroup.get('name').hasError('required') && typicalActionGroup.get('name').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+    </form>
+    
+    <app-table (add)="addRow($event)" (delete)="deleteAll($event)">
+       
+            <table *ngIf="typicalActionTableGroup && typicalActionTableGroup.controls && typicalActionTableGroup.controls.length">
+                <tr>
+                    <th rowspan="3">...</th>
+                    <th rowspan="3">Դեբետ</th>
+                    <th>Գործընկերներ</th>
+                    <th rowspan="3">Արժույթ</th>
+                    <th rowspan="3">Կրեդիտ</th>
+                    <th>Գործընկերներ</th>
+                    <th rowspan="3">Արժույթ</th>
+                    <th rowspan="3">Գումար արժ․</th>
+                    <th rowspan="3">Գումար դրամով</th>
+                    <th rowspan="3">Մեկնաբանություն</th>
+                </tr>
+
+                <tr>
+                    <th>Անալիտիկ</th>
+                    <th>Անալիտիկ</th>
+                </tr>
+                <tr>
+                    <th>Անալիտիկ</th>
+                    <th>Անալիտիկ</th>
+                </tr>
+
+                <ng-container *ngFor="let item of typicalActionTableGroup.controls;let i=index" [formGroup]="item">
+                    <tr>
+                        <td rowspan="3">
+                            <div (click)="remove(i)" class="close">
+                                <i class="material-icons">
+                                    close
+                                </i>
+                            </div>
+                        </td>
+                        <td rowspan="3">
+                            <input formControlName="debit" type="text">
+                        </td>
+                        <td> <input formControlName="debit_partner" type="text">
+                        </td>
+                        <td rowspan="3"> <input formControlName="debit_currency" type="text">
+                        </td>
+                        <td rowspan="3"> <input formControlName="credit" type="text">
+                        </td>
+                        <td> <input formControlName="credit_partner" type="text">
+                        </td>
+                        <td rowspan="3"> <input formControlName="credit_currency" type="text">
+                        </td>
+                        <td rowspan="3"> <input formControlName="money_currency" type="text">
+                        </td>
+                        <td rowspan="3"> <input formControlName="amount_in_dram" type="text">
+                        </td>
+                        <td rowspan="3"> <input formControlName="comment" type="text">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td> <input formControlName="debit_analytic1" type="text">
+                        </td>
+                        <td> <input formControlName="debit_analytic2" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <input formControlName="credit_analytic1" type="text">
+                        </td>
+                        <td> <input formControlName="credit_analytic2" type="text">
+                        </td>
+                    </tr>
+                </ng-container>
+            </table>
+       
+    </app-table>
+</div>

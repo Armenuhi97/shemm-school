@@ -1,0 +1,34 @@
+<app-tables-by-filter [titles]="titles" (add)="addCashRegister()">
+    <tr *ngFor="let item of cashRegisters">
+        <td class="edit" (click)="addCashRegister(true, item?.id, item)">
+            <i class="material-icons">edit</i>
+        </td>
+        <td class="delete" (click)=delete(item.id)>
+            <i class="material-icons">close</i>
+        </td>
+        <td>{{item?.code}}</td>
+        <td>{{item?.name}}</td>
+        <td>{{item?.accountId}}</td>
+        <td>
+            <label class="container-checkbox">
+                <input [checked]="getBooleanVariable(item?.isMain)" disabled type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </td>
+        <td>{{item?.dmoN}}</td>
+        <td>{{item?.deoN}}</td>
+        <td>{{item?.hdmRegisN}}</td>
+        <td>{{item?.ip}}</td>
+        <td>{{item?.port}}</td>
+
+        <td>{{item?.password}}</td>
+        <td>{{item?.hdmTaxable}}</td>
+        <td>{{item?.hdmNonTaxable}}</td>
+        <td>{{item?.hdmPrintType}}</td>
+
+    </tr>
+</app-tables-by-filter>
+
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

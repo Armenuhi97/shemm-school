@@ -1,0 +1,26 @@
+.form_group{     
+    .label{
+        width: 210px;     
+    } 
+    .input_wraper{
+        width: calc(100% - 210px);     
+    }
+}
+.first-section{
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    .right{
+        margin-left: 25px;
+        .right_label{
+            width: fit-content;   
+            margin-right: 5px;  
+            label{
+                font-size: 15px;                
+            }     
+        } 
+        input{
+            width:130px;
+        }
+    }
+}

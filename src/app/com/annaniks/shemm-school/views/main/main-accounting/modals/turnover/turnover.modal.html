@@ -1,0 +1,8 @@
+<app-modal-header [title]="title" (close)="close($event)"></app-modal-header>
+<app-date></app-date>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+        <app-balance-common *ngSwitchCase="'Ընդհանուր'"></app-balance-common>
+        <app-columns [availableItems]="availableItems" *ngSwitchCase="'Սյուները'"></app-columns>
+    </div>
+</app-tabs>

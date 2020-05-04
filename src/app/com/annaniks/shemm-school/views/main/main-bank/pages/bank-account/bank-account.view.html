@@ -1,0 +1,20 @@
+<!-- <app-tables-by-filter [titles]="titles" (add)="addBankAccount()">
+</app-tables-by-filter> -->
+<app-tables-by-filter [titles]="titles" (add)="addBankAccount(false)">
+    <tr *ngFor="let bankAccount of bankAccounts">
+        <td class="edit"> <i (click)="addBankAccount(true,bankAccount?.id)" class=" material-icons"> edit </i> </td>
+        <td class="delete"> <i (click)="delete(bankAccount?.id)" class=" material-icons"> close </i></td>
+
+        <td>{{bankAccount?.billingAccount}}</td>
+        <td>{{bankAccount?.name}}</td>
+        <td>{{bankAccount?.currencies?.currency}}</td>
+        <td>{{bankAccount?.accounts?.account}}</td>
+        <td> <label class="container-checkbox">
+                <input [checked]="getBooleanVariable(bankAccount?.isMain)" disabled type="checkbox">
+                <span class="checkmark"></span>
+            </label></td>
+    </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

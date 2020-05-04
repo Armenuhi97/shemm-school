@@ -1,0 +1,15 @@
+<app-tables-by-filter [titles]="titles" (add)="addAnalyticGroup(false)">
+    <tr *ngFor="let group of analyticGroup">
+        <td class="edit"> <i (click)="addAnalyticGroup(true,group?.id)" class=" material-icons"> edit </i> </td>
+        <td class="delete"> <i (click)="delete(group?.id)" class=" material-icons"> close </i></td>
+        <td>{{group?.code}}</td>
+        <td>{{group?.name}}</td>
+        <td> <label class="container-checkbox">
+                <input [checked]="getBooleanVariable(group?.isAccumulate)" disabled type="checkbox">
+                <span class="checkmark"></span>
+            </label></td>
+    </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

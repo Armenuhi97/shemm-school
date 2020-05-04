@@ -1,0 +1,91 @@
+<table *ngIf="avarageSalaryGroupArray && avarageSalaryGroupArray.controls && avarageSalaryGroupArray.controls.length">
+    <tr>
+        <th>Տարի/Ամիս</th>
+        <th>Գումար</th>
+        <th>Հաշվի առնել</th>
+        <th>1/12 մասով</th>
+
+        <th>Մեկնաբանություն</th>
+    </tr>
+    <tr class="row" *ngFor="let item of avarageSalaryGroupArray.controls; let i = index" [formGroup]="item">
+
+        <td>
+            <div class="row-content">
+                <div>
+                    {{item.get('date')?.value}}
+                </div>
+                <span class="validate_error"
+                    *ngIf="item.get('date').hasError('required') && item.get('date').touched"><i class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </td>
+        <td>
+            <div class="row-content">
+                <input (focus)="focus(item,'amount')" (blur)="blur(item,'amount')" type="number" (ngModelChange)="change('amount',totalAmount)" formControlName="amount">
+                <span class="validate_error"
+                    *ngIf="item.get('amount').hasError('required') && item.get('amount').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </td>
+        <td>
+            <div class="row-content">
+                <label class="container-checkbox">
+                    <input  (ngModelChange)="changeIsConsider()" formControlName="isConsider" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+
+                <span class="validate_error"
+                    *ngIf="item.get('isConsider').hasError('required') && item.get('isConsider').touched"><i
+                        class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </td>
+        <td>
+            <div class="row-content">
+                <input formControlName="monthPart" (focus)="focus(item,'monthPart')" (blur)="blur(item,'monthPart')" (ngModelChange)="change('monthPart',totalMonthPart)" type="number">
+                <span class="validate_error"
+                    *ngIf="item.get('monthPart').hasError('required') && item.get('monthPart').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </td>
+        <td>
+            <div class="row-content">
+                <textarea formControlName="comment"></textarea>
+                <span class="validate_error"
+                    *ngIf="item.get('comment').hasError('required') && item.get('comment').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </td>
+    </tr>
+    <tr class="all_sum">
+        <td class="td" colspan="1"> </td>
+        <td class="td"><input readOnly=true [formControl]="totalAmount" type="number"></td>
+        <td class="td" colspan="1"> </td>
+        <td class="td"><input readOnly=true [formControl]="totalMonthPart" type="number"></td>
+        <td class="td" colspan="1"> </td>
+
+    </tr>
+</table>
+<div class="card">
+    <app-card [header]="'Բանաձև'">
+        <div class="formula-content">
+            <div class="title">Միջին ամսական`</div>
+            <div class="result">{{avarageMonth}}</div>
+        </div>
+
+        <div class="formula-content">
+            <div class="title">Միջին օրական`</div>
+            <div class="result">{{avaragDaily}}</div>
+        </div>
+    </app-card>
+</div>

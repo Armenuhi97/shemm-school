@@ -1,0 +1,25 @@
+<app-modal-header (close)="close()"></app-modal-header>
+
+<div class="table-content">
+    <table>
+        <tr>
+            <th *ngFor="let day of weekDays">{{day.name}}</th>
+        </tr>
+        <tr [formGroup]="weekDaysGroup">
+            <td *ngFor="let day of weekDays">
+                <div class="row-content">
+                    <input type="number" [formControlName]="getControlName(day)">
+                    <span class="validate_error"
+                        *ngIf="weekDaysGroup.get(day.key).hasError('required') && weekDaysGroup.get(day.key).touched">
+                        <i class="material-icons">
+                            close
+                        </i>
+                    </span>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="button">
+    <button (click)="save()">Խմբագրել</button>
+</div>

@@ -1,0 +1,113 @@
+<app-modal-header [title]="title" (close)="close($event)"></app-modal-header>
+
+<div class="memorable-orders-container">
+    <hr>
+    <div class="form-group">
+        <div class="error-handling">
+            <small>*</small>
+        </div>
+        <div class="labelInputs">
+            <label for="">
+                Ամսաթիվ
+            </label>
+            <p-calendar rPCalendarMask  [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                        [locale]="calendarConfig">
+                    </p-calendar>
+            <label for="" class="fit-content">
+                Փաստատղտի N
+            </label>
+            <p-dropdown></p-dropdown>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="error-handling">
+            <small>*</small>
+        </div>
+        <div class="labelInputs">
+            <label for="">
+                Գումար
+            </label>
+            <p-dropdown></p-dropdown>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="error-handling">
+            <small>*</small>
+        </div>
+        <div class="labelInputs">
+            <label for="">
+                Արժույթ
+            </label>
+            <p-dropdown></p-dropdown>
+            <span class="fit-content">haykakan dram</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="error-handling">
+            <small>*</small>
+        </div>
+        <div class="labelInputs">
+            <label for="">
+                Արտարյույթի փոխարժեք
+            </label>
+            <p-dropdown></p-dropdown>
+            <label for="" class="fit-content">
+                առ
+            </label>
+            <p-dropdown></p-dropdown>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="error-handling">
+            <small>*</small>
+        </div>
+        <div class="labelInputs">
+            <label for="">
+                Անալիտիկ խումբ 1
+            </label>
+            <p-dropdown></p-dropdown>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="error-handling">
+            <small>*</small>
+        </div>
+        <div class="labelInputs">
+            <label for="">
+                Անալիտիկ խումբ 2 
+            </label>
+            <p-dropdown></p-dropdown>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="error-handling">
+            <small>*</small>
+        </div>
+        <div class="labelInputs">
+            <label for="">
+                Մեկնաբանություն 
+            </label>
+            <p-dropdown></p-dropdown>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="error-handling">
+            <small>*</small>
+        </div>
+        <div class="labelInputs">
+            <label for="">
+                Նախորդ օրվա փոխարժեք 
+            </label>
+            <input type="checkbox">
+        </div>
+    </div>
+</div>
+
+<app-operation [typeOperation]="'true'"></app-operation>

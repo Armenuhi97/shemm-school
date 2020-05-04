@@ -1,0 +1,53 @@
+<form [formGroup]="partnerGroup" action="">
+    <div class="form_group">
+        <div class="label">
+            <label for="">Լրացուցիչ տվյալներ</label>
+        </div>
+        <div class="input_wraper">
+            <!-- <p-dropdown formControlName="otherData"></p-dropdown> -->
+            <input type="text" formControlName="otherData">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ապր․ առաքման եղանակը</label>
+        </div>
+        <div class="input_wraper">
+            <!-- <p-dropdown formControlName="deliveryMethod"></p-dropdown> -->
+            <input type="text" formControlName="deliveryMethod">
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անուն ազգանուն հայրանուն</label>
+        </div>
+        <div class="input_wraper">
+            <!-- <p-dropdown formControlName="fullName"></p-dropdown> -->
+            <input type="text" formControlName="fullName">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Լիազորագրի համար</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="attorneyPowerNumber">
+
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Լիազորագրի ամսաթիվ</label>
+        </div>
+        <div class="input_wraper">
+            <p-calendar rPCalendarMask formControlName="attorneyPowerDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+            [locale]="calendarConfig">
+        </p-calendar>
+
+        </div>
+    </div>
+</form>

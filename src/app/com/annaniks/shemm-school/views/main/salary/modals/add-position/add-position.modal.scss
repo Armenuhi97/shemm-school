@@ -1,0 +1,21 @@
+.forms-container{
+    border: 1px solid grey;
+    padding: 5px;
+    margin-top: 15px;
+    .form_group{       
+        .required::before{
+            content: '*';
+            color: red;
+        }
+        .label{
+            width: 260px;    
+        }  
+        .input_wraper{       
+            width: calc(100% - 260px);      
+            .name-input{
+                width: 85%;
+            }                 
+        }
+    }
+
+}

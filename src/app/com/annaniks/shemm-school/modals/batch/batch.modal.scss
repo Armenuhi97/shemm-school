@@ -1,0 +1,52 @@
+.table-container{
+    margin-top: 20px;
+    overflow-x: auto;
+    table, th, td {
+        border: 1px solid;
+        border-collapse: collapse;
+        padding: 5px;
+        color: black;
+        font-size:12px; ;
+        text-align: start
+      }
+      table{
+          width: 100%;
+    
+      }
+    //   tr{
+    //       cursor: pointer;
+    //   }
+}
+.error-text{
+    color: red;
+    font-size: 12px;
+}
+.small-input{
+    width: 50%;
+}
+.form{
+    margin-top: 25px;
+    .disabled-form{
+        pointer-events: none;
+        opacity: 0.6;
+    }
+}
+:host::ng-deep{
+    app-modal-dropdown{
+      input{
+        height: 32px;
+        background: none;
+        border: 1px solid grey !important;
+        border-right: none !important;
+
+       }
+    }
+  }
+.form_group{
+    .label{
+        width: 150px;
+    }
+    .input_wraper{
+        width: calc(100% - 150px);
+    }
+}

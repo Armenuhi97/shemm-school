@@ -1,0 +1,13 @@
+<app-tables-by-filter [titles]="titles" (add)="addHmxValueBalance()">
+  <tr *ngFor="let item of addHmxValueBalanceData">
+    <td class="edit"> <i (click)="addHmxValueBalance(true ,item?.id, item)" class=" material-icons"> edit </i> </td>
+    <td class="delete"> <i (click)="delete(item?.id)" class=" material-icons"> close </i></td>
+    <td>{{ item?.code }}</td>
+    <td>{{ item?.date }}</td>
+    <td>{{ item?.valueBeginningOfYear }}</td>
+  </tr>
+</app-tables-by-filter>
+
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+  (paginate)="onPageChange($event)">
+</app-paginator>

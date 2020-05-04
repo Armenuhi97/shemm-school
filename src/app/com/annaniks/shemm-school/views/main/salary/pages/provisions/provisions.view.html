@@ -1,0 +1,31 @@
+<app-tables-by-filter [titles]="titles" (add)="add(false)">
+    <tr *ngIf="provisions">
+        <!-- <td class="edit"> <i (click)="addSystemAddition(true,item?.id, item)" class=" material-icons"> edit </i> </td> -->
+        <!-- <td class="delete"> <i (click)="delete(item?.id)" class=" material-icons"> close </i></td> -->
+        <!-- <td></td>
+        <td></td> -->
+        <td>{{provisions?.billingDate | date:'dd/MM/yyyy'}}</td>
+        <td><label class="container-checkbox">
+            <input [checked]="getBooleanVariable(provisions?.calculateWorkOrderImmediately)" disabled type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+        </td> 
+        <td>{{provisions?.degreeOfRounding}}</td>
+        <td>{{provisions?.transitAccount.id}}</td>
+        <td>{{provisions?.minSalary}}</td>
+        <td>{{provisions?.minSalaryWithPension}}</td>
+        <td>{{provisions?.minSalaryWithPensionStarted}}</td>
+        <td>{{provisions?.averageDailyCoefficientVacation}}</td>
+        <td>{{provisions?.averageNumberOfMonths}}</td>
+        <td>{{provisions?.averageDailyCoefficientBenefit}}</td>
+        <td>{{provisions?.averageDailyCoefficientMaternityBenefit}}</td>
+        <td>{{provisions?.amountOfStampPayment}}</td>
+        <td>{{provisions?.partnerAmountOfStampPayment.id}}</td>
+        <td>{{provisions?.dateOfIntroduction | date:'dd/MM/yyyy'}}</td>
+        <td><label class="container-checkbox">
+            <input [checked]="getBooleanVariable(provisions?.accountingOfPersonnelDocuments)" disabled type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+        </td> 
+      </tr>
+</app-tables-by-filter>

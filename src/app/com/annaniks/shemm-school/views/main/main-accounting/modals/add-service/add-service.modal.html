@@ -1,0 +1,139 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+
+<form class="group" [formGroup]="serviceGroup" action="">
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Կոդ</label>
+        </div>
+        <div class="input_wraper code">
+            <input formControlName="code">
+            <span class="validate_error"
+                *ngIf="serviceGroup.get('code').hasError('required') && serviceGroup.get('code').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Անվանում</label>
+        </div>
+        <div class="input_wraper ">
+            <input formControlName="name">
+            <span class="validate_error"
+                *ngIf="serviceGroup.get('name').hasError('required') && serviceGroup.get('name').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for=""> Լրիվ անվանում</label>
+        </div>
+        <div class="input_wraper ">
+            <input formControlName="fullName">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Չափման միավոր</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('measurementUnitId','id')" fomControlName="measurementUnitId"
+                (setValue)="setValue($event, 'measurementUnitId')" [array]="measurementUnit"
+                [selectObject]="serviceGroup.get('measurementUnitId').value" [modalParams]="modalParams">
+            </app-modal-dropdown>
+            <span class="selected-element-name" *ngIf="serviceGroup.get('measurementUnitId').value">
+                {{ serviceGroup.get('measurementUnitId').value?.abbreviation }}
+            </span>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">ԱԴԳՏ դասակարգիչ</label>
+        </div>
+        <div class="input_wraper ">
+            <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('classificationId','id')" fomControlName="classificationId"
+                (setValue)="setValue($event, 'classificationId')" [array]="classifications"
+                [selectObject]="serviceGroup.get('classificationId').value" [modalParams]="modalClassifications">
+            </app-modal-dropdown>
+            <span class="selected-element-name" *ngIf="serviceGroup.get('classificationId').value">
+                {{ serviceGroup.get('classificationId').value?.name }}
+            </span>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Հաշիվ</label>
+        </div>
+        <div class="input_wraper ">
+            <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('accountId','account')" fomControlName="accountId"
+                (setValue)="setValue($event, 'accountId')" [array]="accontPlans"
+                [selectObject]="serviceGroup.get('accountId').value" [modalParams]="modalParamsAccountPlans">
+            </app-modal-dropdown>
+            <span class="selected-element-name" *ngIf="serviceGroup.get('accountId').value">
+                {{ serviceGroup.get('accountId').value?.name }}
+            </span>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Մեծածախ գին դրամով</label>
+        </div>
+        <div class="input_wraper ">
+            <input formControlName="wholesalePrice">
+            <span class="validate_error"
+                *ngIf="serviceGroup.get('wholesalePrice').hasError('required') && serviceGroup.get('wholesalePrice').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Մանրածախ գին դրամով</label>
+        </div>
+        <div class="input_wraper ">
+            <input formControlName="retailerPrice">
+            <span class="validate_error"
+                *ngIf="serviceGroup.get('retailerPrice').hasError('required') && serviceGroup.get('retailerPrice').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Գծիկավոր կոդ</label>
+        </div>
+        <div class="input_wraper ">
+            <input formControlName="barCode">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">ԱԱՀ</label>
+        </div>
+        <div class="input_wraper ">
+            <label class="container-checkbox">
+                <input  formControlName="isAah" type="checkbox" >
+                <span class="checkmark"></span>
+            </label>
+        </div>
+    </div>
+    <div class="buttons">
+        <button (click)="addService()">Կատարել</button>
+        <button (click)="close()">Դադարեցնել</button>
+    </div>
+
+</form>

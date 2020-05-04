@@ -1,0 +1,19 @@
+<app-tables-by-filter [isShowAdd]="true" [titles]="titles">
+    <tr   *ngFor="let item of groupSalaries">
+        <td class="show">
+            <span (click)="show(true,item?.id)" class="material-icons">
+                remove_red_eye
+            </span>
+        </td>
+        <td class="delete"> <i (click)="delete(item?.id)" class=" material-icons"> close </i></td>
+        <td>{{item?.id}}</td>
+        <td>{{getDate(item)}}</td>
+        <td>{{item?.taxableWorker}}</td>
+        <td>{{item?.noTaxableWorker}}</td>
+        <td>{{item?.notParticipateSalary}}</td>
+
+    </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

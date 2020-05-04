@@ -1,0 +1,104 @@
+<form action="">
+    <app-table (add)="addRow($event)" (delete)="deleteAll($event)">
+        <table *ngIf="commonGroup['controls'] && commonGroup['controls'].length">
+            <tr>
+                <th></th>
+                <th>Բանկային հաշվեհամար</th>
+                <th>Գործարքի նշանակություն</th>
+                <th>Գործընկեր</th>
+                <th>Գործընկերոջ հաշվեհամար</th>
+                <th>Գործակից</th>
+                <th>Պարտքի չափը</th>
+                <th>Գումար</th>
+                <th>Խմբաքանակ</th>
+            </tr>
+            <tr *ngFor="let item of commonGroup['controls']; let i = index" [formGroup]="item">
+                <td>
+                    <div (click)="remove(i)" class="close">
+                        <i class="material-icons">
+                            close
+                        </i>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'id'" [inputProperty]="'billingAccount'"
+                            [inputValue]="setInputValue('bankAccount','billingAccount',item)"
+                            [selectObject]="item.get('bankAccount').value"
+                            (setValue)="setValue($event,'bankAccount',item)" [array]="bankAccounts"
+                            [modalParams]="setModalParams('Բանկային հաշվեհամար',['billingAccount','name'],['Հաշվարկային հաշիվ','Անվանում'])">
+                        </app-modal-dropdown>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <!-- <input type="text" formControlName="transactionSignificance"> -->
+                        <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                            [inputValue]="setInputValue('transactionSignificance','name',item)"
+                            [selectObject]="item.get('transactionSignificance').value"
+                            (setValue)="setValue($event,'transactionSignificance',item)" [array]="operationSignificanse"
+                            [modalParams]="setModalParams('Գործարքի նշանակություն',['name'],[ 'Անվանում'])">
+                        </app-modal-dropdown>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                            [inputValue]="setInputValue('partner','name',item)"
+                            [selectObject]="item.get('partner').value" (setValue)="setValue($event,'partner',item)"
+                            [array]="partners" [modalParams]="setModalParams('Գործընկեր',['name'],[ 'Անուն'])">
+                        </app-modal-dropdown>
+
+
+                    </div>
+                </td>
+
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'id'" [inputProperty]="'account'"
+                            [inputValue]="setInputValue('partnerAccountNumber','account',item)"
+                            [selectObject]="item.get('partnerAccountNumber').value"
+                            (setValue)="setValue($event,'partnerAccountNumber',item)"
+                            [array]="item.get('partnersAccountNumbersArray').value"
+                            [modalParams]="setModalParams('Գործընկերոջ հաշվեհամար',['account','name'],['Հաշիվ','Անվանում'])">
+                        </app-modal-dropdown>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input formControlName="coefficient"
+                            type="number">
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input formControlName="sum" (ngModelChange)="calculateToatalDept()" readonly type="number">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input formControlName="amount" (focus)="focus(item,'amount')" (blur)="blur(item,'amount')"
+                            (input)="change2()" (ngModelChange)="changeAmount()" type="number">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content group-content">
+                        <!-- <span>{{item.get('groupText').value}}</span> -->
+                        <button (click)="selectGroup(item)"><span>...</span></button>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- <tr class="all_sum">
+                <td class="td" colspan="5"> </td>
+                <td class="td"><input readOnly=true [value]="totalDept" type="number"></td>
+                <td class="td"><input readOnly=true [value]="totalAmount" type="number"></td> 
+                <td class="td" colspan="2"></td>
+            </tr> -->
+        </table>
+    </app-table>
+</form>

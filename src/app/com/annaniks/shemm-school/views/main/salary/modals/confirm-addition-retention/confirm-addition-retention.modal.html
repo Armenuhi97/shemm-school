@@ -1,0 +1,124 @@
+<app-modal-header [title]="title" (close)="close($event)"></app-modal-header>
+<form [formGroup]="confirmAdditionRetentionGroup">
+    <div class="first-section">
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Ամսաթիվ</label>
+            </div>
+            <div class="input_wraper">
+                <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                    [locale]="calendarConfig"> </p-calendar>
+                <span class="validate_error"
+                    *ngIf="confirmAdditionRetentionGroup.get('date').hasError('required') && confirmAdditionRetentionGroup.get('date').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group right">
+            <div class="right_label">
+                <label for="">Փաստաթղթի №</label>
+            </div>
+            <div class="input_wraper">
+                <input formControlName="folderNumber" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span>Հավելում/պահում</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown  [inputValue]="confirmAdditionRetentionGroup.get('additionRetention').value"
+              (setValue)="setValue($event)" [modalName]="getModalName">
+            </app-modal-dropdown>
+            <span class="validate_error"
+                *ngIf="confirmAdditionRetentionGroup.get('additionRetention').hasError('required') && isFocus"><i
+                    class="material-icons">
+                    close
+                </i></span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ստորաբաժանում</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="unit"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 1</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="analyticalGroup1"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 2</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="analyticalGroup2"></p-dropdown>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Մեկնաբանություն</label>
+        </div>
+        <div class="input_wraper textarea">
+            <textarea formControlName="comment"></textarea>
+        </div>
+    </div>
+</form>
+<app-table [isShowButton]="true" (add)="addRow($event)" (delete)="deleteAll($event)">
+    <table *ngIf="listArray && listArray.controls && listArray.controls.length">
+        <tr>
+            <th></th>
+            <th>Ստորաբաժանում</th>
+            <th>Տաբելային համար</th>
+            <th>Անվանում</th>
+            <th>Առձեռն</th>
+            <th>Վճարվող գումար</th>
+        </tr>
+        <tr *ngFor="let item of listArray.controls; let i = index" [formGroup]="item">
+            <td>
+                <div (click)="remove(i)" class="close">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <p-dropdown formControlName="unit" type="text"></p-dropdown>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <p-dropdown formControlName="reportCard" type="text"></p-dropdown>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input formControlName="name" type="text">
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input formControlName="byHands" type="text">
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input (ngModelChange)="changeAmount()" formControlName="paidAmount" type="text">
+                </div>
+            </td>
+        </tr>
+        <tr class="all_sum">
+            <td class="td" colspan="5"> </td>
+            <td class="td"><input readOnly=true [(ngModel)]="totalAmount" type="number"></td>
+        </tr>
+    </table>
+</app-table>

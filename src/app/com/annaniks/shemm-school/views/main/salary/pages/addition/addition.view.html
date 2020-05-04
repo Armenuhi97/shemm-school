@@ -1,0 +1,19 @@
+<app-tables-by-filter [titles]="titles" (add)="addAddition(false)">
+    <tr *ngFor="let addition of additions">
+        <td class="edit"> <i (click)="addAddition(true,addition?.id)" class=" material-icons"> edit </i> </td>
+        <td class="delete"> <i (click)="delete(addition?.id)" class=" material-icons"> close </i></td>
+        <td>{{addition?.name}}</td>
+        <td>{{addition?.methodOfSallaryCalculation}}</td>
+        <td>{{addition?.coefficient}}</td>
+        <td>{{addition?.typeOfIncome?.name}}</td>
+        <td>{{addition?.expenseAccount?.account}}</td>
+        <td>{{addition?.typeOfVacation?.name}}</td>
+        <td> <label class="container-checkbox">
+                <input [checked]="getBooleanVariable(addition?.recalculation)" disabled type="checkbox">
+                <span class="checkmark"></span>
+            </label></td>
+    </tr>
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

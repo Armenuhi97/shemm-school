@@ -1,0 +1,16 @@
+<app-tables-by-filter [titles]="titles" (add)="addMaterialvalueGroup(false)">
+
+    <tr *ngFor="let materialvalueGroup of materialvalueGroups">
+        <td class="edit"> <i (click)="addMaterialvalueGroup(true, materialvalueGroup?.id, materialvalueGroup)" class=" material-icons"> edit
+            </i> </td>
+        <td class="delete"> <i (click)="delete(materialvalueGroup?.id)" class=" material-icons"> close </i></td>
+        <td>{{ materialvalueGroup?.code }}</td>
+        <td>{{ materialvalueGroup?.name }}</td>
+        <td>{{ materialvalueGroup?.materialValueGroupId }}</td>
+    </tr>
+
+</app-tables-by-filter>
+
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

@@ -1,0 +1,18 @@
+<app-modal-header [title]="title" (close)="close($event)"></app-modal-header>
+
+<div class="table-content">
+    <table>
+        <tr>
+            <th>Տաբելային համար</th>
+            <th>Ազգանուն, անուն, հայրանուն</th>
+            <th>Ստորաբաժանում</th>
+            <th>Պաշտոն</th>
+        </tr>
+        <tr cursor-pointer *ngFor="let employee of employeeArray" (click)="selectEmployee(employee)">
+            <td>{{employee.timecardNumber}}</td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.unit}}</td>
+            <td>{{employee.position}}</td>
+        </tr>
+    </table>
+</div>

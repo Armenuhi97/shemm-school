@@ -1,0 +1,18 @@
+<app-tables-by-filter [titles]="titles" (add)="addUnit(false)">
+    <tr *ngFor="let item of data">
+        <td class="edit">
+            <i (click)="addUnit(true,item?.id)" class=" material-icons">
+                edit
+            </i>
+        </td>
+        <td class="delete"> <i (click)="delete(item?.id)" class=" material-icons">
+                close
+            </i></td>
+        <td>{{item?.name}}</td>
+        <td *ngIf="item?.subdivision">{{item?.subdivision?.name}}</td>
+    </tr>
+
+</app-tables-by-filter>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

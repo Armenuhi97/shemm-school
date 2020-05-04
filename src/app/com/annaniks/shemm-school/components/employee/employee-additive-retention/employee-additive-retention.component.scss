@@ -1,0 +1,63 @@
+
+  input:disabled{
+    background: none;
+  }
+
+  :host::ng-deep{    
+    .ui-datepicker .ui-datepicker-title select{
+        margin-left: 5px !important;
+    }    
+    app-modal-dropdown{
+      input{
+        height: 32px;
+        background: none;
+        border: 1px solid grey !important;
+        border-right: none !important;
+
+       }
+    }
+  }
+.beside-section{
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .form_group{  
+
+    .label{
+        width: 170px;
+    } 
+    .date-group{
+      display: flex;
+      align-items: center;
+  }
+    .input_wraper{
+        width: calc(100% - 170px);
+    }
+  }
+  .right{
+      margin-left: 10px;
+  }
+  .investment-expenditure{
+    margin-top: 5px;
+    button{
+      padding: 7px;
+      color: white;
+      cursor: pointer;
+      background: #56AD89;
+      border: none;
+      font-size: 17px;
+    }
+  }
+
+}  
+button{
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+.save{
+  padding: 5px;
+  background: #3F7FB8;
+}

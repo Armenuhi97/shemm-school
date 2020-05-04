@@ -1,0 +1,283 @@
+<h2>{{tabTitle}}</h2>
+<form [formGroup]="provisionCommonGroup">
+  <div class="first-section">
+    <div class="form_group">
+      <div class="label">
+        <label for="">Աշխատանքային ժամանակահատված</label>
+      </div>
+      <div class="date-group input_wraper">
+        <div>
+          <p-calendar rPCalendarMask formControlName="workingPeriodFrom" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+            [locale]="calendarConfig"> </p-calendar>
+        </div>
+        <div class="right">
+          <p-calendar rPCalendarMask formControlName="workingPeriodTo" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+            [locale]="calendarConfig"> </p-calendar>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form_group">
+    <div class="label">
+      <label for="">Աշխատանքային լեզու</label>
+    </div>
+    <div class="input_wraper">
+      <input type="" formControlName="workingLanguage">
+    </div>
+  </div>
+
+  <div class="form_group">
+    <div class="label">
+      <label for="">ԱԱՀ</label>
+    </div>
+    <div class="input_wraper">
+      <input type="text" formControlName="aah" >
+    </div>
+  </div>
+
+  <div class="form_group">
+    <div class="label">
+      <label for="">ԱԱՀ-ն այդ թվում</label>
+    </div>
+    <div class="input_wraper">
+      <input type="text" formControlName="aahIncluding">
+    </div>
+  </div>
+
+  <div class="form_group">
+    <div class="label">
+      <label for="">Բնապահպանական հարկ վճարող</label>
+    </div>
+    <div class="input_wraper">
+      <label class="container-checkbox">
+        <input class="name-input" formControlName="environmentalTaxpayer" type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="form_group">
+    <div class="label">
+      <label for="">Պահանջել հաստատում պատուհանը փակելիս</label>
+    </div>
+    <div class="input_wraper">
+      <label class="container-checkbox">
+        <input class="name-input" formControlName="demandConfirmWindowClosing" type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="form_group">
+    <div class="label">
+      <label for="">Բերել հաշվետվությունները էլեկտրոնային աղյուսակի տեսքով</label>
+    </div>
+    <div class="input_wraper">
+      <label class="container-checkbox">
+        <input class="name-input" formControlName="bringReportsElectronicTableFormat" type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="form_group">
+    <div class="label">
+      <label for="">Ամսաթիվ տիպի սյուների ֆիլտրման ընդլայնված եղանակ</label>
+    </div>
+    <div class="input_wraper">
+      <label class="container-checkbox">
+        <input class="name-input" formControlName="advancedMethodOfFilteringDateTypeColumns" type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+  </div>
+
+  <div style="width: 100%;  border: 1px solid grey; padding: 5px; margin-top: 5px;" class="reverseLabel">
+    <div class="form_group">
+      <div class="">
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="ignoreZeroSumTransactions" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="label">
+        <label for=""> Անտեսել 0-ական գումարով գործառնությունները</label>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="">
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="transactionAccountAndPartnerFiltration" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="label">
+        <label for="">Գործառնության հաշվարկի և գործընկերոջ ֆիլտրացիա</label>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="">
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="checkAccountCorrespondence" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="label">
+        <label for="">Ստուգել հաշիվների թղթակցությունները</label>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="">
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="checkComplianceOfSubaccountAndAccumulatorAccounts" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="label">
+        <label for="">Ստուգել ենթահաշվի և կուտակիչ հաշիվի կոդերի համապատասխանությունը</label>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="">
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="saveEditedOperationsCopyingDocument" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="label">
+        <label for="">Փաստաթուղթը պատճենելիս պահպանել խմբագրված գործառնությունները</label>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="">
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="inAccountFieldsNotLimitSelectionOfPartnerAccounts" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="label">
+        <label for="">Հաշիիվ դաշտում չսահմանափակել գործընկերով հաշիվների ընտրությունը</label>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="">
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="allowToUseDiscountWhenSelling" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="label">
+        <label for="">Վաճառքի ժամանակ թույլատրել օգտագուծել զեղջ</label>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="">
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="allowDiscountsWhenPurchasing" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="label">
+        <label for="">Գնման ժամանակ թույլատրել օգտագուծել զեղջ</label>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="">
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="exportHCIdentifier" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="label">
+        <label for="">Արտահանել ՀԾ նույնացուցիչը</label>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="">
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="groupReRegistrationOfDocuments" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="label">
+        <label for="">Փաստաթղթերի խմբային վերագրանցում</label>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="">
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="showPartnerHVHHinLogsAndReports" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="label">
+        <label for="">Մատյաններում և հաշվետվություններում ցույց տալ գործընկերոջ ՀՎՀՀ-ն</label>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="">
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="importRatesOfKBWhenLogInToSystem" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="label">
+        <label for="">Համակարգ մուտք գործելիս ներմուծել ԿԲճի փոխարժեքները</label>
+      </div>
+    </div>
+    
+    <div class="form_group">
+      <div class="">
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="participateCustomerExperienceImprovementProgram" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="label">
+        <label for="">Մասնակցել հաճախորդների փորձի բարելավման ծրագրին</label>
+      </div>
+    </div>
+  </div>
+
+  <div formGroupName="analiticGroups">
+    <div class="form_group" >
+      <div class="">
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="countOfAnaliticGroups" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="label">
+        <label for="">Անալիտիկ խմբերի հաշվարկ</label>
+      </div>
+    </div>
+    <div class="form_group">
+      <div class="">
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="keepAnalyticsFieldsUnderEachOther" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="label">
+        <label for="">Անալիտիկ խմբերը պահել միմյանց տակ</label>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="buttons">
+  <button (click)="addProvisionCommon()" [disabled]="!provisionCommonGroup.valid">Կատարել</button>
+  <button (click)="close()">Դադարեցնել</button>
+</div>

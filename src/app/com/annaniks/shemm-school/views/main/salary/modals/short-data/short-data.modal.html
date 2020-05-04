@@ -1,0 +1,75 @@
+<app-modal-header [title]="title" (close)="close($event)"></app-modal-header>
+
+<div class="modal-content">
+    <form [formGroup]="shortDataGroup">
+        <div class="first-section">
+            <div class="form_group">
+                <div class="label">
+                    <label for=""><span>*</span> Ժամանակահատված</label>
+                </div>
+                <div class="input_wraper dates">
+                    <div class="start-date">
+                        <p-calendar rPCalendarMask formControlName="startDate" [placeholder]="'Ամիս/Տարի'" view="month" dateFormat="MM, yy"
+                        [yearNavigator]="true" [yearRange]="setYearRange()" 
+                            [locale]="calendarConfig"> </p-calendar>
+                        <span class="validate_error"
+                            *ngIf="shortDataGroup.get('startDate').hasError('required') && shortDataGroup.get('startDate').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+
+                    <div class="end-date">
+                        <p-calendar rPCalendarMask formControlName="endDate" [placeholder]="'Ամիս/Տարի'" view="month" dateFormat="MM, yy"
+                        [yearNavigator]="true" [yearRange]="setYearRange()" 
+                            [locale]="calendarConfig"> </p-calendar>
+                        <span class="validate_error"
+                            *ngIf="shortDataGroup.get('endDate').hasError('required') && shortDataGroup.get('endDate').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form_group right">
+                <div>
+                    <button>
+                        <i class="material-icons">
+                            save
+                        </i>
+                    </button>
+                </div>
+                <div>
+                    <button>
+                        <i class="material-icons">
+                            clear
+                        </i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+   
+        <div class="form_group">
+            <div class="label">
+                <label for="">Աշխատակից</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'id'" [inputProperty]="'name'" [inputValue]="shortDataGroup.get('employee').value" 
+                    (setValue)="setBenefitValue($event,'employee','name')" [modalName]="getModalName"></app-modal-dropdown>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ստորաբաժանում</label>
+            </div>
+            <div class="input_wraper">
+              <p-dropdown formControlName="unit"></p-dropdown>
+            </div>
+        </div>        
+    </form>
+    <div class="buttons">
+        <button>Կատարել</button>
+        <button>Դադարեցնել</button>
+    </div>
+</div>

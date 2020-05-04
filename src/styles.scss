@@ -1,0 +1,474 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$shemm-school-primary: mat-palette($mat-indigo);
+$shemm-school-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$shemm-school-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$shemm-school-theme: mat-light-theme($shemm-school-primary, $shemm-school-accent, $shemm-school-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($shemm-school-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+*{margin: 0; padding: 0; box-sizing: border-box;}
+
+.material-icons.md-18 { font-size: 18px; color: white;}
+.material-icons.md-24 { font-size: 24px; color: white;}
+.material-icons.md-36 { font-size: 36px; color: white;}
+.material-icons.md-48 { font-size: 48px; color: white;}
+.material-icons.md-12 { font-size: 12px;}
+.fixed-assets-modal {
+    .mat-dialog-container{
+        padding: 15px !important;
+    }
+}
+.employess-modal{
+    .mat-dialog-container{
+        overflow-x: hidden !important;
+    }
+}
+
+
+.pi.pi-sm { font-size: 13px; margin: 0 4px 0 20px; };
+
+.mat-dialog-container{
+    padding: 15px !important;
+}
+
+
+.table{
+    app-modal-dropdown{
+        input{
+            height: 32px;
+            background: none;
+            border: 1px solid grey !important;
+            border-right: none !important;
+
+        }
+    }
+}
+.comment{
+    app-modal-dropdown{
+        width: 80% !important;
+
+        p-autocomplete, .ui-widget{
+            width: 100% !important;
+        }
+        .dropdown-modal-container input{
+            width: 100% !important;
+        }
+    }
+
+}
+
+// .ui-state-disabled, body .ui-widget:disabled{
+//     opacity: 1 !important;
+// }
+.form_group{       
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    // margin-left:15px;
+    .required::before{
+        content: '*';
+        color: red;
+    }
+    .label{
+        label{
+            font-size: 15px;
+            span{
+                color: red;
+            }
+        }
+    } 
+    .checkbox_input_wraper{
+        width: fit-content;
+        label{
+            font-size: 15px;
+        }
+    }
+  
+    .textarea-content{
+      width: 80%;
+      .textarea{
+          width: 95%;
+      }
+    }      
+    .input_wraper{
+        display:flex;
+        align-items: center;
+        .text{
+          font-size: 15px;
+          margin-left: 7px;
+        }
+        textarea{
+            width: 80%;
+            border-radius: 3px;
+            padding: 2px;
+        }
+        .validate_error{
+            height: 20px;
+            width: 20px;
+            background: #AA1415;
+            color: white;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            border-radius: 50%;
+            margin-left: 5px;
+            i{
+                font-size: 15px;
+            }
+        }      
+     
+    }
+    input{
+        border-radius: 3px;
+        border: 1px solid grey;
+        padding-left: 5px;
+        height: 32px;
+        width: 80%;
+    }
+}
+table{
+    .close{
+        border-radius: 50%;
+        background: grey;
+        height: 15px;
+        width: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin: 0 auto;
+        i{
+            color: white;
+            font-size: 11px;
+        }
+    }
+    input[type="text"],input[type="number"], p-dopdown{
+        border:none !important;
+        // height: 100%;
+        height: 32px;
+        padding: 3px;
+    }
+}
+.buttons{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    button:last-child{
+        margin-left: 12px;
+    }
+    button{
+        padding: 7px 30px;
+        border: none;
+        font-size: 15px;
+        cursor: pointer;
+        border: 1px solid grey;
+        min-width: 150px;
+    }
+}
+.add_new_data_button{
+    outline: none !important;
+    background: none !important;  
+    border: none;
+    cursor: pointer;  
+     i{
+        color: green;
+        font-size: 25px !important;
+    }
+}
+.forms-container{
+    border: 1px solid grey;
+    padding: 5px;
+    margin-top: 15px;
+}
+.has-add-button-content,.partner_section{
+    button{
+        border: none;
+        padding: 7px;
+        cursor: pointer;
+        margin-left: 5px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i{
+            font-size: 15px;
+        }
+    }
+    .add_button{
+        background-color: green;
+    }
+    .delete_button{
+        background-color: red;
+    }
+}
+.flex{
+    display: flex;
+    align-items: center;
+}
+.disabled{
+    opacity: 0.5;
+}
+.disabled-button{
+    opacity: 0.5;
+    pointer-events: none;
+}
+.partner_section{
+    display: flex;
+    align-items: center;
+}
+.partner_input{
+    display: block !important;
+}
+.margin-top{
+    margin-top: 5px;
+}
+.dropdown-modal-container{
+    display: flex;
+    align-items: center;
+    input{
+        border-right: none !important;
+        width: 150px;
+        outline: none;
+        text-overflow: ellipsis;
+        padding-right: 1px;
+    }
+    .arrow{
+        display: flex;
+        align-items: center;
+        border-bottom-right-radius: 3px;
+        border: 1px solid grey;
+        border-top-right-radius: 3px;
+        height: 32px;
+        margin-left: -2px;
+        cursor: pointer;
+        z-index: 9;
+    }
+}
+.table-content{
+    overflow-x: auto;
+    padding-top: 15px;
+    table, th, td {
+        border: 1px solid;
+        border-collapse: collapse;
+        padding: 2px;
+        color: black;
+        font-size:12px
+    }
+    th{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding: 5px;
+    }
+    td{
+        padding: 4px;
+    }
+}
+
+app-table{
+    th{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        // max-width: 110px;
+    }
+    table, th, td {
+        border: 1px solid;
+        border-collapse: collapse;
+        padding: 2px;
+        color: black;
+        font-size:12px
+    }
+
+}
+.row-content{
+    display: flex;
+    align-items: center;
+    .validate_error{
+    height: 20px;
+    width: 20px;
+    background: #AA1415;
+    color: white;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    margin-left: 5px;
+        i{
+            font-size: 15px;
+        }
+    }
+}
+.additionally-content{
+    border: 1px solid grey;
+    margin-top: 5px;
+    padding: 3px;
+    .additionally{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;    
+        cursor: pointer;
+    }
+}
+p-calendar{
+    .ui-inputtext{
+        font-size: 14px !important;
+        width: 175px;
+    }
+}
+
+.right{
+    p-calendar{
+        .ui-calendar .ui-datepicker{
+            right: 0 !important;
+            left: auto !important;
+        }    
+    } 
+}
+body .ui-datepicker{
+    padding: 0.857em 0.857em 0 0.857em !important;
+}
+body .ui-datepicker table td {
+    padding: 0.49em !important;
+}
+.calendar_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: none;
+    padding: 5px;
+    border: 1px solid #3F7FB8;
+    i{
+        font-size: 20px;
+        color: #3F7FB8;
+    }
+}
+.error{
+    color: red;
+    font-size: 10px;
+    margin-left: 5px;
+}
+.all_sum{
+    .td{
+        border: none !important;   
+        input{
+          border: 1px solid !important;
+          padding-left: 3px;
+          height: 22px !important;
+        } 
+      }
+}
+.fill-button{
+    border: 1px solid grey;
+    cursor: pointer;
+    margin-bottom:5px ;
+    padding: 5px;
+}
+.delete{
+    text-align: center !important;
+    i{
+        cursor: pointer;
+        color: red;
+
+    }
+}
+.show{
+    text-align: center !important;
+    span{
+        cursor: pointer;
+        color: #3F7FB8;
+    }
+}
+.edit{
+  
+    text-align: center !important;
+    i{
+        cursor: pointer;
+        color: green;
+    }
+}
+
+.disabled-input{
+    opacity: 0.8;
+    pointer-events: none;
+  }
+.selected-element-name{
+    margin-left: 5px;
+    // max-width: 350px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;  
+    font-size: 15px;  
+}
+@media only screen and (max-width: 1130px) {
+    .selected-element-name{
+        // max-width: 245px !important;
+        font-size: 12px !important;
+    }
+}
+
+@media only screen and (max-width: 1570px){
+    .position{
+        p-calendar{
+            .ui-calendar .ui-datepicker{
+                right: auto !important;
+                left: auto !important;
+            }    
+        } 
+    }
+}
+.error-row{
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 200px;
+}
+.group-content{
+    justify-content: space-between;
+    button{
+      display: flex;
+      align-items: center;
+      margin-left: 5px;
+      height: 20px;
+      width: 20px;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
+*[cursor-pointer]{
+    cursor: pointer;
+}
+*[display-flex]{
+    display: flex;
+}
+*[align-items-center]{
+    align-items: center;
+}

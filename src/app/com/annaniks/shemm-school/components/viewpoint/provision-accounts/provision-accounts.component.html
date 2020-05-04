@@ -1,0 +1,38 @@
+<h2>{{ tabTitle }}</h2>
+<!-- <form [formGroup]="formGroup"></form> -->
+<table>
+  <thead >
+    <tr>
+      <th style="width: 30px;"></th>
+      <th style="width: 500px; min-width: 300px; padding: 10px 0;">Հաշվի անվանում</th>
+      <th>Հաշիվ</th>
+    </tr>
+  </thead>
+</table>
+<table [formGroup]="accountsFormGroup(provisionAccount)" *ngFor="let provisionAccount of provisionAccounts">
+  <thead >
+    <tr>
+      <th style="width: 30px;"></th>
+      <th colspan="2" (click)="toggle(provisionAccount)">
+        <span class="" >
+          <i class="material-icons">
+            {{ provisionAccount.isOpen ? 'keyboard_arrow_down':  'keyboard_arrow_right'}}
+          </i>
+        </span>
+        {{provisionAccount.title}}</th>
+    </tr>
+  </thead>
+  <tbody  *ngFor="let item of provisionAccount.items" >
+    <tr *ngIf="provisionAccount.isOpen" >
+      <td style="width: 20px;"></td>
+      <td style="width: 500px; min-width: 300px;">{{item.label}}</td>
+      <td><input [formControlName]="getControlName(item)" type="text"></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="buttons">
+  <button (click)="addProvisionAccount()" >Կատարել</button>
+  <button (click)="close()">Դադարեցնել</button>
+</div>
+

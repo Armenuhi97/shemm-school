@@ -1,0 +1,18 @@
+
+.group{
+    margin-top: 25px;
+    .form_group{
+        .label{
+            width: 125px;
+        }
+        .input_wraper{
+            width: calc(100% - 125px);
+        }
+    }
+  
+}
+.code{
+    input{
+        width: 60%;
+    }
+}

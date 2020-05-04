@@ -1,0 +1,91 @@
+.close{
+    border-radius: 50%;
+    background: grey;
+    height: 15px;
+    width: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    i{
+        color: white;
+        font-size: 11px;
+    }
+}
+.form_group{       
+    
+    .label{
+        width: 260px;
+    } 
+    .checkbox_input_wraper{
+        width: fit-content;
+        label{
+            font-size: 15px;
+        }
+    }   
+    .input_wraper{
+        width: calc(100% - 260px);
+        .text{
+            font-size: 15px;
+            margin-left: 7px;
+        }    
+    }
+}
+.container-checkbox{
+    padding-left: 22px !important;
+}
+
+  :host::ng-deep{
+    app-modal-dropdown{
+      input{
+        height: 32px;
+        background: none;
+        border: 1px solid grey !important;
+        border-right: none !important;
+
+       }
+    }
+  }
+.total_amount{
+    .form_group{
+        justify-content: flex-end;
+    }
+    .label{
+        width: 120px;
+    }
+    .input_wraper{
+        width: fit-content !important;
+    }
+}
+table, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 2px;
+    color: black;
+    font-size:12px
+  }
+  input[type="text"], p-dopdown{
+      border:none !important;
+      height: 100%;
+  }
+
+  .row-content{
+    display: flex;
+    align-items: center;
+    .validate_error{
+      height: 20px;
+      width: 20px;
+      background: #AA1415;
+      color: white;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      border-radius: 50%;
+      margin-left: 5px;
+      i{
+          font-size: 15px;
+      }
+    }
+  }
+
+ 

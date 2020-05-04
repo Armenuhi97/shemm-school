@@ -1,0 +1,40 @@
+.table-container{
+    margin-top: 20px;
+    table, th, td {
+        border: 1px solid;
+        border-collapse: collapse;
+        padding: 5px;
+        color: black;
+        font-size:12px; ;
+        text-align: start
+      }
+      table{
+          width: 90%;
+    
+      }
+      tr{
+          cursor: pointer;
+      }
+      .items:hover{
+        background-color: #d5eaf1;
+      }
+}
+.select{
+    background-color: lightblue;
+}
+.relative{
+        display: inline-block;
+        position: relative;
+        width: 100%;
+}
+
+:host::ng-deep{
+    .header{
+        width: 100%;
+        position: sticky;
+        left: 0;
+        top: -15px;
+        height: 50px;        
+        background: white;
+    }
+}

@@ -1,0 +1,29 @@
+<h2>{{ tabTitle }}</h2>
+
+<form [formGroup]="formGroup"></form>
+<table [formGroup]="documentNumbersFormGroup(provisionDocumentNumber)" *ngFor="let provisionDocumentNumber of provisionDocumentNumbers">
+  <thead >
+    <tr>
+      <th style="width: 30px;"></th>
+      <th colspan="2" (click)="toggle(provisionDocumentNumber)">
+        <span class="" >
+          <i class="material-icons">
+            {{ provisionDocumentNumber.isOpen ? 'keyboard_arrow_down':  'keyboard_arrow_right'}}
+          </i>
+        </span>
+        {{provisionDocumentNumber.title}}</th>
+    </tr>
+  </thead>
+  <tbody  *ngFor="let item of provisionDocumentNumber.items" >
+    <tr *ngIf="provisionDocumentNumber.isOpen" >
+      <td style="width: 20px;"></td>
+      <td style="width: 500px; min-width: 300px;">{{item.label}}</td>
+      <td><input [formControlName]="getControlName(item)" type="text"></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="buttons">
+  <button (click)="addProvisionDocumentNumber()" >Կատարել</button>
+  <button (click)="close()">Դադարեցնել</button>
+</div>

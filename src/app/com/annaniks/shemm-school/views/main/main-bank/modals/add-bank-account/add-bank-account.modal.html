@@ -1,0 +1,93 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div class="group">
+    <form [formGroup]="bankAccountGroup" action="">
+        <div class="form_group code">
+            <div class="label">
+                <label for=""><span>*</span> Հաշվարկային հաշիվ</label>
+            </div>
+            <div class="input_wraper ">
+                <input (ngModelChange)="getBankName()" formControlName="settlementAccount">
+                <span class="validate_error"
+                    *ngIf="bankAccountGroup.get('settlementAccount').hasError('required') && bankAccountGroup.get('settlementAccount').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+                <span  class="error" *ngIf="(bankAccountGroup.controls['settlementAccount'].hasError('maxlength') || bankAccountGroup.controls['settlementAccount'].hasError('minlength'))  && bankAccountGroup.get('settlementAccount').touched">
+                    Հաշվարկային հաշիվը պետք է լինի 12 նիշ
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group ">
+            <div class="label disabled">
+                <label for=""><span>*</span> Անվանում</label>
+            </div>
+            <div class="input_wraper ">
+                <input class="disabled-input" readonly formControlName="name">
+                <span class="validate_error"
+                    *ngIf="bankAccountGroup.get('name').hasError('required') && bankAccountGroup.get('name').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Արժույթ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'id'" [inputProperty]="'currency'"
+                    [inputValue]="setInputValue('currency','currency')"
+                    [selectObject]="bankAccountGroup.get('currency').value" (setValue)="setValue($event,'currency')"
+                    [array]="currencies"
+                    [modalParams]="setModalParams('Արժույթ',['currency','name'],['Կոդ', 'Անվանում'])">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="bankAccountGroup.get('currency').value">{{bankAccountGroup.get('currency').value.name}}</span>
+                <!-- <p-dropdown formControlName="currency"></p-dropdown> -->
+                <span class="validate_error"
+                    *ngIf="bankAccountGroup.get('currency').hasError('required') && bankAccountGroup.get('currency').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Հաշիվ</label>
+            </div>
+            <div class="input_wraper medium-dropdown">
+                <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('account','account')"
+                    [selectObject]="bankAccountGroup.get('account').value" (setValue)="setValue($event,'account')"
+                    [array]="accountPlans"
+                    [modalParams]="setModalParams('Հաշվային պլան',['account','name'],['Հաշիվ', 'Անվանում'])">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="bankAccountGroup.get('account').value">{{bankAccountGroup.get('account').value.name}}</span>
+                <!-- <p-dropdown formControlName="account"></p-dropdown> -->
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Հիմնական</label>
+            </div>
+            <div class="input_wraper ">
+                <label class="container-checkbox">
+                    <input formControlName="isMain" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+
+    </form>
+    <div class="buttons">
+        <button (click)="save()">Կատարել</button>
+        <button (click)="close()">Դադարեցնել</button>
+    </div>
+</div>

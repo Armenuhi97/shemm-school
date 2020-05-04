@@ -1,0 +1,63 @@
+<app-modal-header [title]="title" (close)="close($event)"></app-modal-header>
+<div class="modal-content">
+    <form [formGroup]="filesGroup">
+        <div class="first-section">
+            <div class="form_group">
+                <div class="label">
+                    <label for=""><span>*</span> Ժամանակահատված</label>
+                </div>
+                <div class="input_wraper dates">
+                    <div class="start-date">
+                        <p-calendar rPCalendarMask formControlName="startDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                            [locale]="calendarConfig"> </p-calendar>
+                        <span class="validate_error"
+                            *ngIf="filesGroup.get('startDate').hasError('required') && filesGroup.get('startDate').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+
+                    <div class="end-date">
+                        <p-calendar rPCalendarMask formControlName="endDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                            [locale]="calendarConfig"> </p-calendar>
+                        <span class="validate_error"
+                            *ngIf="filesGroup.get('endDate').hasError('required') && filesGroup.get('endDate').touched"><i
+                                class="material-icons">
+                                close
+                            </i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form_group right">
+                <div>
+                    <button>
+                        <i class="material-icons">
+                            save
+                        </i>
+                    </button>
+                </div>
+                <div>
+                    <button>
+                        <i class="material-icons">
+                            clear
+                        </i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+        <div class="form_group other-group">
+            <div class="label">
+                <label for="">Արտարժույթներ</label>
+            </div>
+            <div class="input_wraper">
+                <p-dropdown formControlName="currency"></p-dropdown>
+
+            </div>
+        </div>
+    </form>
+    <div class="buttons">
+        <button>Կատարել</button>
+        <button>Դադարեցնել</button>
+    </div>
+</div>

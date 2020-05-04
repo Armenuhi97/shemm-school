@@ -1,0 +1,24 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div *ngIf="error">{{ error }}</div>
+<div class="provisions-body">
+  <aside>
+    <ul *ngFor="let tab of tabsItem">
+      <li (click)="routingTab(tab)" [ngClass]="{'active': activeTab==tab.title}" >{{tab.title}}</li>
+    </ul>
+  </aside>
+  <section>
+    <div [ngSwitch]="activeTab" style="border: 1px solid grey; padding: 5px;">
+      <app-provisions-common *ngSwitchCase="'Ընդհանուր'" [title]="activeTab"></app-provisions-common>
+      <app-organization *ngSwitchCase="'Կազմակերպություն'" [title]="activeTab"></app-organization>
+      <a *ngSwitchCase="'b2b.armsoft հարթակ'" href="https://b2b.armsoft.am/" target="_blank">b2b.armsoft հարթակ</a>
+      <app-colors-and-fonts *ngSwitchCase="'Գույներ և տառատեսակներ'" [title]="activeTab"></app-colors-and-fonts>
+      <app-provision-printing-policy *ngSwitchCase="'Տպելու դրույթներ'" [title]="activeTab"></app-provision-printing-policy>
+      <app-provision-printing-templates *ngSwitchCase="'Տպելու ձևանմուշներ'" [title]="activeTab"></app-provision-printing-templates>
+      <app-provision-document-numbers *ngSwitchCase="'Փաստաթղթերի համարներ'" [title]="activeTab"></app-provision-document-numbers>
+      <app-provision-accounts *ngSwitchCase="'Հաշիվներ'" [title]="activeTab"></app-provision-accounts>
+      <app-provision-salary *ngSwitchCase="'Աշխատավարձ'" [title]="activeTab"></app-provision-salary>
+      <app-main-funds *ngSwitchCase="'Հիմնական միջոցներ'" [title]="activeTab"></app-main-funds>
+      <app-systemic *ngSwitchCase="'Համակարգային'" [title]="activeTab"></app-systemic>
+    </div>
+  </section>
+</div>

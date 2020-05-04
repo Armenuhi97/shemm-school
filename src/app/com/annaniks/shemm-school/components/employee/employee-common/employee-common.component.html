@@ -1,0 +1,152 @@
+<form [formGroup]="employeeGroup">
+    <div class="concrete-width-fit">
+        <div class="form_group">
+            <div class="label">
+                <label for=""> Մասնագիտություն</label>
+            </div>
+            <div class="has-add-button-content input_wraper profession-content">
+                <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                    [inputValue]="setInputValue('profession','name')"
+                    [selectObject]="employeeGroup.get('profession').value" (setValue)="setValue($event,'profession')"
+                    [array]="professions" [modalParams]="setModalParams('Մասնագիտություն',['Անվանում'],['name'])">
+                </app-modal-dropdown>
+                <button class="add_button" (click)="addProfession()"><i class="material-icons">
+                        add
+                    </i></button>
+
+            </div>
+
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Սեռ</label>
+            </div>
+            <div class="input_wraper">
+                <p-dropdown [options]="genders" optionLabel="name" placeholder="Ընտրեք" formControlName="gender">
+                </p-dropdown>
+            </div>
+        </div>
+        <div class="birthday-section">
+            <div class="form_group">
+                <div class="label">
+                    <label for="">Ծննդյան ամսաթիվ</label>
+                </div>
+                <div class="input_wraper">
+                    <p-calendar rPCalendarMask [monthNavigator]="true" [yearNavigator]="true" [yearRange]="setYearRange('1919')"
+                        (ngModelChange)="setCumulativeParticipantValue($event)" formControlName="birthday"
+                        [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy" [locale]="calendarConfig">
+                    </p-calendar>
+                </div>
+            </div>
+            <div class="form_group cumulative-participant">
+                <div class="cumulative-label">
+                    <label for="">Կուտակային մասնակից</label>
+                </div>
+                <div class="input_wraper">
+                    <input readonly formControlName="isCumulativeParticipant">
+                </div>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <!-- <span>*</span> -->
+                <label for=""> Պայմանագրի տեսակ</label>
+            </div>
+            <div class="input_wraper">
+
+                <app-modal-dropdown [inputProperty]="'name'" [property]="'id'"
+                    [inputValue]="setInputValue('contractType','name')"
+                    [selectObject]="employeeGroup.get('contractType').value"
+                    (setValue)="setValue($event,'contractType')" [array]="contracts"
+                    [modalParams]="setModalParams('Պայմանագրի տեսակ',['Անվանում'],['name'])">
+                </app-modal-dropdown>
+
+            </div>
+        </div>
+        <!-- <div class="form_group">
+            <div class="label">
+                <label for="">Հիմնական հավելում</label>
+            </div>
+            <div class="input_wraper">
+                <p-dropdown [options]="additions" optionLabel="name" placeholder="Ընտրեք" formControlName="addition">
+                </p-dropdown>
+            </div>
+        </div> -->
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ընդունման ամսաթիվ</label>
+            </div>
+            <div class="input_wraper ">
+                <p-calendar rPCalendarMask formControlName="adoptionDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                    [locale]="calendarConfig">
+                </p-calendar>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Աշխ․ ընդունման հրամանի N</label>
+            </div>
+            <div class="input_wraper">
+                <input formControlName="orderAdmissionWork">
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ազատման ամսաթիվ</label>
+            </div>
+            <div class="input_wraper">
+                <p-calendar rPCalendarMask formControlName="releaseDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                    [locale]="calendarConfig">
+                </p-calendar>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Աշխ․ ազատման հրամանի N</label>
+            </div>
+            <div class="input_wraper">
+                <input formControlName="dismissalOrder">
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Հաշվարկների հաշիվ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('paymentAccount','account')"
+                    [selectObject]="employeeGroup.get('paymentAccount').value"
+                    (setValue)="setValue($event,'paymentAccount')" [array]="accountPlans"
+                    [modalParams]="setModalParams('Հաշվային պլան',['Հաշիվ','Անվանում'],['account','name'])">
+                </app-modal-dropdown>
+                <span class="selected-element-name" *ngIf="employeeGroup.get('paymentAccount').value">
+                    {{ employeeGroup.get('paymentAccount').value?.name }}
+                </span>
+                <span class="validate_error"
+                    *ngIf="employeeGroup.get('paymentAccount').hasError('required') && employeeGroup.get('paymentAccount').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Դրոշմանիշային վճար</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'name'" [inputValue]="setInputValue('stampFee','name')"
+                    [selectObject]="employeeGroup.get('stampFee').value" (setValue)="setValue($event,'stampFee')"
+                    [array]="stampFee" [modalParams]="setModalParams('Դրոշմանիշային վճար',['Անվանում'],['name'])">
+                </app-modal-dropdown>
+                <span class="validate_error"
+                    *ngIf="employeeGroup.get('stampFee').hasError('required') && employeeGroup.get('stampFee').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+                <!-- <span class="selected-element-name"
+                    *ngIf="employeeGroup.get('stampFee').value">{{employeeGroup.get('stampFee').value.name}}</span> -->
+
+            </div>
+        </div>
+    </div>
+</form>

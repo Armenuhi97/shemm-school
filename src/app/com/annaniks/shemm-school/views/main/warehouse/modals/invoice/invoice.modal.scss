@@ -1,0 +1,63 @@
+
+    .first-section{
+        margin-top: 25px;
+        display: flex;
+        align-items: center;   
+    .right{
+        margin-left: 15px;
+        .right_label{
+            width: fit-content;   
+            margin-right: 5px;  
+            label{
+                font-size: 15px;                
+            }     
+        } 
+    }
+}
+.margin-top{
+    margin-top: 5px;
+}
+.other-section{
+    .input_wraper{
+        width: calc(100% - 205px);
+    }
+}
+    .form_group{
+        .label{
+            width: 205px;           
+        } 
+        .input_wraper{          
+            .code-input{
+                width: 100%;
+            }          
+        }
+    }
+    .buyer_input{
+        display: block !important;
+    }
+
+.order_number{
+    input{
+        width: 150px;
+    }
+}
+@media only screen and (max-width: 985px) {
+    .first-section{
+        flex-direction: column;
+        align-items: flex-start !important;
+        .input_wraper{
+            width: calc(100% - 205px);
+        }
+    }
+    .right{
+        margin-left: 0 !important;
+        .right_label{
+            width: 205px !important;   
+            margin-right:0 !important       
+        } 
+        // input{
+        //     width:100% !important;
+        // }
+    }
+}
+   

@@ -1,0 +1,113 @@
+<h2>Հաշիվներ</h2>
+<!-- <form [formGroup]="formGroup"></form> -->
+<table>
+  <thead>
+    <tr>
+      <th style="width: 30px; padding: 5px"></th>
+      <th style="width: 700px; min-width: 300px; padding: 10px 5px;">Հաշվի անվանում</th>
+      <th>Հաշիվ</th>
+    </tr>
+  </thead>
+</table>
+<div [formGroup]="formGroup">
+  <table [formGroup]="accountsFormGroup(provisionAccount)" *ngFor="let provisionAccount of provisionAccounts">
+    <thead>
+      <tr>
+        <th style="width: 30px;"></th>
+        <th colspan="2" (click)="toggle(provisionAccount)">
+          <span class="">
+            <i class="material-icons">
+              {{ provisionAccount.isOpen ? 'keyboard_arrow_down':  'keyboard_arrow_right'}}
+            </i>
+          </span>
+          {{provisionAccount.title}}</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of provisionAccount.items">
+      <tr *ngIf="provisionAccount.isOpen">
+        <td style="width: 20px;">
+          <!-- <i class="material-icons">edit</i> -->
+        </td>
+        <td style="width: 700px; min-width: 300px; padding: 5px">{{item.label}}</td>
+        <!-- <td><input  type="text" [value]="item.formControl">{{ item.formControl}}</td> -->
+        <td>
+          <app-modal-dropdown [property]="'account'"
+            [inputValue]="setInputValue(item.formControl,'account',accountsFormGroup(provisionAccount))"
+            [selectObject]="accountsFormGroup(provisionAccount).get(item.formControl).value"
+            (setValue)="setValue($event, item.formControl ,accountsFormGroup(provisionAccount))"
+            [array]="chartAccounts"
+            [modalParams]="setModalParams('Հաշվային պլան',['Հաշիվ','Անվանում'],['account','name'])">
+          </app-modal-dropdown>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="buttons">
+  <button (click)="addProvisionAccount()">Հաստատել</button>
+  <!-- <button (click)="back()">Դադարեցնել</button> -->
+</div>
+
+
+<div class="section">
+  <div class="section-header">
+      <span>Ավելացված արժեքի հարկ</span>
+  </div>
+  <div class="section-body">
+      <form [formGroup]="warehouseProvisionsGroup">
+          <div class="form_group">
+              <div class="label">
+                  <label for="">Հաշվարկման ենթակա ԱԱՀ-ի հաշիվ</label>
+              </div>
+              <div class="input_wraper">
+                  <app-modal-dropdown [property]="'account'" [inputValue]="setInputValuew('accountAAH','account')"
+                      [selectObject]="warehouseProvisionsGroup.get('accountAAH').value"
+                      (setValue)="setValuew($event,'accountAAH')" [array]="chartAccounts"
+                      [modalParams]="setModalParamsw('Հաշվային պլան','Հաշիվ','account')">
+                  </app-modal-dropdown>
+                  <span class="selected-element-name"
+                      *ngIf="warehouseProvisionsGroup.get('accountAAH').value">{{warehouseProvisionsGroup.get('accountAAH').value.name}}</span>
+                  <span class="validate_error"
+                      *ngIf="warehouseProvisionsGroup.get('accountAAH').invalid && warehouseProvisionsGroup.get('accountAAH').touched"><i
+                          class="material-icons">
+                          close
+                      </i></span>
+              </div>
+          </div>
+
+          <div class="form_group">
+              <div class="label">
+                  <label for="">ԱԱՀ-ի տոկոս</label>
+              </div>
+              <div class="input_wraper">
+                  <input type="text" class="code-input" formControlName="aahPercent">
+                  <span class="validate_error"
+                      *ngIf="warehouseProvisionsGroup.get('aahPercent').hasError('required') && warehouseProvisionsGroup.get('aahPercent').touched"><i
+                          class="material-icons">
+                          close
+                      </i></span>
+              </div>
+          </div>
+
+          <div class="form_group">
+              <div class="label">
+                  <label for="">ԱԱՀ-ի տոկոսը ներառյալ այդ թվում</label>
+              </div>
+              <div class="input_wraper">
+                  <input type="text" class="code-input" formControlName="aahNeraryalPercent">
+                  <span class="validate_error"
+                      *ngIf="warehouseProvisionsGroup.get('aahNeraryalPercent').hasError('required') && warehouseProvisionsGroup.get('aahNeraryalPercent').touched"><i
+                          class="material-icons">
+                          close
+                      </i></span>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
+
+<div class="buttons">
+  <button (click)="addWarehouseProvisions()">Հաստատել</button>
+  <button (click)="back()">Հետ գնալ</button>
+</div>
+

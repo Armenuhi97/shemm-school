@@ -1,0 +1,27 @@
+<app-table (add)="addRow($event)" (delete)="deleteAll($event)">
+    <table
+        *ngIf="additionalAddressGroupArray && additionalAddressGroupArray.controls && additionalAddressGroupArray.controls.length">
+        <tr>
+            <th></th>
+            <th>Գործ․ հասցե</th>
+        </tr>
+        <tr *ngFor="let item of additionalAddressGroupArray.controls; let i = index" [formGroup]="item">
+            <td>
+                <div (click)="remove(i)" class="close">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input formControlName="name" type="text">
+                    <span class="validate_error" *ngIf="item.get('name').invalid  && item.get('name').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+        </tr>
+    </table>
+</app-table>

@@ -1,0 +1,11 @@
+.calendar_button{
+    margin-left: 25px;
+}
+.form_group{
+    .label{
+        width: 180px;
+    }
+    .input_wraper{
+        width: calc(100% - 180px);
+    }
+}

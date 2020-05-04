@@ -1,0 +1,70 @@
+.table-content{
+ .settings-button{
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      i{
+        font-weight: bold;
+      }
+      .add,.remove,.save,.lock{
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .add{
+        color: #56AD89;
+      }
+      .remove{
+        color: #CC4C33;
+        margin-left: 15px;      
+      }
+      .lock{
+        color: orange;
+        margin-left: 15px;  
+      }
+      .save{
+        color: lightblue;
+        margin-left: 15px;  
+      }     
+      .button-group{
+        display: flex;
+        align-items: center;
+        button{
+          display: flex;
+          align-items: center;
+          margin-left: 7px;
+          cursor: pointer;
+          padding: 7px;
+          border: 1px solid grey;
+          i{
+            font-size: 15px;
+            margin-right: 2px;
+          }
+        }
+        .fill{
+            i{
+              color: #3F7FB8;
+            }
+          }
+        .refresh{
+            i{
+              color: green;
+            }
+          }
+
+      }
+    .form_group{  
+      margin-left: 15px;    
+      margin-top: 0 !important;
+      .label{
+          width: fit-content; 
+          margin-right: 5px;         
+      }         
+      .input_wraper{
+          width: fit-content;
+
+      }
+    }
+  }
+}

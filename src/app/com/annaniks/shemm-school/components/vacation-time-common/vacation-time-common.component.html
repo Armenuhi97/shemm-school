@@ -1,0 +1,123 @@
+<form [formGroup]="vacationTimeGroup">
+    <div class="first-section">
+        <div class="form_group">
+            <div class="label">
+                <label for=""> Ժամանակահատված</label>
+            </div>
+            <div class="date-group input_wraper">
+                <div>
+                    <p-calendar rPCalendarMask appendTo="body" (ngModelChange)="changeDate()"
+                        formControlName="startDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                        [locale]="calendarConfig"> </p-calendar>
+                </div>
+                <div class="right">
+                    <p-calendar rPCalendarMask appendTo="body" (ngModelChange)="changeDate()" formControlName="endDate"
+                        [minDate]="minDate" [maxDate]="maxDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                        [locale]="calendarConfig"> </p-calendar>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ամիսների քանակ միջինի համար</label>
+        </div>
+        <div class="input_wraper">
+            <input readonly type="number" formControlName="monthCount">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Միջին օրական գործակից</label>
+        </div>
+        <div class="input_wraper">
+            <input readonly type="number" class="small-input" formControlName="dailyCoefficient">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Միջին աշխատավարձ</label>
+        </div>
+        <div class="input_wraper">
+            <input type="number" formControlName="avarageSalary">
+            <button class="edit-button" (click)="disabelOrEnable()">
+                <span class="material-icons">
+                    edit
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Միջին օրական</label>
+        </div>
+        <div class="input_wraper">
+            <input readonly type="number" (ngModelChange)="changeAvarageDaily()" formControlName="avarageDaily">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ծախսի հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('expenseAccount','account')"
+                [selectObject]="vacationTimeGroup.get('expenseAccount').value"
+                (setValue)="setValue($event,'expenseAccount')" [array]="chartAccounts"
+                [modalParams]="setModalParams('Հաշվային պլան','account')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="vacationTimeGroup.get('expenseAccount').value">{{vacationTimeGroup.get('expenseAccount').value.name}}</span>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Տարանցիկ հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('transitAccount','account')"
+                [selectObject]="vacationTimeGroup.get('transitAccount').value"
+                (setValue)="setValue($event,'transitAccount')" [array]="chartAccounts"
+                [modalParams]="setModalParams('Հաշվային պլան','account')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="vacationTimeGroup.get('transitAccount').value">{{vacationTimeGroup.get('transitAccount').value.name}}</span>
+        </div>
+    </div>
+
+
+    <div class="warning-text">Նշում։ Ապագա ամիսներին բաժին ընկնող արձակուրդայինները և համապատասխան հարկերը (պարտադիր
+        վճարումները) կձևակերպվեն տարանցիկ հաշվով:</div>
+    <div>
+        <button class="fill-button">Լրացնել օրերը b2b.armsoft-ից</button>
+    </div>
+    <div class="table-content">
+        <table>
+            <tr>
+                <th>Ամիս</th>
+                <th>Օր</th>
+                <th>Գումար</th>
+            </tr>
+            <tr *ngFor="let item of vacationTimeGroup.get('listArray')['controls']" [formGroup]="item">
+                <td>
+                    {{item.get('monthName')?.value}}
+                </td>
+                <td>
+                    <input readonly (ngModelChange)="change('day','totalday')" type="number" formControlName="day">
+                </td>
+                <td>
+                    <input (focus)="focus(item,'amount')" (blur)="blur(item,'amount')"
+                        (ngModelChange)="change('amount','totalamount')" formControlName="amount" type="number">
+                </td>
+            </tr>
+            <tr class="all_sum">
+                <td class="td" colspan="1"> </td>
+                <td class="td"><input readOnly=true formControlName="totalday" type="number"></td>
+                <td class="td"><input readOnly=true formControlName="totalamount" type="number"></td>
+            </tr>
+        </table>
+    </div>
+</form>

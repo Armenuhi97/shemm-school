@@ -1,0 +1,160 @@
+<form [formGroup]="partnerCommonGroup" action="">
+    <div class="form_group">
+        <div class="label">
+            <label for="">ԱԱՀ վճարող</label>
+        </div>
+        <div class="input_wraper">
+            <label class="container-checkbox">
+                <input formControlName="isAAHpayer" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Իրավ․ հասցե</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="legalAddress">
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Գործ․ հասցե</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="worksAddress">
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ղեկավարի Ա․Ա․Հ</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="directorFullName">
+
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ղեկավարի պաշտոն</label>
+        </div>
+        <div class="input_wraper full_dropdown">
+            <!-- <p-dropdown [options]="headPositions" optionLabel="name" placeholder="Ընտրեք"
+                formControlName="headPosition"></p-dropdown> -->
+
+            <app-modal-dropdown [inputProperty]="'name'" [property]="'id'"
+                [inputValue]="setInputValue('headPosition','name')"
+                [selectObject]="partnerCommonGroup.get('headPosition').value" 
+                (setValue)="setValue($event,'headPosition')" [array]="headPositions"
+                [modalParams]="setModalParams('Ղեկավարի պաշտոն')">
+            </app-modal-dropdown>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Հաշվապահի Ա․Ա․Հ</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="accountantFullName">
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Հաշվապահի պաշտոն</label>
+        </div>
+        <div class="input_wraper full_dropdown">
+            <!-- <p-dropdown [options]="accountPositions" optionLabel="name" placeholder="Ընտրեք"
+                formControlName="accountantPosition"></p-dropdown> -->
+                <app-modal-dropdown [inputProperty]="'name'" [property]="'id'" 
+                [inputValue]="setInputValue('accountantPosition','name')"
+                [selectObject]="partnerCommonGroup.get('accountantPosition').value" 
+                (setValue)="setValue($event,'accountantPosition')" [array]="accountPositions"
+                [modalParams]="setModalParams('Հաշվապահի պաշտոն')">
+            </app-modal-dropdown>
+
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ա/Ձ պետ․ գրամց․ վկ․ N</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="certificate">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անձնագրի համար</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="passportNumber">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Վճարման հիմնական նպատակ</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="purposePayment">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Հեռախոսահամար</label>
+        </div>
+        <div class="input_wraper">
+            <input type="text" prefix="+374" mask="(00) 00 00 00" formControlName="phone">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Էլ․ փոստ</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="email">
+            <span class="validate_error" *ngIf="partnerCommonGroup.get('email').hasError('pattern')"><i
+                    class="material-icons">
+                    close
+                </i></span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Պայմանագիր</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="contract">
+        </div>
+    </div>
+
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Պայմանագիրի ամսաթիվը</label>
+        </div>
+        <div class="input_wraper">
+            <p-calendar rPCalendarMask formControlName="contract_date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                [locale]="calendarConfig">
+            </p-calendar>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Վաճառքի զեղչի տոկոս</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="discountPercentageSale">
+        </div>
+    </div>
+</form>

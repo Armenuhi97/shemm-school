@@ -1,0 +1,69 @@
+
+.first-section{
+    margin-top: 25px;
+    display: flex;
+    align-items: center;   
+    .right{
+        margin-left: 15px;
+        .right_label{
+            width: fit-content;   
+            margin-right: 5px;  
+            label{
+                font-size: 15px;                
+            }     
+        } 
+    }
+    .button{
+        margin-top: 5px;
+        button{
+            padding: 7px;
+            border: none;
+            cursor: pointer;
+            border: 1px solid grey;
+        }
+        button:last-child{
+            margin-left: 5px;
+        }
+    }
+
+}
+.button-group{
+    display: flex;
+    align-items: center;
+}
+.margin-top{
+    margin-top: 5px;
+}
+.other-section{
+    .input_wraper{
+        width: calc(100% - 205px);
+    }
+}
+.order_number{
+    input{
+        width: 150px !important;
+    }
+}
+.form_group{    
+    .label{
+        width: 205px;           
+    } 
+}
+
+
+@media only screen and (max-width: 1300px) {
+    // .first-section{
+    //     flex-direction: column;
+    //     align-items: flex-start !important;
+    //     .input_wraper{
+    //         width: calc(100% - 205px);
+    //     }
+    // }
+    // .right{
+    //     margin-left: 0 !important;
+    //     .right_label{
+    //         width: 205px !important;   
+    //         margin-right:0 !important       
+    //     } 
+    // }
+}

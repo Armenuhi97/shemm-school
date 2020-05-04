@@ -1,0 +1,40 @@
+td {
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 5px;
+    color: black;
+    font-size: 12px;
+    text-align: left;
+}
+
+
+.bottom-content{
+    margin-top: 20px;
+    border: 1px solid grey;
+    padding: 10px;
+    .web_name{
+        color: grey;
+    }
+    .more-info{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        .text{
+            margin-left: 20px;
+        }
+    }
+
+    .info-text{
+        margin-left: 7px;
+        display: flex;
+        align-items: center;
+        i{
+            color: red;
+        }
+        a{
+            margin-left: 2px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+}

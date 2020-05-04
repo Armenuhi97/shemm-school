@@ -1,0 +1,16 @@
+<div class="relative">
+
+    <app-modal-header [title]="modalTitle" (close)="close($event)"></app-modal-header>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th *ngFor="let title of tableTitle">{{title}}</th>
+            </tr>
+            <tr  class="items"  [ngClass]="{'select':item == selectedElement}" (click)="select(item)"
+                *ngFor="let item of items;let i=index">
+                <td *ngFor="let key of tableKeys">{{item[key]}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

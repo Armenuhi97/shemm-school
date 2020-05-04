@@ -1,0 +1,62 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div class="forms-container">
+    <form [formGroup]="materialGroup">
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Կոդ</label>
+            </div>
+            <div class="input_wraper">
+                <input type="number" class="code-input" formControlName="code">
+                <span class="validate_error"
+                    *ngIf="materialGroup.get('code').hasError('required') && materialGroup.get('code').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Անվանում</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="name">
+                <span class="validate_error"
+                    *ngIf="materialGroup.get('name').hasError('required') && materialGroup.get('name').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Խումբ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown
+                    [property]="'code'"
+                    [inputValue]="setInputValue('materialValueGroupId','code')"
+                    (setValue)="setValue($event, 'materialValueGroupId')"
+                    [array]="materialvalueGroups"
+                    [selectObject]="materialGroup.get('materialValueGroupId').value"
+                    [modalParams]="modalParams">
+                </app-modal-dropdown>
+                <!-- <input class="name-input" formControlName="materialValueGroupId"> -->
+                <span class="validate_error"
+                    *ngIf="materialGroup.get('materialValueGroupId').hasError('required') && materialGroup.get('materialValueGroupId').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+                <span class="selected-element-name"
+                    *ngIf="materialGroup.get('materialValueGroupId').value">{{materialGroup.get('materialValueGroupId').value?.name}}
+                </span>
+
+            </div>
+        </div>
+        <div class="buttons">
+            <button (click)="addMaterialValueGroup()">Կատարել</button>
+            <button (click)="close()">Դադարեցնել</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,18 @@
+<div (click)="openSelectModal(false)" #autocomplete [ngClass]="{'disabled':(!array || (array && !array.length)),'cursor-pointer':disabled}" class="dropdown-modal-container">
+    <!-- <input type="text" [formControl]="inputValue"> -->
+    <p-autoComplete  [appendTo]="autocomplete" [class.disabled-input]="isDisabled" (onBlur)="onBlur()"
+        [formControl]="inputValue" (onSelect)="onSelect($event)" [suggestions]="filterArray"
+        (completeMethod)="filter($event)" [minLength]="1">
+        <ng-template let-item pTemplate="item">
+            <div *ngIf="modalParams" class="ui-helper-clearfix" style="display: flex; align-items: center;">
+                <div *ngFor="let key of modalParams.keys">
+                    <div style="margin:10px 10px 0 0">{{item[key]}}</div>
+                </div>
+            </div>
+        </ng-template>
+    </p-autoComplete>
+    <div (click)="openSelectModal(true)" class="arrow"><i class="material-icons">
+            keyboard_arrow_down
+        </i>
+    </div>
+</div>

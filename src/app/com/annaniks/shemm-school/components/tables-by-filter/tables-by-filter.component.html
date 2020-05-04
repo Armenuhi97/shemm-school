@@ -1,0 +1,30 @@
+<div *ngIf="!isShowAddButton" class="button">
+    <div class="header">
+
+        <i class="material-icons" (click)="goHome()">
+            home
+        </i>
+        <span (click)="goBack()">{{header}}</span>
+    </div>
+    <button (click)="add()">Ավելացնել</button>
+</div>
+<div class="table-container">
+    <table>
+        <tr>
+            <th *ngIf="!isShowAddButton"> Փոփոխել </th>
+            <th *ngIf="isShowAddButton"> Դիտել </th>
+
+            <th> Ջնջել </th>
+            <th *ngFor="let title of titles;  let i=index">
+                <div class="titles" (click)="sort(title,i)">
+                    <span class="title">{{title.title}}</span>
+                    <span class="arrow-content"><i class="material-icons">
+                            {{title.arrow}}
+                        </i></span>
+                </div>
+
+            </th>
+        </tr>
+        <ng-content></ng-content>
+    </table>
+</div>

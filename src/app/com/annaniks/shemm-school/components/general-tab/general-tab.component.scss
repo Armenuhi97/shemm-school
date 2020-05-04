@@ -1,0 +1,83 @@
+.form-control {
+    display: flex;
+    margin: 5px 10px;
+
+    label {
+        width: 380px;
+        margin-left: 10px;
+    }
+
+    .inputs {
+        input[type="text"]{
+            height: 30px;
+            border: 1px solid;
+            border-radius: 3px;
+            padding: 0 0 0 6px;
+            border-color: rgba(0,0,0, .3);
+            width: 175px;
+        }
+        .business-card {
+            width: 100px;
+        }
+
+        .document-number {
+            width: 160px;
+        }
+
+        .output-method-number {
+            width: 255px;
+        }
+
+        .main-select {
+            width: 170px;
+        }
+
+        .mini-select {
+            width: 40px;
+        }
+
+        .date {
+            height: 17px;
+        }
+
+        span {
+            margin: 0 10px 0 25px;
+        }
+
+    }
+ 
+}
+
+.form_group{       
+    .label{
+        width: 240px;
+    }         
+    .input_wraper{
+        width: calc(100% - 240px);          
+    }
+    .middle-input{
+        width: 35% !important;
+    }
+    
+}
+.folder-container{
+    display: flex;
+    align-items: center; 
+    .date_label{
+        width: fit-content !important;
+        margin-right: 5px;
+    }
+ }
+ @media only screen and (max-width: 986px) {
+    .folder-container{
+        flex-direction: column;
+        align-items: flex-start !important; 
+        .date_label{
+            width: 240px !important;
+            margin-right: 0 !important;
+        }
+        .wraper{
+            width: calc(100% - 240px);          
+        }
+     }
+}

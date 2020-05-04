@@ -1,0 +1,74 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div class="error" *ngIf="error">{{error}}</div>
+<div class="forms-container">
+  <form [formGroup]="formGroup">
+    <div class="form_group">
+      <div class="label">
+        <label class="required" for="">Կոդ</label>
+      </div>
+      <div class="input_wraper">
+        <input class="code-input" formControlName="code">
+        <span class="validate_error"
+          *ngIf="formGroup.get('code').hasError('required') && formGroup.get('code').touched"><i class="material-icons">
+            close
+          </i></span>
+      </div>
+    </div>
+    <div class="form_group">
+      <div class="label">
+        <label class="required" for="">Անվանում</label>
+      </div>
+      <div class="input_wraper">
+        <input class="code-input" formControlName="name">
+        <span class="validate_error"
+          *ngIf="formGroup.get('name').hasError('required') && formGroup.get('name').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+    <div class="form_group">
+      <div class="label">
+        <label for="">Եկամտային հարկը պահվում է </label>
+      </div>
+      <div class="input_wraper">
+
+        <label class="container-checkbox">
+          <input class="name-input" formControlName="income_tax_withheld" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+        <span class="validate_error"
+          *ngIf="formGroup.get('income_tax_withheld').hasError('required') && formGroup.get('income_tax_withheld').touched">
+          <i class="material-icons">
+            close
+          </i>
+        </span>
+      </div>
+    </div>
+
+    <div class="form_group">
+      <div class="label">
+        <label for="">Գործատուի դրոշմանիշային վճարի ծախսի հաշիվ</label>
+      </div>
+      <div class="input_wraper">
+        <app-modal-dropdown [property]="'account'"
+          [inputValue]="setInputValue('account','account')"
+          [selectObject]="formGroup.get('account').value" (setValue)="setValue($event,'account')"
+          [array]="chartAccounts" [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+        </app-modal-dropdown>
+        <span class="selected-element-name"
+          *ngIf="formGroup.get('account').value">{{formGroup.get('account').value?.name}}</span>
+        <span class="validate_error" *ngIf="formGroup.get('account').invalid && formGroup.get('account').touched"><i
+            class="material-icons">
+            close
+          </i></span>
+      </div>
+    </div>
+    <div class="buttons">
+      <button (click)="addSystemAddition()">Կատարել</button>
+      <button (click)="close()">Դադարեցնել</button>
+    </div>
+  </form>
+
+</div>

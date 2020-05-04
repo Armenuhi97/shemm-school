@@ -1,0 +1,28 @@
+.container-checkbox{
+    padding-left: 22px !important;
+}
+.form_group{
+    .label{
+        width: 212px;
+    }
+    .input_wraper{
+        width: calc(100% - 212px);
+    }
+}
+
+:host::ng-deep{
+    app-modal-dropdown{
+        width: 80% !important;
+        .dropdown-modal-container input{
+            width: 100% !important;
+        }
+    }
+    .full_dropdown{
+        p-dropdown{
+            width: 80% !important;
+            .ui-dropdown{
+                width: 100%;
+            }
+        }
+    }
+}

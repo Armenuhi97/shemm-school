@@ -1,0 +1,21 @@
+
+.group{
+    margin-top: 10px;
+    border: 1px solid grey;
+    padding: 5px;
+    .form_group{
+        .label{
+            width: 125px;
+        }
+        .input_wraper{
+            width: calc(100% - 125px);
+        }
+    }
+  
+}
+.code{
+    input{
+        width: 60%;
+    }
+}
+

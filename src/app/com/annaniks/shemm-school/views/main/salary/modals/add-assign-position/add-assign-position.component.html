@@ -1,0 +1,123 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<form [formGroup]="assignPositionGroup">
+  <div class="form_group">
+    <div class="label">
+      <label for=""><span>*</span> Ամսաթիվ</label>
+    </div>
+    <div class="input_wraper">
+      <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy" [locale]="calendarConfig">
+      </p-calendar>
+      <span class="validate_error"
+        *ngIf="assignPositionGroup.get('date').hasError('required') && assignPositionGroup.get('date').touched"><i
+          class="material-icons">
+          close
+        </i></span>
+    </div>
+  </div>
+
+  <div class="form_group">
+    <div class="label">
+      <label for=""><span>*</span>Հավելում/պահում</label>
+    </div>
+    <div class="input_wraper">
+      <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('additionId','id')"
+        [selectObject]="assignPositionGroup.get('additionId').value"
+        (setValue)="setValue($event,'additionId',assignPositionGroup)" [array]="additions"
+        [modalParams]="setModalParams('Հավելում/պահում',['id','name'])">
+      </app-modal-dropdown>
+      <span class="selected-element-name"
+      *ngIf="assignPositionGroup.get('additionId').value">{{assignPositionGroup.get('additionId').value}}
+    </span>
+      <span class="validate_error"
+        *ngIf="assignPositionGroup.get('additionId').hasError('required') && assignPositionGroup.get('additionId').touched">
+        <i class="material-icons">
+          close
+        </i>
+      </span>
+    </div>
+  </div>
+  <div class="form_group">
+    <div class="label">
+      <label for="">Ստորաբաժանում</label>
+    </div>
+    <div class="input_wraper">
+      <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('subdivisionId','id')"
+        [selectObject]="assignPositionGroup.get('subdivisionId').value"
+        (setValue)="setValue($event,'subdivisionId',assignPositionGroup,true)" [array]="subdivisions"
+        [modalParams]="setModalParams('Ստորաբաժանում',['id','name'])">
+      </app-modal-dropdown>
+      <span class="selected-element-name"
+        *ngIf="assignPositionGroup.get('subdivisionId').value">{{assignPositionGroup.get('subdivisionId').value}}
+      </span>
+      <span class="validate_error"
+        *ngIf="assignPositionGroup.get('subdivisionId').hasError('required') && assignPositionGroup.get('subdivisionId').touched">
+        <i class="material-icons">
+          close
+        </i>
+      </span>
+    </div>
+  </div>
+
+  <app-table [isShowButton]="false" (add)="addRow($event)" (delete)="deleteAll($event)">
+    <table
+      >
+      <tr *ngIf=" assignPositionGroup.get('assignEstablishmentListOfEmployee') && assignPositionGroup.get('assignEstablishmentListOfEmployee')['controls']">
+        <th></th>
+        <th>Ստորաբաժանում</th>
+        <th>Անվանում</th>
+        <th>Գումար</th>
+      </tr>
+      <tr *ngFor="let item of assignPositionGroup.get('assignEstablishmentListOfEmployee')['controls']; let i = index"
+        [formGroup]="item">
+
+        <td>
+          <div (click)="remove(i)" class="close">
+            <i class="material-icons" >
+              close
+            </i>
+          </div>
+        </td>
+
+        <!-- <td>
+          <div class="row-content">
+            <input formControlName="subdivisionId" type="text" >
+          </div>
+        </td> -->
+
+        <td>
+          <div class="row-content">
+            <input class="disabled-input" formControlName="subdivisionId" type="text" >
+          </div>
+        </td>
+
+        <td>
+          <div class="row-content">
+            <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('employeeId','fullName',item)"
+              [selectObject]="item.get('employeeId').value" (setValue)="setValue($event,'employeeId',item)"
+              [array]="employees" [modalParams]="setModalParams('Աշխատակիցներ',['id','fullName'])">
+            </app-modal-dropdown>
+            <span class="validate_error" *ngIf="item.get('employeeId').invalid  && item.get('employeeId').touched"><i
+                class="material-icons">
+                close
+              </i></span>
+          </div>
+        </td>
+
+        <td>
+          <div class="row-content">
+            <input (ngModelChange)="changeAmount()" formControlName="money" type="text">
+          </div>
+        </td>
+      </tr>
+
+      <tr class="all_sum">
+        <td class="td" colspan="3"> </td>
+        <td class="td"><input readOnly=true formControlName="totalSalary" type="number"></td>
+      </tr>
+    </table>
+  </app-table>
+  <div class="buttons">
+    <button (click)="addAssignPositions()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+  </div>
+</form>

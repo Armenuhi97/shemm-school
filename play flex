@@ -1,0 +1,109 @@
+[33mcommit 8b5193e849823d4253e30bacfea0073fe5125e18[m[33m ([m[1;36mHEAD -> [m[1;32mSS_3[m[33m, [m[1;31morigin/SS_3[m[33m)[m
+Author: artur1985 <arturhayrapetyan85@gmail.com>
+Date:   Fri Dec 6 17:19:39 2019 +0400
+
+    TASK: SS_3 Action pages with tabs
+
+[33mcommit c694160a877779eac8a8068c77426ec55a8d6a24[m[33m ([m[1;32mSS_01[m[33m)[m
+Merge: acf2473 95c76ad
+Author: artur1985 <arturhayrapetyan85@gmail.com>
+Date:   Thu Dec 5 10:11:27 2019 +0400
+
+    Merge branch 'dev' of https://github.com/Rado1998/shemm-school into SS_01
+
+[33mcommit acf2473ced2f8ae2ef01f993fbd6af62084dc873[m
+Author: artur1985 <arturhayrapetyan85@gmail.com>
+Date:   Wed Dec 4 16:51:41 2019 +0400
+
+    Global interface
+
+[33mcommit 95c76adce8b6e40d271e027b74b180dab7ca6453[m[33m ([m[1;31morigin/dev[m[33m)[m
+Merge: 5589a58 970f4cb
+Author: arturhay1985 <32571772+arturhay1985@users.noreply.github.com>
+Date:   Wed Dec 4 16:49:25 2019 +0400
+
+    Merge pull request #5 from Rado1998/SS_01
+    
+    Ss 01
+
+[33mcommit 970f4cbafbada39c5d5b118b87e24fc37aa84756[m[33m ([m[1;31morigin/SS_01[m[33m)[m
+Merge: ea844e9 5589a58
+Author: artur1985 <arturhayrapetyan85@gmail.com>
+Date:   Wed Dec 4 16:48:56 2019 +0400
+
+    FF
+
+[33mcommit ea844e927f1e9470c481be2dbd1bb646a82f8f70[m
+Author: artur1985 <arturhayrapetyan85@gmail.com>
+Date:   Wed Dec 4 16:19:26 2019 +0400
+
+    Common changes
+
+[33mcommit 5589a582cad28897f8a822eb34858ccfde58aa30[m
+Author: Rado <rado.poghosyan@annaniks.com>
+Date:   Wed Dec 4 16:06:18 2019 +0400
+
+    renamed fixet-assets.routing to fixet-asset-routing
+
+[33mcommit 17d3d89f49f951e155fe7d49486f017595e00a7d[m
+Merge: 7ded591 8a1fc8b
+Author: Rado1998 <33931565+Rado1998@users.noreply.github.com>
+Date:   Wed Dec 4 16:05:21 2019 +0400
+
+    Merge pull request #2 from Rado1998/ss_2
+    
+    create fixed assets page
+
+[33mcommit fc4da321fd6468991b74b0969218e3c5feab3eab[m[33m ([m[1;31morigin/SS_1[m[33m, [m[1;32mSS_1[m[33m)[m
+Author: artur1985 <arturhayrapetyan85@gmail.com>
+Date:   Wed Dec 4 14:57:49 2019 +0400
+
+    Home page fixed
+
+[33mcommit 8a1fc8b36e4f9fe142f7f843df4c0e1f51b2ccdf[m
+Author: Armenuhi1997 <armenuhimanukyan@annaniks.com>
+Date:   Wed Dec 4 11:58:54 2019 +0400
+
+    change style in fixed assets page
+
+[33mcommit 0934bbd08d225badd4e04eda01aef03f09ae68c1[m
+Author: Armenuhi1997 <armenuhimanukyan@annaniks.com>
+Date:   Wed Dec 4 10:54:12 2019 +0400
+
+    create fixed assets page
+
+[33mcommit a78aea705f316642e346fb6072b2be9224d378b0[m
+Author: artur1985 <arturhayrapetyan85@gmail.com>
+Date:   Wed Dec 4 09:58:28 2019 +0400
+
+    Home Page
+
+[33mcommit 7ded59149f4b43b163773324dd8b25f62b9df76f[m[33m ([m[1;32mdev[m[33m)[m
+Author: Rado <rado.poghosyan@annaniks.com>
+Date:   Tue Dec 3 10:07:19 2019 +0400
+
+    added scss files
+
+[33mcommit 0f955b0dcca6bec656e0146b1aafd2bdb6352b76[m
+Author: Rado <rado.poghosyan@annaniks.com>
+Date:   Tue Dec 3 09:59:39 2019 +0400
+
+    created project structure
+
+[33mcommit fbea7d2dfb7feedd4c65c5317185fcd91c123eeb[m
+Author: Rado <rado.poghosyan@annaniks.com>
+Date:   Mon Dec 2 16:25:45 2019 +0400
+
+    changed main routing module
+
+[33mcommit c91396a2e983edbe38277793787c322a707e0877[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Rado <rado.poghosyan@annaniks.com>
+Date:   Mon Dec 2 16:23:59 2019 +0400
+
+    initial commit
+
+[33mcommit 7cbc6deeefe3b76861a4bd352e655509dba79c83[m
+Author: Rado <rado.poghosyan@annaniks.com>
+Date:   Mon Dec 2 15:06:39 2019 +0400
+
+    initial commit

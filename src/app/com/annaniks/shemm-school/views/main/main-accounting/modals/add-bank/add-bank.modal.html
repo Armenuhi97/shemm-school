@@ -1,0 +1,55 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<!-- <div class="error">{{error}}</div> -->
+<div class="group">
+    <form [formGroup]="bankGroup">
+        <div class="form_group code">
+            <div class="label">
+                <label for=""><span>*</span> Կոդ</label>
+            </div>
+            <div class="input_wraper ">
+                <input formControlName="code">
+                <span class="validate_error"
+                    *ngIf="bankGroup.get('code').hasError('required') && bankGroup.get('code').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group ">
+            <div class="label">
+                <label for=""><span>*</span> Անվանում</label>
+            </div>
+            <div class="input_wraper ">
+                <input formControlName="name">
+                <span class="validate_error"
+                    *ngIf="bankGroup.get('name').hasError('required') && bankGroup.get('name').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group swift-code">
+            <div class="label">
+                <label for="">SWIFT կոդ</label>
+            </div>
+            <div class="input_wraper ">
+                <input formControlName="swift">
+                <span class="validate_error"
+                *ngIf="bankGroup.get('swift').hasError('required') && bankGroup.get('swift').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+            </div>
+        </div>
+        <div class="buttons">
+            <button (click)="addBank()">Կատարել</button>
+            <button (click)="close()">Դադարեցնել</button>
+        </div>
+
+    </form>
+</div>

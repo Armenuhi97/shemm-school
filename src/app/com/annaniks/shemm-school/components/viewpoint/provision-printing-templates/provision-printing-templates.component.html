@@ -1,0 +1,29 @@
+<h2>{{ tabTitle }}</h2>
+
+<form [formGroup]="formGroup"></form>
+<table [formGroup]="templatesFormGroup(printingTemplate)" *ngFor="let printingTemplate of printingTemplates">
+  <thead >
+    <tr>
+      <th style="width: 30px;"></th>
+      <th colspan="2" (click)="openOrClose(printingTemplate)">
+        <span class="" >
+          <i class="material-icons">
+            {{ printingTemplate.isOpen ? 'keyboard_arrow_down':  'keyboard_arrow_right'}}
+          </i>
+        </span>
+        {{printingTemplate.title}}</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="printingTemplate.isOpen">
+    <tr   *ngFor="let item of printingTemplate.items"  [@collapse]="state">
+      <td style="width: 20px;"></td>
+      <td style="width: 500px; min-width: 300px;">{{item.label}}</td>
+      <td><input [formControlName]="getControlName(item)" type="text"></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="buttons">
+  <button (click)="addProvisionPrintingTemplates()" >Կատարել</button>
+  <button (click)="close()">Դադարեցնել</button>
+</div>

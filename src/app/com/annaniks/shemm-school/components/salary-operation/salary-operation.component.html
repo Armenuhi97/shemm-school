@@ -1,0 +1,61 @@
+    <table *ngIf="operationFormArray && operationFormArray.controls && operationFormArray.controls.length">
+        <tr>
+            <th>Դեբետ</th>            
+            <th>Կրեդիտ</th>           
+            <th>Գումար </th>
+            <th>Մեկնաբանություն</th>
+        </tr>
+        <tr class="row" *ngFor="let item of operationFormArray.controls; let i = index" [formGroup]="item">
+
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('debit','account',item)"
+                        [selectObject]="item.get('debit').value" 
+                        (setValue)="setValue($event,'debit',item)" [array]="chartAccounts"
+                        [modalParams]="setModalParams('Դեբետ','account')">
+                    </app-modal-dropdown>
+                    <span class="validate_error"
+                        *ngIf="item.get('debit').hasError('required') && item.get('debit').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+          
+
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('credit','account',item)"
+                        [selectObject]="item.get('credit').value" 
+                        (setValue)="setValue($event,'credit',item)" [array]="chartAccounts"
+                        [modalParams]="setModalParams('Կրեդիտ','account')">
+                    </app-modal-dropdown>
+                    <span class="validate_error"
+                        *ngIf="item.get('credit').hasError('required') && item.get('credit').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+          
+            <td>
+                <div class="row-content"> <input formControlName="amountInDram"
+                        type="number">
+                    <span class="validate_error"
+                        *ngIf="item.get('amountInDram').hasError('required') && item.get('amountInDram').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content textarea-content"><textarea formControlName="comment" type="text"></textarea>
+                </div>
+            </td>
+        </tr>
+        <!-- <tr class="all_sum">
+            <td class="td" colspan="2"> </td>
+            <td class="td"><input readOnly=true [(ngModel)]="totalSum" type="number"></td>
+            <td class="td" colspan="1"></td>
+        </tr> -->
+    </table>

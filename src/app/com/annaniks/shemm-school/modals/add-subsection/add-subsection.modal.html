@@ -1,0 +1,101 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<!-- <div class="error">{{error}}</div> -->
+<div class="forms-container">
+    <form [formGroup]="subsectionGroup">
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Կոդ</label>
+            </div>
+            <div class="input_wraper">
+                <input type="number" class="code-input" formControlName="code">
+                <span class="validate_error"
+                    *ngIf="subsectionGroup.get('code').hasError('required') && subsectionGroup.get('code').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label class="required" for="">Անվանում</label>
+            </div>
+            <div class="input_wraper">
+                <input class="name-input" formControlName="name">
+                <span class="validate_error"
+                    *ngIf="subsectionGroup.get('name').hasError('required') && subsectionGroup.get('name').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+        <div class="form_group ">
+            <div class="label">
+                <label for="">Գնորդի հաշիվ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('expenseBuyer','account')"
+                    [selectObject]="subsectionGroup.get('expenseBuyer').value"
+                    (setValue)="setValue($event,'expenseBuyer')" [array]="accountPlans"
+                    [modalParams]="setModalParams('Գնորդի հաշիվ','account')">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                *ngIf="subsectionGroup.get('expenseBuyer').value">{{subsectionGroup.get('expenseBuyer').value.name}}</span>
+                
+            </div>
+        </div>
+        <div class="form_group ">
+            <div class="label">
+                <label for="">Ստացված կանխավճարի հաշիվ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'account'"
+                    [inputValue]="setInputValue('prepaymentAccountReceived','account')"
+                    [selectObject]="subsectionGroup.get('prepaymentAccountReceived').value"
+                    (setValue)="setValue($event,'prepaymentAccountReceived')"
+                    [array]="accountPlans" [modalParams]="setModalParams('Ստացված կանխավճարի հաշիվ','account')">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                *ngIf="subsectionGroup.get('prepaymentAccountReceived').value">{{subsectionGroup.get('prepaymentAccountReceived').value.name}}</span>
+               
+
+            </div>
+        </div>
+        <div class="form_group ">
+            <div class="label">
+                <label for="">ԱԱՀ-ի հաշիվ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('aahPayment','account')"
+                    [selectObject]="subsectionGroup.get('aahPayment').value" 
+                    (setValue)="setValue($event,'aahPayment')" [array]="accountPlans"
+                    [modalParams]="setModalParams('ԱԱՀ-ի հաշիվ','account')">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                *ngIf="subsectionGroup.get('aahPayment').value">{{subsectionGroup.get('aahPayment').value.name}}</span>
+           
+            </div>
+        </div>
+        <div class="form_group ">
+            <div class="label">
+                <label for="">Տեսակ</label>
+            </div>
+            <div class="input_wraper">
+             
+                <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('type','code')"
+                    [selectObject]="subsectionGroup.get('type').value" 
+                    (setValue)="setValue($event,'type')" [array]="types"
+                    [modalParams]="setModalParams('Տեսակ','code')">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                *ngIf="subsectionGroup.get('type').value">{{subsectionGroup.get('type').value.name}}</span>
+            </div>
+        </div>
+        <div class="buttons">
+            <button type="button" (click)="addSubsection()">Կատարել</button>
+            <button (click)="close()">Դադարեցնել</button>
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,138 @@
+<form [formGroup]="balanceCommonGroup" action="">
+    <div class="first_section">
+        <div class="form_group">
+            <div class="label">
+                <label for=""> Հաշիվ</label>
+            </div>
+            <div class="input_wraper full_dropdown">
+                <p-dropdown formControlName="account"></p-dropdown>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for=""> Արժույթ</label>
+            </div>
+            <div class="input_wraper middle_dropdown">
+                <p-dropdown formControlName="currency"></p-dropdown>
+
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Հաշվետվության արժույթ</label>
+            </div>
+            <div class="input_wraper small_dropdown">
+                <p-dropdown formControlName="report_currency"></p-dropdown>
+                <span class="text">ԱԴՄ-ով</span>
+                <span class="validate_error"
+                    *ngIf="balanceCommonGroup.get('report_currency').hasError('required') && balanceCommonGroup.get('report_currency').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Հաշվի պատկանելիության բաժին</label>
+            </div>
+            <div class="input_wraper small_dropdown">
+                <p-dropdown formControlName="division_supplies_account"></p-dropdown>
+                <span class="text">Հաշվեկշռային</span>
+                <span class="validate_error"
+                    *ngIf="balanceCommonGroup.get('division_supplies_account').hasError('required') && balanceCommonGroup.get('division_supplies_account').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="second_section">
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ցույց տալ միայն վերջին մակարդակի հաշիվները</label>
+            </div>
+            <div class="input_wraper">
+                <label class="container-checkbox">
+                    <input formControlName="isShow_last_level_accounts" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ցույց տալ անվանումները</label>
+            </div>
+            <div class="input_wraper">
+                <label class="container-checkbox">
+                    <input formControlName="isShowNames" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ցույց տալ գործընկերներին</label>
+            </div>
+            <div class="input_wraper">
+                <label class="container-checkbox">
+                    <input formControlName="isShowPartners" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ցույց տալ անալիտիկ խումբ 1</label>
+            </div>
+            <div class="input_wraper">
+                <label class="container-checkbox">
+                    <input formControlName="isShowAnalyticGroup1" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ցույց տալ անալիտիկ խումբ 2</label>
+            </div>
+            <div class="input_wraper">
+                <label class="container-checkbox">
+                    <input formControlName="isShowAnalyticGroup2" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ցույց տալ զրոյական տողերը</label>
+            </div>
+            <div class="input_wraper">
+                <label class="container-checkbox">
+                    <input formControlName="isShowZeroLines" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Ծառատիպ տեսք</label>
+            </div>
+            <div class="input_wraper">
+                <label class="container-checkbox">
+                    <input formControlName="treeSpecies" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button>Կատարել</button>
+        <button>Դադարեցնել</button>
+    </div>
+</form>

@@ -1,0 +1,63 @@
+<form [formGroup]="additionGroup">
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Լիազորագիր</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="proxy">
+
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Միջնորդ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('intermediary','text')"
+                [selectObject]="additionGroup.get('intermediary').value"
+                (setValue)="setValue($event,'intermediary')" [array]="documentKind" [modalName]="getModalName()">
+            </app-modal-dropdown>
+
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ավտ/Բեռնարկղ</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="carType">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Գլխավոր հաշվապահ</label>
+        </div>
+        <div class="input_wraper ">
+            <input formControlName="chiefAccountant">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Թույլատրեց</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('allowed','text')"
+                [selectObject]="additionGroup.get('allowed').value"
+                (setValue)="setValue($event,'allowed')" [array]="documentKind" [modalName]="getModalName()">
+            </app-modal-dropdown>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Պահանջել է</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="demanded">
+        </div>
+    </div>
+
+</form>

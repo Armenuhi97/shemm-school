@@ -1,0 +1,93 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<!-- <span class="error">{{error}}</span> -->
+<form action="" [formGroup]="enterVaultGroup">
+    <div class="first-section">
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Ամսաթիվ</label>
+            </div>
+            <div class="input_wraper date">
+                <p-calendar rPCalendarMask appendTo="body" formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'"
+                    dateFormat="dd/mm/yy" [locale]="calendarConfig"> </p-calendar>
+                <span class="validate_error"
+                    *ngIf="enterVaultGroup.get('date').hasError('required') && enterVaultGroup.get('date').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group right">
+            <div class="right_label label">
+                <label for=""><span>*</span> Փաստաթղթի N</label>
+            </div>
+            <div class="input_wraper order_number">
+                <input type="number" formControlName="folderNumber" type="number">
+                <span class="validate_error"
+                    *ngIf="enterVaultGroup.get('folderNumber').hasError('required') && enterVaultGroup.get('folderNumber').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <!-- <div class="button-group">
+            <div class="button right"><button>Ձեռքբերման ինքնարժեքի հաշվարկ</button></div>
+            <div class="button right"><button>ԵՏՄ հայտարարագիր</button></div>
+        </div> -->
+    </div>
+    <div class="other-section">
+
+        <div class="form_group other-section">
+            <div class="label">
+                <label for="">Պահեստ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'"  [inputProperty]="'name'" [inputValue]="setInputValue('warehouse','name')"
+                    [selectObject]="enterVaultGroup.get('warehouse').value" (setValue)="setValue($event,'warehouse')"
+                    [array]="warehouses" [modalParams]="setModalParams('Պահեստ',['Անուն'],['name'])">
+                </app-modal-dropdown>
+            </div>
+        </div>
+    </div>
+    <div class="other-section">
+
+        <div class="form_group other-section">
+            <div class="label">
+                <label for="">Պահեստի նշանակություն</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'id'"  [inputProperty]="'name'" [inputValue]="setInputValue('wareHouseAcquistion','name')"
+                    [selectObject]="enterVaultGroup.get('wareHouseAcquistion').value"
+                    (setValue)="setValue($event,'wareHouseAcquistion')" [array]="wareHouseAcquistions"
+                    [modalParams]="setModalParams('Պահեստի նշանակություն', ['Անվանում'], ['name'])">
+                </app-modal-dropdown>
+                
+            </div>
+        </div>
+    </div>
+</form>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+        <app-enter-vault-common 
+            (isClickOnAddButton)="isClickOnAddButton($event)" *ngSwitchCase="'Ընդհանուր'"
+            [group]="enterVaultGroup.get('general').value" [analyticalGroup1]="analyticalGroup1"
+            [chartAccounts]="chartAccounts" [analyticalGroup2]="analyticalGroup2" [partners]="partners">
+        </app-enter-vault-common>
+
+        <app-material-assets-list [warehouseConfig]="warehouseConfig" [classifiers]="classifiers"
+            [wareHouses]="warehouses" [wareHouseAcquistions]="wareHouseAcquistions" [chartAccounts]="chartAccounts"
+            [selectedWareHouseAcquistion]="enterVaultGroup.get('wareHouseAcquistion').value"
+            [selectedWareHouse]="enterVaultGroup.get('warehouse').value" [typeOfAcquisition]="typeOfAcquisition"
+            [calculationTypes]="calculationTypes" *ngSwitchCase="'Նյութական արժեքների ցուցակ'"
+            [unitOfMeasurements]="unitOfMeasurements" [group]="enterVaultGroup.get('materialAssetsList').value">
+        </app-material-assets-list>
+        <app-enter-vault-additionally *ngSwitchCase="'Լրացուցիչ'" [group]="enterVaultGroup.get('additionally').value">
+        </app-enter-vault-additionally>
+        <app-operation [chartAccounts]="chartAccounts" [partners]="partners" [analyticalGroup1]="analyticalGroup1"
+            [analyticalGroup2]="analyticalGroup2" [typeOperation]="'true'" *ngSwitchCase="'Գործառնություններ'"
+            [group]="enterVaultGroup.get('operation').value"></app-operation>
+    </div>
+</app-tabs>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

@@ -1,0 +1,57 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<div *ngIf="serverResponseError">
+    <p class="required">{{serverResponseError}}</p>
+</div>
+<div  class="group">
+    <form [formGroup]="formulaGroup" action="">
+        <div class="form_group code">
+            <div class="label">
+                <label for=""><span>*</span> Կոդ</label>
+            </div>
+            <div class="input_wraper ">
+                <input formControlName="code">
+                <span class="validate_error"
+                    *ngIf="formulaGroup.get('code').hasError('required') && formulaGroup.get('code').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group ">
+            <div class="label">
+                <label for=""><span>*</span> Անվանում</label>
+            </div>
+            <div class="input_wraper ">
+                <input formControlName="caption">
+                <span class="validate_error"
+                    *ngIf="formulaGroup.get('caption').hasError('required') && formulaGroup.get('caption').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span>Բանաձև</label>
+            </div>
+            <div class="input_wraper ">
+                <input formControlName="expression">
+                <span class="validate_error"
+                *ngIf="formulaGroup.get('expression').hasError('required') && formulaGroup.get('expression').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+            </div>
+        </div>
+        <div class="buttons">
+            <button (click) = "addFormula()">Կատարել</button>
+            <button (click) = "close()">Դադարեցնել</button>
+        </div>
+    </form>
+ 
+</div>

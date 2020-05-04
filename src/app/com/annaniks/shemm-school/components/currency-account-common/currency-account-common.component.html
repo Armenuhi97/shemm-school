@@ -1,0 +1,156 @@
+<form action="" [formGroup]="currencyAccountGroup">
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Վճարման տեսակ</label>
+        </div>
+        <div class="input_wraper">
+            <p-dropdown formControlName="paymentType"></p-dropdown>
+            <span class="text">Աշխատավարձ</span>
+            <span class="validate_error"
+                *ngIf="currencyAccountGroup.get('paymentType').hasError('required') && currencyAccountGroup.get('paymentType').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ստորաբաժանում</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('unit','id')"
+                [selectObject]="currencyAccountGroup.get('unit').value" (setValue)="setValue($event,'unit')"
+                [array]="subdivisions" [modalParams]="setModalParams('Ստորաբաժանում','Կոդ','id')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="currencyAccountGroup.get('unit').value">{{currencyAccountGroup.get('unit').value.name}}</span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 1</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticGroup1','code')"
+                [selectObject]="currencyAccountGroup.get('analyticGroup1').value"
+                (setValue)="setValue($event,'analyticGroup1')" [array]="analyticalGroup1"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 1','Կոդ','code')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="currencyAccountGroup.get('analyticGroup1').value">{{currencyAccountGroup.get('analyticGroup1').value.name}}</span>
+            <!-- <p-dropdown formControlName="analyticGroup1"></p-dropdown> -->
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 2</label>
+        </div>
+        <div class="input_wraper">
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticGroup2','code')"
+                    [selectObject]="currencyAccountGroup.get('analyticGroup2').value"
+                    (setValue)="setValue($event,'analyticGroup2')" [array]="analyticalGroup2"
+                    [modalParams]="setModalParams('Անալիտիկ խումբ 1','Կոդ','code')">
+                </app-modal-dropdown>
+                <span class="selected-element-name"
+                    *ngIf="currencyAccountGroup.get('analyticGroup2').value">{{currencyAccountGroup.get('analyticGroup2').value.name}}</span>
+                <!-- <p-dropdown formControlName="analyticGroup2"></p-dropdown> -->
+            </div>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Հաշվարկային հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('paymentAccount','account')"
+                [selectObject]="currencyAccountGroup.get('paymentAccount').value"
+                (setValue)="setValue($event,'paymentAccount')" [array]="chartAccounts"
+                [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="currencyAccountGroup.get('paymentAccount').value">{{currencyAccountGroup.get('paymentAccount').value.name}}</span>
+
+            <span class="validate_error"
+                *ngIf="currencyAccountGroup.get('paymentAccount').hasError('required') && currencyAccountGroup.get('paymentAccount').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for=""> Մեկնաբանություն</label>
+        </div>
+        <div class="input_wraper comment">
+            <app-modal-dropdown [isDisabledInput]="true" [property]="'id'" [inputValue]="setInputValue('comment','text')"
+                [selectObject]="currencyAccountGroup.get('comment').value" (setValue)="setValue($event,'comment')"
+                [array]="documentKind" [modalName]="getModalName()">
+            </app-modal-dropdown>
+
+        </div>
+    </div>
+
+
+    <app-table [isShowButton]="true" (add)="addRow($event)" (delete)="deleteAll($event)">
+        <table class="table"
+            *ngIf="currencyAccountGroup.get('listArray') && currencyAccountGroup.get('listArray')['controls']">
+            <tr>
+                <th></th>
+                <th>Ստորաբաժանում</th>
+                <th>Տաբելային համար</th>
+                <th>Անվանում</th>
+                <th>Առձեռն</th>
+                <th>Վճարվող գումար</th>
+            </tr>
+            <tr *ngFor="let item of currencyAccountGroup.get('listArray')['controls']; let i = index"
+                [formGroup]="item">
+                <td>
+                    <div (click)="remove(i)" class="close">
+                        <i class="material-icons">
+                            close
+                        </i>
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('unit','id',item)"
+                            [selectObject]="item.get('unit').value" (setValue)="setValue($event,'unit',item)"
+                            [array]="subdivisions" [modalParams]="setModalParams('Ստորաբաժանում','Կոդ','id')">
+                        </app-modal-dropdown>
+                        <!-- <p-dropdown formControlName="unit" type="text"></p-dropdown> -->
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('reportCard','id',item)"
+                            [selectObject]="item.get('reportCard').value"
+                            (setValue)="setValue($event,'reportCard',item)" [array]="tables"
+                            [modalParams]="setModalParams('Տաբելային համար','Կոդ','id')">
+                        </app-modal-dropdown>
+                        <!-- <p-dropdown formControlName="reportCard" type="text"></p-dropdown> -->
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input formControlName="name" type="text">
+                    </div>
+                </td>
+
+
+                <td>
+                    <div class="row-content">
+                        <input formControlName="byHands" type="number">
+                    </div>
+                </td>
+                <td>
+                    <div class="row-content">
+                        <input formControlName="paidAmount" type="number">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </app-table>
+</form>

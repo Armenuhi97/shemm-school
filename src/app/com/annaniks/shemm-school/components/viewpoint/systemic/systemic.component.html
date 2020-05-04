@@ -1,0 +1,111 @@
+<h2>{{tabTitle}}</h2>
+
+
+<form [formGroup]="systemicGroup">
+  <div class="section">
+    <div class="section-header">
+      <span>Պահուստային պատճեներ</span>
+    </div>
+    <div class="section-body">
+      <div class="form_group">
+        <div class="">
+          <label class="container-checkbox">
+            <input class="name-input" formControlName="autoCreateBackupCopy" type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="label flex">
+          <label for="">Ավտոմատ ստեղծել պահուստային պատճեն յուր․ </label>
+          <span><p-dropdown class="code-input" [options]="days"  optionLabel="day" placeholder="" formControlName="limitOfDay">
+          </p-dropdown></span> օրը մեկ
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <span>Լոկալ պատճենում</span>
+        </div>
+        <div class="section-body" formGroupName="localCopy">
+          <div class="form_group">
+            <div class="">
+              <label class="container-checkbox">
+                <input class="name-input" formControlName="autoExportSpecifiedLibraryCreatingBackup" type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="label ">
+              <label for="">Պահուստային պատճեն ստեղծելիս ավտոմատ արտահանել նշված գրադարան</label>
+            </div>
+          </div>
+
+          <div class="form_group">
+              <label class="label">
+                <input class="name-input" formControlName="enterLibraryValue" type="text">
+              </label>
+              <input type="button" [value]="'...'">
+            </div>
+        </div>
+      </div>
+
+
+ 
+      <div class="section">
+        <div class="section-header">
+          <span>Օնլայն պատճենում</span>
+        </div>
+        <div formGroupName="onlineCopy" class="section-body" formGroupName="onlineCopy">
+          <div class="form_group">
+            <div class="">
+              <label class="container-checkbox">
+                <input class="name-input" formControlName="autoExportDropboxCreatingBackup" type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="label ">
+              <label for="">Պահուստային պատճեն ստեղծելիս ավտոմատ արտահանել Dropbox</label>
+            </div>
+          </div>
+
+          <div class="form_group">
+              <label class="label">
+                <input class="name-input" type="button" formControlName="joinDropboxCloudStorage" [value]="'Միանալ Dropbox ամպային պահոցին'">
+              </label>
+            </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div class="section-body">
+      <div class="form_group">
+        <div class="label">
+          <label for="">Ամսաթիվ տիպի սյուների ֆիլտրման ընդլայնված եղանակ</label>
+        </div>
+        <div class="input_wraper">
+            <input class="name-input" formControlName="maximumTimeForReportingRequest" type="text">
+        </div>
+      </div>
+  
+      <div class="form_group">
+        <div class="label">
+          <label for="">Ամսաթիվ տիպի սյուների ֆիլտրման ընդլայնված եղանակ</label>
+        </div>
+        <div class="input_wraper">
+            <label class="container-checkbox">
+              <input class="name-input" formControlName="participatesInDataExchangeProcessTP" type="checkbox">
+              <span class="checkmark"></span>
+            </label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>
+
+<div class="buttons">
+  <button (click)="addProvisionSystemic()" [disabled]="!systemicGroup.valid">Կատարել</button>
+  <button (click)="close()">Դադարեցնել</button>
+</div>
+

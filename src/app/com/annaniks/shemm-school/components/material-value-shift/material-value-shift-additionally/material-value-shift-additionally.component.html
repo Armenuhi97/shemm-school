@@ -1,0 +1,66 @@
+<form [formGroup]="additionallyGroup">
+
+
+    <div class="form_group other_group full_dropdown">
+        <div class="label">
+            <label for="">Գլխավոր հաշվապահ</label>
+        </div>
+        <div class="input_wraper full_wraper">
+            <input formControlName="chiefAccountant">
+        </div>
+    </div>
+
+
+    <div class="form_group other_group full_dropdown">
+        <div class="label">
+            <label for="">Միջնորդ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('intermediary','text')"
+            [selectObject]="additionallyGroup.get('intermediary').value" 
+            (setValue)="setValue($event,'intermediary')" [array]="documentKind" [modalName]="getModalName()">
+        </app-modal-dropdown>
+        </div>
+    </div>
+    <div class="form_group other_group full_dropdown">
+        <div class="label">
+            <label for="">Թույլատրեց</label>
+        </div>
+        <div class="input_wraper">
+
+            <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('allowed','text')"
+                [selectObject]="additionallyGroup.get('allowed').value" 
+                (setValue)="setValue($event,'allowed')" [array]="documentKind" [modalName]="getModalName()">
+            </app-modal-dropdown>
+        </div>
+    </div>
+    <div class="form_group other_group ">
+        <div class="label">
+            <label for="">Սերիա և համար</label>
+        </div>
+        <div class="input_wraper passwort_wraper">
+            <input formControlName="series">
+            <input type="number">
+            <!-- <p-dropdown formControlName="number"></p-dropdown> -->
+        </div>
+    </div>
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Դուրս գրման ամսաթիվ</label>
+        </div>
+        <div class="input_wraper ">
+            <p-calendar rPCalendarMask formControlName="discharge_date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                [locale]="calendarConfig">
+            </p-calendar>
+        </div>
+    </div>
+
+    <div class="form_group other_group full_dropdown">
+        <div class="label">
+            <label for="">Մեկնաբանություն</label>
+        </div>
+        <div class="input_wraper">
+            <input formControlName="comment">
+        </div>
+    </div>
+</form>

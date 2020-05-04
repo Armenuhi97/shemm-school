@@ -1,0 +1,51 @@
+<app-tables-by-filter [titles]="titles" (add)="addPartner(false)">
+    <tr *ngFor="let partner of partners">
+        <td class="edit"> <i (click)="addPartner(true,partner?.id)" class=" material-icons"> edit </i> </td>
+        <td class="delete"> <i (click)="delete(partner?.id)" class=" material-icons"> close </i></td>
+        <td>{{partner?.id}}</td>
+        <td>{{partner?.name}}</td>
+        <td>{{partner?.hvhh}}</td>
+        <td>{{partner?.email}}</td>
+        <td>{{isPhoneStartWithCode(partner?.phone)}}</td>
+        <td>{{partner?.contract}}</td>
+        <td>{{partner?.legalAddress}}</td>
+        <td>{{partner?.practicalAddress}}</td>
+
+    </tr>
+</app-tables-by-filter>
+<div class="bottom-content">
+    <span class="web_name">b2b.armsoft հարթակ</span>
+    <div class="more-info">
+        <div class="circle"></div>
+        <div>- Գործընկերը հրապարակել է ապրանքացանկ b2b.armsoft-ում</div>
+        <div class="info-text">
+            <span> <i class="material-icons">
+                    cloud_queue
+                </i>
+            </span>
+            <a>
+                Դիտել գործընկերոջ ապրանքացանկը
+            </a>
+        </div>
+        <div class="info-text"> <span> <i class="material-icons">
+                    cloud_queue
+                </i>
+            </span>
+            <a>
+                Ապրանքացանկ հրապարակած գործընկերների տեղեկատու
+            </a>
+        </div>
+        <div class="info-text">
+            <span> <i class="material-icons">
+                    cloud_queue
+                </i>
+            </span>
+            <a>
+                Դիտել հոլովակը
+            </a>
+        </div>
+    </div>
+</div>
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+    (paginate)="onPageChange($event)">
+</app-paginator>

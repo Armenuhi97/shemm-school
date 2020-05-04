@@ -1,0 +1,167 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<!-- <div class="error">{{error}}</div> -->
+
+<form class="group" [formGroup]="accountGroup" action="">
+    <div class="form_group">
+        <div class="label">
+            <label for="">Կուտակիչ հաշիվ</label>
+        </div>
+        <div class="input_wraper ">
+            <label class="container-checkbox">
+                <input formControlName="isAccumulatedAccount" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+
+        </div>
+    </div>
+    <!-- <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Կոդ</label>
+        </div>
+        <div class="input_wraper">
+            <input type="number" class="code-input" formControlName="code">
+            <span class="validate_error"
+                *ngIf="accountGroup.get('code').hasError('required') && accountGroup.get('code').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+        </div>
+    </div> -->
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Հաշիվ</label>
+        </div>
+        <div class="input_wraper account-wraper">
+            <input formControlName="account">
+            <span class="validate_error"
+                *ngIf="accountGroup.get('account').hasError('required') && accountGroup.get('account').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Անվանում</label>
+        </div>
+        <div class="input_wraper ">
+            <input formControlName="name">
+            <span class="validate_error"
+                *ngIf="accountGroup.get('name').hasError('required') && accountGroup.get('name').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Կուտակիչ հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+
+            <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('accumulatedAccount','account')"
+               (setValue)="setValue($event,'accumulatedAccount')"
+                [array]="chartAccounts" [selectObject]="accountGroup.get('accumulatedAccount').value"
+                [modalParams]="modalParams">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="accountGroup.get('accumulatedAccount').value">{{accountGroup.get('accumulatedAccount').value.name}}</span>
+        </div>
+        <!-- <div class="input_wraper ">
+            <p-dropdown formControlName="accumulatedAccount"></p-dropdown>
+        </div> -->
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Տեսակ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('type','code')"
+                 (setValue)="setValue($event,'type')" [array]="types"
+                [selectObject]="accountGroup.get('type').value" [modalParams]="typesModalPrams">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="accountGroup.get('type').value">{{accountGroup.get('type').value.name}}</span>
+            <span class="validate_error" *ngIf="accountGroup.get('type').hasError('required') && accountGroup.get('type').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Արտահաշվեկշռային</label>
+        </div>
+        <div class="input_wraper ">
+            <label class="container-checkbox">
+                <input formControlName="offBalanceSheet" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Հաշվառում ըստ գործընկերների</label>
+        </div>
+        <div class="input_wraper ">
+            <label class="container-checkbox">
+                <input formControlName="accountingByPartners" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 1</label>
+        </div>
+        <div class="input_wraper ">
+            <label class="container-checkbox">
+                <input formControlName="analyticGroup1" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 2</label>
+        </div>
+        <div class="input_wraper ">
+            <label class="container-checkbox">
+                <input formControlName="analyticGroup2" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+    </div>
+    <div class="card">
+        <app-card [header]="'Հասանելի արժույթներ'">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Արժույթ</th>
+                    <th>Անվանում</th>
+                </tr>
+                <tr *ngFor="let item of currencyArray">
+                    <td>
+                        <label class="container-checkbox">
+                            <input [checked]="isChecked(item)" (change)="addOrRemoveCurrency(item)" type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                    <td>{{item.currency}}</td>
+                    <td>{{item.name}}</td>
+                </tr>
+            </table>
+        </app-card>
+    </div>
+    <div class="buttons">
+        <button (click)="addAccount()">Կատարել</button>
+        <button (click)="close()"> Դադարեցնել</button>
+    </div>
+</form>
+

@@ -1,0 +1,183 @@
+<form [formGroup]="receiveServicesGroup">
+    <div class="form_group other_group">
+        <div class="label">
+            <label for=""><span>*</span> Արժույթ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'id'" [inputProperty]="'currency'"
+                [inputValue]="setInputValue('currency','currency')"
+                [selectObject]="receiveServicesGroup.get('currency').value" (setValue)="setValue($event,'currency')"
+                [array]="currencies" [modalParams]="setModalParams('Արժույթներ','currency','Կոդ')"
+>
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="receiveServicesGroup.get('currency').value">{{receiveServicesGroup.get('currency').value.name}}</span>
+            <span class="validate_error"
+                *ngIf="receiveServicesGroup.get('currency').hasError('required') && receiveServicesGroup.get('currency').touched">
+                <i class="material-icons">
+                    close
+                </i>
+            </span>
+        </div>
+    </div>
+    <div class="currency_form">
+        <div class="form_group other_group">
+            <div class="label">
+                <label for=""><span>*</span> Արժույթի փոխարժեք</label>
+            </div>
+            <div class="input_wraper">
+                <input type="text" formControlName="exchangeRate">
+                <span class="validate_error"
+                    *ngIf="receiveServicesGroup.get('exchangeRate').hasError('required') && receiveServicesGroup.get('exchangeRate').touched">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form_group right">
+            <div class="label">
+                <label for="">առ</label>
+            </div>
+            <div class="input_wraper">
+                <input type="text" formControlName="exchangeRateFrom">
+
+            </div>
+        </div>
+    </div>
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Նախորդ օրվա փոխարժեքը</label>
+        </div>
+        <div class="input_wraper">
+            <label class="container-checkbox">
+                <input type="checkbox" formControlName="previousDayCourse">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+    </div>
+    <div class="form_group other_group">
+        <div class="label">
+            <label for=""><span>*</span> Մատակարար</label>
+        </div>
+        <div class="input input_wraper">
+            <div class="has-add-button-content flex">
+                <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                    [inputValue]="setInputValue('provider','name')"
+                    [selectObject]="receiveServicesGroup.get('provider').value" (setValue)="setValue($event,'provider')"
+                   [array]="partners"
+                    [modalParams]="setModalParams('Գործընկերներ','id','Կոդ')">
+                </app-modal-dropdown>
+                <button class="add_button" (click)="addPartner()"><i class="material-icons">
+                        add
+                    </i></button>
+                <span class="validate_error"
+                    *ngIf="receiveServicesGroup.get('provider').hasError('required')  && receiveServicesGroup.get('provider').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+    </div>
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Մատակարարի հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'account'"
+                [inputValue]="setInputValue('providerAccount','account')"
+                [selectObject]="receiveServicesGroup.get('providerAccount').value"
+                (setValue)="setValue($event,'providerAccount')" [array]="chartAccount"
+                [modalParams]="setModalParams('Հաշվային պլան','account','Հաշիվ')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="receiveServicesGroup.get('providerAccount').value">{{receiveServicesGroup.get('providerAccount').value.name}}</span>
+        </div>
+    </div>
+
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Տրված կանխավճարի հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'account'"
+              
+                [inputValue]="setInputValue('givenAdvancePaymentAccount','account')"
+                [selectObject]="receiveServicesGroup.get('givenAdvancePaymentAccount').value"
+                (setValue)="setValue($event,'givenAdvancePaymentAccount')" [array]="chartAccount"
+                [modalParams]="setModalParams('Հաշվային պլան','account','Հաշիվ')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="receiveServicesGroup.get('givenAdvancePaymentAccount').value">{{receiveServicesGroup.get('givenAdvancePaymentAccount').value.name}}</span>
+        </div>
+    </div>
+
+
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 1</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'"
+                [inputValue]="setInputValue('analyticalGroup1','code')"
+                [selectObject]="receiveServicesGroup.get('analyticalGroup1').value"
+                (setValue)="setValue($event,'analyticalGroup1')" [array]="analyticalGroup1"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 1','code','Կոդ')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="receiveServicesGroup.get('analyticalGroup1').value">{{receiveServicesGroup.get('analyticalGroup1').value.name}}</span>
+           
+        </div>
+    </div>
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 2</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'"
+                [inputValue]="setInputValue('analyticalGroup2','code')"
+                [selectObject]="receiveServicesGroup.get('analyticalGroup2').value"
+                (setValue)="setValue($event,'analyticalGroup2')" [array]="analyticalGroup2"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 2','code','Կոդ')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="receiveServicesGroup.get('analyticalGroup2').value">{{receiveServicesGroup.get('analyticalGroup2').value.name}}</span>
+           
+        </div>
+    </div>
+
+    <div class="acquisition-document">
+        <div class="form_group other_group">
+            <div class="label">
+                <label for="">Ձեռք բերման փաստաթղթի N</label>
+            </div>
+            <div class="input_wraper ">
+                <input full-width formControlName="acquisitionDocumentNumber">
+            </div>
+        </div>
+        <div class="form_group ">
+            <div class="label">
+                <label for="">ա/թ. </label>
+            </div>
+            <div class="input_wraper right">
+                <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                    [locale]="calendarConfig">
+                </p-calendar>
+            </div>
+        </div>
+    </div>
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Մեկնաբանություն</label>
+        </div>
+        <div class="input_wraper comment">
+            <app-modal-dropdown [isDisabledInput]="true" [property]="'id'"
+                [inputValue]="setInputValue('comment','text')"
+                [selectObject]="receiveServicesGroup.get('comment').value" (setValue)="setValue($event,'comment')"
+                [array]="documentKind" [modalName]="getModalName()" [modalParams]="setCommentParam(['text'])">
+            </app-modal-dropdown>
+
+        </div>
+    </div>
+</form>

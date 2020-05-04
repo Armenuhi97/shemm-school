@@ -1,0 +1,300 @@
+<h2>{{tabTitle}}
+</h2>
+<form [formGroup]="provisionsGroup">
+  <div class="section">
+    <div class="section-header">
+      <span>Հաշվարկ</span>
+    </div>
+    <div class="section-body">
+      <div class="form_group">
+        <div class="label">
+          <label class="required" for="">Հաշվարկի ամսաթիվ</label>
+        </div>
+        <div class="input_wraper">
+          <p-calendar rPCalendarMask formControlName="billingDate" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+            [locale]="calendarConfig"> </p-calendar>
+          
+        </div>
+      </div>
+
+      <div class="form_group">
+        <div class="label">
+          <label for="">Հաշվարկել աշխատավարձը անմիջապես</label>
+        </div>
+        <div class="input_wraper">
+          <label class="container-checkbox">
+            <input formControlName="calculateWorkOrderImmediately" type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+      <div class="form_group">
+        <div class="label">
+          <label for="">Կլորացման աստիճան</label>
+        </div>
+        <div class="input_wraper">
+          <input class="code-input" formControlName="degreeOfRounding" type="number">
+        </div>
+      </div>
+
+      <div class="form_group">
+        <div class="label">
+          <label for="">Տարանցիկ հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+          <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('transitAccount','account')"
+            [selectObject]="provisionsGroup.get('transitAccount').value"
+            (setValue)="setValue($event,'transitAccount')" [array]="chartAccounts"
+            [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+          </app-modal-dropdown>
+
+          <span class="selected-element-name"
+            *ngIf="provisionsGroup.get('transitAccount').value">{{provisionsGroup.get('transitAccount').value.name}}</span>
+          <span class="validate_error"
+            *ngIf="provisionsGroup.get('transitAccount').invalid && provisionsGroup.get('transitAccount').touched"><i
+              class="material-icons">
+              close
+            </i></span>
+        </div>
+      </div>
+      <div class="form_group">
+
+        <label for=""><b>ՆՇՈՒՄ։ Ապագա ամիսներին բաժին ընկնող արձակուրդայինները և համապատասխան հարկերը կձևակերպվեն
+            տարանցիկ հաշվով։</b></label>
+
+      </div>
+      <div class="form_group">
+        <div class="label">
+          <button>Եկամտային հարկի սանդղակ</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span>Նվազագույն աշխատավարձ</span>
+    </div>
+    <div class="section-body">
+      <div class="form_group">
+        <div class="label">
+          <label for="">Նվազագույն աշխատավարձ</label>
+        </div>
+        <div class="input_wraper">
+          <input class="code-input" type="text" formControlName="minSalary">
+          <span class="validate_error"
+            *ngIf="provisionsGroup.get('minSalary').hasError('required') && provisionsGroup.get('minSalary').touched"><i
+              class="material-icons">
+              close
+            </i></span>
+        </div>
+      </div>
+      <div class="form_group">
+        <div class="label">
+          <label for="">Նվազագույն աշխատավարձ կուտ․ կենսաթոշակով (մինչև 01/07/17թ․)</label>
+        </div>
+        <div class="input_wraper">
+          <input class="code-input" type="text" formControlName="minSalaryWithPension">
+          <span class="validate_error"
+            *ngIf="provisionsGroup.get('minSalaryWithPension').hasError('required') && provisionsGroup.get('minSalaryWithPension').touched"><i
+              class="material-icons">
+              close
+            </i></span>
+        </div>
+      </div>
+      <div class="form_group">
+        <div class="label">
+          <label for="">Նվազագույն աշխատավարձ կուտ․ կենսաթոշակով (մինչև 01/07/17թ․-ից)</label>
+        </div>
+        <div class="input_wraper">
+          <input class="code-input" type="text" formControlName="minSalaryWithPensionStarted">
+          <span class="validate_error"
+            *ngIf="provisionsGroup.get('minSalaryWithPensionStarted').hasError('required') && provisionsGroup.get('minSalaryWithPensionStarted').touched"><i
+              class="material-icons">
+              close
+            </i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header">
+      <span>Միջին աշխատավարձ</span>
+    </div>
+    <div class="section-body">
+      <div class="form_group">
+        <div class="label">
+          <label class="required" for="">Միջին օրական գործակիցը արձակուրդ հաշվարկելիս</label>
+        </div>
+        <div class="input_wraper">
+          <input class="code-input" type="text" formControlName="averageDailyCoefficientVacation">
+          <span class="validate_error"
+            *ngIf="provisionsGroup.get('averageDailyCoefficientVacation').hasError('required') && provisionsGroup.get('averageDailyCoefficientVacation').touched"><i
+              class="material-icons">
+              close
+            </i></span>
+        </div>
+      </div>
+
+      <div class="form_group">
+        <div class="label">
+          <label for="">Ամիսների քանակ միջինի համար</label>
+        </div>
+        <div class="input_wraper">
+          <input class="code-input" type="text" formControlName="averageNumberOfMonths">
+          <span class="validate_error"
+            *ngIf="provisionsGroup.get('averageNumberOfMonths').hasError('required') && provisionsGroup.get('averageNumberOfMonths').touched"><i
+              class="material-icons">
+              close
+            </i></span>
+        </div>
+      </div>
+
+      <div class="form_group">
+        <div class="label">
+          <label class="required" for="">Միջինի օրական գործակիցը անաշխ․ նպաստ հաշվարկելիս</label>
+        </div>
+        <div class="input_wraper">
+          <input class="code-input" type="text" formControlName="averageDailyCoefficientBenefit">
+          <span class="validate_error"
+            *ngIf="provisionsGroup.get('averageDailyCoefficientBenefit').hasError('required') && provisionsGroup.get('averageDailyCoefficientBenefit').touched"><i
+              class="material-icons">
+              close
+            </i></span>
+        </div>
+      </div>
+
+      <div class="form_group">
+        <div class="label">
+          <label class="required" for="">Միջինի օրական գործակիցը մայրության անաշխ․ նպաստ հաշվարկելիս</label>
+        </div>
+        <div class="input_wraper">
+          <input class="code-input" type="text" formControlName="averageDailyCoefficientMaternityBenefit">
+          <span class="validate_error"
+            *ngIf="provisionsGroup.get('averageDailyCoefficientMaternityBenefit').hasError('required') && provisionsGroup.get('averageDailyCoefficientMaternityBenefit').touched"><i
+              class="material-icons">
+              close
+            </i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span>Դրոշմանիշային վճար</span>
+    </div>
+    <div class="section-body">
+      <div class="form_group">
+        <div class="label">
+          <label for="">Դրոշմանիշային վճարի չափ</label>
+        </div>
+        <div class="input_wraper">
+          <input class="code-input" type="text" formControlName="amountOfStampPayment">
+          <span class="validate_error"
+            *ngIf="provisionsGroup.get('amountOfStampPayment').hasError('required') && provisionsGroup.get('amountOfStampPayment').touched"><i
+              class="material-icons">
+              close
+            </i></span>
+        </div>
+      </div>
+
+      <div class="form_group">
+        <div class="label">
+          <label for="">Գործատուի դրոշմանիշային վճարի ծախսի հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+          <app-modal-dropdown [property]="'account'"
+            [inputValue]="setInputValue('partnerAmountOfStampPayment','account')"
+            [selectObject]="provisionsGroup.get('partnerAmountOfStampPayment').value"
+            (setValue)="setValue($event,'partnerAmountOfStampPayment')" [array]="chartAccounts"
+            [modalParams]="setModalParams('Հաշվային պլան','Հաշիվ','account')">
+          </app-modal-dropdown>
+          <span class="selected-element-name"
+            *ngIf="provisionsGroup.get('partnerAmountOfStampPayment').value">{{provisionsGroup.get('partnerAmountOfStampPayment').value.name}}</span>
+          <span class="validate_error"
+            *ngIf="provisionsGroup.get('partnerAmountOfStampPayment').invalid && provisionsGroup.get('partnerAmountOfStampPayment').touched"><i
+              class="material-icons">
+              close
+            </i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form_group">
+    <div class="label  mlr-10">
+      <label class="required" for="">Ներդրման ամսաթիվ</label>
+    </div>
+    <div class="input_wraper">
+      <p-calendar rPCalendarMask formControlName="dateOfIntroduction" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+        [locale]="calendarConfig"> </p-calendar>
+      <span class="validate_error"
+        *ngIf="provisionsGroup.get('dateOfIntroduction').hasError('required') && provisionsGroup.get('dateOfIntroduction').touched"><i
+          class="material-icons">
+          close
+        </i></span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span>Կադրային հաշվառում</span>
+    </div>
+    <div class="section-body">
+      <div class="form_group">
+        <div class="label">
+          <label for="">Կադրային փաստաթղթերի հաշվառում</label>
+        </div>
+        <div class="input_wraper">
+          <label class="container-checkbox">
+            <input formControlName="accountingOfPersonnelDocuments" type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form_group">
+        <div class="label">
+          <label for="">Եկամտային հարկի տոկոս</label>
+        </div>
+        <div class="input_wraper">
+          <input class="code-input" type="text" formControlName="taxfee">
+          <span class="validate_error"
+            *ngIf="provisionsGroup.get('taxfee').hasError('required') && provisionsGroup.get('taxfee').touched"><i
+              class="material-icons">
+              close
+            </i></span>
+        </div>
+      </div>
+
+      <div class="form_group">
+        <div class="label">
+          <label for="">Եկամտային հարկի հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+          <input class="code-input" type="text" formControlName="socialTaxfee">
+          <span class="validate_error"
+            *ngIf="provisionsGroup.get('socialTaxfee').hasError('required') && provisionsGroup.get('socialTaxfee').touched"><i
+              class="material-icons">
+              close
+            </i></span>
+        </div>
+      </div>
+
+      <div class="form_group">
+        <b>Դրոշակը նշելիս կազմակերպության կադրային հաշվառման համար կկիռարվեն ընդունման, փոխադրման և
+          ազատման հրամանները։ Հաշվառումը ակտիվացնելիս ավտոմատ կձևակերպվեն համապատասխան հրամաններ (Կադրային
+          փաստաթղթերի մատյան),
+          որից հետո այն ապաակտիվացնել չի կարելի թույլատրվի։
+        </b>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button (click)="addProvisions()" [disabled]="!provisionsGroup.valid">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+  </div>
+</form>

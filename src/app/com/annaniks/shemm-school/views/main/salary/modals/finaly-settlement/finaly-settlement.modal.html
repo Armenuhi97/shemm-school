@@ -1,0 +1,97 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<form [formGroup]="finalySettlementGroup">
+    <div class="first-section">
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Ամսաթիվ</label>
+            </div>
+            <div class="input_wraper">
+                <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                    [locale]="calendarConfig"> </p-calendar>
+                <span class="validate_error"
+                    *ngIf="finalySettlementGroup.get('date').hasError('required') && finalySettlementGroup.get('date').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group right">
+            <div class="label right_label">
+                <label for=""><span>*</span> Փաստաթղթի №</label>
+            </div>
+            <div class="input_wraper wrapper">
+                <input formControlName="folderNumber" type="number">
+                <span class="validate_error"
+                *ngIf="finalySettlementGroup.get('folderNumber').hasError('required') && finalySettlementGroup.get('folderNumber').touched"><i
+                    class="material-icons">
+                    close
+                </i></span>
+            </div>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span>Աշխատակից</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'id'" [inputValue]="setInputValue('employee','id')"
+                [selectObject]="finalySettlementGroup.get('employee').value" (setValue)="setValue($event,'employee')"
+                [array]="employees" [modalParams]="setModalParams2('Աշխատակիցներ',['Կոդ', 'Անուն'],['id','fullName'])">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="finalySettlementGroup.get('employee').value">{{finalySettlementGroup.get('employee').value.fullName}}</span>
+            <span class="validate_error"
+                *ngIf="finalySettlementGroup.get('employee').hasError('required') && finalySettlementGroup.get('employee').touched"><i
+                    class="material-icons">
+                    close
+                </i></span>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 1</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup1','code')"
+                [selectObject]="finalySettlementGroup.get('analyticalGroup1').value"
+                (setValue)="setValue($event,'analyticalGroup1')" [array]="analyticalGroup1"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 1','code')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="finalySettlementGroup.get('analyticalGroup1').value">{{finalySettlementGroup.get('analyticalGroup1').value.name}}</span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 2</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup2','code')"
+                [selectObject]="finalySettlementGroup.get('analyticalGroup2').value"
+                (setValue)="setValue($event,'analyticalGroup2')" [array]="analyticalGroup2"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 2','code')">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="finalySettlementGroup.get('analyticalGroup2').value">{{finalySettlementGroup.get('analyticalGroup2').value.name}}</span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Մեկնաբանություն</label>
+        </div>
+        <div class="input_wraper textarea">
+            <textarea formControlName="comment"></textarea>
+        </div>
+    </div>
+</form>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+        <app-finaly-settlement-common [group]="finalySettlementGroup.get('general').value" [chartAccounts]="chartAccounts"
+            *ngSwitchCase="'Ընդհանուր'"></app-finaly-settlement-common>
+    </div>
+</app-tabs>
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

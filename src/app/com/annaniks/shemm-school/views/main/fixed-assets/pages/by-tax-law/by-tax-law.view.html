@@ -1,0 +1,13 @@
+<app-tables-by-filter [titles]="titles" (add)="addByTaxLaw()">
+  <tr *ngFor="let item of addByTaxLawData">
+    <td class="edit"> <i (click)="addByTaxLaw(true ,item?.id, item)" class=" material-icons"> edit </i> </td>
+    <td class="delete"> <i (click)="delete(item?.id)" class=" material-icons"> close </i></td>
+    <td>{{item?.code}}</td>
+    <td>{{item?.name}}</td>
+    <td>{{item?.yearPrice  }}</td>
+  </tr>
+</app-tables-by-filter>
+
+<app-paginator (getLastPage)="lastPage($event)" [count]="count" [pageLength]="pageLength" [currentPage]="page"
+  (paginate)="onPageChange($event)">
+</app-paginator>

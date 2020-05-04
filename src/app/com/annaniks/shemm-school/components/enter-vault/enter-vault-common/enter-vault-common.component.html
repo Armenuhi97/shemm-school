@@ -1,0 +1,152 @@
+<form [formGroup]="enterVaultCommonGroup">
+
+    <div class="form_group other_group">
+        <div class="label">
+            <label for=""><span>*</span> Մատակարար</label>
+        </div>
+
+        <div class="input input_wraper">
+            <div class="has-add-button-content flex">
+                <app-modal-dropdown [inputProperty]="'name'" [property]="'id'"
+                    [inputValue]="setInputValue('provider','name')"
+                    [selectObject]="enterVaultCommonGroup.get('provider').value"
+                    (setValue)="setValue($event,'provider')" [array]="partners"
+                    [modalParams]="setModalParams('Գործընկերներ',['name'],[ 'Անուն'])">
+                </app-modal-dropdown>
+                <button class="add_button" (click)="addPartner()"><i class="material-icons">
+                        add
+                    </i></button>
+                <span class="validate_error"
+                    *ngIf="enterVaultCommonGroup.get('provider').hasError('required')  && enterVaultCommonGroup.get('provider').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- <div class="form_group other_group">
+        <div class="label">
+            <label for="">Անվանում</label>
+        </div>
+        <div class="input_wraper name_input">
+            <input type="text" formControlName="name">
+        </div>
+    </div> -->
+    <!-- <div *ngIf="subsection && subsection.length" class="form_group other_group">
+        <div class="label">
+            <label for="">Ենթաբաժին</label>
+        </div>
+        <div class="input_wraper">
+ 
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('subsection','name')"
+                [selectObject]="enterVaultCommonGroup.get('subsection').value" 
+                (setValue)="setValue($event,'subsection')" [array]="subsection" [modalParams]="subsectionModalParams">
+            </app-modal-dropdown>
+        </div>
+    </div> -->
+    <!-- <div class="form_group other_group">
+        <div class="label">
+            <label for="">Մատակարարի հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('providerAccount','account')"
+                [selectObject]="enterVaultCommonGroup.get('providerAccount').value"
+                (setValue)="setValue($event,'providerAccount')" [array]="accounts"
+                [modalParams]="setModalParams('Հաշվային պլան',['account','name'],['Հաշիվ', 'Անվանում'])">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="enterVaultCommonGroup.get('providerAccount').value">{{enterVaultCommonGroup.get('providerAccount').value.name}}</span>
+        </div>
+    </div>
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Ստացված կանխավճարի հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'account'"
+                [inputValue]="setInputValue('prepaymentAccountReceived','account')"
+                [selectObject]="enterVaultCommonGroup.get('prepaymentAccountReceived').value"
+                (setValue)="setValue($event,'prepaymentAccountReceived')" [array]="accounts"
+                [modalParams]="setModalParams('Հաշվային պլան', ['account','name'],['Հաշիվ', 'Անվանում'])">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="enterVaultCommonGroup.get('prepaymentAccountReceived').value">{{enterVaultCommonGroup.get('prepaymentAccountReceived').value.name}}</span>
+        </div>
+    </div> -->
+    <!-- <div class="form_group other_group">
+        <div class="label">
+            <label for="">Տրված կանխավճարի հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'account'"
+                [inputValue]="setInputValue('givenAdvancePaymentAccount','account')"
+                [selectObject]="enterVaultCommonGroup.get('givenAdvancePaymentAccount').value"
+                (setValue)="setValue($event,'givenAdvancePaymentAccount')" [array]="accounts" 
+                [modalParams]="setModalParams('Հաշվային պլան', ['account','name'],['Հաշիվ', 'Անվանում'])">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="enterVaultCommonGroup.get('givenAdvancePaymentAccount').value">{{enterVaultCommonGroup.get('givenAdvancePaymentAccount').value.name}}</span>
+        </div>
+    </div> -->
+
+
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 1</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup1','code')"
+                [selectObject]="enterVaultCommonGroup.get('analyticalGroup1').value"
+                (setValue)="setValue($event,'analyticalGroup1')" [array]="analyticalGroup1"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 1',['code','name'],['Կոդ', 'Անվանում'])">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="enterVaultCommonGroup.get('analyticalGroup1').value">{{enterVaultCommonGroup.get('analyticalGroup1').value.name}}</span>
+        </div>
+    </div>
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Անալիտիկ խումբ 2</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'code'" [inputValue]="setInputValue('analyticalGroup2','code')"
+                [selectObject]="enterVaultCommonGroup.get('analyticalGroup2').value"
+                (setValue)="setValue($event,'analyticalGroup2')" [array]="analyticalGroup2"
+                [modalParams]="setModalParams('Անալիտիկ խումբ 2',['code','name'],['Կոդ', 'Անվանում'])">
+            </app-modal-dropdown>
+            <span class="selected-element-name"
+                *ngIf="enterVaultCommonGroup.get('analyticalGroup2').value">{{enterVaultCommonGroup.get('analyticalGroup2').value.name}}</span>
+        </div>
+    </div>
+
+    <div class="acquisition-document">
+        <div class="form_group other_group">
+            <div class="label">
+                <label for="">Ձեռք բերման փաստաթղթի N</label>
+            </div>
+            <div class="input_wraper ">
+                <input full-width formControlName="acquisitionDocumentNumber">
+            </div>
+        </div>
+        <div class="form_group ">
+            <div class="label">
+                <label for="">ա/թ. </label>
+            </div>
+            <div class="input_wraper ">
+                <p-calendar rPCalendarMask appendTo="body" formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'"
+                    dateFormat="dd/mm/yy" [locale]="calendarConfig">
+                </p-calendar>
+            </div>
+        </div>
+    </div>
+    <div class="form_group other_group">
+        <div class="label">
+            <label for="">Մեկնաբանություն</label>
+        </div>
+        <div class="input_wraper comment_wrapper">
+            <input formControlName="comment">
+        </div>
+    </div>
+</form>

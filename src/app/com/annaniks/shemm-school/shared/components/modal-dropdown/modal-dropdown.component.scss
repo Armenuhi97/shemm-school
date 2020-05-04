@@ -1,0 +1,11 @@
+.disabled{
+    opacity: 0.5;
+    pointer-events: none;
+}
+.disabled-input{
+    pointer-events: none;
+    opacity: 1 !important;
+}
+.cursor-pointer{
+    cursor: pointer
+}

@@ -1,0 +1,83 @@
+<app-table (add)="addRow($event)" (delete)="deleteAll($event)">
+    <table class="table" *ngIf="paymentGroupArray && paymentGroupArray.controls && paymentGroupArray.controls.length">
+        <tr>
+            <th></th>
+            <th>Անվանումը</th>            
+            <th>Միավոր</th>
+            <th>Այլ պահվող վճարումներ</th>
+            <th>Հաշվարկային հաշիվների պլանավորում</th>
+            <th>Տեսակ</th>
+
+        </tr>
+        <tr *ngFor="let item of paymentGroupArray.controls; let i = index" [formGroup]="item">
+            <td>
+                <div (click)="remove(i)" class="close">
+                    <i class="material-icons">
+                        close
+                    </i>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input type="text" formControlName="name">
+                    <span class="validate_error"
+                        *ngIf="item.get('name').invalid  && item.get('name').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div #type1 class="row-content">
+                    <p-dropdown  [appendTo]="type1" formControlName="type" [options]="otherWithheldPaymentsTypes" optionLabel="name"
+                        placeholder="Ընտրեք">
+                    </p-dropdown>
+                    <span class="validate_error" *ngIf="item.get('type').invalid  && item.get('type').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div class="row-content">
+                    <input placeholder="Նշեք տոկոսի կամ գումարի չափը" type="text" formControlName="otherWithheldPayments">
+                    <span class="validate_error"
+                        *ngIf="item.get('otherWithheldPayments').invalid  && item.get('otherWithheldPayments').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+           
+            <td>
+                <div class="row-content">
+                    <app-modal-dropdown [property]="'account'"
+                        [inputValue]="setInputValue(item,'planningCurrentAccounts','account')"
+                        [selectObject]="item.get('planningCurrentAccounts').value"
+                        (setValue)="setValue($event,'planningCurrentAccounts',item)" [array]="accountPlans"
+                        [modalParams]="setModalParams('Հաշվային պլան','account')">
+                    </app-modal-dropdown>
+                    <span class="validate_error"
+                        *ngIf="item.get('planningCurrentAccounts').invalid  && item.get('planningCurrentAccounts').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <td>
+                <div #type class="row-content">
+                    <p-dropdown [appendTo]="type" [options]="types" optionLabel="name" placeholder="Ընտրեք"
+                        formControlName="savingType">
+                    </p-dropdown>
+                    <span class="validate_error"
+                        *ngIf="item.get('savingType').invalid  && item.get('savingType').touched"><i
+                            class="material-icons">
+                            close
+                        </i></span>
+                </div>
+            </td>
+            <!-- dropshmanishayin vchar -->
+
+        </tr>
+    </table>
+</app-table>

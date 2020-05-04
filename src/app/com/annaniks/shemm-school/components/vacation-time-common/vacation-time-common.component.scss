@@ -1,0 +1,31 @@
+.form_group{    
+    .label{
+        width: 212px;
+    } 
+    .input_wraper{
+        width: calc(100% - 212px);
+    }
+}
+
+.date-group{
+    display: flex;
+    align-items: center;
+}
+.right{
+    margin-left: 10px;
+}
+.warning-text{
+  color: #3E7EB7;  
+  font-size: 15px;
+  font-weight: 500;
+  margin: 5px 0;
+}
+.edit-button{
+    margin-left: 5px;
+    display: flex;
+    padding: 2px;
+    span{
+        font-size: 22px;
+        color: grey;
+    }
+}

@@ -1,0 +1,125 @@
+<app-modal-header [title]="title" (close)="close()"></app-modal-header>
+<!-- <span class="error">{{error}}</span> -->
+
+<form action="" [formGroup]="invoiceGroup">
+    <div class="first-section">
+        <div class="form_group">
+            <div class="label">
+                <label for=""><span>*</span> Ամսաթիվ</label>
+            </div>
+            <div class="input_wraper date">
+                <p-calendar rPCalendarMask formControlName="date" [placeholder]="'Օր/Ամիս/Տարի'" dateFormat="dd/mm/yy"
+                    [locale]="calendarConfig"> </p-calendar>
+                <span class="validate_error"
+                    *ngIf="invoiceGroup.get('date').hasError('required') && invoiceGroup.get('date').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+        <div class="form_group right">
+            <div class="right_label label">
+                <label for=""><span>*</span> Փաստաթղթի N</label>
+            </div>
+            <div class="input_wraper order_number">
+                <input formControlName="folderNumber" type="number">
+                <span class="validate_error"
+                    *ngIf="invoiceGroup.get('folderNumber').hasError('required') && invoiceGroup.get('folderNumber').touched"><i
+                        class="material-icons">
+                        close
+                    </i></span>
+            </div>
+        </div>
+    </div>
+    <div class="other-section">
+        <div class="form_group">
+            <div class="label">
+                <label for="">Գնորդ</label>
+            </div>
+            <div class="has-add-button-content input_wraper">
+                <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                    [inputValue]="setInputValue('buyer','name')" [selectObject]="invoiceGroup.get('buyer').value"
+                    (setValue)="setValue($event,'buyer')" [array]="partners"
+                    [modalParams]="setModalParams('Գործընկերներ',['Անվանում'],['name'])">
+                </app-modal-dropdown>
+
+                <button class="add_button" (click)="addBuyer()"><i class="material-icons">
+                        add
+                    </i></button>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <div class="label">
+                <label for="">Գծիկավոր կոդ</label>
+            </div>
+            <div class="input_wraper">
+                <input class="code-input" formControlName="barcode">
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Պահեստ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'" [inputProperty]="'name'"
+                    [inputValue]="setInputValue('warehouse','name')"
+                    [selectObject]="invoiceGroup.get('warehouse').value" (setValue)="setValue($event,'warehouse')"
+                    [array]="warehouses" [modalParams]="setModalParams('Պահեստներ',['Անվանում'],['name'])">
+                </app-modal-dropdown>
+
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="label">
+                <label for="">Պահեստի նշանակություն</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'id'" [inputProperty]="'name'"
+                    [inputValue]="setInputValue('warehouseAcquistion','name')"
+                    [selectObject]="invoiceGroup.get('warehouseAcquistion').value"
+                    (setValue)="setValue($event,'warehouseAcquistion')" [array]="wareHouseAcquistions"
+                    [modalParams]="setModalParams('Պահեստի նշանակություն',['Անվանում'],['name'])">
+                </app-modal-dropdown>
+
+            </div>
+        </div>
+        <!-- <div class="form_group">
+            <div class="label">
+                <label for="">Տեսակ</label>
+            </div>
+            <div class="input_wraper">
+                <app-modal-dropdown [property]="'code'" [inputProperty]="'name'"
+                    [inputValue]="setInputValue('type','name')" [selectObject]="invoiceGroup.get('type').value"
+                    (setValue)="setValue($event,'type',true)" [array]="types"
+                    [modalParams]="setModalParams('Տեսակ','code')">
+                </app-modal-dropdown>
+            </div>
+        </div> -->
+    </div>
+</form>
+<app-tabs (getActiveTab)="getActiveTab($event)" [tabsItem]="tabsItem">
+    <div [ngSwitch]="activeTab">
+        <app-invoice-common [group]="invoiceGroup.get('general').value" [subsections]="subsection"
+            [analyticalGroup1]="analyticalGroup1" [analyticalGroup2]="analyticalGroup2" *ngSwitchCase="'Ընդհանուր'">
+        </app-invoice-common>
+        <app-names-list [warehouseConfig]="warehouseConfig" [selectedWareHouse]="invoiceGroup.get('warehouse').value"
+            [selectedWareHouseAcquistion]="invoiceGroup.get('warehouseAcquistion').value"
+            [exitSpecification]="exitSpecification" [wareHouseAcquistions]="wareHouseAcquistions"
+            [date]="invoiceGroup.get('date').value" [unitOfMeasurements]="materialValues" [chartAccounts]="chartAccounts"
+            [calculationTypes]="calculationTypes" [warehouses]="warehouses" *ngSwitchCase="'Անվանացուցակ'"
+            [group]="invoiceGroup.get('namesList').value">
+        </app-names-list>
+        <app-operation [chartAccounts]="chartAccounts" [partners]="partners" [analyticalGroup1]="analyticalGroup1"
+            [analyticalGroup2]="analyticalGroup2" [typeOperation]="'true'" [group]="invoiceGroup.get('operation').value"
+            *ngSwitchCase="'Գործառնություններ'"></app-operation>
+
+        <!-- <app-buyer *ngSwitchCase="'Գնորդ'"></app-buyer> -->
+        <!-- <app-provider *ngSwitchCase="'Մատակարար'"></app-provider> -->
+    </div>
+</app-tabs>
+
+<div class="buttons">
+    <button (click)="save()">Կատարել</button>
+    <button (click)="close()">Դադարեցնել</button>
+</div>

@@ -1,0 +1,72 @@
+<form [formGroup]="finalySettlementGroup">
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ամիսների քանակը միջինի համար</label>
+        </div>
+        <div class="input_wraper small-wrapper">
+            <input readonly type="number" formControlName="monthCount">
+        </div>
+    </div>
+
+    <div class="form_group">
+        <div class="label">
+            <label for="">Միջին օրական գործակից</label>
+        </div>
+        <div class="input_wraper small-wrapper">
+            <input readonly type="number" class="small-input" formControlName="dailyCoefficient">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Միջին աշխատավարձ</label>
+        </div>
+        <div class="input_wraper">
+            <input type="number" formControlName="averageSalary">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Միջին օրական</label>
+        </div>
+        <div class="input_wraper">
+            <input type="number" formControlName="averageDaily">
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Ծախսի հաշիվ</label>
+        </div>
+        <div class="input_wraper">
+            <app-modal-dropdown [property]="'account'" [inputValue]="setInputValue('expenseAccount','account')"
+            [selectObject]="finalySettlementGroup.get('expenseAccount').value"
+            (setValue)="setValue($event,'expenseAccount')" [array]="chartAccounts"
+            [modalParams]="setModalParams('Հաշվային պլան','account')">
+        </app-modal-dropdown>
+        <span class="selected-element-name"
+            *ngIf="finalySettlementGroup.get('expenseAccount').value">{{finalySettlementGroup.get('expenseAccount').value.name}}</span>
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for="">Օր</label>
+        </div>
+        <div class="input_wraper">
+            <input type="number" formControlName="day">
+
+            <!-- <p-dropdown formControlName="day"></p-dropdown> -->
+        </div>
+    </div>
+    <div class="form_group">
+        <div class="label">
+            <label for=""><span>*</span> Գումար</label>
+        </div>
+        <div class="input_wraper">
+            <input type="number" formControlName="amount">
+            <span class="validate_error"
+            *ngIf="finalySettlementGroup.get('amount').hasError('required') && finalySettlementGroup.get('amount').touched"><i
+                class="material-icons">
+                close
+            </i></span>
+        </div>
+    </div>
+</form>

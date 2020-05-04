@@ -1,0 +1,36 @@
+.form_group{    
+    .label{
+        width: 500px;
+    } 
+    .input_wraper{
+        width: calc(100% - 500px);
+
+        .container-checkbox{
+            padding-left: 22px !important;
+        }
+    }
+}
+
+.date-group{
+    display: flex;
+    align-items: center;
+}
+.right{
+    margin-left: 10px;
+}
+
+
+.reverseLabel{
+    .form_group{    
+        .label{
+            width: 100%;
+        } 
+        .input_wraper{
+            width: calc(100% - 500px);
+        }
+    }
+}
+
+h2 {
+    color: rgba(80,80,80, 0.5);
+}

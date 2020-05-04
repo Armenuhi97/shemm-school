@@ -1,0 +1,83 @@
+.settings-button{
+  display: flex;
+  align-items: center;
+  i{
+    font-weight: bold;
+  }
+  .add{
+    color: #56AD89;
+    cursor: pointer;       
+  }
+  .remove{
+    color: #CC4C33;
+    cursor: pointer;
+    margin-left: 15px;      
+  }
+}
+:host::ng-deep{
+  app-modal-dropdown{
+    input{
+      height: 32px;
+      background: none;
+      border: 1px solid grey !important;
+      border-right: none !important;
+
+     }
+  }
+}
+.close{
+    border-radius: 50%;
+    background: grey;
+    height: 15px;
+    width: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    i{
+        color: white;
+        font-size: 11px;
+    }
+}
+
+table, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 2px;
+    color: black;
+    font-size:12px
+  }
+  .row{
+    input[type="text"], input[type="number"], p-dopdown,textarea{
+      border:none !important;
+      height: 100%;
+      resize: none;
+    }
+  }
+
+.row-content{
+  display: flex;
+  align-items: center;
+  .validate_error{
+    height: 20px;
+    width: 20px;
+    background: #AA1415;
+    color: white;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    margin-left: 5px;
+    i{
+        font-size: 15px;
+    }
+  }
+}
+  .td{
+    border: none !important;   
+    input{
+      border: 1px solid !important;
+      padding-left: 3px;
+    } 
+  }
+ 

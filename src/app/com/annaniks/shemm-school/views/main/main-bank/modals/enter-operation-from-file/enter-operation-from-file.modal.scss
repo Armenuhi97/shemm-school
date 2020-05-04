@@ -1,0 +1,69 @@
+.upload-content{
+    margin-top: 25px;
+    .upload-file{
+        width: 90%;
+        border: 1px solid #3F7FB8;
+        min-height: 65px;
+        padding: 5px;
+        position: relative;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    .upload-button{
+        background-color: #3F7FB8;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+        border: none;
+        height: 35px;
+        width: 150px;        
+    }
+    .files-content{
+        display: flex;
+        flex-wrap: wrap;
+        width: calc(100% - 165px);
+        .file{
+            // border: 1px solid grey;
+            // background-size: contain;
+            // background-position: center;
+            // background-repeat: no-repeat;
+            img{
+                height: 50px;
+                width: 50px;
+            }
+       
+            margin-left: 10px;
+            position: relative;
+            margin-top: 10px;
+        }
+        .close{
+            position: absolute;
+            top: -9px;
+            right: -11px;
+            font-size: 23px;
+            cursor: pointer;
+            color: grey;
+        }
+    }
+
+        input[type="file"] {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            position:absolute;
+            top: 0;
+            right: 0;
+            z-index: 99;
+            /*This makes the button huge. If you want a bigger button, increase the font size*/
+            font-size:50px;
+            /*Opacity settings for all browsers*/
+            opacity: 0;
+            -moz-opacity: 0;
+        }
+        .custom-file-upload{
+            position: absolute;
+            top: calc(50% - 35px/2);   
+            right: 15px;   
+        }
+}
+
